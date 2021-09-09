@@ -13,7 +13,8 @@ const stylesHandler = 'style-loader';
 const config = {
     entry: './client/src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve('dist'),
+        filename: "main.js",
     },
     devServer: {
         open: true,
@@ -31,11 +32,12 @@ const config = {
         rules: [
             {
                 test: /\.(js|jsx)$/i,
+                exclude: /node_modules/,
                 loader: 'babel-loader',
             },
             {
                 test: /\.css$/i,
-                use: [stylesHandler,'css-loader'],
+                use: [stylesHandler, 'css-loader'],
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -46,6 +48,10 @@ const config = {
             // Learn more about loaders from https://webpack.js.org/loaders/
         ],
     },
+    resolve: {
+        extensions: [".js", ".jsx"],
+    }
+
 };
 
 module.exports = () => {
