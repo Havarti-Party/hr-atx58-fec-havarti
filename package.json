@@ -2,7 +2,7 @@
   "name": "my-webpack-project",
   "version": "1.0.0",
   "description": "My webpack project",
-  "main": "index.js",
+  "main": "./dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --node-env=production",
@@ -31,8 +31,11 @@
     "recoil": "^0.4.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.5",
+    "@babel/plugin-syntax-jsx": "^7.14.5",
     "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
     "@webpack-cli/generators": "^2.3.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
