@@ -7,3 +7,6 @@ export default function QuestionsAndAnswers(props) {
     </>
   )
 }
+
+
+//this is my component now!
