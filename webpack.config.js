@@ -20,14 +20,14 @@ const config = {
         open: true,
         host: 'localhost',
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: 'index.html',
-        }),
+    // plugins: [
+    //     new HtmlWebpackPlugin({
+    //         template: 'index.html',
+    //     }),
 
         // Add your plugins here
         // Learn more about plugins from https://webpack.js.org/configuration/plugins/
-    ],
+    // ],
     module: {
         rules: [
             {
