@@ -48,6 +48,9 @@ export default function RelatedProducts(props) {
   return (
     <>
       <Carousel responsive={responsive}>
+        <div id='related product card'>
+          <h1> CLICK TO ADD TO YOUR OUTFIT </h1>
+        </div>
         {testArr.map((obj) => {
           return <RelatedProductCard imgObj={obj} />
         })}
