@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import OutfitCard from './OutfitCard.jsx'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import RelatedProductCard from './RelatedProductCard.jsx'
 
-export default function RelatedProducts(props) {
+const CustomerOutfit = (props) => {
 
   const responsive = {
     superLargeDesktop: {
@@ -25,36 +25,35 @@ export default function RelatedProducts(props) {
     }
   };
 
-
-
-
   let testArr = [{
     imgSrc: "../Images/stock.jpg",
-    sampleText: 'Image 1',
+    sampleText: 'Outfit 1',
   }, {
     imgSrc: "../Images/stock.jpg",
-    sampleText: 'Image 2',
+    sampleText: 'Outfit 2',
   }, {
     imgSrc: "../Images/stock.jpg",
-    sampleText: 'Image 3',
+    sampleText: 'Outfit 3',
   }, {
     imgSrc: "../Images/stock.jpg",
-    sampleText: 'Image 4',
+    sampleText: 'Outfit 4',
   }, {
     imgSrc: "../Images/stock.jpg",
-    sampleText: 'Image 5',
+    sampleText: 'Outfit 5',
   }]
 
   return (
     <>
       <Carousel responsive={responsive}>
         <div id='related-product-card'>
-          <h1> Recommended Outfit </h1>
+          <h1> CLICK TO ADD TO YOUR OUTFIT </h1>
         </div>
         {testArr.map((obj, index) => {
-          return <RelatedProductCard imgObj={obj} key={index} />
+          return <OutfitCard imgObj={obj} key={index} />
         })}
       </Carousel>
     </>
   )
 }
+
+export default CustomerOutfit;
