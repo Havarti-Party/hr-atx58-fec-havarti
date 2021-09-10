@@ -1,38 +1,16 @@
 import React from 'react';
 import Question from './Question.jsx'
 
-class QuestionsAndAnswers extends React.Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      questions: [1, 2, 3, 4],
-      answers: [],
-    }
-
-  }
-
-
-  render() {
-    return (
-      <div id='questionList'>
-        <h1>Questions And Answers</h1>
-        {this.state.questions.map(item => {
-          return <Question />
-        })}
-      </div>
-    )
-  }
-}
-{
-  "product_id": "5",
-  "results": [{
-        "question_id": 37,
-        "question_body": "Why is this product cheaper here than other sites?",
+var product = {
+  "product_id": "5", //product id
+  "results": [{ //results include all questions on this product
+        "question_id": 37, //id for this question within an assumed question database
+        "question_body": "Why is this product cheaper here than other sites?", //question text
         "question_date": "2018-10-18T00:00:00.000Z",
         "asker_name": "williamsmith",
         "question_helpfulness": 4,
         "reported": false,
-        "answers": {
+        "answers": {  //answer's list gets populated from here
           68: {
             "id": 68,
             "body": "We are selling it here without any markup from the middleman!",
@@ -70,8 +48,33 @@ class QuestionsAndAnswers extends React.Component{
           }
         }
       },
-      // ...
   ]
+}
+class QuestionsAndAnswers extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      product: {}, //set's product name/id number
+      questions: [1, 2, 3, 4], //iterate over it's product.results array (each element is a question object)
+      answers: [],
+    }
+
+  }
+
+
+  render() {
+    return (
+      <div id='questionList'>
+        <h1>
+          Questions And Answers
+          <input id='questionSearch' type='search' placeholder='Have a question? Search for Answers...'/><input type='submit'/>
+        </h1>
+        {this.state.questions.map(item => {
+          return <Question /> //pass in the entire question object (this will hold the answers array for the specific question)
+        })}
+      </div>
+    )
+  }
 }
 
 export default QuestionsAndAnswers

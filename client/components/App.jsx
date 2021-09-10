@@ -10,7 +10,7 @@ export default function App(props) {
     <Container maxWidth="md">
       <div className="App">
         <ProductOverview />
-        <RelatedProducts />
+        {/* <RelatedProducts /> */}
         <RatingsAndReviews />
         <QuestionsAndAnswers />
       </div>
