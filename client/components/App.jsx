@@ -9,8 +9,8 @@ export default function App(props) {
     <div>
       <ProductOverview />
       <RelatedProducts />
-      <QuestionsAndAnswers />
       <RatingsAndReviews />
+      <QuestionsAndAnswers />
     </div>
   )
 }

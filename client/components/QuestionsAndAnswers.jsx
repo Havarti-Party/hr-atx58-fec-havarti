@@ -1,5 +1,5 @@
 import React from 'react';
-import Queston from './Question.jsx'
+import Question from './Question.jsx'
 
 class QuestionsAndAnswers extends React.Component{
   constructor(props) {
@@ -8,13 +8,15 @@ class QuestionsAndAnswers extends React.Component{
       questions: [1, 2, 3, 4],
       answers: [],
     }
+
   }
+
 
   render() {
     return (
-      <div>
+      <div id='questionList'>
         <h1>Questions And Answers</h1>
-        {this.state.questions.map(question => {
+        {this.state.questions.map(item => {
           return <Question />
         })}
       </div>
