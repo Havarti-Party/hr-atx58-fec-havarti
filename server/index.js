@@ -9,15 +9,18 @@ let app = express();
 app.use(express.static('dist'));
 app.use(express.json());
 
+
+
 app.get('/products', (req, res) => {
-  //request body will need to have the id for API query
-  return models.getAllProducts()
-    .then((results) => {
-      console.log('results from index.js', results);
-    })
-    .catch((error) => {
+  models.getAllProducts(01, (err, results) => {
+    if (err) {
       console.log('you hit an error on server/index.js')
-    })
+      res.status(404).send('you hit an error')
+    } else {
+      // console.log('results from index.js', results);
+      res.status(200).send('success');
+    }
+  })
 })
 
 
