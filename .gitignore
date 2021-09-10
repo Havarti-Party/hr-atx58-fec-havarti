@@ -102,3 +102,8 @@ dist/main.js
 
 # TernJS port file
 .tern-port
+
+.DS_Store
+
+# Server
+server/config.js
