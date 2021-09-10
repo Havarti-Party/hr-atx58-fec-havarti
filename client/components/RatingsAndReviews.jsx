@@ -5,10 +5,10 @@ export default function RatingsAndReviews(props) {
     <>
     <h3>Ratings And Reviews</h3>
     <div>100% of reviews recommend this product</div>
-    <RatingBreakdownBars />
-    <SizeBar />
-    <ComfortBar />
-    <ReviewSorter />
+    <RatingBreakdownBars /><br></br>
+    <SizeBar /><br></br>
+    <ComfortBar /><br></br>
+    <ReviewSorter /><br></br>
     <ReviewDisplay />
     </>
   )
@@ -16,40 +16,40 @@ export default function RatingsAndReviews(props) {
 
 var RatingBreakdownBars = (props) => {
   return (
-    <div>This is where the breakdown bars go</div>
+    <img src="/Images/ratingsbreakdownbars.png"></img>
   )
 }
 
 var SizeBar = (props) => {
   return (
-    <div>This is where the size bar goes</div>
+    <img src="/Images/ratingssizebar.png"></img>
   )
 }
 
 var ComfortBar = (props) => {
   return (
-    <div>This is where the comfort bar goes</div>
+    <img src="/Images/ratingscomfortbar.png"></img>
   )
 }
 
 var ReviewSorter = (props) => {
   return (
-    <div>This is where the review sorter goes</div>
+    <img src="/Images/ratingsreviewsorter.png"></img>
   )
 }
 
 var ReviewDisplay = (props) => {
   return (
     <>
-    <div>This is where the review display goes</div>
-    <ReviewTile />
-    <ReviewTile />
+    <img src="/Images/ratingsreviewdisplay.png"></img>
+    {/* <ReviewTile />
+    <ReviewTile /> */}
     </>
   )
 }
 
-var ReviewTile = (props) => {
-  return (
-    <div>This is a review tile</div>
-  )
-}
+// var ReviewTile = (props) => {
+//   return (
+//     <div>This is a review tile</div>
+//   )
+// }
