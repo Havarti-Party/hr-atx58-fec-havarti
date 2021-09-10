@@ -81,6 +81,7 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 dist/main.js
+dist/.main.js.icloud
 
 # Gatsby files
 .cache/
@@ -102,3 +103,8 @@ dist/main.js
 
 # TernJS port file
 .tern-port
+
+.DS_Store
+
+# Server
+server/config.js

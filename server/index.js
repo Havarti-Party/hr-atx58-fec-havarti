@@ -1,9 +1,28 @@
-var express =  require('express');
+const express = require('express');
+const config = require('./config.js');
+const PORT = 3030;
+const axios = require('axios');
+const models = require('./models.js');
 
-var PORT = 3030;
-var app = express();
+let app = express();
 
 app.use(express.static('dist'));
+app.use(express.json());
+
+
+
+app.get('/products', (req, res) => {
+  models.getAllProducts(01, (err, results) => {
+    if (err) {
+      console.log('you hit an error on server/index.js')
+      res.status(404).send('you hit an error')
+    } else {
+      // console.log('results from index.js', results);
+      res.status(200).send('success');
+    }
+  })
+})
+
 
 app.listen(PORT, (err, success) => {
   if (err) {
