@@ -1,12 +1,28 @@
 import React from 'react';
+import Question from './Question.jsx'
 
-export default function QuestionsAndAnswers(props) {
-  return (
-    <>
-    <h1>Questions And Answers</h1>
-    </>
-  )
+class QuestionsAndAnswers extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      questions: [1, 2, 3, 4],
+      answers: [],
+    }
+
+  }
+
+
+  render() {
+    return (
+      <div id='questionList'>
+        <h1>Questions And Answers</h1>
+        {this.state.questions.map(item => {
+          return <Question />
+        })}
+      </div>
+    )
+  }
 }
 
 
-//this is my component now!
+export default QuestionsAndAnswers

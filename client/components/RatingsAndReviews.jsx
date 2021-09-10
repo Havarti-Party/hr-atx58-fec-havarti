@@ -5,10 +5,10 @@ export default function RatingsAndReviews(props) {
     <>
     <h3>Ratings And Reviews</h3>
     <div>100% of reviews recommend this product</div>
-    <RatingBreakdownBars /><br></br>
-    <SizeBar /><br></br>
-    <ComfortBar /><br></br>
-    <ReviewSorter /><br></br>
+    <RatingBreakdownBars /><br />
+    <SizeBar /><br />
+    <ComfortBar /><br />
+    <ReviewSorter /><br />
     <ReviewDisplay />
     </>
   )
