@@ -104,3 +104,6 @@ dist/main.js
 .tern-port
 
 .DS_Store
+
+# Server
+server/config.js
