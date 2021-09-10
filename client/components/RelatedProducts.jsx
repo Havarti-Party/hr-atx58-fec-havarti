@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import RelatedProductCard from './RelatedProductCard.jsx'
@@ -48,11 +48,11 @@ export default function RelatedProducts(props) {
   return (
     <>
       <Carousel responsive={responsive}>
-        <div id='related product card'>
+        <div id='related-product-card'>
           <h1> CLICK TO ADD TO YOUR OUTFIT </h1>
         </div>
-        {testArr.map((obj) => {
-          return <RelatedProductCard imgObj={obj} />
+        {testArr.map((obj, index) => {
+          return <RelatedProductCard imgObj={obj} key={index} />
         })}
       </Carousel>
     </>
