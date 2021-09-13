@@ -1,10 +1,13 @@
 import React from 'react';
+import AverageStarRating from './AverageStarRating';
 
 export default function RatingsAndReviews(props) {
   return (
     <>
     <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
     <div>100% of reviews recommend this product</div>
+    {/* Note: AverageStarRating is going to need input later */}
+    <AverageStarRating />
     <RatingBreakdownBars /><br />
     <SizeBar /><br />
     <ComfortBar /><br />
@@ -15,8 +18,22 @@ export default function RatingsAndReviews(props) {
 }
 
 var RatingBreakdownBars = (props) => {
+  var starArray = [1, 2, 3, 4, 5];
   return (
-    <img src="/Images/ratingsbreakdownbars.png"></img>
+    <>
+      {/* <img src="/Images/ratingsbreakdownbars.png"></img> */}
+      {starArray.map(starRating => {
+        return (
+          <ProgressBar starRating={starRating}/>
+        )
+      })}
+    </>
+  )
+}
+
+var ProgressBar = (props) => {
+  return (
+    <div>This is where a {props.starRating}-star progress bar would go</div>
   )
 }
 
