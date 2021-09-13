@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StarRatings from 'react-star-ratings';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 
 const useStyles = makeStyles({
   root: {
@@ -18,27 +19,27 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutfitCard({ imgObj }) {
+export default function OutfitCard({ OutfitObj }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
+        <RemoveCircleOutlineIcon />
         <CardMedia
           className={classes.media}
-          image={imgObj.imgSrc}
-          title={imgObj.sampleText}
+          image={OutfitObj.url}
+          title={OutfitObj.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Product Title
+            {OutfitObj.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            descriptive text from RelatedProducts obj
-            Price
+            {OutfitObj.description}
           </Typography>
           <StarRatings
-            rating={2}
+            rating={3.75}
             starDimension={'15px'}
             starSpacing={'1px'}
           />

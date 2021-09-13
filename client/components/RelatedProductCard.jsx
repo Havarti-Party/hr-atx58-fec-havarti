@@ -8,6 +8,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StarRatings from 'react-star-ratings';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { positions } from '@material-ui/system';
+
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +27,7 @@ export default function RelatedProductCard({ RelatedObj }) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
+        <StarBorderIcon />
         <CardMedia
           className={classes.media}
           image={RelatedObj.url}

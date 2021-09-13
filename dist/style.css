@@ -2,3 +2,6 @@
   border-style: solid;
   color: red;
 }
+#icon {
+  z-index: -1;
+}
