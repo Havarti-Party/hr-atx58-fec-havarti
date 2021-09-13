@@ -3,17 +3,21 @@ import AverageStarRating from './AverageStarRating';
 
 export default function RatingsAndReviews(props) {
   return (
-    <>
-    <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
-    <div>100% of reviews recommend this product</div>
-    {/* Note: AverageStarRating is going to need input later */}
-    <AverageStarRating />
-    <RatingBreakdownBars /><br />
-    <SizeBar /><br />
-    <ComfortBar /><br />
-    <ReviewSorter /><br />
-    <ReviewDisplay />
-    </>
+    <div id='ratings-and-reviews'>
+      <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
+      {/* Note: AverageStarRating is going to need input later */}
+      <div id='RARLeftColumn'>
+        <div>100% of reviews recommend this product</div>
+        <AverageStarRating /><br />
+        <RatingBreakdownBars /><br />
+        <SizeBar /><br />
+        <ComfortBar /><br />
+      </div>
+      <div id='RARRightColumn'>
+        <ReviewSorter /><br />
+        <ReviewDisplay />
+      </div>
+    </div>
   )
 }
 
@@ -24,7 +28,8 @@ var RatingBreakdownBars = (props) => {
       {/* <img src="/Images/ratingsbreakdownbars.png"></img> */}
       {starArray.map(starRating => {
         return (
-          <ProgressBar starRating={starRating}/>
+          // The rate percentage should come from state later on
+          <ProgressBar key={starRating} starRating={starRating} ratePercent={20}/>
         )
       })}
     </>
@@ -33,7 +38,14 @@ var RatingBreakdownBars = (props) => {
 
 var ProgressBar = (props) => {
   return (
-    <div>This is where a {props.starRating}-star progress bar would go</div>
+    <>
+      <span>{props.starRating} stars: </span>
+      <div className='RARProgressBarContainer'>
+        <div className='RARProgressBarFiller' style={{width: `${props.ratePercent}%`}}>
+          <div>&nbsp;</div>
+        </div>
+      </div><br />
+    </>
   )
 }
 
