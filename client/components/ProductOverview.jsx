@@ -1,12 +1,13 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import MainImageCarousel from './MainImageCarousel.jsx';
 
 export default function ProductOverview(props) {
   return (
     <>
     <Grid container>
       <Grid item md={8}>
-          <img src="../images/mainImage.png" alt="Main Image" width="100%" />
+          <MainImageCarousel />
           <img src="../images/description.png" alt="Description 1" width="100%" />
       </Grid>
       <Grid item md={4}>
