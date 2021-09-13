@@ -20,6 +20,12 @@ export default function MainImageCarousel(props) {
     }
   ];
   return (
-    <ImageGallery items={images} thumbnailPosition={'left'} showPlayButton={false} infinite={false} />
+    <ImageGallery
+      items={images}
+      thumbnailPosition={'left'}
+      originalHeight={100}
+      showPlayButton={false}
+      infinite={false}
+    />
   )
 }
