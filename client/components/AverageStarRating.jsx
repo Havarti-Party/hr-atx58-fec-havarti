@@ -1,7 +1,7 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
 
-export default function ProductOverviewStarRating(props) {
+export default function AverageStarRating(props) {
 
   return (
     <StarRatings
