@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function RelatedProductCard({ imgObj }) {
+export default function RelatedProductCard({ RelatedObj }) {
   const classes = useStyles();
 
   return (
@@ -26,15 +26,15 @@ export default function RelatedProductCard({ imgObj }) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={imgObj.url}
-          title={imgObj.name}
+          image={RelatedObj.url}
+          title={RelatedObj.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {imgObj.name}
+            {RelatedObj.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {imgObj.description}
+            {RelatedObj.description}
           </Typography>
           <StarRatings
             rating={2}

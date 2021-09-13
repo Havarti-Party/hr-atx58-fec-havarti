@@ -136,7 +136,7 @@ export default function RelatedProducts(props) {
 
           </div>
           {testArr.map((obj, index) => {
-            return <RelatedProductCard imgObj={obj} key={index} />
+            return <RelatedProductCard RelatedObj={obj} key={index} />
           })}
         </Carousel>
       </div>
