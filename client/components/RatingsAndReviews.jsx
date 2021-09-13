@@ -3,7 +3,7 @@ import React from 'react';
 export default function RatingsAndReviews(props) {
   return (
     <>
-    <h3>Ratings And Reviews</h3>
+    <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
     <div>100% of reviews recommend this product</div>
     <RatingBreakdownBars /><br />
     <SizeBar /><br />

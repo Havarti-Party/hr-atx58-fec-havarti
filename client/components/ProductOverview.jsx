@@ -11,7 +11,13 @@ export default function ProductOverview(props) {
           <MainImageCarousel />
       </Grid>
       <Grid item md={4}>
-          <AverageStarRating /><a href="" style={{fontSize: '12px'}} >Read All Reviews</a>
+          <AverageStarRating /><a href=""
+          onClick={(e) => {
+            e.preventDefault()
+            const ratingsAndReviews = document.querySelector('#ratings-and-reviews')
+            ratingsAndReviews.scrollIntoView({ behavior: 'smooth'})
+          }}
+          style={{fontSize: '12px'}} >Read All Reviews</a>
           <img src="../images/productDetails.png" alt="Product Details" width="90%" />
           <img src="../images/styles.png" alt="Styles" width="100%" />
           <img src="../images/addToCart.png" alt="Add to cart" width="100%" />
