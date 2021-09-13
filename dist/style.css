@@ -2,17 +2,3 @@
   border-style: solid;
   color: red;
 }
-
-#related-product-card{
-  border-style: solid;
-  color: blue
-}
-.card {
-  border-style: solid;
-  color: green;
-  margin: 10px;
-}
-.stock{
-  width: 100%;
-  display: block;
-}
