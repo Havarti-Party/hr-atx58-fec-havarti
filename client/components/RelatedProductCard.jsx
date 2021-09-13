@@ -26,16 +26,15 @@ export default function RelatedProductCard({ imgObj }) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={imgObj.imgSrc}
-          title={imgObj.sampleText}
+          image={imgObj.url}
+          title={imgObj.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Product Title
+            {imgObj.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            descriptive text from RelatedProducts obj
-            Price
+            {imgObj.description}
           </Typography>
           <StarRatings
             rating={2}
