@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container';
 
 export default function App(props) {
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <div className="App">
         <ProductOverview />
         <RelatedProducts />
