@@ -61,7 +61,7 @@ export default function ModalPopup({ onClose, open }) {
               <Grid item xs={6}>
                 <DialogTitle >{feature}</DialogTitle>
               </Grid>
-              <Grid item xs={32}>
+              <Grid item xs={2}>
                 <CheckIcon />
               </Grid>
             </Grid >
