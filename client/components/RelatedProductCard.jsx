@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ModalPopup from './CompareModal.jsx'
 
-const _ = require('underscore');
 
 //Card Features
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,13 +27,19 @@ export default function RelatedProductCard({ RelatedObj, updateFavorites }) {
   //State
   const [open, setOpen] = React.useState(false);
   //Change the icon of the clicked star
+
+  //rename function setClickedStar
   const [clickedStar, flipStar] = React.useState(false);
 
 
   const handleStarClick = (item) => {
+    console.log('before click', clickedStar)
+
     flipStar(!clickedStar);
-    clickedStar ? console.log(`Added ${item.name} to your faves!`) : console.log(`Removed ${item.name} from your faves`);
-    updateFavorites(item);
+
+    console.log('clicked star', clickedStar)
+    clickedStar ?  console.log(`Added ${item.name} to your faves!`) : console.log(`Removed ${item.name} from your faves`);
+    updateFavorites(item, clickedStar);
 
   }
 

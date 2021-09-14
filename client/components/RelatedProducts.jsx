@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+const _ = require('underscore');
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import RelatedProductCard from './RelatedProductCard.jsx'
@@ -127,18 +129,27 @@ export default function RelatedProducts(props) {
   }]
 
   //State
-  const [favoritesArray, updateFavoritesArray] = React.useState(['test']);
+  const [favoritesArray, updateFavoritesArray] = React.useState([]);
 
-  const updateFavorites = (item) => {
+  const updateFavorites = (item, starValue) => {
+    console.log('value from RelatedProducts', starValue)
+    //if value is true add to favorites if not dont do anything
+
+    // console.log(favoritesArray);
+
+    // if (!favoritesArray.length) {
+    //   updateFavoritesArray([item])
+    //   console.log('within if statement', favoritesArray)
+    // } else {
+
+    // let updatedFavoritesArray = _.uniq(favoritesArray, 'id');
+
+    // console.log('subArray', updatedFavoritesArray);
 
 
-    updateFavoritesArray(favoritesArray => [...favoritesArray, item.name]);
+    // updateFavoritesArray(updatedFavoritesArray => [...updatedFavoritesArray, item]);
 
-    //next step: filter out if the ID is already there
-    // let setFavorites = [...favoritesArray, item.name];
-    // updateFavoritesArray(setFavorites)
-
-    console.log(favoritesArray)
+    // console.log('at the end of function', favoritesArray)
   }
 
 
