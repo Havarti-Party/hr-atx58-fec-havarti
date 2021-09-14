@@ -131,9 +131,9 @@ export default function ProductOverview(props) {
           selectedStyle={selectedStyle}
           handleStyleClick={handleStyleClick}
         />
-        <AddToCart
+        {/* <AddToCart
           skus={selectedStyle.skus}
-        />
+        /> */}
       </Grid>
     </Grid>
     <Grid container>

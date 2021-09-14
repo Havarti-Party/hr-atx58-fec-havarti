@@ -35,7 +35,8 @@ const isInitialMount = useRef(true);
 
   const handleStarClick = (item) => {
     setClickedStar(!clickedStar);
-    setCurrentItem(item);
+    handleClickOpen();
+    // setCurrentItem(item);
   }
 
 useEffect(() => {
@@ -101,12 +102,7 @@ useEffect(() => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Add To Outfit
-        </Button>
-        <Button size="small" color="primary" onClick={handleClickOpen}  >
-          Compare to Overview
-        </Button>
+
         <ModalPopup open={open} onClose={handleClose} />
       </CardActions>
     </Card>
