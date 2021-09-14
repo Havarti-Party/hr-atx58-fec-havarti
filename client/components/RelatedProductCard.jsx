@@ -10,12 +10,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
 import StarRatings from 'react-star-ratings';
 import { positions } from '@material-ui/system';
 
 //Icons
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-
+import StarIcon from '@material-ui/icons/Star';
 
 //Hard Coded Features
 let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
@@ -36,6 +37,12 @@ export default function RelatedProductCard({ RelatedObj }) {
 
   const [open, setOpen] = React.useState(false);
 
+  //Change the icon of the clicked star
+  const [clickedStar, flipStar] = React.useState(false);
+
+  const handleStarClick = () => {
+    flipStar(!clickedStar);
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,12 +50,14 @@ export default function RelatedProductCard({ RelatedObj }) {
 
   const handleClose = (value) => {
     setOpen(false);
-
   };
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <StarBorderIcon />
+        <div onClick={handleStarClick}>
+      {clickedStar ? <StarIcon /> : <StarBorderIcon /> }
+        </div>
         <CardMedia
           className={classes.media}
           image={RelatedObj.url}
