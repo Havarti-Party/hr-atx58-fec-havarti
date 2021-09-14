@@ -16,6 +16,8 @@ import StarRatings from 'react-star-ratings';
 
 //Icons
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import CheckIcon from '@material-ui/icons/Check';
+
 
 const useStyles = makeStyles({
   root: {

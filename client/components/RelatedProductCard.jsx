@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import ModalPopup from './CompareModal.jsx'
 
-//modal
-import PropTypes from 'prop-types';
 
-import Modal from '@material-ui/core/Modal';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-
+//Card Features
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -15,89 +11,48 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
 import StarRatings from 'react-star-ratings';
 import { positions } from '@material-ui/system';
 
-//Grid
-import Grid from '@material-ui/core/Grid';
 //Icons
-import CheckIcon from '@material-ui/icons/Check';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-
+import StarIcon from '@material-ui/icons/Star';
 
 //Hard Coded Features
 let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
 
 
-function ModalPopup({ onClose, open }) {
-  //modal information
+export default function RelatedProductCard({ RelatedObj, updateFavorites }) {
+  //State
+  const [open, setOpen] = React.useState(false);
 
+  //rename function setClickedStar
+  const [clickedStar, setClickedStar] = React.useState(false);
 
-  const handleClose = () => {
-    onClose();
-  };
+  const [currentItem, setCurrentItem] = React.useState({});
+const isInitialMount = useRef(true);
 
+  const handleStarClick = (item) => {
+    setClickedStar(!clickedStar);
+    setCurrentItem(item);
+  }
 
+useEffect(() => {
 
-  return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Compare</DialogTitle>
-      <Grid
-        container
-        direction="column"
-        justifyContent="space-evenly"
-        alignItems="stretch"
-      >
+  // clickedStar ?  console.log(`Added ${currentItem.name} to your faves!`) : console.log(`Removed ${currentItem.name} from your faves`);
 
-        <Grid item xs={12}>
-          <Grid
-            container
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Grid item xs={4}>
-              <DialogTitle >Overview Product</DialogTitle>
-            </Grid>
-            <Grid item xs={4}>
-            </Grid>
-            <Grid item xs={4}>
-              <DialogTitle  >Selected Product</DialogTitle>
-            </Grid>
-          </Grid >
-        </Grid>
-        {features.map((feature) => (
-          <Grid item xs={12}>
-            <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Grid item xs={2}>
-                <CheckIcon />
-              </Grid>
-              <Grid item xs={6}>
-                <DialogTitle >{feature}</DialogTitle>
-              </Grid>
-              <Grid item xs={32}>
-                <CheckIcon />
-              </Grid>
-            </Grid >
-          </Grid>
-        ))}
-      </Grid>
-    </Dialog>
-  );
-}
+  if (isInitialMount.current) {
+    isInitialMount.current = false;
+  } else {
+    if(Object.values(currentItem).length > 0) {
+      setCurrentItem({});
+      updateFavorites(currentItem, clickedStar);
+    }
+  }
+})
 
-ModalPopup.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-};
-
-export default function RelatedProductCard({ RelatedObj }) {
-
+  //Styling
   const useStyles = makeStyles({
     root: {
       maxWidth: 500,
@@ -109,8 +64,6 @@ export default function RelatedProductCard({ RelatedObj }) {
 
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -118,12 +71,14 @@ export default function RelatedProductCard({ RelatedObj }) {
 
   const handleClose = (value) => {
     setOpen(false);
-
   };
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <StarBorderIcon />
+        <div onClick={() => {handleStarClick(RelatedObj)}}>
+      {clickedStar ? <StarIcon /> : <StarBorderIcon /> }
+        </div>
         <CardMedia
           className={classes.media}
           image={RelatedObj.url}
