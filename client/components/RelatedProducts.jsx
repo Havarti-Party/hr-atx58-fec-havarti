@@ -28,8 +28,6 @@ export default function RelatedProducts(props) {
   };
 
   //URLs are hardcoded and not on the orig obj
-
-
   let testArr = [{
     "id": 38323,
     "campus": "hr-atx",
