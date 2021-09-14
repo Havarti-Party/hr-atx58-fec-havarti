@@ -23,49 +23,74 @@ import StarRatings from 'react-star-ratings';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { positions } from '@material-ui/system';
 
-//Card Styles
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 300,
-  },
-  media: {
-    height: 250,
-  },
-});
+//Grid
+import Grid from '@material-ui/core/Grid';
+//Icons
+import CheckIcon from '@material-ui/icons/Check';
 
-//Modal Properties
-const modalStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-});
-let emails = ['line 1, line 2', 'line 3']
 
-function ModalPopup(props) {
+//Hard Coded Features
+let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
+
+
+function ModalPopup({ onClose, selectedValue, open }) {
   //modal information
-  const classes = modalStyles();
-  const { onClose, selectedValue, open } = props;
+
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
-  const handleListItemClick = (value) => {
-    onClose(value);
-  };
 
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-      <List>
-        {emails.map((email) => (
-          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-            <ListItemText primary={email} />
-          </ListItem>
+      <DialogTitle id="simple-dialog-title">Compare</DialogTitle>
+      <Grid
+        container
+        direction="column"
+        justifyContent="space-evenly"
+        alignItems="stretch"
+      >
+
+        <Grid item xs={12}>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Grid item xs={4}>
+              <DialogTitle >Overview Product</DialogTitle>
+            </Grid>
+            <Grid item xs={4}>
+            </Grid>
+            <Grid item xs={4}>
+              <DialogTitle  >Clicked-On Product</DialogTitle>
+            </Grid>
+          </Grid >
+        </Grid>
+        {features.map((feature) => (
+          <Grid item xs={12}>
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Grid item xs={2}>
+                <CheckIcon />
+              </Grid>
+              <Grid item xs={6}>
+                <DialogTitle >{feature}</DialogTitle>
+              </Grid>
+              <Grid item xs={32}>
+                <CheckIcon />
+              </Grid>
+            </Grid >
+          </Grid>
         ))}
-      </List>
+      </Grid>
     </Dialog>
   );
 }
@@ -78,9 +103,18 @@ ModalPopup.propTypes = {
 
 export default function RelatedProductCard({ RelatedObj }) {
 
+  const useStyles = makeStyles({
+    root: {
+      maxWidth: 500,
+    },
+    media: {
+      height: 250,
+    },
+  });
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState(features[1]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -90,14 +124,6 @@ export default function RelatedProductCard({ RelatedObj }) {
     setOpen(false);
     setSelectedValue(value);
   };
-
-
-
-
-
-
-
-
   return (
     <Card className={classes.root}>
       <CardActionArea>
