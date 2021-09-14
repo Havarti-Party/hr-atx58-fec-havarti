@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import ModalPopup from './CompareModal.jsx'
 
-//modal
-import PropTypes from 'prop-types';
-
-import Modal from '@material-ui/core/Modal';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-
+//Card Features
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -19,19 +13,12 @@ import Typography from '@material-ui/core/Typography';
 import StarRatings from 'react-star-ratings';
 import { positions } from '@material-ui/system';
 
-//Grid
-import Grid from '@material-ui/core/Grid';
 //Icons
-import CheckIcon from '@material-ui/icons/Check';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 
 //Hard Coded Features
 let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
-
-
-
-
 
 
 export default function RelatedProductCard({ RelatedObj }) {
