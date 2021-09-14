@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 
 //modal
 import PropTypes from 'prop-types';
-import { blue } from '@material-ui/core/colors';
-//list
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+
+import Modal from '@material-ui/core/Modal';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import Modal from '@material-ui/core/Modal';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -20,13 +16,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import StarRatings from 'react-star-ratings';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { positions } from '@material-ui/system';
 
 //Grid
 import Grid from '@material-ui/core/Grid';
 //Icons
 import CheckIcon from '@material-ui/icons/Check';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 
 //Hard Coded Features
@@ -66,7 +62,7 @@ function ModalPopup({ onClose, open }) {
             <Grid item xs={4}>
             </Grid>
             <Grid item xs={4}>
-              <DialogTitle  >Clicked-On Product</DialogTitle>
+              <DialogTitle  >Selected Product</DialogTitle>
             </Grid>
           </Grid >
         </Grid>
