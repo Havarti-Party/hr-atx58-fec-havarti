@@ -2,7 +2,10 @@
 
 #questionList {
   border-style: solid;
-  color: red;
+}
+#question {
+  border-style: solid;
+  margin: 10px;
 }
 #icon {
   z-index: -1;
