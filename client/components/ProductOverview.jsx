@@ -3,7 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import MainImageCarousel from './MainImageCarousel';
 import AverageStarRating from './AverageStarRating';
 import StyleSelector from './StyleSelector';
-import ProductDetails from './ProductDetails'
+import ProductDetails from './ProductDetails';
+import AddToCart from './AddToCart';
 const axios = require('axios');
 
 export default function ProductOverview(props) {
