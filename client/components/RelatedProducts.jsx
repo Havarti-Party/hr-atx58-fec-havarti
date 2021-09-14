@@ -131,19 +131,21 @@ export default function RelatedProducts(props) {
   }]
 
   //State
-  const [favoritesArray, updateFavoritesArray] = React.useState([]);
+  const [outfitList, updateOutfitList] = React.useState([]);
 
-  const updateFavorites = (item, starValue) => {
+  const updateWardrobe = (item, starValue) => {
 
+    //CHANGE LOGIC
+    //IF ALREADY EXISTS IN ARRAY....
     if (!starValue) {
       //remove the item from the array
-      let removedArray = _.reject(favoritesArray, (currItem) => {
+      let removedArray = _.reject(outfitList, (currItem) => {
         return currItem.id === item.id
       })
-      updateFavoritesArray(removedArray);
+      updateOutfitList(removedArray);
+    //IF NOT ADD TO ARRAY
     } else {
-    updateFavoritesArray(favoritesArray => [...favoritesArray, item]);
-
+    updateOutfitList(outfitList => [...outfitList, item]);
     }
   }
 
@@ -160,7 +162,7 @@ useEffect(() => {
       </div>
       <Carousel centerMode={true} responsive={responsive}>
         {testArr.map((obj, index) => {
-          return <RelatedProductCard RelatedObj={obj} key={index} updateFavorites={updateFavorites}/>
+          return <RelatedProductCard RelatedObj={obj} key={index} />
         })}
       </Carousel>
     </>

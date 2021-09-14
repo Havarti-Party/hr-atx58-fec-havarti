@@ -20,7 +20,7 @@ export default function AddToOutfitCard() {
     <Card >
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Like this outift?
+            Like the above outift?
           </Typography>
       <CardActionArea>
           <DoneOutlineIcon style={{fontSize: 250}} />

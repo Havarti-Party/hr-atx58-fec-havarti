@@ -55,12 +55,6 @@ export default function OutfitCard({ OutfitObj }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Remove from your Outfit
-        </Button>
-        <Button size="small" color="primary">
-          Compare to Overview
-        </Button>
       </CardActions>
     </Card>
   );
