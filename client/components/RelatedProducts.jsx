@@ -146,7 +146,7 @@ export default function RelatedProducts(props) {
   }
 
 useEffect(() => {
-  console.log('favorites Array', favoritesArray);
+  // console.log('favorites Array', favoritesArray);
 })
 
 
