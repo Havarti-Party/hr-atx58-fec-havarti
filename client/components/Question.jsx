@@ -12,7 +12,6 @@ export default function Question({question}) {
         <h3>Q: {question.question_body}?</h3>
       </div>
       <div id='answer list'>
-        {console.log(answers)}
         <AnswerList answers={answers}/>
       </div>
     </div>

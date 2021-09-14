@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+const _ = require('underscore');
+
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import RelatedProductCard from './RelatedProductCard.jsx'
@@ -126,6 +128,29 @@ export default function RelatedProducts(props) {
     ]
   }]
 
+  //State
+  const [favoritesArray, updateFavoritesArray] = React.useState([]);
+
+  const updateFavorites = (item, starValue) => {
+
+    if (!starValue) {
+      //remove the item from the array
+      let removedArray = _.reject(favoritesArray, (currItem) => {
+        return currItem.id === item.id
+      })
+      updateFavoritesArray(removedArray);
+    } else {
+    updateFavoritesArray(favoritesArray => [...favoritesArray, item]);
+
+    }
+  }
+
+useEffect(() => {
+  // console.log('favorites Array', favoritesArray);
+})
+
+
+
   return (
     <>
       <div id='related-product-card'>
@@ -133,7 +158,7 @@ export default function RelatedProducts(props) {
       </div>
       <Carousel centerMode={true} responsive={responsive}>
         {testArr.map((obj, index) => {
-          return <RelatedProductCard RelatedObj={obj} key={index} />
+          return <RelatedProductCard RelatedObj={obj} key={index} updateFavorites={updateFavorites}/>
         })}
       </Carousel>
     </>
