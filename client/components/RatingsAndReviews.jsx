@@ -23,13 +23,12 @@ export default function RatingsAndReviews(props) {
 
 var RatingBreakdownBars = (props) => {
   var starArray = [1, 2, 3, 4, 5];
+  var ratePercent = 60;
   return (
     <>
-      {/* <img src="/Images/ratingsbreakdownbars.png"></img> */}
       {starArray.map(starRating => {
         return (
-          // The rate percentage should come from state later on
-          <ProgressBar key={starRating} starRating={starRating} ratePercent={20}/>
+          <ProgressBar key={starRating} starRating={starRating} ratePercent={ratePercent}/>
         )
       })}
     </>
