@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ModalPopup from './CompareModal.jsx'
 
 
@@ -26,22 +26,28 @@ let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
 export default function RelatedProductCard({ RelatedObj, updateFavorites }) {
   //State
   const [open, setOpen] = React.useState(false);
-  //Change the icon of the clicked star
 
   //rename function setClickedStar
-  const [clickedStar, flipStar] = React.useState(false);
+  const [clickedStar, setClickedStar] = React.useState(false);
+
+  const [currentItem, setCurrentItem] = React.useState({});
 
 
   const handleStarClick = (item) => {
-    console.log('before click', clickedStar)
 
-    flipStar(!clickedStar);
-
-    console.log('clicked star', clickedStar)
-    clickedStar ?  console.log(`Added ${item.name} to your faves!`) : console.log(`Removed ${item.name} from your faves`);
-    updateFavorites(item, clickedStar);
-
+    setClickedStar(!clickedStar);
+    setCurrentItem(item);
   }
+
+useEffect(() => {
+
+  // clickedStar ?  console.log(`Added ${currentItem.name} to your faves!`) : console.log(`Removed ${currentItem.name} from your faves`);
+
+  if (Object.values(currentItem).length > 0) {
+  updateFavorites(currentItem, clickedStar);
+}
+})
+
 
 
   //Styling

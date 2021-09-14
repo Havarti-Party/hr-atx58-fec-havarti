@@ -132,6 +132,7 @@ export default function RelatedProducts(props) {
   const [favoritesArray, updateFavoritesArray] = React.useState([]);
 
   const updateFavorites = (item, starValue) => {
+    console.log(Object.values(item));
     console.log('value from RelatedProducts', starValue)
     //if value is true add to favorites if not dont do anything
 
