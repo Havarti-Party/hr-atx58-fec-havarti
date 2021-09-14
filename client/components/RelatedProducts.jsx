@@ -132,25 +132,19 @@ export default function RelatedProducts(props) {
   const [favoritesArray, updateFavoritesArray] = React.useState([]);
 
   const updateFavorites = (item, starValue) => {
-    console.log(Object.values(item));
+
     console.log('value from RelatedProducts', starValue)
-    //if value is true add to favorites if not dont do anything
+    if (starValue) {
+      //remove the item from the array
 
-    // console.log(favoritesArray);
+          updateFavoritesArray(updatedFavoritesArray => [...updatedFavoritesArray, item]);
+            console.log('Added to favoritesArray', favoritesArray)
+    }
 
-    // if (!favoritesArray.length) {
-    //   updateFavoritesArray([item])
-    //   console.log('within if statement', favoritesArray)
-    // } else {
-
-    // let updatedFavoritesArray = _.uniq(favoritesArray, 'id');
-
-    // console.log('subArray', updatedFavoritesArray);
-
-
-    // updateFavoritesArray(updatedFavoritesArray => [...updatedFavoritesArray, item]);
-
-    // console.log('at the end of function', favoritesArray)
+      let removedArray = _.reject(favoritesArray, (currItem) => {
+        return currItem.id === item.id
+      })
+      console.log(removedArray)
   }
 
 

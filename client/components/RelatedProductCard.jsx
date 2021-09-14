@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ModalPopup from './CompareModal.jsx'
 
 
@@ -31,10 +31,9 @@ export default function RelatedProductCard({ RelatedObj, updateFavorites }) {
   const [clickedStar, setClickedStar] = React.useState(false);
 
   const [currentItem, setCurrentItem] = React.useState({});
-
+const isInitialMount = useRef(true);
 
   const handleStarClick = (item) => {
-
     setClickedStar(!clickedStar);
     setCurrentItem(item);
   }
@@ -42,10 +41,15 @@ export default function RelatedProductCard({ RelatedObj, updateFavorites }) {
 useEffect(() => {
 
   // clickedStar ?  console.log(`Added ${currentItem.name} to your faves!`) : console.log(`Removed ${currentItem.name} from your faves`);
+  if (isInitialMount.current) {
+    isInitialMount.current = false;
+  } else {
+    if(Object.values(currentItem).length > 0) {
+      setCurrentItem({});
+      updateFavorites(currentItem, clickedStar);
+    }
+  }
 
-  if (Object.values(currentItem).length > 0) {
-  updateFavorites(currentItem, clickedStar);
-}
 })
 
 
