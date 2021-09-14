@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import AddToOutfitCard from './AddToOutfit.jsx';
+
 const _ = require('underscore');
 
 import Carousel from "react-multi-carousel";

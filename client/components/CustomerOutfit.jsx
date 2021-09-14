@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import OutfitCard from './OutfitCard.jsx'
+import AddToOutfitCard from './AddToOutfit.jsx';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -151,7 +152,7 @@ const CustomerOutfit = (props) => {
         <h1>  Your Wardrobe </h1>
       </div>
       <Carousel centerMode={true} responsive={responsive}>
-
+          <AddToOutfitCard />
         {testArr.map((obj, index) => {
           return <OutfitCard OutfitObj={obj} key={index} />
         })}
