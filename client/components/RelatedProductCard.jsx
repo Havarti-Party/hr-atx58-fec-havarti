@@ -40,8 +40,16 @@ export default function RelatedProductCard({ RelatedObj }) {
   //Change the icon of the clicked star
   const [clickedStar, flipStar] = React.useState(false);
 
-  const handleStarClick = () => {
+  const [faves] = React.useState([]);
+
+  const handleStarClick = (item) => {
     flipStar(!clickedStar);
+    clickedStar ? console.log(`Added ${item.name} to your faves!`) : console.log(`Removed ${item.name} from your faves`);
+
+faves.push(item.id)
+console.log(faves)
+
+
   }
 
   const handleClickOpen = () => {
@@ -55,7 +63,7 @@ export default function RelatedProductCard({ RelatedObj }) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <div onClick={handleStarClick}>
+        <div onClick={() => {handleStarClick(RelatedObj)}}>
       {clickedStar ? <StarIcon /> : <StarBorderIcon /> }
         </div>
         <CardMedia
