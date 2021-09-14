@@ -2,19 +2,77 @@ import React, { useState } from 'react';
 import Question from './Question.jsx';
 import Button from '@material-ui/core/Button';
 
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+
+import Modal from '@material-ui/core/Modal';
+import { makeStyles } from '@material-ui/core/styles';
+
+const modalStyles = makeStyles({
+  paper: {
+    position: 'absolute',
+    width: 800,
+    backgroundColor: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: '2px solid #000',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+});
+
+
+function QuestionModal(props) {
+  const classes = modalStyles()
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  return (
+    <div>
+      <h3>Ask Your Question </h3>
+      {/* <TextField></TextField>
+      <TextField></TextField>
+      <TextField></TextField>
+      <TextField></TextField>
+      <TextField></TextField> */}
+    </div>
+  )
+}
+
 
 export default function QuestionsAndAnswers(props) {
   const [questions, setQuestions] = useState(() => sampleQuestions)
 
+  function addQuestionModal() {
+    console.log('clicked');
+  }
+  function expandAnswers() {
+    console.log('expanded');
+  }
+
   return (
     <div id='questionList'>
       <h1>Customer Questions And Answers</h1>
-      <input type='text' placeholder='search for a specific question here'/>
+      <TextField
+        id='questionSearch'
+        label='search for a specific question here'
+        variant='outlined'
+        InputProps={{
+          startAdornment: (
+            <InputAdornment>
+              <SearchIcon />
+            </InputAdornment>
+          )
+        }}/>
       {questions.map(question => {
         return <Question question={question}/>
       })}
-      <Button variant='contained'>expand answers</Button>
-      <Button variant='contained'>add a question</Button>
+      <Button id='expandAnswers' variant='contained' onClick={expandAnswers}>expand answers</Button>
+      <Button id='addQuestion'variant='contained' onClick={addQuestionModal}>add a question</Button>
     </div>
   )
 }
