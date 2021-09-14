@@ -15,7 +15,6 @@ import CheckIcon from '@material-ui/icons/Check';
 let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
 
 export default function ModalPopup({ onClose, open }) {
-  //modal information
 
 
   const handleClose = () => {

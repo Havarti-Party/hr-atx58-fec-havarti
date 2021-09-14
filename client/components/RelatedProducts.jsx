@@ -126,6 +126,25 @@ export default function RelatedProducts(props) {
     ]
   }]
 
+  //State
+  const [favoritesArray, updateFavoritesArray] = React.useState(['test']);
+
+  const updateFavorites = (item) => {
+
+
+    updateFavoritesArray(favoritesArray => [...favoritesArray, item.name]);
+
+    //next step: filter out if the ID is already there
+    // let setFavorites = [...favoritesArray, item.name];
+    // updateFavoritesArray(setFavorites)
+
+    console.log(favoritesArray)
+  }
+
+
+
+
+
   return (
     <>
       <div id='related-product-card'>
@@ -133,7 +152,7 @@ export default function RelatedProducts(props) {
       </div>
       <Carousel centerMode={true} responsive={responsive}>
         {testArr.map((obj, index) => {
-          return <RelatedProductCard RelatedObj={obj} key={index} />
+          return <RelatedProductCard RelatedObj={obj} key={index} updateFavorites={updateFavorites}/>
         })}
       </Carousel>
     </>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ModalPopup from './CompareModal.jsx'
 
+const _ = require('underscore');
+
 //Card Features
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -22,8 +24,22 @@ import StarIcon from '@material-ui/icons/Star';
 let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
 
 
-export default function RelatedProductCard({ RelatedObj }) {
+export default function RelatedProductCard({ RelatedObj, updateFavorites }) {
+  //State
+  const [open, setOpen] = React.useState(false);
+  //Change the icon of the clicked star
+  const [clickedStar, flipStar] = React.useState(false);
 
+
+  const handleStarClick = (item) => {
+    flipStar(!clickedStar);
+    clickedStar ? console.log(`Added ${item.name} to your faves!`) : console.log(`Removed ${item.name} from your faves`);
+    updateFavorites(item);
+
+  }
+
+
+  //Styling
   const useStyles = makeStyles({
     root: {
       maxWidth: 500,
@@ -35,22 +51,6 @@ export default function RelatedProductCard({ RelatedObj }) {
 
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-
-  //Change the icon of the clicked star
-  const [clickedStar, flipStar] = React.useState(false);
-
-  const [faves] = React.useState([]);
-
-  const handleStarClick = (item) => {
-    flipStar(!clickedStar);
-    clickedStar ? console.log(`Added ${item.name} to your faves!`) : console.log(`Removed ${item.name} from your faves`);
-
-faves.push(item.id)
-console.log(faves)
-
-
-  }
 
   const handleClickOpen = () => {
     setOpen(true);
