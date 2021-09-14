@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 const _ = require('underscore');
 
 import Carousel from "react-multi-carousel";
@@ -133,21 +133,21 @@ export default function RelatedProducts(props) {
 
   const updateFavorites = (item, starValue) => {
 
-    console.log('value from RelatedProducts', starValue)
-    if (starValue) {
+    if (!starValue) {
       //remove the item from the array
-
-          updateFavoritesArray(updatedFavoritesArray => [...updatedFavoritesArray, item]);
-            console.log('Added to favoritesArray', favoritesArray)
-    }
-
       let removedArray = _.reject(favoritesArray, (currItem) => {
         return currItem.id === item.id
       })
-      console.log(removedArray)
+      updateFavoritesArray(removedArray);
+    } else {
+    updateFavoritesArray(favoritesArray => [...favoritesArray, item]);
+
+    }
   }
 
-
+useEffect(() => {
+  console.log('favorites Array', favoritesArray);
+})
 
 
 

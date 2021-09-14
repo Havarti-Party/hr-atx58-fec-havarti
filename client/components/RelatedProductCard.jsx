@@ -41,6 +41,7 @@ const isInitialMount = useRef(true);
 useEffect(() => {
 
   // clickedStar ?  console.log(`Added ${currentItem.name} to your faves!`) : console.log(`Removed ${currentItem.name} from your faves`);
+
   if (isInitialMount.current) {
     isInitialMount.current = false;
   } else {
@@ -49,10 +50,7 @@ useEffect(() => {
       updateFavorites(currentItem, clickedStar);
     }
   }
-
 })
-
-
 
   //Styling
   const useStyles = makeStyles({
