@@ -33,12 +33,12 @@ import CheckIcon from '@material-ui/icons/Check';
 let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
 
 
-function ModalPopup({ onClose, selectedValue, open }) {
+function ModalPopup({ onClose, open }) {
   //modal information
 
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose();
   };
 
 
@@ -98,7 +98,6 @@ function ModalPopup({ onClose, selectedValue, open }) {
 ModalPopup.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
 };
 
 export default function RelatedProductCard({ RelatedObj }) {
@@ -113,8 +112,9 @@ export default function RelatedProductCard({ RelatedObj }) {
   });
 
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(features[1]);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -122,7 +122,7 @@ export default function RelatedProductCard({ RelatedObj }) {
 
   const handleClose = (value) => {
     setOpen(false);
-    setSelectedValue(value);
+
   };
   return (
     <Card className={classes.root}>
@@ -156,7 +156,7 @@ export default function RelatedProductCard({ RelatedObj }) {
         <Button size="small" color="primary" onClick={handleClickOpen}  >
           Compare to Overview
         </Button>
-        <ModalPopup selectedValue={selectedValue} open={open} onClose={handleClose} />
+        <ModalPopup open={open} onClose={handleClose} />
       </CardActions>
     </Card>
   );
