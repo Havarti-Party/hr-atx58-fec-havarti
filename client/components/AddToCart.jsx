@@ -35,7 +35,11 @@ const AddToCart = ({ skus }) => {
 
     Object.keys(skus).map(sku => {
       if (e.target.value === skus[sku].size) {
-        maxQuantity = skus[sku].quantity;
+        if (skus[sku].quantity <= 15) {
+          maxQuantity = skus[sku].quantity;
+        } else {
+          maxQuantity = 15;
+        }
       }})
     var qty = 1;
     var quantityArr = [];
