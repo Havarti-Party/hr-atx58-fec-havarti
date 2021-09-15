@@ -1,18 +1,17 @@
-import React from 'react';
-import AverageStarRating from './AverageStarRating';
+import React, { useState } from 'react';
+import StarRatings from 'react-star-ratings';
 import Grid from '@material-ui/core/Grid';
-const _ = require('underscore');
-
 
 export default function RatingsAndReviews(props) {
+  const [averageStarRating, updateAverageStarRating] = useState(0);
   return (
   <>
     <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
-    <Grid container spacing={2}>
+    <Grid container spacing={6}>
       <Grid item m={6} className="RARLeftColumn">
         <div>100% of reviews recommend this product</div>
-        <AverageStarRating />
-        <RatingBreakdownBars />
+        <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'}/>
+        <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating}/>
         <SizeBar />
         <ComfortBar />
       </Grid>
@@ -21,39 +20,49 @@ export default function RatingsAndReviews(props) {
         <ReviewDisplay />
       </Grid>
     </Grid>
-
-    {/* <Grid container spacing={2}>
-    <div id='ratings-and-reviews'>
-        <Grid item xs={6} sm={6} m={6}>
-          <div id='RARLeftColumn'>
-            <AverageStarRating /><br />
-            <RatingBreakdownBars /><br />
-            <SizeBar /><br />
-            <ComfortBar /><br />
-          </div>
-        </Grid>
-        <Grid item xs={6} sm={6} m={6}>
-          <div id='RARRightColumn'>
-            <ReviewSorter /><br />
-            <ReviewDisplay />
-          </div>
-        </Grid>
-      </div>
-    </Grid> */}
     </>
   )
 }
 
 var RatingBreakdownBars = (props) => {
   var starArray = [1, 2, 3, 4, 5];
-  var ratePercent = 60;
+  var starBreakdown = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0
+  };
+  var numReviews = sampleReview.results.length;
+  sampleReview.results.map(review => {
+    starBreakdown[review.rating]++;
+  });
+  var percentBreakdown = {
+    1: starBreakdown[1] / numReviews * 100,
+    2: starBreakdown[2] / numReviews * 100,
+    3: starBreakdown[3] / numReviews * 100,
+    4: starBreakdown[4] / numReviews * 100,
+    5: starBreakdown[5] / numReviews * 100
+  }
+  var newAverageStarRating = 0;
+  for (var key in starBreakdown) {
+    newAverageStarRating += key * starBreakdown[key];
+  }
+  newAverageStarRating /= numReviews;
+  console.log(`New average star rating: ${newAverageStarRating}`);
+  props.updateAverageStarRating(newAverageStarRating);
   return (
     <div>
-      {starArray.map(starRating => {
+      <ProgressBar starRating={1} ratePercent={percentBreakdown[1]}/>
+      <ProgressBar starRating={2} ratePercent={percentBreakdown[2]}/>
+      <ProgressBar starRating={3} ratePercent={percentBreakdown[3]}/>
+      <ProgressBar starRating={4} ratePercent={percentBreakdown[4]}/>
+      <ProgressBar starRating={5} ratePercent={percentBreakdown[5]}/>
+      {/* {starArray.map(starRating => {
         return (
           <ProgressBar key={starRating} starRating={starRating} ratePercent={ratePercent}/>
         )
-      })}
+      })} */}
     </div>
   )
 }
@@ -91,7 +100,6 @@ var ReviewSorter = (props) => {
   return (
     <div>
       {sampleReview.count} reviews, sorted by relevance
-      {/* <img src="/Images/ratingsreviewsorter.png" className="RARTestImage"></img> */}
     </div>
   )
 }
@@ -99,10 +107,10 @@ var ReviewSorter = (props) => {
 var ReviewDisplay = (props) => {
   return (
     <div>
-      {sampleReview.results.map(review => {
+      {sampleReview.results.map((review, index) => {
         return(
           <div>
-            <ReviewTile key={review.review_id} date={review.date} title={review.summary} body={review.body} /><br />
+            <ReviewTile key={index} {...review}/><br />
           </div>
         )
       })}
@@ -113,10 +121,16 @@ var ReviewDisplay = (props) => {
 var ReviewTile = (props) => {
   return (
     <div>
-      <AverageStarRating />
+      <StarRatings rating={props.rating} starDimension={'15px'} starSpacing={'1px'}/>
       <div>{props.date}</div>
       <div>{props.title}</div>
       <div>{props.body}</div>
+      {props.photos.map((photo, index) => {
+        return(
+          <img key={index} src={photo}></img>
+        )
+      })}
+      <div>Helpful? {props.helpfulness}</div>
     </div>
   )
 }
