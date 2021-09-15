@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import OutfitCard from './OutfitCard.jsx'
+import AddToOutfitCard from './AddToOutfit.jsx';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -145,13 +146,55 @@ const CustomerOutfit = (props) => {
     ]
   }]
 
+
+//State
+const [outfitList, updateOutfitList] = React.useState([]);
+const [currentProduct, setCurrentProduct] = React.useState({});
+
+const updateWardrobe = () => {
+
+  //CHANGE LOGIC
+  //IF ALREADY EXISTS IN ARRAY....
+  // if (!starValue) {
+  //   //remove the item from the array
+  //   let removedArray = _.reject(outfitList, (currItem) => {
+  //     return currItem.id === item.id
+  //   })
+  //   updateOutfitList(removedArray);
+  // //IF NOT ADD TO ARRAY
+  // } else {
+  // updateOutfitList(outfitList => [...outfitList, item]);
+  // }
+
+}
+
+
+    const isInitialMount = useRef(true);
+
+    useEffect(() => {
+
+      //on updates on parent component
+        //store as currentItem
+        // setCurrentProduct=({itemFromOverview})
+      if (isInitialMount.current) {
+
+
+    // const [currentItem, setCurrentItem] = React.useState({});
+        isInitialMount.current = false;
+      } else {
+        if(Object.values(currentItem).length > 0) {
+          setCurrentItem({});
+        }
+      }
+    })
+
   return (
     <>
       <div id='outfit-card'>
-        <h1>  Your Wardrobe </h1>
+        <h1> Your Wardrobe </h1>
       </div>
       <Carousel centerMode={true} responsive={responsive}>
-
+          <AddToOutfitCard updateWardrobe={updateWardrobe}/>
         {testArr.map((obj, index) => {
           return <OutfitCard OutfitObj={obj} key={index} />
         })}
