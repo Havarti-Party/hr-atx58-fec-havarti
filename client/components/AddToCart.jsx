@@ -47,7 +47,6 @@ const AddToCart = ({ skus }) => {
       quantityArr.push(qty);
       qty++;
     }
-    console.log(quantityArr)
     setQuantities(quantityArr);
     setSelectedSize(e.target.value);
   }
