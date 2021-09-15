@@ -21,7 +21,7 @@ import StarIcon from "@material-ui/icons/Star";
 //Hard Coded Features
 let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
-export default function RelatedProductCard({ RelatedObj, updateOutfitList }) {
+export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //State
   const [open, setOpen] = React.useState(false);
 
@@ -32,7 +32,7 @@ export default function RelatedProductCard({ RelatedObj, updateOutfitList }) {
   const isInitialMount = useRef(true);
 
   const handleStarClick = (item) => {
-    setClickedStar(!clickedStar);
+    setClickedStar(true);
     handleClickOpen();
     // setCurrentItem(item);
   };
@@ -45,7 +45,7 @@ export default function RelatedProductCard({ RelatedObj, updateOutfitList }) {
     } else {
       if (Object.values(currentItem).length > 0) {
         setCurrentItem({});
-        updateOutfitList(currentItem, clickedStar);
+        updatedWardrobe(currentItem, clickedStar);
       }
     }
   });
@@ -67,6 +67,7 @@ export default function RelatedProductCard({ RelatedObj, updateOutfitList }) {
   };
 
   const handleClose = (value) => {
+    setClickedStar(false);
     setOpen(false);
   };
 
