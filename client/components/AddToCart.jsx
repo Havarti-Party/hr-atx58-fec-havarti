@@ -9,9 +9,13 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
+  selectSizeForm: {
     margin: theme.spacing(1),
     minWidth: 180,
+  },
+  selectQtyForm: {
+    margin: theme.spacing(1),
+    minWidth: 120,
   },
   selectEmpty: {
     marginTop: theme.spacing(0),
@@ -21,30 +25,68 @@ const useStyles = makeStyles((theme) => ({
 const AddToCart = ({ skus }) => {
   const classes = useStyles();
   const [size, setSize] = useState('');
-  const [maxQuantity, setMaxQuantity] = useState(0);
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedQuantity, setSelectedQuantity] = useState('');
+  const [quantities, setQuantities] = useState([]);
 
-  const onChange = () => {
-    setMaxQuantity();
+  const handleSizeChange = (e) => {
+    console.log('changed to ', e.target.value)
+    var maxQuantity = 0;
+
+    Object.keys(skus).map(sku => {
+      if (e.target.value === skus[sku].size) {
+        maxQuantity = skus[sku].quantity;
+      }})
+    var qty = 1;
+    var quantityArr = [];
+    while (qty <= maxQuantity) {
+      quantityArr.push(qty);
+      qty++;
+    }
+    console.log(quantityArr)
+    setQuantities(quantityArr);
+    setSelectedSize(e.target.value);
+  }
+
+  const handleQtyChange = (e) => {
+    console.log('changed qty to ', e.target.value)
+    setSelectedQuantity(e.target.value);
   }
 
   return (
     <>
     <Grid container>
 
-    <FormControl variant="filled" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-filled-label">Select Size</InputLabel>
-        <Select
-          labelId="select-size"
-          id="select-size"
-          className={classes.selectEmpty}
-          // value={age}
-          // onChange={handleChange}
-        >
-          {Object.keys(skus).map(sku => (
-            <MenuItem value={skus[sku].size}>{skus[sku].size}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+    <FormControl variant="filled" className={classes.selectSizeForm}>
+      <InputLabel id="size">Select Size</InputLabel>
+      <Select
+        labelId="select-size"
+        id="select-size"
+        value={selectedSize}
+        //className={classes.selectEmpty}
+        onChange={handleSizeChange}
+      >
+        {Object.keys(skus).map((sku, i) => (
+          <MenuItem value={skus[sku].size} name='hello' >{skus[sku].size}</MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+
+    <FormControl variant="filled" className={classes.selectQtyForm}>
+      <InputLabel id="quantity">Quantity</InputLabel>
+      <Select
+        labelId="select-quantity"
+        id="select-quantity"
+        value={selectedQuantity}
+        //className={classes.selectEmpty}
+        onChange={handleQtyChange}
+      >
+        {quantities.map((selectQuantity, j) => (
+          <MenuItem value={selectQuantity}>{selectQuantity}</MenuItem>
+        ))
+        }
+      </Select>
+    </FormControl>
     </Grid>
     </>
   )
