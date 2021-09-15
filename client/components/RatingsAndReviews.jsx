@@ -1,83 +1,41 @@
-import React from 'react';
-import AverageStarRating from './AverageStarRating';
+import React, { useState } from 'react';
+import StarRatings from 'react-star-ratings';
+import Grid from '@material-ui/core/Grid';
+import RatingBreakdownBars from './RARRatingBreakdownBars.jsx';
+import SizeBar from './RARSizeBar.jsx';
+import ComfortBar from './RARComfortBar.jsx';
+import ReviewSorter from './RARReviewSorter.jsx';
+import ReviewDisplay from './RARReviewDisplay.jsx';
 
 export default function RatingsAndReviews(props) {
+  const [averageStarRating, updateAverageStarRating] = useState(0);
   return (
-    <div id='ratings-and-reviews'>
-      <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
-      {/* Note: AverageStarRating is going to need input later */}
-      <div id='RARLeftColumn'>
+  <>
+    <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
+    <Grid container spacing={6}>
+      <Grid item m={6} className="RARLeftColumn">
         <div>100% of reviews recommend this product</div>
-        <AverageStarRating /><br />
-        <RatingBreakdownBars /><br />
-        <SizeBar /><br />
-        <ComfortBar /><br />
-      </div>
-      <div id='RARRightColumn'>
-        <ReviewSorter /><br />
+        {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'}/>
+        <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating}/>
+        <SizeBar />
+        <ComfortBar />
+      </Grid>
+      <Grid item m={6} className="RARRightColumn">
+        <ReviewSorter />
         <ReviewDisplay />
-      </div>
-    </div>
-  )
-}
-
-var RatingBreakdownBars = (props) => {
-  var starArray = [1, 2, 3, 4, 5];
-  var ratePercent = 60;
-  return (
-    <>
-      {starArray.map(starRating => {
-        return (
-          <ProgressBar key={starRating} starRating={starRating} ratePercent={ratePercent}/>
-        )
-      })}
+      </Grid>
+    </Grid>
     </>
   )
 }
 
-var ProgressBar = (props) => {
-  return (
-    <>
-      <span>{props.starRating} stars: </span>
-      <div className='RARProgressBarContainer'>
-        <div className='RARProgressBarFiller' style={{width: `${props.ratePercent}%`}}>
-          <div>&nbsp;</div>
-        </div>
-      </div><br />
-    </>
-  )
-}
 
-var SizeBar = (props) => {
-  return (
-    <img src="/Images/ratingssizebar.png"></img>
-  )
-}
 
-var ComfortBar = (props) => {
-  return (
-    <img src="/Images/ratingscomfortbar.png"></img>
-  )
-}
 
-var ReviewSorter = (props) => {
-  return (
-    <img src="/Images/ratingsreviewsorter.png"></img>
-  )
-}
 
-var ReviewDisplay = (props) => {
-  return (
-    <>
-    <img src="/Images/ratingsreviewdisplay.png"></img>
-    {/* <ReviewTile />
-    <ReviewTile /> */}
-    </>
-  )
-}
 
-// var ReviewTile = (props) => {
-//   return (
-//     <div>This is a review tile</div>
-//   )
-// }
+
+
+
+
+
