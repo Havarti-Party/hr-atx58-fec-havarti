@@ -56,37 +56,36 @@ const AddToCart = ({ skus }) => {
   return (
     <>
     <Grid container>
+      <FormControl variant="filled" className={classes.selectSizeForm}>
+        <InputLabel id="size">Select Size</InputLabel>
+        <Select
+          labelId="select-size"
+          id="select-size"
+          value={selectedSize}
+          //className={classes.selectEmpty}
+          onChange={handleSizeChange}
+        >
+          {Object.keys(skus).map((sku, i) => (
+            <MenuItem value={skus[sku].size} name='hello' >{skus[sku].size}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
-    <FormControl variant="filled" className={classes.selectSizeForm}>
-      <InputLabel id="size">Select Size</InputLabel>
-      <Select
-        labelId="select-size"
-        id="select-size"
-        value={selectedSize}
-        //className={classes.selectEmpty}
-        onChange={handleSizeChange}
-      >
-        {Object.keys(skus).map((sku, i) => (
-          <MenuItem value={skus[sku].size} name='hello' >{skus[sku].size}</MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-
-    <FormControl variant="filled" className={classes.selectQtyForm}>
-      <InputLabel id="quantity">Quantity</InputLabel>
-      <Select
-        labelId="select-quantity"
-        id="select-quantity"
-        value={selectedQuantity}
-        //className={classes.selectEmpty}
-        onChange={handleQtyChange}
-      >
-        {quantities.map((selectQuantity, j) => (
-          <MenuItem value={selectQuantity}>{selectQuantity}</MenuItem>
-        ))
-        }
-      </Select>
-    </FormControl>
+      <FormControl variant="filled" className={classes.selectQtyForm}>
+        <InputLabel id="quantity">Quantity</InputLabel>
+        <Select
+          labelId="select-quantity"
+          id="select-quantity"
+          value={selectedQuantity}
+          //className={classes.selectEmpty}
+          onChange={handleQtyChange}
+        >
+          {quantities.map((selectQuantity, j) => (
+            <MenuItem value={selectQuantity}>{selectQuantity}</MenuItem>
+          ))
+          }
+        </Select>
+      </FormControl>
     </Grid>
     </>
   )
