@@ -6,13 +6,13 @@ const ProductDetails = ({ category, name, price }) => {
   return (
     <>
       <Grid item md={12} id="category">
-      {category.toUpperCase()}
+        {category.toUpperCase()}
       </Grid>
       <Grid item md={12} id="product-name">
-      <h1>{name}</h1>
+        <h1>{name}</h1>
       </Grid>
       <Grid item md={12} id="price">
-      <h4>${price}</h4>
+        <h4>${price}</h4>
       </Grid>
     </>
   )
