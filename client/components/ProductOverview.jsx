@@ -69,31 +69,31 @@ export default function ProductOverview(props) {
       photos: [
         {thumbnail_url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
         ],
-        "skus": {
-          "1318922": {
-              "quantity": 8,
-              "size": "XS"
-          },
-          "1318923": {
-              "quantity": 16,
-              "size": "S"
-          },
-          "1318924": {
-              "quantity": 17,
-              "size": "M"
-          },
-          "1318925": {
-              "quantity": 10,
-              "size": "L"
-          },
-          "1318926": {
-              "quantity": 15,
-              "size": "XL"
-          },
-          "1318927": {
-              "quantity": 4,
-              "size": "XL"
-          }
+      "skus": {
+        "1318922": {
+            "quantity": 8,
+            "size": "XS"
+        },
+        "1318923": {
+            "quantity": 16,
+            "size": "S"
+        },
+        "1318924": {
+            "quantity": 17,
+            "size": "M"
+        },
+        "1318925": {
+            "quantity": 10,
+            "size": "L"
+        },
+        "1318926": {
+            "quantity": 15,
+            "size": "XL"
+        },
+        "1318927": {
+            "quantity": 4,
+            "size": "XXL"
+        }
       }
     };
 
@@ -131,9 +131,9 @@ export default function ProductOverview(props) {
           selectedStyle={selectedStyle}
           handleStyleClick={handleStyleClick}
         />
-        {/* <AddToCart
+        <AddToCart
           skus={selectedStyle.skus}
-        /> */}
+        />
       </Grid>
     </Grid>
     <Grid container>

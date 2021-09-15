@@ -10,9 +10,6 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
 
   return (
     <>
-    <Grid container>
-
-      {/* STYLE > Selected Style  */}
       <Grid container  spacing={3} alignItems="center" id="style-selector">
         {styles.map(style => (
           // if selectedStyle, use badge on avatar
@@ -36,7 +33,6 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
           )
         ))}
       </Grid>
-    </Grid>
     </>
   )
 }
