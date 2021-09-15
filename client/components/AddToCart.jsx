@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
@@ -30,7 +31,6 @@ const AddToCart = ({ skus }) => {
   const [quantities, setQuantities] = useState([]);
 
   const handleSizeChange = (e) => {
-    console.log('changed to ', e.target.value)
     var maxQuantity = 0;
 
     Object.keys(skus).map(sku => {
@@ -53,7 +53,6 @@ const AddToCart = ({ skus }) => {
   }
 
   const handleQtyChange = (e) => {
-    console.log('changed qty to ', e.target.value)
     setSelectedQuantity(e.target.value);
   }
 
@@ -70,7 +69,7 @@ const AddToCart = ({ skus }) => {
           onChange={handleSizeChange}
         >
           {Object.keys(skus).map((sku, i) => (
-            <MenuItem value={skus[sku].size} name='hello' >{skus[sku].size}</MenuItem>
+            <MenuItem key={i} value={skus[sku].size} >{skus[sku].size}</MenuItem>
           ))}
         </Select>
       </FormControl>
@@ -85,11 +84,14 @@ const AddToCart = ({ skus }) => {
           onChange={handleQtyChange}
         >
           {quantities.map((selectQuantity, j) => (
-            <MenuItem value={selectQuantity}>{selectQuantity}</MenuItem>
-          ))
-          }
+            <MenuItem key={j} value={selectQuantity}>{selectQuantity}</MenuItem>
+          ))}
         </Select>
       </FormControl>
+    </Grid>
+    <Grid container>
+      <Button variant="contained" endIcon={<AddIcon/>}>Add To Cart</Button>
+
     </Grid>
     </>
   )
