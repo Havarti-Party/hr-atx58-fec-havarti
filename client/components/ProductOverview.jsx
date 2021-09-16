@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import MainImageCarousel from './MainImageCarousel';
 import AverageStarRating from './AverageStarRating';
@@ -6,8 +6,11 @@ import StyleSelector from './StyleSelector';
 import ProductDetails from './ProductDetails';
 import AddToCart from './AddToCart';
 const axios = require('axios');
+import {ProductsContext} from './ProductsContext';
 
 export default function ProductOverview(props) {
+  // const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  // console.log(overviewProduct)
   // needed in state: styles, selectedStyle
   // const [styles, setStyles] = useState([]);
   // const [selectedStyle, setSelectedStyle] = useState(styles[0]);
