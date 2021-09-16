@@ -1,34 +1,19 @@
-import React from 'react';
+import React, { useState }from 'react';
+import AnswerList from './AnswerList.jsx'
 
-var qStyle = {
-  color: 'black'
-}
+//map the top two questions
+//inside each quesiton. map top two answers
+export default function Question({question}) {
+  const [answers, setAnswers] = useState(Object.values(question.answers))
 
-var Question = (props) => {
   return (
     <div id='question'>
-      <h3>Q:</h3>
-        <p>
-          I was wondering if these shoes make my hands look big?
-        </p>
-      <ul id='answer list'>
-        <li>
-          <h4>A:</h4>
-          <h5>answer one</h5>
-          <p>absolutely!</p>
-          <span>answer helpfulness:<a>y</a>/<a>n</a></span>
-        </li>
-        <li>
-          <h4>A:</h4>
-          <h5>answer two</h5>
-          <p>absolutely not!</p>
-          <span>answer helpfulness:<a>y</a>/<a>n</a></span>
-        </li>
-        <button>expand answers</button>
-      </ul>
-
+      <div>
+        <h3>Q: {question.question_body}?</h3>
+      </div>
+      <div id='answer list'>
+        <AnswerList answers={answers}/>
+      </div>
     </div>
   )
 }
-
-export default Question;
