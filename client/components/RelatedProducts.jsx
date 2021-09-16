@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { ProductsContext } from "./ProductsContext.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
 
+const axios = require("axios");
 const _ = require("underscore");
 
 import Carousel from "react-multi-carousel";
@@ -29,11 +30,31 @@ export default function RelatedProducts(props) {
       items: 1,
     },
   };
-
+  //useContext
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
-  //State
+  //RelatedProductsState
   const [outfitList, updateOutfitList] = React.useState([]);
+  const [relatedProductsArr, setRelatedProductsArr] = React.useState();
+
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      console.log("RPC", overviewProduct);
+      axios
+        .get("/related", {
+          params: {
+            ID: overviewProduct.id,
+          },
+        })
+        .then((relatedProductsIDs) => {
+          console.log(relatedProductsIDs.data);
+        });
+    } else {
+      isMounted.current = true;
+    }
+  }, [overviewProduct]);
 
   const updateWardrobe = (item, starValue) => {
     //CHANGE LOGIC

@@ -23,6 +23,19 @@ app.get("/products", (req, res) => {
   });
 });
 
+app.get("/related", (req, res) => {
+  let id = req.query.ID;
+  models.getRelatedProductsIDs(id, (err, results) => {
+    if (err) {
+      res
+        .status(404)
+        .send("you hit an error trying to get the relatedProductsIDs");
+    } else {
+      res.status(200).send(results);
+    }
+  });
+});
+
 app.listen(PORT, (err, success) => {
   if (err) {
     console.log("Error listening to Server...", err);
