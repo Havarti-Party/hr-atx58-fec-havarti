@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import ReviewTile from './RARReviewTile.jsx';
 import sampleReview from './RARsampleReview.jsx';
 import Divider from '@material-ui/core/Divider';
-import MoreReviewsButton from './RARMoreReviewsButton';
+import MoreReviewsButton from './RARMoreReviewsButton.jsx';
+import WriteNewReviewButton from './RARWriteNewReviewButton.jsx'
 
 
 
@@ -20,6 +21,7 @@ export default function ReviewDisplay(props) {
         )
       })}
       <MoreReviewsButton reviewDisplayCount = {reviewDisplayCount} updateDisplayCount={updateDisplayCount} count={sampleReview.count}/>
+      <WriteNewReviewButton />
     </div>
   )
 }
