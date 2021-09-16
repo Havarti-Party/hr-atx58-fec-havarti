@@ -41,3 +41,7 @@
 .RARTestImage {
   background-size: contain;
 }
+
+.RARWriteNewReviewButton {
+  width: 100%;
+}
