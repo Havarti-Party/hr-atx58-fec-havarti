@@ -13,14 +13,14 @@ export default function RatingsAndReviews(props) {
   <>
     <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
     <Grid container spacing={6}>
-      <Grid item m={6} className="RARLeftColumn">
+      <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARLeftColumn">
         <div>100% of reviews recommend this product</div>
         {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'}/>
         <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating}/>
         <SizeBar />
         <ComfortBar />
       </Grid>
-      <Grid item m={6} className="RARRightColumn">
+      <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
         <ReviewSorter />
         <ReviewDisplay />
       </Grid>
