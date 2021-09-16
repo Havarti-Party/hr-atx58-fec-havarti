@@ -17,13 +17,7 @@
 }
 /* @import "../../node_modules/react-image-gallery/styles/css/image-gallery.css"; */
 
-#questionList {
-  border-style: solid;
-}
-#question {
-  border-style: solid;
-  margin: 10px;
-}
+
 #icon {
   z-index: -1;
 }
