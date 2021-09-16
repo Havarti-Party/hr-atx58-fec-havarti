@@ -1,55 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import StarRatings from 'react-star-ratings';
+import Grid from '@material-ui/core/Grid';
+import RatingBreakdownBars from './RARRatingBreakdownBars.jsx';
+import SizeBar from './RARSizeBar.jsx';
+import ComfortBar from './RARComfortBar.jsx';
+import ReviewSorter from './RARReviewSorter.jsx';
+import ReviewDisplay from './RARReviewDisplay.jsx';
 
 export default function RatingsAndReviews(props) {
+  const [averageStarRating, updateAverageStarRating] = useState(0);
   return (
-    <>
-    <h3>Ratings And Reviews</h3>
-    <div>100% of reviews recommend this product</div>
-    <RatingBreakdownBars /><br />
-    <SizeBar /><br />
-    <ComfortBar /><br />
-    <ReviewSorter /><br />
-    <ReviewDisplay />
+  <>
+    <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
+    <Grid container spacing={6}>
+      <Grid item m={6} className="RARLeftColumn">
+        <div>100% of reviews recommend this product</div>
+        {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'}/>
+        <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating}/>
+        <SizeBar />
+        <ComfortBar />
+      </Grid>
+      <Grid item m={6} className="RARRightColumn">
+        <ReviewSorter />
+        <ReviewDisplay />
+      </Grid>
+    </Grid>
     </>
   )
 }
 
-var RatingBreakdownBars = (props) => {
-  return (
-    <img src="/Images/ratingsbreakdownbars.png"></img>
-  )
-}
 
-var SizeBar = (props) => {
-  return (
-    <img src="/Images/ratingssizebar.png"></img>
-  )
-}
 
-var ComfortBar = (props) => {
-  return (
-    <img src="/Images/ratingscomfortbar.png"></img>
-  )
-}
 
-var ReviewSorter = (props) => {
-  return (
-    <img src="/Images/ratingsreviewsorter.png"></img>
-  )
-}
 
-var ReviewDisplay = (props) => {
-  return (
-    <>
-    <img src="/Images/ratingsreviewdisplay.png"></img>
-    {/* <ReviewTile />
-    <ReviewTile /> */}
-    </>
-  )
-}
 
-// var ReviewTile = (props) => {
-//   return (
-//     <div>This is a review tile</div>
-//   )
-// }
+
+
+
+
+
