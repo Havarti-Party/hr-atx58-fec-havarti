@@ -1,12 +1,23 @@
-/* @import "../../node_modules/react-image-gallery/styles/css/image-gallery.css"; */
-
 #questionList {
   border-style: solid;
+  border-radius: 8px;
+  content: center;
 }
-#question {
+
+.question {
   border-style: solid;
-  margin: 10px;
+  border-radius: 8px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
 }
+#questionSearch {
+  margin-left: 20px;
+  width: 450px;
+}
+/* @import "../../node_modules/react-image-gallery/styles/css/image-gallery.css"; */
+
+
 #icon {
   z-index: -1;
 }

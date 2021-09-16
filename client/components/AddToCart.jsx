@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,7 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
     margin: theme.spacing(1),
-    minWidth: 180,
+    minWidth: 200,
   },
   selectQtyForm: {
     margin: theme.spacing(1),
@@ -29,6 +29,19 @@ const AddToCart = ({ skus }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
   const [quantities, setQuantities] = useState([]);
+  const [outOfStock, setOutOfStock] = useState(false);
+
+  const checkStock = () => {
+    var totalStock = 0;
+    Object.keys(skus).map(sku => {
+      totalStock += skus[sku].quantity;
+    })
+    if (totalStock === 0) {
+      setOutOfStock(true);
+    }
+  }
+
+  useEffect(() => checkStock());
 
   const handleSizeChange = (e) => {
     var maxQuantity = 0;
@@ -49,30 +62,72 @@ const AddToCart = ({ skus }) => {
     }
     setQuantities(quantityArr);
     setSelectedSize(e.target.value);
+    setSelectedQuantity(1);
   }
 
   const handleQtyChange = (e) => {
     setSelectedQuantity(e.target.value);
   }
 
+  const handleAddToCartClick = (e) => {
+    // if size has not been selected, prompt to select size and open drop down
+    console.log('You clicked add to cart!')
+  }
+
   return (
     <>
     <Grid container>
-      <FormControl variant="filled" className={classes.selectSizeForm}>
-        <InputLabel id="size">Select Size</InputLabel>
+      { !outOfStock ?
+        <FormControl variant="filled" className={classes.selectSizeForm} >
+          <InputLabel id="size">Select Size</InputLabel>
+          <Select
+            labelId="select-size"
+            id="select-size"
+            value={selectedSize}
+            //className={classes.selectEmpty}
+            onChange={handleSizeChange}
+          >
+            {Object.keys(skus).map((sku, i) => (
+              skus[sku].quantity > 0 ?
+                <MenuItem key={i} value={skus[sku].size} >{skus[sku].size}</MenuItem> :
+                <></>
+            ))}
+          </Select>
+        </FormControl>
+        :
+        <FormControl variant="filled" className={classes.selectSizeForm} disabled >
+          <InputLabel id="size">OUT OF STOCK</InputLabel>
+          <Select
+            labelId="select-size"
+            id="select-size"
+            value={selectedSize}
+            //className={classes.selectEmpty}
+            onChange={handleSizeChange}
+          >
+            {Object.keys(skus).map((sku, i) => (
+              skus[sku].quantity > 0 ?
+                <MenuItem key={i} value={skus[sku].size} >{skus[sku].size}</MenuItem> :
+                <></>
+            ))}
+          </Select>
+        </FormControl>
+      }
+
+      {selectedSize === '' ? <FormControl variant="filled" className={classes.selectQtyForm} disabled >
+        <InputLabel id="quantity">Quantity</InputLabel>
         <Select
-          labelId="select-size"
-          id="select-size"
-          value={selectedSize}
+          labelId="select-quantity"
+          id="select-quantity"
+          value={selectedQuantity}
           //className={classes.selectEmpty}
-          onChange={handleSizeChange}
+          onChange={handleQtyChange}
         >
-          {Object.keys(skus).map((sku, i) => (
-            <MenuItem key={i} value={skus[sku].size} >{skus[sku].size}</MenuItem>
+          {quantities.map((selectQuantity, j) => (
+            <MenuItem key={j} value={selectQuantity} >{selectQuantity}</MenuItem>
           ))}
         </Select>
       </FormControl>
-
+      :
       <FormControl variant="filled" className={classes.selectQtyForm}>
         <InputLabel id="quantity">Quantity</InputLabel>
         <Select
@@ -83,13 +138,15 @@ const AddToCart = ({ skus }) => {
           onChange={handleQtyChange}
         >
           {quantities.map((selectQuantity, j) => (
-            <MenuItem key={j} value={selectQuantity}>{selectQuantity}</MenuItem>
+            <MenuItem key={j} value={selectQuantity} >{selectQuantity}</MenuItem>
           ))}
         </Select>
       </FormControl>
+
+    }
     </Grid>
     <Grid container>
-      <Button variant="contained" endIcon={<AddIcon/>}>Add To Cart</Button>
+      <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
 
     </Grid>
     </>
