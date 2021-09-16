@@ -10,7 +10,7 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 
 const modalStyles = makeStyles({
-  paper: {
+  modal: {
     position: 'absolute',
     width: 800,
     backgroundColor: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -19,10 +19,20 @@ const modalStyles = makeStyles({
   },
 });
 
+const questionListStyles = makeStyles({
+  list: {
+    backgroundColor: '#B5FFEB',
+  },
+  button: {
+    padding: '0 5px',
+    margin: '10px',
+    backgroundColor: '#95F5DB',
+  }
+})
 
 function QuestionModal(props) {
   const classes = modalStyles()
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -32,19 +42,31 @@ function QuestionModal(props) {
     setOpen(false);
   };
   return (
-    <div>
-      <h3>Ask Your Question </h3>
-      {/* <TextField></TextField>
-      <TextField></TextField>
-      <TextField></TextField>
-      <TextField></TextField>
-      <TextField></TextField> */}
+    <div id='questionModal' className={classes.modal}>
+      <button type="button" onClick={handleOpen}>
+        Open Modal
+      </button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='Ask Your Question'
+        aria-describedby='a modal to post a new question'
+      >
+        <h3>Ask Your Question </h3>
+        {/* <TextField></TextField>
+        <TextField></TextField>
+        <TextField></TextField>
+        <TextField></TextField>
+        <TextField></TextField> */}
+      </ Modal>
     </div>
   )
 }
 
 
 export default function QuestionsAndAnswers(props) {
+  const classes = questionListStyles()
+
   const [questions, setQuestions] = useState(() => sampleQuestions)
 
   function addQuestionModal() {
@@ -55,7 +77,7 @@ export default function QuestionsAndAnswers(props) {
   }
 
   return (
-    <div id='questionList'>
+    <div id='questionList' className={classes.list}>
       <h1>Customer Questions And Answers</h1>
       <TextField
         id='questionSearch'
@@ -71,8 +93,8 @@ export default function QuestionsAndAnswers(props) {
       {questions.map(question => {
         return <Question question={question}/>
       })}
-      <Button id='expandAnswers' variant='contained' onClick={expandAnswers}>expand answers</Button>
-      <Button id='addQuestion'variant='contained' onClick={addQuestionModal}>add a question</Button>
+      <Button id='expandAnswers' variant='contained' onClick={expandAnswers} className={classes.button}>expand answers</Button>
+      <Button id='addQuestion'variant='contained' onClick={addQuestionModal} className={classes.button}>add a question</Button>
     </div>
   )
 }
