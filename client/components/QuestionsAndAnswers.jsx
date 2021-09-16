@@ -10,49 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 
-// const modalStyles = makeStyles({
-//   modal: {
-//     position: 'absolute',
-//     width: 800,
-//     backgroundColor: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-//     border: '2px solid #000',
-//     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-//   },
-// });
 
-
-// function QuestionModal(props) {
-//   const classes = modalStyles()
-//   const [open, setOpen] = useState(false);
-
-//   const handleOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
-//   return (
-//     <div id='questionModal' className={classes.modal}>
-//       <button type="button" onClick={handleOpen}>
-//         Open Modal
-//       </button>
-//       <Modal
-//         open={open}
-//         onClose={handleClose}
-//         aria-labelledby='Ask Your Question'
-//         aria-describedby='a modal to post a new question'
-//       >
-//         <h3>Ask Your Question </h3>
-//         {/* <TextField></TextField>
-//         <TextField></TextField>
-//         <TextField></TextField>
-//         <TextField></TextField>
-//         <TextField></TextField> */}
-//       </ Modal>
-//     </div>
-//   )
-// }
 
 const questionListStyles = makeStyles({
   list: {
