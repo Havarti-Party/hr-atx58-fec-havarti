@@ -9,8 +9,8 @@ const axios = require('axios');
 import {ProductsContext} from './ProductsContext';
 
 export default function ProductOverview(props) {
-  // const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
-  // console.log(overviewProduct)
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  console.log(overviewProduct)
   // needed in state: styles, selectedStyle
   // const [styles, setStyles] = useState([]);
   // const [selectedStyle, setSelectedStyle] = useState(styles[0]);
@@ -19,27 +19,27 @@ export default function ProductOverview(props) {
   // }
 
   // HARD CODED TEST DATA
-  const product = {
-    "id": 38322,
-    "campus": "hr-atx",
-    "name": "Camo Onesie",
-    "slogan": "Blend in to your crowd",
-    "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-    "category": "Jackets",
-    "default_price": "140.00",
-    "created_at": "2021-08-13T14:38:00.907Z",
-    "updated_at": "2021-08-13T14:38:00.907Z",
-    "features": [
-        {
-            "feature": "Fabric",
-            "value": "Canvas"
-        },
-        {
-            "feature": "Buttons",
-            "value": "Brass"
-        }
-    ]
-  }
+  // const overviewProduct = {
+  //   "id": 38322,
+  //   "campus": "hr-atx",
+  //   "name": "Camo Onesie",
+  //   "slogan": "Blend in to your crowd",
+  //   "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+  //   "category": "Jackets",
+  //   "default_price": "140.00",
+  //   "created_at": "2021-08-13T14:38:00.907Z",
+  //   "updated_at": "2021-08-13T14:38:00.907Z",
+  //   "features": [
+  //       {
+  //           "feature": "Fabric",
+  //           "value": "Canvas"
+  //       },
+  //       {
+  //           "feature": "Buttons",
+  //           "value": "Brass"
+  //       }
+  //   ]
+  // }
   const styles = [
     {
       style_id: 227498,
@@ -108,6 +108,7 @@ export default function ProductOverview(props) {
     // update state to selectedStyle
   };
 
+  if
   return (
     <>
     <Grid container>
@@ -125,8 +126,8 @@ export default function ProductOverview(props) {
             Read All Reviews
         </a>
         <ProductDetails
-          category={product.category}
-          name={product.name}
+          category={overviewProduct.category}
+          name={overviewProduct.name}
           price={selectedStyle.original_price}
         />
 
@@ -142,12 +143,12 @@ export default function ProductOverview(props) {
     </Grid>
     <Grid container>
       <Grid item md={8}>
-        <h5 className="productSlogan">{product.slogan}</h5>
-        <p className="productDescription">{product.description}</p>
+        <h5 className="productSlogan">{overviewProduct.slogan}</h5>
+        <p className="productDescription">{overviewProduct.description}</p>
       </Grid>
       <Grid item md={4}>
         <ul>
-          {product.features.map((feature, i) => (
+          {overviewProduct.features.map((feature, i) => (
             <li key={i}>{feature.feature}: {feature.value}</li>
           ))}
         </ul>
