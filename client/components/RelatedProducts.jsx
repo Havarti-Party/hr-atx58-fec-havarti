@@ -32,8 +32,6 @@ export default function RelatedProducts(props) {
 
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
-  //URLs are hardcoded and not on the orig obj
-
   //State
   const [outfitList, updateOutfitList] = React.useState([]);
 
@@ -51,10 +49,6 @@ export default function RelatedProducts(props) {
       updateOutfitList((outfitList) => [...outfitList, item]);
     }
   };
-
-  useEffect(() => {
-    // console.log('favorites Array', favoritesArray);
-  });
 
   return (
     <>
