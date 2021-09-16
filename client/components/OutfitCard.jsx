@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { ProductsContext } from "./ProductsContext.jsx";
 
 //Cards
 import Card from "@material-ui/core/Card";
@@ -28,6 +29,8 @@ const useStyles = makeStyles({
 
 export default function OutfitCard({ OutfitObj, updateWardrobe }) {
   const classes = useStyles();
+  //useContext
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
   return (
     <Card className={classes.root}>
@@ -41,6 +44,9 @@ export default function OutfitCard({ OutfitObj, updateWardrobe }) {
           className={classes.media}
           image={OutfitObj.url}
           title={OutfitObj.name}
+          onClick={() => {
+            setOverviewProduct(OutfitObj);
+          }}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
