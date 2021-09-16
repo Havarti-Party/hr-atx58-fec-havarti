@@ -11,6 +11,10 @@
   z-index: -1;
 }
 
+.RARMoreReviewsButton {
+  width: 100%;
+}
+
 .RARProgressBarContainer {
   background-color: gray;
   height: 20%;

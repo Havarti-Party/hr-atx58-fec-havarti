@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReviewTile from './RARReviewTile.jsx';
 import sampleReview from './RARsampleReview.jsx';
 import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
+import MoreReviewsButton from './RARMoreReviewsButton';
 
 
 
@@ -19,7 +19,7 @@ export default function ReviewDisplay(props) {
           </div>
         )
       })}
-      <Button variant='contained' color='primary' padding="100px" onClick={()=>{updateDisplayCount(reviewDisplayCount+2)}}>More Reviews, Please</Button>
+      <MoreReviewsButton reviewDisplayCount = {reviewDisplayCount} updateDisplayCount={updateDisplayCount} count={sampleReview.count}/>
     </div>
   )
 }
