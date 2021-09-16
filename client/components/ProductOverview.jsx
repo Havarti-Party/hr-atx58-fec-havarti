@@ -14,6 +14,8 @@ export default function ProductOverview(props) {
   // const getStyles = () => {
   //   axios.get
   // }
+
+  // HARD CODED TEST DATA
   const product = {
     "id": 38322,
     "campus": "hr-atx",
@@ -34,8 +36,7 @@ export default function ProductOverview(props) {
             "value": "Brass"
         }
     ]
-}
-
+  }
   const styles = [
     {
       style_id: 227498,
@@ -95,14 +96,14 @@ export default function ProductOverview(props) {
             "size": "XXL"
         }
       }
-    };
+  };
+// END HARD CODED TEST DATA
+
 
   const handleStyleClick = (e) => {
     console.log('clicked Style')
     // update state to selectedStyle
   };
-
-
 
   return (
     <>
@@ -138,7 +139,6 @@ export default function ProductOverview(props) {
     </Grid>
     <Grid container>
       <Grid item md={8}>
-      {/* refactor for dynamic rendering */}
         <h5 className="productSlogan">{product.slogan}</h5>
         <p className="productDescription">{product.description}</p>
       </Grid>

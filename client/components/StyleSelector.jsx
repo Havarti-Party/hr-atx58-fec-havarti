@@ -12,9 +12,8 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
     <>
       <Grid container  spacing={3} alignItems="center" id="style-selector">
         {styles.map(style => (
-          // if selectedStyle, use badge on avatar
-          (style.style_id === selectedStyle.style_id ?
-            <Grid item id="style">
+          style.style_id === selectedStyle.style_id ?
+            <Grid item key={style.style_id}>
               <Badge
                 overlap="circular"
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -22,15 +21,16 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
                   <CheckCircleTwoToneIcon />
                 }
               >
-                <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} key={style.style_id} />
+                <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} />
               </Badge>
-            </Grid> :
-            <Grid item id="style">
+            </Grid>
+            :
+            <Grid item key={style.style_id}>
               <IconButton onClick={handleStyleClick}>
-                <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} key={style.style_id} />
+                <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} />
               </IconButton>
             </Grid>
-          )
+
         ))}
       </Grid>
     </>
