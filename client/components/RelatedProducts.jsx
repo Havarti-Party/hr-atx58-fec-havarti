@@ -56,7 +56,7 @@ export default function RelatedProducts(props) {
         <h1> Related Products </h1>
       </div>
       <Carousel centerMode={true} responsive={responsive}>
-        {overviewProduct.map((obj, index) => {
+        {[overviewProduct].map((obj, index) => {
           return <RelatedProductCard RelatedObj={obj} key={index} />;
         })}
       </Carousel>
