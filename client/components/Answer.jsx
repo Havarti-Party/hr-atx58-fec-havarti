@@ -16,6 +16,8 @@ export default function Answer({answerData}) {
   //additional conditional based on if its the first answer/top answer in the list
 
   // if (answerData.answerer_name === 'Seller') {
+  //   console.log('bold this name')
+  // }
   return (
     <div class='answer'>
       <h3>A: {answerData.body}</h3>
