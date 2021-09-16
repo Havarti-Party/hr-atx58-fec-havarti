@@ -6,7 +6,6 @@ export const ProductsContext = createContext();
 export const ProductsProvider = (props) => {
   const [products, setProducts] = useState([]);
 
-
   const [overviewProduct, setOverviewProduct] = useState();
 
   const isMounted = useRef(false);
@@ -23,10 +22,7 @@ export const ProductsProvider = (props) => {
 
   useEffect(() => {
     if (isMounted.current) {
-      console.log("products has changed", products);
-
       setOverviewProduct(products[0]);
-
     } else {
       isMounted.current = true;
     }
