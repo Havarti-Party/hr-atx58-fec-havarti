@@ -20,7 +20,7 @@ export default function Question({question}) {
       <div>
         <h3>Q: {question.question_body}?</h3>
       </div>
-      <div id='answer list'>
+      <div id='answerList'>
         <AnswerList answers={answers}/>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import Button from '@material-ui/core/Button';
@@ -32,14 +32,13 @@ const questionListStyles = makeStyles({
 })
 
 
-
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
 
   const [questions, setQuestions] = useState(() => sampleQuestions)
 
   function expandAnswers() {
-    console.log('expanded');
+    console.log('expanded')
   }
   //four questions to start, expand should hold all questions though
   return (
@@ -116,4 +115,4 @@ const sampleQuestions = [
     }
   },
   //...
-]
+];
