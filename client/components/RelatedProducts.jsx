@@ -35,13 +35,14 @@ export default function RelatedProducts(props) {
 
   //RelatedProductsState
   const [outfitList, updateOutfitList] = React.useState([]);
+
+  const [relatedProductsIDs, setRelatedProductsIDs] = React.useState();
   const [relatedProductsArr, setRelatedProductsArr] = React.useState();
 
   const isMounted = useRef(false);
 
   useEffect(() => {
     if (isMounted.current) {
-      console.log("RPC", overviewProduct);
       axios
         .get("/related", {
           params: {
@@ -49,7 +50,7 @@ export default function RelatedProducts(props) {
           },
         })
         .then((relatedProductsIDs) => {
-          console.log(relatedProductsIDs.data);
+          setRelatedProductsIDs(relatedProductsIDs.data);
         });
     } else {
       isMounted.current = true;
