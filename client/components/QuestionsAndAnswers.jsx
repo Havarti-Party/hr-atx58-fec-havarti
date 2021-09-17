@@ -67,7 +67,7 @@ export default function QuestionsAndAnswers(props) {
         return <Question key={question.question_id} question={question}/>
       })}
       <div>
-        <QuestionModal styles={classes}/>
+        <QuestionModal styles={classes} questions={questions}/>
         {/* need conditional rendering for the expand Questions button to only show IF there are more questions */}
         <Button id='expandQuestions' variant='contained' onClick={expandQuestions} className={classes.button}>More Answered Questions</Button>
       </div>
