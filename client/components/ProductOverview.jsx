@@ -35,6 +35,7 @@ export default function ProductOverview(props) {
         .then((productStyles) => {
           setStyles(productStyles.data.results);
           setSelectedStyle(productStyles.data.results[0])
+          setLoading(false)
         })
         .then(() => setLoading(false))
         .catch(err => console.log(err))

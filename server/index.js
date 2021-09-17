@@ -40,7 +40,7 @@ app.get("/related", (req, res) => {
 
   Promise.all([models.getCurrentProduct(id), models.getProductStyles(id)])
     .then((data) => {
-      console.log("data from /related", data);
+      //console.log("data from /related", data);
       const relatedProductDataObj = {
         id: data[0].id,
         name: data[0].name,
@@ -72,16 +72,13 @@ app.get("/related", (req, res) => {
 app.get("/styles", (req, res) => {
   let id = req.query.ID;
 
-  models.getProductStyles(id, (err, arrOfAllProductStyles) => {
-    if (err) {
-      res
-        .status(404)
-        .send("you hit an error trying to get the products styles");
-    } else {
-      //console.log("arr", arrOfAllProductStyles);
-      res.status(200).send(arrOfAllProductStyles);
-    }
-  });
+  models.getProductStyles(id)
+    .then(productStyles => {
+      res.send(productStyles);
+    })
+    .catch(err => {
+      res.status(404).send("you hit an error trying to get the products styles");
+    })
 });
 
 app.get("/qa", (req, res) => {
@@ -99,15 +96,11 @@ app.get("/qa", (req, res) => {
 
 app.get("/currentProduct", (req, res) => {
   let id = req.query.ID;
-  models.getCurrentProduct(id, (err, results) => {
-    if (err) {
-      res
-        .status(404)
-        .send("you hit an error trying to get the current product");
-    } else {
-      res.status(200).send(results);
-    }
-  });
+  models.getCurrentProduct(id)
+    .then((currentProductData) => {
+      res.send(currentProductData)
+    })
+    .catch(err => res.status(404).send("you hit an error trying to get the current product", err))
 });
 
 app.listen(PORT, (err, success) => {
