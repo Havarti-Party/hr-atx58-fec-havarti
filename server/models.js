@@ -30,7 +30,19 @@ let getRelatedProductsIDs = (id, callback) => {
     });
 };
 
+let getProductQuestions = (id, callback) => {
+  axios.get(apiURL + `/qa/questions?product_id:${id}`)
+    .then(res => {
+      console.log(res.results)
+      callback(null, res.results)
+    })
+    .catch(error => {
+      callback(error, null)
+    })
+}
+
 module.exports = {
   getAllProducts,
   getRelatedProductsIDs,
+  getProductQuestions,
 };

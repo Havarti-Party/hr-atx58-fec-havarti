@@ -36,6 +36,18 @@ app.get("/related", (req, res) => {
   });
 });
 
+app.get('/qa', (req, res) => {
+  console.log(req.body)
+  // let id = req.???
+  models.getProductQuestions(id, (err, results) => {
+      if (err) {
+        res.status(404).send('could not find any questions for the related product for product id:', id)
+      } else {
+        res.send(results)
+      }
+  })
+})
+
 app.listen(PORT, (err, success) => {
   if (err) {
     console.log("Error listening to Server...", err);

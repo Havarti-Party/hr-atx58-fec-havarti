@@ -34,9 +34,13 @@ const questionListStyles = makeStyles({
   }
 })
 
-// axios.get('/qa')
-//   .then()
-//   .catch()
+axios.get('/qa')
+  .then(response => {
+    console.log(response);
+  })
+  .catch(error => {
+    console.log('Error retrieving related questions for this product', error)
+  })
 
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
