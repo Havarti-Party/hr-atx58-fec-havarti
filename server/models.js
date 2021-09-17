@@ -40,6 +40,8 @@ let getProductQuestions = (id, callback) => {
     .catch(error => {
       callback(error, null)
     })
+  }
+
 let getCurrentProduct = (id, callback) => {
   axios
     .get(apiURL + `/products/${id}`, {
