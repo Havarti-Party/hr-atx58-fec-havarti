@@ -39,7 +39,7 @@ const questionListStyles = makeStyles({
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext)
-  console.log(overviewProduct)
+  //console.log(overviewProduct)
   const [questions, setQuestions] = useState(() => sampleQuestions)
 
   const isMounted = useRef(false);
@@ -52,7 +52,7 @@ export default function QuestionsAndAnswers(props) {
         }})
         .then(response => {
           var newQuestions = response.data.results
-          console.log(newQuestions)
+          //console.log(newQuestions)
           setQuestions(newQuestions);
         })
         .catch(error => {
