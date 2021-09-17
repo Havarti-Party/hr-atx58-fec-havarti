@@ -40,7 +40,6 @@ app.get("/related", (req, res) => {
 
   Promise.all([models.getCurrentProduct(id), models.getProductStyles(id)])
     .then((data) => {
-      console.log("data from /related", data);
       const relatedProductDataObj = {
         id: data[0].id,
         name: data[0].name,
@@ -57,31 +56,19 @@ app.get("/related", (req, res) => {
       console.log("failed to get related data");
       res.status(501).send(error);
     });
-
-  // models.getRelatedProductsIDs(id, (err, results) => {
-  //   if (err) {
-  //     res
-  //       .status(404)
-  //       .send("you hit an error trying to get the relatedProductsIDs");
-  //   } else {
-  //     res.status(200).send(results);
-  //   }
-  // });
 });
 
 app.get("/styles", (req, res) => {
   let id = req.query.ID;
-
-  models.getProductStyles(id, (err, arrOfAllProductStyles) => {
-    if (err) {
+  Promise.all(getProductStyles(id))
+    .then((arrOfAllProductStyles) => {
+      res.status(200).send(arrOfAllProductStyles);
+    })
+    .catch((error) => {
       res
         .status(404)
         .send("you hit an error trying to get the products styles");
-    } else {
-      //console.log("arr", arrOfAllProductStyles);
-      res.status(200).send(arrOfAllProductStyles);
-    }
-  });
+    });
 });
 
 app.get("/qa", (req, res) => {
