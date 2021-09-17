@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProgressBar from './RARProgressBar.jsx';
 import sampleReview from './RARsampleReview.jsx';
 
@@ -28,7 +28,11 @@ export default function RatingBreakdownBars(props) {
     newAverageStarRating += key * starBreakdown[key];
   }
   newAverageStarRating /= numReviews;
-  props.updateAverageStarRating(newAverageStarRating);
+
+  useEffect(() => {
+    props.updateAverageStarRating(newAverageStarRating);
+  });
+
   return (
     <div>
       <ProgressBar starRating={1} ratePercent={percentBreakdown[1]}/>
