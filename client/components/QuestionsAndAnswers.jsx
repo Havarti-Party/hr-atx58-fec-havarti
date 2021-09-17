@@ -1,4 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
+
+import axios from 'axios';
+
+import { ProductsContext } from './ProductsContext.jsx';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import Button from '@material-ui/core/Button';
@@ -9,7 +13,6 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-
 
 
 const questionListStyles = makeStyles({
@@ -31,10 +34,14 @@ const questionListStyles = makeStyles({
   }
 })
 
+axios.get('/qa')
+  .then()
+  .catch()
 
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
-
+  const productData = useContext(ProductsContext)
+  console.log(productData)
   const [questions, setQuestions] = useState(() => sampleQuestions)
 
   function expandAnswers() {
