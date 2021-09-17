@@ -16,9 +16,6 @@ export default function AddToOutfitCard({ updateWardrobe }) {
   //useContext
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
-  // //State
-  // const [outfitList, setOutfitList] = useState([]);
-
   const addToOutfitList = () => {
     updateWardrobe(overviewProduct);
   };
