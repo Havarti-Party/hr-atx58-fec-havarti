@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { ProductsContext } from "./ProductsContext.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
 
+const axios = require("axios");
 const _ = require("underscore");
 
 import Carousel from "react-multi-carousel";
@@ -29,13 +30,32 @@ export default function RelatedProducts(props) {
       items: 1,
     },
   };
-
+  //useContext
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
-  //URLs are hardcoded and not on the orig obj
-
-  //State
+  //RelatedProductsState
   const [outfitList, updateOutfitList] = React.useState([]);
+
+  const [relatedProductsIDs, setRelatedProductsIDs] = React.useState();
+  const [relatedProductsArr, setRelatedProductsArr] = React.useState();
+
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      axios
+        .get("/related", {
+          params: {
+            ID: overviewProduct.id,
+          },
+        })
+        .then((relatedProductsIDs) => {
+          setRelatedProductsIDs(relatedProductsIDs.data);
+        });
+    } else {
+      isMounted.current = true;
+    }
+  }, [overviewProduct]);
 
   const updateWardrobe = (item, starValue) => {
     //CHANGE LOGIC
@@ -52,17 +72,13 @@ export default function RelatedProducts(props) {
     }
   };
 
-  useEffect(() => {
-    // console.log('favorites Array', favoritesArray);
-  });
-
   return (
     <>
       <div id="related-product-card">
         <h1> Related Products </h1>
       </div>
       <Carousel centerMode={true} responsive={responsive}>
-        {overviewProduct.map((obj, index) => {
+        {[overviewProduct].map((obj, index) => {
           return <RelatedProductCard RelatedObj={obj} key={index} />;
         })}
       </Carousel>

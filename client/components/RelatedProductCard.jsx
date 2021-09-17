@@ -81,18 +81,14 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         >
           {clickedStar ? <StarIcon /> : <StarBorderIcon />}
         </div>
-        <CardMedia
-          className={classes.media}
-          image={RelatedObj.url}
-          title={RelatedObj.name}
-        />
+        <CardMedia className={classes.media} />
 
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {RelatedObj.name}
+            Name
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {RelatedObj.description}
+            description
           </Typography>
           <StarRatings rating={2} starDimension={"15px"} starSpacing={"1px"} />
         </CardContent>
