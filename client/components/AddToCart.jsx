@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import AddIcon from '@material-ui/icons/Add';
+import { ProductsContext } from './ProductsContext';
+
 
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
@@ -23,8 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCart = ({ skus }) => {
+const AddToCart = (props) => {
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
   const classes = useStyles();
+  const [skus, setSkus] = useState(props.skus)
   const [size, setSize] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
@@ -41,7 +45,13 @@ const AddToCart = ({ skus }) => {
     }
   }
 
-  useEffect(() => checkStock());
+  useEffect((() => {
+    setSelectedSize('');
+    setQuantities([]);
+    checkStock();
+    setSkus(props.skus)
+
+  }), [overviewProduct]);
 
   const handleSizeChange = (e) => {
     var maxQuantity = 0;
@@ -113,7 +123,8 @@ const AddToCart = ({ skus }) => {
         </FormControl>
       }
 
-      {selectedSize === '' ? <FormControl variant="filled" className={classes.selectQtyForm} disabled >
+      {selectedSize === '' ?
+      <FormControl variant="filled" className={classes.selectQtyForm} disabled >
         <InputLabel id="quantity">Quantity</InputLabel>
         <Select
           labelId="select-quantity"
