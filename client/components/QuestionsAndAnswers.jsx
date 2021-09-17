@@ -39,21 +39,21 @@ const questionListStyles = makeStyles({
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext)
-  console.log('overviewProduct', overviewProduct)
-  // const [currentProduct, setCurrentProduct] = useState(null)
+  console.log(overviewProduct)
   const [questions, setQuestions] = useState(() => sampleQuestions)
 
   const isMounted = useRef(false);
 
   useEffect(() => {
     if (isMounted.current) {
-      console.log(overviewProduct.id);
       axios.get('/qa', {
         params: {
-          id: overviewProduct.id,
+          id: overviewProduct.id - 1,
         }})
         .then(response => {
-          console.log(response.data);
+          var newQuestions = response.data.results
+          console.log(newQuestions)
+          setQuestions(newQuestions);
         })
         .catch(error => {
           console.log('Error retrieving related questions for this product', error)
@@ -68,6 +68,7 @@ export default function QuestionsAndAnswers(props) {
     console.log('expanded')
   }
   //four questions to start, expand should hold all questions though
+  var count = 1;
   return (
     <div id='questionList' className={classes.list}>
       <h1>Customer Questions And Answers</h1>
@@ -84,6 +85,7 @@ export default function QuestionsAndAnswers(props) {
           )
         }}/>
       {questions.map(question => {
+        count++
         return <Question key={question.question_id} question={question}/>
       })}
       <div>

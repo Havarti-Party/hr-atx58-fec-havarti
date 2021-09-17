@@ -39,11 +39,11 @@ app.get("/related", (req, res) => {
 app.get('/qa', (req, res) => {
   let id = req.query.id
   models.getProductQuestions(id, (err, results) => {
-      if (err) {
-        res.status(404).send('could not find any questions for the related product for product id:', id)
-      } else {
-        res.status(200).send(results)
-      }
+    if (err) {
+      res.status(404).send('could not find any questions for the related product');
+    } else {
+      res.status(200).send(results.data);
+    }
   })
 })
 

@@ -31,10 +31,11 @@ let getRelatedProductsIDs = (id, callback) => {
 };
 
 let getProductQuestions = (id, callback) => {
-  axios.get(apiURL + `/qa/questions?product_id:${id}`)
-    .then(res => {
-      console.log(res.results)
-      callback(null, res.results)
+  axios.get(apiURL + `/qa/questions?product_id=${id}`, {
+    headers: { Authorization: config.token },
+  })
+    .then(result => {
+      callback(null, result)
     })
     .catch(error => {
       callback(error, null)
