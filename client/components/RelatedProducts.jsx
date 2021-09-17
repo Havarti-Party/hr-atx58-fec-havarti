@@ -57,21 +57,6 @@ export default function RelatedProducts(props) {
     }
   }, [overviewProduct]);
 
-  const updateWardrobe = (item, starValue) => {
-    //CHANGE LOGIC
-    //IF ALREADY EXISTS IN ARRAY....
-    if (!starValue) {
-      //remove the item from the array
-      let removedArray = _.reject(outfitList, (currItem) => {
-        return currItem.id === item.id;
-      });
-      updateOutfitList(removedArray);
-      //IF NOT ADD TO ARRAY
-    } else {
-      updateOutfitList((outfitList) => [...outfitList, item]);
-    }
-  };
-
   return (
     <>
       <div id="related-product-card">
