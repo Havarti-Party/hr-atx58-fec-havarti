@@ -30,16 +30,32 @@ let getRelatedProductsIDs = (id, callback) => {
     });
 };
 
+let getProductStyles = (id, callback) => {
+  axios
+    .get(apiURL + `/products/${id}/styles`, {
+      headers: { Authorization: config.token },
+    })
+    .then((productStyles) => {
+      callback(null, productStyles.data);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
+
 let getProductQuestions = (id, callback) => {
-  axios.get(apiURL + `/qa/questions?product_id=${id}`, {
-    headers: { Authorization: config.token },
-  })
-    .then(result => {
-      callback(null, result)
+  axios
+    .get(apiURL + `/qa/questions?product_id=${id}`, {
+      headers: { Authorization: config.token },
     })
-    .catch(error => {
-      callback(error, null)
+    .then((result) => {
+      callback(null, result);
     })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
+
 let getCurrentProduct = (id, callback) => {
   axios
     .get(apiURL + `/products/${id}`, {
@@ -51,11 +67,12 @@ let getCurrentProduct = (id, callback) => {
     .catch((error) => {
       callback(error, null);
     });
-}
+};
 
 module.exports = {
   getAllProducts,
   getRelatedProductsIDs,
+  getProductStyles,
   getProductQuestions,
-  getCurrentProduct
+  getCurrentProduct,
 };
