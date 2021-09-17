@@ -46,7 +46,7 @@ app.get("/styles", (req, res) => {
         .status(404)
         .send("you hit an error trying to get the products styles");
     } else {
-      console.log("arr", arrOfAllProductStyles);
+      //console.log("arr", arrOfAllProductStyles);
       res.status(200).send(arrOfAllProductStyles);
     }
   });

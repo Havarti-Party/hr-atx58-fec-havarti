@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-const ProductDetails = ({ category, name, price }) => {
+const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
 
   return (
     <>
@@ -12,7 +12,11 @@ const ProductDetails = ({ category, name, price }) => {
         <h1>{name}</h1>
       </Grid>
       <Grid item md={12} id="price">
-        <h4>${price}</h4>
+        {salePrice === null ?
+          <h4>${originalPrice}</h4>
+          :
+          <h4>${salePrice} <strike>${originalPrice}</strike></h4>
+        }
       </Grid>
     </>
   )
