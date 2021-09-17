@@ -34,9 +34,9 @@ const questionListStyles = makeStyles({
   }
 })
 
-axios.get('/qa')
-  .then()
-  .catch()
+// axios.get('/qa')
+//   .then()
+//   .catch()
 
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
@@ -44,7 +44,7 @@ export default function QuestionsAndAnswers(props) {
   console.log(productData)
   const [questions, setQuestions] = useState(() => sampleQuestions)
 
-  function expandAnswers() {
+  function expandQuestions() {
     console.log('expanded')
   }
   //four questions to start, expand should hold all questions though
@@ -58,17 +58,18 @@ export default function QuestionsAndAnswers(props) {
         variant='outlined'
         InputProps={{
           startAdornment: (
-            <InputAdornment>
+            <InputAdornment position='start'>
               <SearchIcon />
             </InputAdornment>
           )
         }}/>
       {questions.map(question => {
-        return <Question question={question}/>
+        return <Question key={question.question_id} question={question}/>
       })}
       <div>
         <QuestionModal styles={classes}/>
-        <Button id='expandAnswers' variant='contained' onClick={expandAnswers} className={classes.button}>More Answered Questions</Button>
+        {/* need conditional rendering for the expand Questions button to only show IF there are more questions */}
+        <Button id='expandQuestions' variant='contained' onClick={expandQuestions} className={classes.button}>More Answered Questions</Button>
       </div>
     </div>
   )

@@ -27,7 +27,7 @@ const modalStyles = makeStyles({
 
 export default function QuestionModal({styles}) {
   const classes = modalStyles()
-  const [open, setOpen] = useState(false);
+  const [open, setOpen, q] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);

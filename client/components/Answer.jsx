@@ -19,7 +19,7 @@ export default function Answer({answerData}) {
   //   console.log('bold this name')
   // }
   return (
-    <div class='answer'>
+    <div className='answer'>
       <h3>A: {answerData.body}</h3>
       <span><p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | answer helpfulness:<a href='' onClick={() => incrementHelpfulCount()}>yes ({helpfulCount})</a>/<a href='' onClick={() => decrementHelpfulCount()}>no</a></p></span>
       <br/>
