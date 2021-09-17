@@ -6,9 +6,12 @@ import IconButton from '@material-ui/core/IconButton';
 import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
 
 export default function StyleSelector( { styles, selectedStyle, handleStyleClick }) {
-
+// console.log(selectedStyle)
   return (
     <>
+      <Grid container>
+        <p>STYLE > {selectedStyle.name.toUpperCase()}</p>
+      </Grid>
       <Grid container alignItems="center" id="style-selector">
         {styles.map((style, i) => (
           style.style_id === selectedStyle.style_id ?
