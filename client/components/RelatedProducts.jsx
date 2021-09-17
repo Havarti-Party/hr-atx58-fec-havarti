@@ -37,14 +37,14 @@ export default function RelatedProducts(props) {
   const [outfitList, updateOutfitList] = React.useState([]);
 
   const [relatedProductsIDs, setRelatedProductsIDs] = React.useState();
-  const [relatedProductsArr, setRelatedProductsArr] = React.useState();
+  const [relatedProductsArr, setRelatedProductsArr] = React.useState([]);
 
   const isMounted = useRef(false);
 
   useEffect(() => {
     if (isMounted.current) {
       axios
-        .get("/related", {
+        .get("/related/id", {
           params: {
             ID: overviewProduct.id,
           },
@@ -57,16 +57,59 @@ export default function RelatedProducts(props) {
     }
   }, [overviewProduct]);
 
-  return (
-    <>
-      <div id="related-product-card">
-        <h1> Related Products </h1>
-      </div>
-      <Carousel centerMode={true} responsive={responsive}>
-        {[overviewProduct].map((obj, index) => {
-          return <RelatedProductCard RelatedObj={obj} key={index} />;
-        })}
-      </Carousel>
-    </>
-  );
+  useEffect(() => {
+    if (isMounted.current && relatedProductsIDs) {
+      let results = [];
+      for (let i = 0; i < relatedProductsIDs.length; i++) {
+        axios
+          .get("/related", {
+            params: {
+              ID: relatedProductsIDs[i],
+            },
+          })
+          .then((relatedProductsObj) => {
+            setRelatedProductsArr((relatedProductsArr) => [
+              ...relatedProductsArr,
+              relatedProductsObj.data,
+            ]);
+          });
+      }
+    } else {
+      isMounted.current = true;
+    }
+  }, [relatedProductsIDs]);
+
+  const updateWardrobe = (item, starValue) => {
+    //CHANGE LOGIC
+    //IF ALREADY EXISTS IN ARRAY....
+    if (!starValue) {
+      //remove the item from the array
+      let removedArray = _.reject(outfitList, (currItem) => {
+        return currItem.id === item.id;
+      });
+      updateOutfitList(removedArray);
+      //IF NOT ADD TO ARRAY
+    } else {
+      updateOutfitList((outfitList) => [...outfitList, item]);
+    }
+  };
+  if (!relatedProductsArr) {
+    return (
+      <>
+        <h1>Loading Recommended Products</h1>
+      </>
+    );
+  } else
+    return (
+      <>
+        <div id="related-product-card">
+          <h1> Related Products </h1>
+        </div>
+        <Carousel centerMode={true} responsive={responsive}>
+          {relatedProductsArr.map((obj, index) => {
+            return <RelatedProductCard RelatedObj={obj} key={index} />;
+          })}
+        </Carousel>
+      </>
+    );
 }

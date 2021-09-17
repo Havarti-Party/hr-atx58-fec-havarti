@@ -5,7 +5,7 @@ const config = require("./config.js");
 
 const apiURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-atx";
 
-let getAllProducts = (id, callback) =>
+let getAllProducts = (id, callback) => {
   //HAVE TO RETURN axios.get or use parens
   axios
     .get(apiURL + "/products", { headers: { Authorization: config.token } })
@@ -16,31 +16,39 @@ let getAllProducts = (id, callback) =>
       console.log(error);
       callback(error, null);
     });
+};
 
-let getRelatedProductsIDs = (id, callback) => {
-  axios
+let getRelatedProductsIDs = (id) => {
+  return axios
     .get(apiURL + `/products/${id}/related`, {
       headers: { Authorization: config.token },
     })
     .then((relatedProductsIDs) => {
-      callback(null, relatedProductsIDs.data);
+      return relatedProductsIDs.data;
     })
     .catch((error) => {
-      callback(error, null);
+      return error;
     });
 };
 
-let getProductStyles = (id, callback) => {
-  axios
+let getProductStyles = (id) => {
+  return axios
     .get(apiURL + `/products/${id}/styles`, {
       headers: { Authorization: config.token },
     })
     .then((productStyles) => {
-      callback(null, productStyles.data);
+      return productStyles.data;
     })
     .catch((error) => {
-      callback(error, null);
+      return error;
     });
+
+  // .then((productStyles) => {
+  //   callback(null, productStyles.data);
+  // })
+  // .catch((error) => {
+  //   callback(error, null);
+  // });
 };
 
 let getProductQuestions = (id, callback) => {
@@ -56,16 +64,16 @@ let getProductQuestions = (id, callback) => {
     });
 };
 
-let getCurrentProduct = (id, callback) => {
-  axios
+let getCurrentProduct = (id) => {
+  return axios
     .get(apiURL + `/products/${id}`, {
       headers: { Authorization: config.token },
     })
     .then((currentProduct) => {
-      callback(null, currentProduct.data);
+      return currentProduct.data;
     })
     .catch((error) => {
-      callback(error, null);
+      return error;
     });
 };
 
