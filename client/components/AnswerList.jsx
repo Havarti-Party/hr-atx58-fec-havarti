@@ -6,7 +6,7 @@ export default function AnswerList({answers}) {
     <div>
       {answers.map(answer => {
         //again only map the top two initially but save all answers inside of state
-        return <Answer answerData={answer}/>
+        return <Answer key={answer.id}answerData={answer}/>
         })}
     </div>
   )

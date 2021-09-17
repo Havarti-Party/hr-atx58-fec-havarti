@@ -25,9 +25,15 @@ const modalStyles = makeStyles({
 });
 
 
-export default function QuestionModal({styles}) {
+export default function QuestionModal({styles, questions}) {
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
+
+  const [allValues, setAllValues] = useState({
+    question: '',
+    nickname: '',
+    email: '',
+ });
 
   const handleOpen = () => {
     setOpen(true);
@@ -37,8 +43,16 @@ export default function QuestionModal({styles}) {
     setOpen(false);
   };
 
-  const handleSubmit = () => {
+  const changeHandler = (e) => {
+    console.log('question:', e.target.name, e.target.value)
+    setAllValues({...allValues, [e.target.name]: e.target.value})
+  }
+
+  const handleSubmit = (e) => {
     //needs to make a post request to the server/append it to state
+    console.log(allValues);
+    //need to format the inputs. Easiest way would be to append them to the database and have it auto increment question id, and then also update state for us in the form of a request body.
+    console.log(questions);
     //ALSO NEEDS TO CLOSE THE MODAL
   }
   return (
@@ -53,34 +67,42 @@ export default function QuestionModal({styles}) {
         <div className={classes.modal}>
           <h3>Ask Your Question </h3>
           <h4>About the [product name here]</h4>
-          <TextField
-            id='questionField'
-            required
-            multiline
-            rows={6}
-            label='Write your question'
-            variant='outlined'
-            className={classes.form}
-          /><br/>
-          <TextField
-            id='nicknameField'
-            required
-            label='What is your nickname'
-            variant='outlined'
-            className={classes.form}
-          /><br/>
-          <TextField
-            id='emailField'
-            required
-            //error attribute to add here and trigger helper text
-            label='What is your email'
-            variant='outlined'
-            className={classes.form}
-            //helperText='must provide a valid email'
-          /><br/>
-          <Button variant='contained' className={styles.button} onClick={handleSubmit}>submit</Button>
-        </ div>
-      </ Modal>
+          <form className='addQuestionForm' onClick={handleSubmit}>
+            <TextField
+              id='questionField'
+              required
+              multiline
+              rows={6}
+              label='Write your question'
+              variant='outlined'
+              className={classes.form}
+              name='question'
+              onChange={changeHandler}
+            /><br/>
+            <TextField
+              id='nicknameField'
+              required
+              label='What is your nickname'
+              variant='outlined'
+              className={classes.form}
+              name='nickname'
+              onChange={changeHandler}
+            /><br/>
+            <TextField
+              id='emailField'
+              required
+              //error attribute to add here and trigger helper text
+              label='What is your email'
+              variant='outlined'
+              className={classes.form}
+              name='email'
+              onChange={changeHandler}
+              //helperText='must provide a valid email'
+            /><br/>
+            <Button variant='contained' className={styles.button} >submit</Button>
+          </form>
+        </div>
+      </Modal>
     </div>
   )
 }

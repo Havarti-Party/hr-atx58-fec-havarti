@@ -43,8 +43,36 @@ let getProductStyles = (id, callback) => {
     });
 };
 
+let getProductQuestions = (id, callback) => {
+  axios
+    .get(apiURL + `/qa/questions?product_id=${id}`, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      callback(null, result);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
+
+let getCurrentProduct = (id, callback) => {
+  axios
+    .get(apiURL + `/products/${id}`, {
+      headers: { Authorization: config.token },
+    })
+    .then((currentProduct) => {
+      callback(null, currentProduct.data);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
+
 module.exports = {
   getAllProducts,
   getRelatedProductsIDs,
   getProductStyles,
+  getProductQuestions,
+  getCurrentProduct,
 };

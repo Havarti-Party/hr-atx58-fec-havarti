@@ -1,4 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
+
+import axios from 'axios';
+
+import { ProductsContext } from './ProductsContext.jsx';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import Button from '@material-ui/core/Button';
@@ -9,7 +13,6 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
-
 
 
 const questionListStyles = makeStyles({
@@ -32,15 +35,40 @@ const questionListStyles = makeStyles({
 })
 
 
+
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
-
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext)
+  console.log(overviewProduct)
   const [questions, setQuestions] = useState(() => sampleQuestions)
 
-  function expandAnswers() {
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      axios.get('/qa', {
+        params: {
+          id: overviewProduct.id - 1,
+        }})
+        .then(response => {
+          var newQuestions = response.data.results
+          console.log(newQuestions)
+          setQuestions(newQuestions);
+        })
+        .catch(error => {
+          console.log('Error retrieving related questions for this product', error)
+        })
+    } else {
+      isMounted.current = true;
+    }
+  }, [overviewProduct])
+
+
+  function expandQuestions() {
     console.log('expanded')
   }
   //four questions to start, expand should hold all questions though
+  var count = 1;
   return (
     <div id='questionList' className={classes.list}>
       <h1>Customer Questions And Answers</h1>
@@ -51,17 +79,19 @@ export default function QuestionsAndAnswers(props) {
         variant='outlined'
         InputProps={{
           startAdornment: (
-            <InputAdornment>
+            <InputAdornment position='start'>
               <SearchIcon />
             </InputAdornment>
           )
         }}/>
       {questions.map(question => {
-        return <Question question={question}/>
+        count++
+        return <Question key={question.question_id} question={question}/>
       })}
       <div>
-        <QuestionModal styles={classes}/>
-        <Button id='expandAnswers' variant='contained' onClick={expandAnswers} className={classes.button}>More Answered Questions</Button>
+        <QuestionModal styles={classes} questions={questions}/>
+        {/* need conditional rendering for the expand Questions button to only show IF there are more questions */}
+        <Button id='expandQuestions' variant='contained' onClick={expandQuestions} className={classes.button}>More Answered Questions</Button>
       </div>
     </div>
   )
