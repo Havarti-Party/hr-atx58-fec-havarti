@@ -36,6 +36,16 @@ app.get("/related", (req, res) => {
   });
 });
 
+app.get('/qa', (req, res) => {
+  let id = req.query.id
+  models.getProductQuestions(id, (err, results) => {
+    if (err) {
+      res.status(404).send('could not find any questions for the related product');
+    } else {
+      res.status(200).send(results.data);
+    }
+  })
+})
 app.get("/currentProduct", (req, res) => {
   let id = req.query.ID;
   models.getCurrentProduct(id, (err, results) => {

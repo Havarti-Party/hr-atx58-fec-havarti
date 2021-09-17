@@ -10,7 +10,7 @@ const questionStyles = makeStyles({
 })
 
 //the list initally maps the top four questions
-//inside each quesiton. map top two answers
+//inside each question. map top two answers
 export default function Question({question}) {
   const classes = questionStyles();
   const [answers, setAnswers] = useState(Object.values(question.answers))
