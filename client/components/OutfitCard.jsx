@@ -41,7 +41,7 @@ export default function OutfitCard({ OutfitObj, updateWardrobe, remove }) {
           }}
         />
         <CardMedia
-          component="image"
+          component="img"
           className={classes.media}
           // image={OutfitObj.url}
           title={OutfitObj.name}
