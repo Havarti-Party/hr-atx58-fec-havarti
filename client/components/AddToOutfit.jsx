@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { ProductsContext } from "./ProductsContext.jsx";
 
 //Card Features
 import Card from "@material-ui/core/Card";
@@ -12,7 +13,13 @@ import Typography from "@material-ui/core/Typography";
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 
 export default function AddToOutfitCard({ updateWardrobe }) {
-  //test
+  //useContext
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+
+  const addToOutfitList = () => {
+    updateWardrobe(overviewProduct);
+  };
+
   return (
     <Card>
       <CardContent>
@@ -20,9 +27,17 @@ export default function AddToOutfitCard({ updateWardrobe }) {
           Like the above outift?
         </Typography>
         <CardActionArea>
-          <DoneOutlineIcon style={{ fontSize: 250 }} onClick={updateWardrobe} />
+          <DoneOutlineIcon
+            style={{ fontSize: 250 }}
+            onClick={addToOutfitList}
+          />
         </CardActionArea>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          onClick={addToOutfitList}
+        >
           Click the Icon add to your wardrobe
         </Typography>
       </CardContent>

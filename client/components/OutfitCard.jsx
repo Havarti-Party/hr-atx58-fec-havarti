@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutfitCard({ OutfitObj, updateWardrobe }) {
+export default function OutfitCard({ OutfitObj, updateWardrobe, remove }) {
   const classes = useStyles();
   //useContext
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
@@ -37,10 +37,11 @@ export default function OutfitCard({ OutfitObj, updateWardrobe }) {
       <CardActionArea>
         <HighlightOffIcon
           onClick={() => {
-            updateWardrobe(OutfitObj);
+            remove(OutfitObj);
           }}
         />
         <CardMedia
+          component="img"
           className={classes.media}
           image={OutfitObj.url}
           title={OutfitObj.name}

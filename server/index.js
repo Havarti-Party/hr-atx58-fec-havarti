@@ -23,18 +23,50 @@ app.get("/products", (req, res) => {
   });
 });
 
+app.get("/related/id", (req, res) => {
+  let id = req.query.ID;
+  // let id = 38323;
+  Promise.all([models.getRelatedProductsIDs(id)])
+    .then((arrOfRelatedProductIDs) => {
+      res.status(201).send(arrOfRelatedProductIDs[0]);
+    })
+    .catch((error) => {
+      console.log("failed to get related data");
+      res.status(501).send(error);
+    });
+});
 app.get("/related", (req, res) => {
   let id = req.query.ID;
 
-  models.getRelatedProductsIDs(id, (err, results) => {
-    if (err) {
-      res
-        .status(404)
-        .send("you hit an error trying to get the relatedProductsIDs");
-    } else {
-      res.status(200).send(results);
-    }
-  });
+  Promise.all([models.getCurrentProduct(id), models.getProductStyles(id)])
+    .then((data) => {
+      console.log("data from /related", data);
+      const relatedProductDataObj = {
+        id: data[0].id,
+        name: data[0].name,
+        slogan: data[0].slogan,
+        description: data[0].description,
+        category: data[0].category,
+        default_price: data[0].default_price,
+        features: data[0].features,
+        url: data[1].results[0].photos[0].url,
+      };
+      res.status(201).send(relatedProductDataObj);
+    })
+    .catch((error) => {
+      console.log("failed to get related data");
+      res.status(501).send(error);
+    });
+
+  // models.getRelatedProductsIDs(id, (err, results) => {
+  //   if (err) {
+  //     res
+  //       .status(404)
+  //       .send("you hit an error trying to get the relatedProductsIDs");
+  //   } else {
+  //     res.status(200).send(results);
+  //   }
+  // });
 });
 
 app.get("/styles", (req, res) => {

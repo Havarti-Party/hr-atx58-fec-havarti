@@ -37,14 +37,14 @@ export default function RelatedProducts(props) {
   const [outfitList, updateOutfitList] = React.useState([]);
 
   const [relatedProductsIDs, setRelatedProductsIDs] = React.useState();
-  const [relatedProductsArr, setRelatedProductsArr] = React.useState();
+  const [relatedProductsArr, setRelatedProductsArr] = React.useState([]);
 
   const isMounted = useRef(false);
 
   useEffect(() => {
     if (isMounted.current) {
       axios
-        .get("/related", {
+        .get("/related/id", {
           params: {
             ID: overviewProduct.id,
           },
@@ -56,6 +56,28 @@ export default function RelatedProducts(props) {
       isMounted.current = true;
     }
   }, [overviewProduct]);
+
+  useEffect(() => {
+    if (isMounted.current && relatedProductsIDs) {
+      setRelatedProductsArr([]);
+      for (let i = 0; i < relatedProductsIDs.length; i++) {
+        axios
+          .get("/related", {
+            params: {
+              ID: relatedProductsIDs[i],
+            },
+          })
+          .then((relatedProductsObj) => {
+            setRelatedProductsArr((relatedProductsArr) => [
+              ...relatedProductsArr,
+              relatedProductsObj.data,
+            ]);
+          });
+      }
+    } else {
+      isMounted.current = true;
+    }
+  }, [relatedProductsIDs]);
 
   const updateWardrobe = (item, starValue) => {
     //CHANGE LOGIC
@@ -71,17 +93,23 @@ export default function RelatedProducts(props) {
       updateOutfitList((outfitList) => [...outfitList, item]);
     }
   };
-
-  return (
-    <>
-      <div id="related-product-card">
-        <h1> Related Products </h1>
-      </div>
-      <Carousel centerMode={true} responsive={responsive}>
-        {[overviewProduct].map((obj, index) => {
-          return <RelatedProductCard RelatedObj={obj} key={index} />;
-        })}
-      </Carousel>
-    </>
-  );
+  if (!relatedProductsArr) {
+    return (
+      <>
+        <h1>Loading Recommended Products</h1>
+      </>
+    );
+  } else
+    return (
+      <>
+        <div id="related-product-card">
+          <h1> Related Products </h1>
+        </div>
+        <Carousel centerMode={true} responsive={responsive}>
+          {relatedProductsArr.map((obj, index) => {
+            return <RelatedProductCard RelatedObj={obj} key={index} />;
+          })}
+        </Carousel>
+      </>
+    );
 }
