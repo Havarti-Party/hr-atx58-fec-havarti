@@ -35,6 +35,7 @@ app.get("/related/id", (req, res) => {
       res.status(501).send(error);
     });
 });
+
 app.get("/related", (req, res) => {
   let id = req.query.ID;
 
