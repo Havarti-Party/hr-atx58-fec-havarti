@@ -7,6 +7,7 @@ export const ProductsProvider = (props) => {
   const [products, setProducts] = useState([]);
 
   const [overviewProduct, setOverviewProduct] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const isMounted = useRef(false);
   useEffect(() => {
