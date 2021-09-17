@@ -52,7 +52,7 @@ export default function ProductOverview(props) {
   const selectedStyle = {
       style_id: 227498,
       name: 'Forest Green & Black',
-      original_price: '140.00',
+      original_price: '120.00',
       photos: [
         {thumbnail_url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
         ],
@@ -133,7 +133,8 @@ useEffect(() => {
         <ProductDetails
           category={currentProduct.category}
           name={currentProduct.name}
-          price={selectedStyle.original_price}
+          defaultPrice={currentProduct.default_price}
+          selectedStylePrice={selectedStyle.original_price}
         />
 
         <StyleSelector
