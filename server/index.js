@@ -25,6 +25,7 @@ app.get("/products", (req, res) => {
 
 app.get("/related", (req, res) => {
   let id = req.query.ID;
+
   models.getRelatedProductsIDs(id, (err, results) => {
     if (err) {
       res
@@ -32,6 +33,21 @@ app.get("/related", (req, res) => {
         .send("you hit an error trying to get the relatedProductsIDs");
     } else {
       res.status(200).send(results);
+    }
+  });
+});
+
+app.get("/styles", (req, res) => {
+  let id = req.query.ID;
+
+  models.getProductStyles(id, (err, arrOfAllProductStyles) => {
+    if (err) {
+      res
+        .status(404)
+        .send("you hit an error trying to get the products styles");
+    } else {
+      console.log("arr", arrOfAllProductStyles);
+      res.status(200).send(arrOfAllProductStyles);
     }
   });
 });

@@ -30,7 +30,21 @@ let getRelatedProductsIDs = (id, callback) => {
     });
 };
 
+let getProductStyles = (id, callback) => {
+  axios
+    .get(apiURL + `/products/${id}/styles`, {
+      headers: { Authorization: config.token },
+    })
+    .then((productStyles) => {
+      callback(null, productStyles.data);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
+
 module.exports = {
   getAllProducts,
   getRelatedProductsIDs,
+  getProductStyles,
 };

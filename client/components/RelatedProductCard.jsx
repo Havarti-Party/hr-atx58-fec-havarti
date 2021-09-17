@@ -38,8 +38,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   };
 
   useEffect(() => {
-    // clickedStar ?  console.log(`Added ${currentItem.name} to your faves!`) : console.log(`Removed ${currentItem.name} from your faves`);
-
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
