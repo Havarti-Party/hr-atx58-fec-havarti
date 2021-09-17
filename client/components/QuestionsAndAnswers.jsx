@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 
 import axios from 'axios';
 
@@ -34,19 +34,35 @@ const questionListStyles = makeStyles({
   }
 })
 
-axios.get('/qa')
-  .then(response => {
-    console.log(response);
-  })
-  .catch(error => {
-    console.log('Error retrieving related questions for this product', error)
-  })
+
 
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
-  const productData = useContext(ProductsContext)
-  console.log(productData)
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext)
+  console.log('overviewProduct', overviewProduct)
+  // const [currentProduct, setCurrentProduct] = useState(null)
   const [questions, setQuestions] = useState(() => sampleQuestions)
+
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      console.log(overviewProduct.id);
+      axios.get('/qa', {
+        params: {
+          id: overviewProduct.id,
+        }})
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log('Error retrieving related questions for this product', error)
+        })
+    } else {
+      isMounted.current = true;
+    }
+  }, [overviewProduct])
+
 
   function expandQuestions() {
     console.log('expanded')
