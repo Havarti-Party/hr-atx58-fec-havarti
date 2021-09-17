@@ -2,7 +2,6 @@ import React from 'react';
 import ImageGallery from 'react-image-gallery';
 import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 
-
 export default function MainImageCarousel({photos}) {
   const imageHeight = '625px';
   const parsedPhotos = [];

@@ -13,19 +13,12 @@ export default function ProductOverview(props) {
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
   const [isLoading, setLoading] = useState(true);
   const [currentProduct, setCurrentProduct] = useState([]);
-
-  // needed in state: styles, selectedStyle
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState(styles[0]);
-  // const getStyles = () => {
-  //   axios.get
-  // }
 
+  const isMounted = useRef(false);
 
-
-const isMounted = useRef(false);
-
-useEffect(() => {
+  useEffect(() => {
     if (isMounted.current) {
         axios.get("/currentProduct", {
           params: {
@@ -48,7 +41,7 @@ useEffect(() => {
     } else {
       isMounted.current = true;
     }
-}, [overviewProduct]);
+  }, [overviewProduct]);
 
   const handleStyleClick = (clickedStyle) => {
     setSelectedStyle(styles[clickedStyle]);
@@ -103,88 +96,3 @@ useEffect(() => {
     )
   }
 }
-
-  // const overviewProduct = {
-  //   "id": 38322,
-  //   "campus": "hr-atx",
-  //   "name": "Camo Onesie",
-  //   "slogan": "Blend in to your crowd",
-  //   "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-  //   "category": "Jackets",
-  //   "default_price": "140.00",
-  //   "created_at": "2021-08-13T14:38:00.907Z",
-  //   "updated_at": "2021-08-13T14:38:00.907Z",
-  //   "features": [
-  //       {
-  //           "feature": "Fabric",
-  //           "value": "Canvas"
-  //       },
-  //       {
-  //           "feature": "Buttons",
-  //           "value": "Brass"
-  //       }
-  //   ]
-  // }
- // HARD CODED TEST DATA
-
-  // const styles = [
-  //   {
-  //     style_id: 227498,
-  //     name: 'Forest Green & Black',
-  //     original_price: '140.00',
-  //     photos: [
-  //       {thumbnail_url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
-  //     ]
-  //   },
-  //   {
-  //     style_id: 227499,
-  //     name: 'Desert Brown & Tan',
-  //     original_price: '140.00',
-  //     photos: [
-  //       {thumbnail_url: "https://images.unsplash.com/photo-1533779183510-8f55a55f15c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
-  //     ]
-  //   },
-  //   {
-  //     style_id: 227500,
-  //     name: "Ocean Blue & Grey",
-  //     original_price: '140.00',
-  //     photos: [
-  //       {thumbnail_url: "https://images.unsplash.com/photo-1556304653-cba65c59b3c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
-  //     ]
-  //   }
-  // ];
-  // const selectedStyle = {
-  //     style_id: 227498,
-  //     name: 'Forest Green & Black',
-  //     original_price: '120.00',
-  //     photos: [
-  //       {thumbnail_url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
-  //       ],
-  //     "skus": {
-  //       "1318922": {
-  //           "quantity": 8,
-  //           "size": "XS"
-  //       },
-  //       "1318923": {
-  //           "quantity": 16,
-  //           "size": "S"
-  //       },
-  //       "1318924": {
-  //           "quantity": 17,
-  //           "size": "M"
-  //       },
-  //       "1318925": {
-  //           "quantity": 10,
-  //           "size": "L"
-  //       },
-  //       "1318926": {
-  //           "quantity": 15,
-  //           "size": "XL"
-  //       },
-  //       "1318927": {
-  //           "quantity": 4,
-  //           "size": "XXL"
-  //       }
-  //     }
-  // };
-// END HARD CODED TEST DATA
