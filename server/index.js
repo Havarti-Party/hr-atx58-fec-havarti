@@ -46,6 +46,18 @@ app.get('/qa', (req, res) => {
     }
   })
 })
+app.get("/currentProduct", (req, res) => {
+  let id = req.query.ID;
+  models.getCurrentProduct(id, (err, results) => {
+    if (err) {
+      res
+        .status(404)
+        .send("you hit an error trying to get the current product");
+    } else {
+      res.status(200).send(results);
+    }
+  });
+});
 
 app.listen(PORT, (err, success) => {
   if (err) {

@@ -40,10 +40,22 @@ let getProductQuestions = (id, callback) => {
     .catch(error => {
       callback(error, null)
     })
+let getCurrentProduct = (id, callback) => {
+  axios
+    .get(apiURL + `/products/${id}`, {
+      headers: { Authorization: config.token },
+    })
+    .then((currentProduct) => {
+      callback(null, currentProduct.data);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
 }
 
 module.exports = {
   getAllProducts,
   getRelatedProductsIDs,
   getProductQuestions,
+  getCurrentProduct
 };
