@@ -59,7 +59,7 @@ export default function RelatedProducts(props) {
 
   useEffect(() => {
     if (isMounted.current && relatedProductsIDs) {
-      let results = [];
+      setRelatedProductsArr([]);
       for (let i = 0; i < relatedProductsIDs.length; i++) {
         axios
           .get("/related", {

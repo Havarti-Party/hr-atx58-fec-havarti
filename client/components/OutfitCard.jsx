@@ -43,7 +43,7 @@ export default function OutfitCard({ OutfitObj, updateWardrobe, remove }) {
         <CardMedia
           component="img"
           className={classes.media}
-          // image={OutfitObj.url}
+          image={OutfitObj.url}
           title={OutfitObj.name}
           onClick={() => {
             setOverviewProduct(OutfitObj);

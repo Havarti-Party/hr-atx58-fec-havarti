@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { ProductsContext } from "./ProductsContext.jsx";
 import ModalPopup from "./CompareModal.jsx";
 
 //Card Features
@@ -24,6 +25,9 @@ let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //State
   const [open, setOpen] = React.useState(false);
+
+  //useContext
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
   //rename function setClickedStar
   const [clickedStar, setClickedStar] = React.useState(false);
@@ -83,6 +87,9 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
           className={classes.media}
           component="img"
           image={RelatedObj.url}
+          onClick={() => {
+            setOverviewProduct(RelatedObj);
+          }}
         />
 
         <CardContent>
