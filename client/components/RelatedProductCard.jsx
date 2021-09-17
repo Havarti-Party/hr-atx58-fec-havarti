@@ -79,7 +79,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         >
           {clickedStar ? <StarIcon /> : <StarBorderIcon />}
         </div>
-        <CardMedia className={classes.media} />
+        <CardMedia className={classes.media} component="img" />
 
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
