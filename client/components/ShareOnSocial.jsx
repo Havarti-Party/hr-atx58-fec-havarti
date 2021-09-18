@@ -5,10 +5,10 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import Grid from '@material-ui/core/Grid';
 import Link from '@mui/material/Link';
 
-export default function ShareOnSocial (props) {
+export default function ShareOnSocial ({name}) {
 
   const handleIconClick = (icon) => {
-    alert(`Shared on ${icon}!`);
+    alert(`Shared ${name} on ${icon}!`);
   };
 
   return(

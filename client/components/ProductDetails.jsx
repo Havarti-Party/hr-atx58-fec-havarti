@@ -19,7 +19,7 @@ const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
           <h4>${salePrice} <strike>${originalPrice}</strike></h4>
         }
       </Grid>
-      <ShareOnSocial />
+      <ShareOnSocial name={name} />
     </>
   )
 }
