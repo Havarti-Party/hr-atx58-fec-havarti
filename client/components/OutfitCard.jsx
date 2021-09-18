@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutfitCard({ OutfitObj, updateWardrobe, remove }) {
+export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
