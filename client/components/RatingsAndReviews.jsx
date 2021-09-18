@@ -25,6 +25,7 @@ export default function RatingsAndReviews(props) {
         }
       })
       .then((reviewData) => {
+
         setCurrentReviews(reviewData.data);
         setLoading(false);
       })
@@ -53,13 +54,13 @@ export default function RatingsAndReviews(props) {
         <Grid container spacing={6}>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARLeftColumn">
             <div>100% of reviews recommend this product</div>
-            {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'} currentReviews={currentReviews} isMounted={isMounted}/>
+            {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'} />
             <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating} currentReviews={currentReviews}/>
             <SizeBar />
             <ComfortBar />
           </Grid>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
-            <ReviewSorter />
+            <ReviewSorter currentReviews={currentReviews}/>
             <ReviewDisplay currentReviews={currentReviews}/>
           </Grid>
         </Grid>

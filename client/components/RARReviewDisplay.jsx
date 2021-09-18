@@ -26,7 +26,7 @@ export default function ReviewDisplay(props) {
           </div>
         )
       })}
-      <MoreReviewsButton reviewDisplayCount = {reviewDisplayCount} updateDisplayCount={updateDisplayCount} count={props.currentReviews.count}/>
+      <MoreReviewsButton reviewDisplayCount = {reviewDisplayCount} updateDisplayCount={updateDisplayCount} count={props.currentReviews.results.length}/>
       <WriteNewReviewButton />
     </div>
   )
