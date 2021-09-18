@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ImageGallery from 'react-image-gallery';
 import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+import { ProductsContext } from './ProductsContext';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function MainImageCarousel({photos}) {
   const imageHeight = '625px';
   const parsedPhotos = [];
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [overviewProduct])
   const imageParse = ((selectedStylePhotos) => {
     selectedStylePhotos.map(photoObj => {
       parsedPhotos.push({
@@ -24,6 +31,11 @@ export default function MainImageCarousel({photos}) {
       showPlayButton={false}
       showBullets={true}
       infinite={false}
+      startIndex={currentImageIndex}
+      onThumbnailClick={(event, i) => {
+        setCurrentImageIndex(i)
+      }}
+      useBrowserFullscreen={false}
     />
   )
 }
