@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ProgressBar from './RARProgressBar.jsx';
-import sampleReview from './RARsampleReview.jsx';
 
 export default function RatingBreakdownBars(props) {
   // TODO: cleanup this mess. This can probably be done with like 3 functions and some 6th-grade math.
@@ -12,10 +11,13 @@ export default function RatingBreakdownBars(props) {
     4: 0,
     5: 0
   };
-  var numReviews = sampleReview.results.length;
-  sampleReview.results.map(review => {
+
+  var numReviews = props.currentReviews.results.length;
+
+  props.currentReviews.results.map(review => {
     starBreakdown[review.rating]++;
   });
+
   var percentBreakdown = {
     1: starBreakdown[1] / numReviews * 100,
     2: starBreakdown[2] / numReviews * 100,
@@ -31,7 +33,7 @@ export default function RatingBreakdownBars(props) {
 
   useEffect(() => {
     props.updateAverageStarRating(newAverageStarRating);
-  });
+  }, [props.currentReviews]);
 
   return (
     <div>

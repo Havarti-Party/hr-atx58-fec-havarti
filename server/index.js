@@ -104,6 +104,19 @@ app.get("/currentProduct", (req, res) => {
     .catch(err => res.status(404).send("you hit an error trying to get the current product", err))
 });
 
+app.get("/reviews", (req, res) => {
+  let id = req.query.ID;
+  models.getProductReviews(id, (err, result) => {
+    if (err) {
+      res
+        .status(404)
+        .send("Error: could not find product reviews.");
+    } else {
+      res.status(200).send(result.data);
+    }
+  });
+});
+
 app.listen(PORT, (err, success) => {
   if (err) {
     console.log("Error listening to Server...", err);
