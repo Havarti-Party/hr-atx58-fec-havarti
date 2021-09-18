@@ -25,8 +25,6 @@ export default function RatingsAndReviews(props) {
         }
       })
       .then((reviewData) => {
-        console.log('Review data:');
-        console.log(reviewData);
         setCurrentReviews(reviewData.data);
         setLoading(false);
       })
