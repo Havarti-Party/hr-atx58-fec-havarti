@@ -16,7 +16,7 @@ export default function RatingBreakdownBars(props) {
 
   props.currentReviews.results.map(review => {
     starBreakdown[review.rating]++;
-  });
+  }, [props.currentReviews]);
 
   var percentBreakdown = {
     1: starBreakdown[1] / numReviews * 100,
@@ -29,7 +29,11 @@ export default function RatingBreakdownBars(props) {
   for (var key in starBreakdown) {
     newAverageStarRating += key * starBreakdown[key];
   }
-  newAverageStarRating /= numReviews;
+  if (numReviews != 0) {
+    newAverageStarRating /= numReviews;
+  } else {
+    newAverageStarRating = 0;
+  }
 
   useEffect(() => {
     props.updateAverageStarRating(newAverageStarRating);
