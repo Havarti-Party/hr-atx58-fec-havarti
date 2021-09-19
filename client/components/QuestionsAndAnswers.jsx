@@ -60,7 +60,6 @@ export default function QuestionsAndAnswers(props) {
         }})
         .then(response => {
           var newQuestions = response.data.results
-          console.log(newQuestions)
           setQuestions(newQuestions);
         })
         .catch(error => {
@@ -95,7 +94,6 @@ export default function QuestionsAndAnswers(props) {
             </InputAdornment>
         )
       }}/>
-      {console.log(currentQuestions)}
       {currentQuestions.filter((question) => {
         if (searchValue === '') {
           return question;
