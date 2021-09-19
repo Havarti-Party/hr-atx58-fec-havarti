@@ -73,21 +73,7 @@ export default function QuestionsAndAnswers(props) {
   function expandQuestions() {
     console.log('expanded')
   }
-  //four questions to start, expand should hold all questions though
-  function handleSearch(e) {
-    console.log(searchValue);
-    for (var i = 0; i < questions.length; i++) {
-      console.log(questions[i].question_body)
-      if (questions[i].question_body === searchValue) {
-        console.log('found the question', questions[i])
-      } else {
-        console.log('no questions match your search. Feel free to write a new one!')
-      }
-    }
-  }
-  function handleSearchChange(e) {
-    setSearchValue(e.target.value);
-  }
+
 
   return (
     <div id='questionList' className={classes.list}>
@@ -98,7 +84,7 @@ export default function QuestionsAndAnswers(props) {
         className={classes.searchbar}
         variant='outlined'
         name='questionSearch'
-        onChange={handleSearchChange}
+        onChange={(e) => {setSearchValue(e.target.value)}}
         InputProps={{
           startAdornment: (
             <InputAdornment position='start'>
@@ -106,9 +92,13 @@ export default function QuestionsAndAnswers(props) {
             </InputAdornment>
         )
       }}/>
-      <Button onClick={handleSearch} variant='outlined' >Search</Button>
-      {/* set current questions */}
-      {questions.map(question => {
+      {questions.filter((question) => {
+        if (searchValue === '') {
+          return question;
+        } else if (question.question_body.toLowerCase().includes(searchValue.toLowerCase())) {
+          return question;
+        }
+      }).map(question => {
         return <Question key={question.question_id} question={question}/>
       })}
       <div>
