@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 //modal
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 //Dialog
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
 //Grid
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 //Icons
-import CheckIcon from '@material-ui/icons/Check';
-
+import CheckIcon from "@material-ui/icons/Check";
 
 //Hard Coded Features
-let features = ['blue', 'satin', 'something extra cool!!', 'not as cool!']
+let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
-export default function ModalPopup({ onClose, open }) {
-
-
+export default function ModalPopup({
+  onClose,
+  open,
+  compareFeatures,
+  relatedProductFeatures,
+  overviewProductFeatures,
+}) {
   const handleClose = () => {
     onClose();
   };
+
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby="simple-dialog-title"
+      open={open}
+    >
       <DialogTitle id="simple-dialog-title">Compare</DialogTitle>
       <Grid
         container
@@ -29,7 +37,6 @@ export default function ModalPopup({ onClose, open }) {
         justifyContent="space-evenly"
         alignItems="stretch"
       >
-
         <Grid item xs={12}>
           <Grid
             container
@@ -38,16 +45,15 @@ export default function ModalPopup({ onClose, open }) {
             alignItems="center"
           >
             <Grid item xs={4}>
-              <DialogTitle >Overview Product</DialogTitle>
+              <DialogTitle>Overview Product</DialogTitle>
             </Grid>
+            <Grid item xs={4}></Grid>
             <Grid item xs={4}>
+              <DialogTitle>Selected Product</DialogTitle>
             </Grid>
-            <Grid item xs={4}>
-              <DialogTitle  >Selected Product</DialogTitle>
-            </Grid>
-          </Grid >
+          </Grid>
         </Grid>
-        {features.map((feature, index) => (
+        {compareFeatures.map((feature, index) => (
           <Grid item xs={12} key={index}>
             <Grid
               container
@@ -56,15 +62,15 @@ export default function ModalPopup({ onClose, open }) {
               alignItems="center"
             >
               <Grid item xs={2}>
-                <CheckIcon />
+                {overviewProductFeatures.includes(feature) ? <CheckIcon /> : ""}
               </Grid>
               <Grid item xs={6}>
-                <DialogTitle >{feature}</DialogTitle>
+                <DialogTitle>{feature}</DialogTitle>
               </Grid>
               <Grid item xs={2}>
-                <CheckIcon />
+                {relatedProductFeatures.includes(feature) ? <CheckIcon /> : ""}
               </Grid>
-            </Grid >
+            </Grid>
           </Grid>
         ))}
       </Grid>

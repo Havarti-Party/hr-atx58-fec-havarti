@@ -16,7 +16,7 @@ export default function AddToOutfitCard({ updateWardrobe }) {
   //useContext
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
-  const addToOutfitList = () => {
+  const addToOutfitList = (overviewProduct) => {
     updateWardrobe(overviewProduct);
   };
 
@@ -29,15 +29,12 @@ export default function AddToOutfitCard({ updateWardrobe }) {
         <CardActionArea>
           <DoneOutlineIcon
             style={{ fontSize: 250 }}
-            onClick={addToOutfitList}
+            onClick={() => {
+              addToOutfitList(overviewProduct);
+            }}
           />
         </CardActionArea>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          onClick={addToOutfitList}
-        >
+        <Typography variant="body2" color="textSecondary" component="p">
           Click the Icon add to your wardrobe
         </Typography>
       </CardContent>
