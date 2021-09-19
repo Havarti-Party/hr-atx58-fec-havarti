@@ -74,6 +74,7 @@ export default function QuestionsAndAnswers(props) {
 
   function expandQuestions() {
     console.log('expanded')
+    setQuestionDisplayCount(questionDisplayCount + 2)
   }
 
 
@@ -102,7 +103,7 @@ export default function QuestionsAndAnswers(props) {
           return question;
         }
       }).map(question => {
-        return <Question key={question.question_id} question={question}/>
+        return <Question key={question.question_id} question={question} style={classes}/>
       })}
       <div>
         <QuestionModal styles={classes} questions={questions}/>

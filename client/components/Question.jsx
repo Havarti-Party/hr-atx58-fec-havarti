@@ -11,7 +11,7 @@ const questionStyles = makeStyles({
 
 //the list initally maps the top four questions
 //inside each question. map top two answers
-export default function Question({question}) {
+export default function Question({question, style}) {
   const classes = questionStyles();
   const [answers, setAnswers] = useState(Object.values(question.answers))
 
@@ -21,7 +21,7 @@ export default function Question({question}) {
         <h3>Q: {question.question_body}?</h3>
       </div>
       <div id='answerList'>
-        <AnswerList answers={answers}/>
+        <AnswerList answers={answers} style={style}/>
       </div>
     </div>
   )
