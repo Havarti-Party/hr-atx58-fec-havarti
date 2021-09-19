@@ -40,10 +40,12 @@ const questionListStyles = makeStyles({
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext)
-  const [questionDisplayCount, setQuestionDisplayCount] = useState(4);
   const [questions, setQuestions] = useState([])
 
   const [searchValue, setSearchValue] = useState('');
+
+  const [questionDisplayCount, setQuestionDisplayCount] = useState(4);
+
   var currentQuestions = questions.slice(0, questionDisplayCount)
 
   const isMounted = useRef(false);
@@ -92,7 +94,8 @@ export default function QuestionsAndAnswers(props) {
             </InputAdornment>
         )
       }}/>
-      {questions.filter((question) => {
+      {console.log(currentQuestions)}
+      {currentQuestions.filter((question) => {
         if (searchValue === '') {
           return question;
         } else if (question.question_body.toLowerCase().includes(searchValue.toLowerCase())) {
