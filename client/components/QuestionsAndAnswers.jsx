@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useContext, createContext, useRef } from 'react';
 
 import axios from 'axios';
 
 import { ProductsContext } from './ProductsContext.jsx';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
+import ExpandQuestions from './QuestionExpand.jsx';
 
 import IconButton from '@mui/material/IconButton';
 import Button from '@material-ui/core/Button';
@@ -35,7 +36,7 @@ const questionListStyles = makeStyles({
   }
 })
 
-
+export const QuestionsContext = createContext()
 
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
@@ -44,13 +45,11 @@ export default function QuestionsAndAnswers(props) {
 
   const [searchValue, setSearchValue] = useState('');
 
-  const [questionDisplayCount, setQuestionDisplayCount] = useState(4);
+  const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
 
   var currentQuestions = questions.slice(0, questionDisplayCount)
 
   const isMounted = useRef(false);
-
-
 
   useEffect(() => {
     if (isMounted.current) {
@@ -72,7 +71,6 @@ export default function QuestionsAndAnswers(props) {
 
 
   function expandQuestions() {
-    console.log('expanded')
     setQuestionDisplayCount(questionDisplayCount + 2)
   }
 
@@ -105,13 +103,19 @@ export default function QuestionsAndAnswers(props) {
       })}
       <div>
         <QuestionModal styles={classes} questions={questions}/>
-        {/* need conditional rendering for the expand Questions button to only show IF there are more questions */}
-        <Button id='expandQuestions' variant='contained' onClick={expandQuestions} className={classes.button}>More Answered Questions</Button>
+        <QuestionsContext.Provider value={[questionDisplayCount, setQuestionDisplayCount]} >
+          <ExpandQuestions style={classes} questions={questions} currentQuestions={currentQuestions}/>
+        </QuestionsContext.Provider>
       </div>
     </div>
   )
 }
 
+
+
+{/* <QuestionsContext.Provider value={[questions, setQuestions], [questionDisplayCount, setQuestionDisplayCount]}>
+<ExpandQuestions currentQuestions={currentQuestions} style={classes}/>
+</QuestionsContext.Provider> */}
 
 // const sampleQuestions = [
 //     {
