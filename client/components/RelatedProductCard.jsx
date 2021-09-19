@@ -23,22 +23,62 @@ import StarIcon from "@material-ui/icons/Star";
 let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
-  //State
-  const [open, setOpen] = React.useState(false);
-
   //useContext
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
-  //rename function setClickedStar
-  const [clickedStar, setClickedStar] = React.useState(false);
+  //State
+  const [open, setOpen] = React.useState(false);
+  const [currentItem, setCurrentItem] = useState({});
+  const [compareFeatures, setCompareFeatures] = useState([]);
+  const [clickedStar, setClickedStar] = useState(false);
+  const [relatedProductFeatures, setRelatedProductFeatures] = useState([]);
+  const [overviewProductFeatures, setOverviewProductFeatures] = useState([]);
 
-  const [currentItem, setCurrentItem] = React.useState({});
   const isInitialMount = useRef(true);
 
-  const handleStarClick = (item) => {
+  const handleStarClick = (relatedProduct) => {
+    let relatedProductFeaturesArr = [];
+    let overviewProductFeaturesArr = [];
+
+    if (relatedProduct.features && overviewProduct.features) {
+      relatedProduct.features.forEach((feature) => {
+        relatedProductFeaturesArr.push(feature.feature);
+      });
+
+      overviewProduct.features.forEach((feature) => {
+        overviewProductFeaturesArr.push(feature.feature);
+      });
+
+      let combinedFeatures = [
+        ...new Set([
+          ...relatedProductFeaturesArr,
+          ...overviewProductFeaturesArr,
+        ]),
+      ];
+
+      setOverviewProductFeatures(overviewProductFeaturesArr);
+      setRelatedProductFeatures(relatedProductFeaturesArr);
+      setCompareFeatures(combinedFeatures);
+    } else if (relatedProduct.features) {
+      relatedProduct.features.forEach((feature) => {
+        relatedProductFeaturesArr.push(feature.feature);
+      });
+      setOverviewProductFeatures(overviewProductFeaturesArr);
+      setRelatedProductFeatures(relatedProductFeaturesArr);
+      setCompareFeatures(relatedProductFeaturesArr);
+    } else if (overviewProduct.features) {
+      overviewProduct.features.forEach((feature) => {
+        overviewProductFeaturesArr.push(feature.feature);
+      });
+
+      setOverviewProductFeatures(overviewProductFeaturesArr);
+      setRelatedProductFeatures(relatedProductFeaturesArr);
+      setCompareFeatures(overviewProductFeaturesArr);
+    } else {
+      setCompareFeatures(["no features to compare!"]);
+    }
     setClickedStar(true);
     handleClickOpen();
-    // setCurrentItem(item);
   };
 
   useEffect(() => {
@@ -103,7 +143,13 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <ModalPopup open={open} onClose={handleClose} />
+        <ModalPopup
+          compareFeatures={compareFeatures}
+          relatedProductFeatures={relatedProductFeatures}
+          overviewProductFeatures={overviewProductFeatures}
+          open={open}
+          onClose={handleClose}
+        />
       </CardActions>
     </Card>
   );

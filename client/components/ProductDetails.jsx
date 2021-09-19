@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import ShareOnSocial from './ShareOnSocial';
 
 const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
 
@@ -18,6 +19,7 @@ const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
           <h4>${salePrice} <strike>${originalPrice}</strike></h4>
         }
       </Grid>
+      <ShareOnSocial name={name} />
     </>
   )
 }
