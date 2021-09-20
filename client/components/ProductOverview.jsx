@@ -80,7 +80,8 @@ export default function ProductOverview(props) {
             handleStyleClick={handleStyleClick}
           />
           <AddToCart
-            skus={selectedStyle.skus}
+            currentProduct={currentProduct}
+            selectedStyle={selectedStyle}
           />
         </Grid>
       </Grid>
