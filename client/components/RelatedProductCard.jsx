@@ -19,6 +19,9 @@ import { positions } from "@material-ui/system";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 
+//Image
+const noImage = require("../../dist/Images/No-Image-Found.jpg");
+
 //Hard Coded Features
 let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
@@ -118,11 +121,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={
-          RelatedObj.url
-            ? RelatedObj.url
-            : require("../../dist/Images/No-image-found.jpeg")
-        }
+        image={RelatedObj.url ? RelatedObj.url : noImage}
       >
         <>
           {clickedStar ? (
