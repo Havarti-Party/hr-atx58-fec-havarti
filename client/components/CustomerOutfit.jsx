@@ -31,7 +31,11 @@ const CustomerOutfit = (props) => {
   const [currentProduct, setCurrentProduct] = React.useState({});
 
   const updateWardrobe = (OutfitObj) => {
-    updateOutfitList((outfitList) => [...outfitList, OutfitObj]);
+    if (_.contains(outfitList, OutfitObj)) {
+      updateOutfitList(outfitList);
+    } else {
+      updateOutfitList((outfitList) => [...outfitList, OutfitObj]);
+    }
   };
 
   const removeItemFromWardrobe = (OutfitObj) => {
