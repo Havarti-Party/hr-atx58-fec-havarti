@@ -4,6 +4,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import Grid from '@material-ui/core/Grid';
 import Link from '@mui/material/Link';
+import IconButton from '@material-ui/core/IconButton';
 
 export default function ShareOnSocial ({name}) {
 
@@ -14,9 +15,15 @@ export default function ShareOnSocial ({name}) {
   return(
     <Grid item>
       <h4>Share on Social:</h4>
-      <Link href="#" onClick={()=> handleIconClick('Facebook')} ><FacebookIcon /></Link>
-      <Link href="#" onClick={()=> handleIconClick('Instagram')} ><InstagramIcon /></Link>
-      <Link href="#" onClick={()=> handleIconClick('Pinterest')} ><PinterestIcon /></Link>
+      <IconButton onClick={()=> handleIconClick('Facebook')} >
+        <FacebookIcon />
+      </IconButton>
+      <IconButton onClick={()=> handleIconClick('Instagram')} >
+        <InstagramIcon />
+      </IconButton>
+      <IconButton onClick={()=> handleIconClick('Pinterest')} >
+        <PinterestIcon />
+      </IconButton>
     </Grid>
   )
 }
