@@ -53,9 +53,9 @@ const CustomerOutfit = (props) => {
 
   if (!outfitList.length) {
     return (
-      <>
+      <Carousel responsive={responsive}>
         <AddToOutfitCard updateWardrobe={updateWardrobe} />
-      </>
+      </Carousel>
     );
   } else {
     return (
