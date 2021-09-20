@@ -13,7 +13,6 @@ export default function ExpandAnswers({answers, currentAnswers, style}) {
     setAnswerDisplayCount(2)
   }
 
-
   if (answers.length > currentAnswers.length) {
     return (
       <div>
