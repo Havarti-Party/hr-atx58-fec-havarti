@@ -34,7 +34,6 @@ export default function RelatedProducts(props) {
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
   //RelatedProductsState
-  const [outfitList, updateOutfitList] = React.useState([]);
 
   const [relatedProductsIDs, setRelatedProductsIDs] = React.useState();
   const [relatedProductsArr, setRelatedProductsArr] = React.useState([]);
@@ -79,20 +78,6 @@ export default function RelatedProducts(props) {
     }
   }, [relatedProductsIDs]);
 
-  const updateWardrobe = (item, starValue) => {
-    //CHANGE LOGIC
-    //IF ALREADY EXISTS IN ARRAY....
-    if (!starValue) {
-      //remove the item from the array
-      let removedArray = _.reject(outfitList, (currItem) => {
-        return currItem.id === item.id;
-      });
-      updateOutfitList(removedArray);
-      //IF NOT ADD TO ARRAY
-    } else {
-      updateOutfitList((outfitList) => [...outfitList, item]);
-    }
-  };
   if (!relatedProductsArr) {
     return (
       <>

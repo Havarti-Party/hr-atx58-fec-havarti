@@ -63,7 +63,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       relatedProduct.features.forEach((feature) => {
         relatedProductFeaturesArr.push(feature.feature);
       });
-      setOverviewProductFeatures(overviewProductFeaturesArr);
       setRelatedProductFeatures(relatedProductFeaturesArr);
       setCompareFeatures(relatedProductFeaturesArr);
     } else if (overviewProduct.features) {
@@ -72,7 +71,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       });
 
       setOverviewProductFeatures(overviewProductFeaturesArr);
-      setRelatedProductFeatures(relatedProductFeaturesArr);
       setCompareFeatures(overviewProductFeaturesArr);
     } else {
       setCompareFeatures(["no features to compare!"]);
@@ -100,6 +98,9 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     media: {
       height: 250,
     },
+    iconDepth: {
+      zIndex: 1,
+    },
   });
 
   const classes = useStyles();
@@ -115,24 +116,32 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
 
   return (
     <Card className={classes.root}>
+      {/* <CardActionArea> */}
+      <CardMedia className={classes.media} image={RelatedObj.url}>
+        <>
+          {clickedStar ? (
+            <StarIcon
+              className={classes.iconDepth}
+              onClick={() => {
+                handleStarClick(RelatedObj);
+              }}
+            />
+          ) : (
+            <StarBorderIcon
+              className={classes.iconDepth}
+              onClick={() => {
+                handleStarClick(RelatedObj);
+              }}
+            />
+          )}
+        </>
+      </CardMedia>
       <CardActionArea>
-        <div
-          onClick={() => {
-            handleStarClick(RelatedObj);
-          }}
-        >
-          {clickedStar ? <StarIcon /> : <StarBorderIcon />}
-        </div>
-        <CardMedia
-          className={classes.media}
-          component="img"
-          image={RelatedObj.url}
+        <CardContent
           onClick={() => {
             setOverviewProduct(RelatedObj);
           }}
-        />
-
-        <CardContent>
+        >
           <Typography gutterBottom variant="h5" component="h2">
             {RelatedObj.name}
           </Typography>

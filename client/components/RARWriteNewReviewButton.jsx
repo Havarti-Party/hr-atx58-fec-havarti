@@ -11,6 +11,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+
 export default function FormDialog(props) {
 
   const [open, setOpen] = useState(false);
@@ -33,7 +34,7 @@ export default function FormDialog(props) {
           <DialogContentText>
             About the Product
           </DialogContentText>
-          <FormControl component='fieldset'>
+          <FormControl required component='fieldset'>
             <FormLabel component='legend'>On a scale of 1-5, how would you rate this product?</FormLabel>
             <RadioGroup row aria-label='reviewStars' defaultValue='5' name='reviewStarsRadioButtonGroup'>
               <FormControlLabel value='1' control={<Radio />} label='1' />
@@ -43,14 +44,14 @@ export default function FormDialog(props) {
               <FormControlLabel value='5' control={<Radio />} label='5' />
             </RadioGroup>
           </FormControl>
-          <FormControl component='fieldset'>
-            <FormLabel component='legend'>Would you recommend this product?</FormLabel>
+          <FormControl required component='fieldset'>
+            <FormLabel required component='legend'>Would you recommend this product?</FormLabel>
             <RadioGroup aria-label='reviewRecommend' defaultValue='Yes' name='reviewRecommendRadioButtonGroup'>
               <FormControlLabel value='Yes' control={<Radio />} label='Yes' />
               <FormControlLabel value='No' control={<Radio />} label='No' />
             </RadioGroup>
           </FormControl>
-          <FormControl component='fieldset'>
+          <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the size of this product?</FormLabel>
             <RadioGroup aria-label='reviewSize' name='reviewSizeRadioButtonGroup'>
               <FormControlLabel value='1' control={<Radio />} label='A size too small' />
@@ -60,7 +61,7 @@ export default function FormDialog(props) {
               <FormControlLabel value='5' control={<Radio />} label='A size too big' />
             </RadioGroup>
           </FormControl>
-          <FormControl component='fieldset'>
+          <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the width of this product?</FormLabel>
             <RadioGroup aria-label='reviewWidth' name='reviewWidthRadioButtonGroup'>
               <FormControlLabel value='1' control={<Radio />} label='Too narrow' />
@@ -70,7 +71,7 @@ export default function FormDialog(props) {
               <FormControlLabel value='5' control={<Radio />} label='Too wide' />
             </RadioGroup>
           </FormControl>
-          <FormControl component='fieldset'>
+          <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the comfort of this product?</FormLabel>
             <RadioGroup aria-label='reviewComfort' name='reviewComfortRadioButtonGroup'>
               <FormControlLabel value='1' control={<Radio />} label='Uncomfortable' />
@@ -80,7 +81,7 @@ export default function FormDialog(props) {
               <FormControlLabel value='5' control={<Radio />} label='Perfect' />
             </RadioGroup>
           </FormControl>
-          <FormControl component='fieldset'>
+          <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the quality of this product?</FormLabel>
             <RadioGroup aria-label='reviewQuality' name='reviewQualityRadioButtonGroup'>
               <FormControlLabel value='1' control={<Radio />} label='Poor' />
@@ -90,7 +91,7 @@ export default function FormDialog(props) {
               <FormControlLabel value='5' control={<Radio />} label='Perfect' />
             </RadioGroup>
           </FormControl>
-          <FormControl component='fieldset'>
+          <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the length of this product?</FormLabel>
             <RadioGroup aria-label='reviewLength' name='reviewLengthRadioButtonGroup'>
               <FormControlLabel value='1' control={<Radio />} label='Runs short' />
@@ -100,7 +101,7 @@ export default function FormDialog(props) {
               <FormControlLabel value='5' control={<Radio />} label='Runs long' />
             </RadioGroup>
           </FormControl>
-          <FormControl component='fieldset'>
+          <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the fit of this product?</FormLabel>
             <RadioGroup aria-label='reviewFit' name='reviewFitRadioButtonGroup'>
               <FormControlLabel value='1' control={<Radio />} label='Runs tight' />
@@ -121,6 +122,7 @@ export default function FormDialog(props) {
             placeholder="Example: Best purchase ever!"
             />
           <TextField
+          required
             multiline
             margin="dense"
             id="reviewSummary"
@@ -131,6 +133,37 @@ export default function FormDialog(props) {
             inputProps={{ min: 50, max: 1000}}
             placeholder="Why did you like this product or not?"
           />
+          <label htmlFor="uploadReviewImage">
+            <div>Upload up to 5 relevant images</div>
+          <input accept="image/*" id="uploadReviewImage" multiple max='5' type="file" style={{display: 'none'}}/>
+            <Button variant="contained" component="span">
+              Upload a photo
+            </Button>
+          </label>
+          <TextField
+            required
+            margin="dense"
+            id="reviewNickname"
+            label="What is your nickname?"
+            type="text"
+            fullWidth
+            variant="standard"
+            inputProps={{ max: 60 }}
+            placeholder="Example: jackson11!"
+            />
+            <div>For privacy reasons, do not use your full name or email address.</div>
+            <TextField
+            required
+            margin="dense"
+            id="reviewEmail"
+            label="What is your email address?"
+            type="text"
+            fullWidth
+            variant="standard"
+            inputProps={{ min: 5, max: 60 }}
+            placeholder="Example: jackson11@gmail.com"
+            />
+            <div>For authentication reasons, you will not be emailed</div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
