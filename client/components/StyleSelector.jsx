@@ -12,10 +12,10 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
       <Grid container>
         <p>STYLE > {selectedStyle.name.toUpperCase()}</p>
       </Grid>
-      <Grid container alignItems="center" id="style-selector">
+      <Grid container alignItems="center" id="style-selector" spacing={2}>
         {styles.map((style, i) => (
           style.style_id === selectedStyle.style_id ?
-            <Grid item md={3} key={style.style_id}>
+            <Grid item xs={3} key={style.style_id} >
               <Badge
                 overlap="circular"
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -27,7 +27,7 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
               </Badge>
             </Grid>
             :
-            <Grid item md={3} key={style.style_id}>
+            <Grid item xs={3} key={style.style_id} >
               <IconButton onClick={() => handleStyleClick(i)} >
                 <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} />
               </IconButton>
