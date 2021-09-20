@@ -30,6 +30,7 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
   const [selectedQuantity, setSelectedQuantity] = useState('');
   const [quantities, setQuantities] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
+  const [selectQuantityOpen, setSelectQuantityOpen] = useState(false);
   const [cart, setCart] = useState({
     product: '',
     style: '',
@@ -46,9 +47,17 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     if (totalStock === 0) {
       setOutOfStock(true);
     }
-  }
+  };
 
   useEffect(() => checkStock());
+
+  const handleClose = () => {
+    setSelectQuantityOpen(false);
+  };
+
+  const handleOpen = () => {
+    setSelectQuantityOpen(true);
+  };
 
   const handleSizeChange = (e) => {
     var maxQuantity = 0;
@@ -70,11 +79,11 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     setQuantities(quantityArr);
     setSelectedSize(e.target.value);
     setSelectedQuantity(1);
-  }
+  };
 
   const handleQtyChange = (e) => {
     setSelectedQuantity(e.target.value);
-  }
+  };
 
   const handleAddToCartClick = (e) => {
     // if size has not been selected, prompt to select size and open drop down
@@ -103,6 +112,9 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
             value={selectedSize}
             //className={classes.selectEmpty}
             onChange={handleSizeChange}
+            open={selectQuantityOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
           >
             {Object.keys(skus).map((sku, i) => (
               skus[sku].quantity > 0 ?
@@ -165,7 +177,10 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     <Grid container>
       {outOfStock ?
       <></> :
-      <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
+        selectedSize === '' ?
+        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleOpen}>Add To Cart</Button>
+        :
+        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
       }
 
     </Grid>
