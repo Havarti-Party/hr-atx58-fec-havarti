@@ -125,18 +125,20 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       >
         <>
           {clickedStar ? (
-            <StarIcon
-              className={classes.iconDepth}
-              onClick={() => {
-                handleStarClick(RelatedObj);
-              }}
-            />
-          ) : (
             <StarBorderIcon
               className={classes.iconDepth}
               onClick={() => {
                 handleStarClick(RelatedObj);
               }}
+              style={{ fill: "white" }}
+            />
+          ) : (
+            <StarIcon
+              className={classes.iconDepth}
+              onClick={() => {
+                handleStarClick(RelatedObj);
+              }}
+              style={{ fill: "white" }}
             />
           )}
         </>
