@@ -116,8 +116,14 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
 
   return (
     <Card className={classes.root}>
-      {/* <CardActionArea> */}
-      <CardMedia className={classes.media} image={RelatedObj.url}>
+      <CardMedia
+        className={classes.media}
+        image={
+          RelatedObj.url
+            ? RelatedObj.url
+            : require("../../dist/Images/No-image-found.jpeg")
+        }
+      >
         <>
           {clickedStar ? (
             <StarIcon
