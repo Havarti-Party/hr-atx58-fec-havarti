@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -99,6 +102,12 @@ export default function QuestionModal({styles, questions}) {
               onChange={changeHandler}
               //helperText='must provide a valid email'
             /><br/>
+            <label htmlFor="addYourPictures">
+              <input accept="image/*" id="addYourPictures" type="file" />
+              <IconButton color="primary" aria-label="upload picture" component="span">
+                <PhotoCamera />
+              </IconButton>
+            </label>
             <Button variant='contained' className={styles.button} >submit</Button>
           </form>
         </div>

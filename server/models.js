@@ -42,13 +42,6 @@ let getProductStyles = (id) => {
     .catch((error) => {
       return error;
     });
-
-  // .then((productStyles) => {
-  //   callback(null, productStyles.data);
-  // })
-  // .catch((error) => {
-  //   callback(error, null);
-  // });
 };
 
 let getProductQuestions = (id, callback) => {
@@ -77,10 +70,24 @@ let getCurrentProduct = (id) => {
     });
 };
 
+let getProductReviews = (id, callback) => {
+  axios
+    .get(apiURL + `/reviews?product_id=${id}`, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      callback(null, result);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
+
 module.exports = {
   getAllProducts,
   getRelatedProductsIDs,
   getProductStyles,
   getProductQuestions,
   getCurrentProduct,
+  getProductReviews,
 };

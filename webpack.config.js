@@ -11,7 +11,7 @@ const stylesHandler = 'style-loader';
 
 
 const config = {
-    entry: './client/src/index.js'
+    entry: './client/src/index.js',
     output: {
         path: path.resolve('dist'),
         filename: "main.js",
