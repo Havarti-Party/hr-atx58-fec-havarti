@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,8 +8,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import AddIcon from '@material-ui/icons/Add';
-import { ProductsContext } from './ProductsContext';
-
 
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
@@ -25,15 +23,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCart = (props) => {
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+const AddToCart = ({ currentProduct, selectedStyle }) => {
   const classes = useStyles();
-  const [skus, setSkus] = useState(props.skus)
   const [size, setSize] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
   const [quantities, setQuantities] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
+  const [cart, setCart] = useState({
+    product: '',
+    style: '',
+    size: '',
+    quantity: 0
+  })
+  const skus = selectedStyle.skus;
 
   const checkStock = () => {
     var totalStock = 0;
@@ -45,13 +48,7 @@ const AddToCart = (props) => {
     }
   }
 
-  useEffect((() => {
-    setSelectedSize('');
-    setQuantities([]);
-    checkStock();
-    setSkus(props.skus)
-
-  }), [overviewProduct]);
+  useEffect(() => checkStock());
 
   const handleSizeChange = (e) => {
     var maxQuantity = 0;
@@ -81,7 +78,17 @@ const AddToCart = (props) => {
 
   const handleAddToCartClick = (e) => {
     // if size has not been selected, prompt to select size and open drop down
-    console.log('You clicked add to cart!')
+    selectedSize === '' ?
+    console.log('open size drop down')
+    :
+    console.log('add to cart', selectedStyle)
+
+    setCart({
+      product: currentProduct.name,
+      style: selectedStyle.name,
+      size: selectedSize,
+      quantity: selectedQuantity
+    })
   }
 
   return (
@@ -123,8 +130,7 @@ const AddToCart = (props) => {
         </FormControl>
       }
 
-      {selectedSize === '' ?
-      <FormControl variant="filled" className={classes.selectQtyForm} disabled >
+      {selectedSize === '' ? <FormControl variant="filled" className={classes.selectQtyForm} disabled >
         <InputLabel id="quantity">Quantity</InputLabel>
         <Select
           labelId="select-quantity"
@@ -157,7 +163,10 @@ const AddToCart = (props) => {
     }
     </Grid>
     <Grid container>
+      {outOfStock ?
+      <></> :
       <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
+      }
 
     </Grid>
     </>
