@@ -63,7 +63,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       relatedProduct.features.forEach((feature) => {
         relatedProductFeaturesArr.push(feature.feature);
       });
-      setOverviewProductFeatures(overviewProductFeaturesArr);
       setRelatedProductFeatures(relatedProductFeaturesArr);
       setCompareFeatures(relatedProductFeaturesArr);
     } else if (overviewProduct.features) {
@@ -72,7 +71,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       });
 
       setOverviewProductFeatures(overviewProductFeaturesArr);
-      setRelatedProductFeatures(relatedProductFeaturesArr);
       setCompareFeatures(overviewProductFeaturesArr);
     } else {
       setCompareFeatures(["no features to compare!"]);
