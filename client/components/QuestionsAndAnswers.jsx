@@ -67,7 +67,9 @@ export default function QuestionsAndAnswers(props) {
         }})
         .then(response => {
           var newQuestions = response.data.results
-          setQuestions(newQuestions);
+          setQuestions(newQuestions.sort((a, b) => {
+            a.question_helpfulness - b.question_helpfulness
+          }));
         })
         .catch(error => {
           console.log('Error retrieving related questions for this product', error)
@@ -105,7 +107,7 @@ export default function QuestionsAndAnswers(props) {
             )
           }}/>
         </Grid>
-        <Grid item md={10} className={classes.list}>
+        <Grid item md={12} className={classes.list}>
           {currentQuestions.filter((question) => {
             if (searchValue === '') {
               return question;

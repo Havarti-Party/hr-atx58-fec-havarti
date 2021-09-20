@@ -16,11 +16,21 @@ const questionStyles = makeStyles({
 export default function Question({question, style}) {
   const classes = questionStyles();
   const [answers, setAnswers] = useState(Object.values(question.answers))
+  const [questionHelpfulCount, setQuestionHelpfulCount] = useState(question.question_helpfulness)
+
+  function incrementHelpfulCount() {
+    setQuestionHelpfulCount(prevCount => prevCount + 1);
+  }
+
+  function decrementHelpfulCount() {
+    setQuestionHelpfulCount(prevCount => prevCount - 1);
+  }
 
   return (
     <div id='question' className={classes.questionTile}>
       <div>
         <h3>Q: {question.question_body}?</h3>
+        <span>Helpful? <a href='' onClick={() => incrementHelpfulCount()}>yes ({questionHelpfulCount})</a>/<a href='' onClick={() => decrementHelpfulCount()}>no</a></span>
       </div>
       <div id='answerList'>
         <AnswerList answers={answers} style={style}/>
