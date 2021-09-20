@@ -7,6 +7,7 @@ import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import ExpandQuestions from './QuestionExpand.jsx';
 
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -18,9 +19,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 const questionListStyles = makeStyles({
-  list: {
+  widget: {
     backgroundColor: '#B5FFEB',
     'border-style': 'solid',
+    height: '800px',
   },
   modal: {
     backgroundColor: '#B5FFEB',
@@ -33,7 +35,13 @@ const questionListStyles = makeStyles({
   searchbar: {
     margin: '10px',
     width: '50%',
-  }
+  },
+  list: {
+    backgroundColor: '#B5FFEB',
+    'border-style': 'solid',
+    height: '500px',
+    overflow: 'auto',
+  },
 })
 
 export const QuestionsContext = createContext()
@@ -76,37 +84,45 @@ export default function QuestionsAndAnswers(props) {
 
 
   return (
-    <div id='questionList' className={classes.list}>
-      <h1>Customer Questions And Answers</h1>
-      <TextField
-        id='questionSearch'
-        label='search for a specific question here'
-        className={classes.searchbar}
-        variant='outlined'
-        name='questionSearch'
-        onChange={(e) => {setSearchValue(e.target.value)}}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position='start'>
-              <SearchIcon />
-            </InputAdornment>
-        )
-      }}/>
-      {currentQuestions.filter((question) => {
-        if (searchValue === '') {
-          return question;
-        } else if (question.question_body.toLowerCase().includes(searchValue.toLowerCase())) {
-          return question;
-        }
-      }).map(question => {
-        return <Question key={question.question_id} question={question} style={classes}/>
-      })}
-      <div>
-        <QuestionModal styles={classes} questions={questions}/>
-        <QuestionsContext.Provider value={[questionDisplayCount, setQuestionDisplayCount]} >
-          <ExpandQuestions style={classes} questions={questions} currentQuestions={currentQuestions}/>
-        </QuestionsContext.Provider>
-      </div>
+    <div id='questionList' className={classes.widget}>
+      <Grid container spacing={2}>
+        <Grid item md={10}>
+          <h1>Customer Questions And Answers</h1>
+        </Grid>
+        <Grid item md={10}>
+          <TextField
+            id='questionSearch'
+            label='search for a specific question here'
+            className={classes.searchbar}
+            variant='outlined'
+            name='questionSearch'
+            onChange={(e) => {setSearchValue(e.target.value)}}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position='start'>
+                  <SearchIcon />
+                </InputAdornment>
+            )
+          }}/>
+        </Grid>
+        <Grid item md={10} className={classes.list}>
+          {currentQuestions.filter((question) => {
+            if (searchValue === '') {
+              return question;
+            } else if (question.question_body.toLowerCase().includes(searchValue.toLowerCase())) {
+              return question;
+            }
+          }).map(question => {
+            return <Question key={question.question_id} question={question} style={classes}/>
+          })}
+        </Grid>
+        <Grid item md={10}>
+          <QuestionModal styles={classes} questions={questions}/>
+          <QuestionsContext.Provider value={[questionDisplayCount, setQuestionDisplayCount]} >
+            <ExpandQuestions style={classes} questions={questions} currentQuestions={currentQuestions}/>
+          </QuestionsContext.Provider>
+        </Grid>
+      </Grid>
     </div>
   )
 }

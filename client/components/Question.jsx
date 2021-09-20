@@ -6,6 +6,8 @@ const questionStyles = makeStyles({
   questionTile: {
     'border-style': 'solid',
     margin: '10px',
+    height: '400px',
+    overflow: 'auto',
   }
 })
 
