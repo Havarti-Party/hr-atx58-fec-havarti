@@ -26,13 +26,15 @@ export const ProductsProvider = (props) => {
       let overviewProductID = products[0].id;
 
       axios
-        .get("/currentProduct", {
+        .get("/related", {
           params: {
             ID: overviewProductID,
           },
         })
         .then((overviewProductDetails) => {
           products[0].features = overviewProductDetails.data.features;
+          products[0].url = overviewProductDetails.data.url;
+
           setOverviewProduct(products[0]);
         })
         .catch((error) => {
