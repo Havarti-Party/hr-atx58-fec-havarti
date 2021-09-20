@@ -20,10 +20,13 @@ import CheckIcon from "@material-ui/icons/Check";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 300,
+    maxWidth: 500,
   },
   media: {
     height: 250,
+  },
+  iconDepth: {
+    zIndex: 1,
   },
 });
 
@@ -34,21 +37,22 @@ export default function OutfitCard({ OutfitObj, remove }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardMedia
+        className={classes.media}
+        image={OutfitObj.url}
+        title={OutfitObj.name}
+      >
         <HighlightOffIcon
           onClick={() => {
             remove(OutfitObj);
           }}
         />
-        <CardMedia
-          component="img"
-          className={classes.media}
-          image={OutfitObj.url}
-          title={OutfitObj.name}
-          onClick={() => {
-            setOverviewProduct(OutfitObj);
-          }}
-        />
+      </CardMedia>
+      <CardActionArea
+        onClick={() => {
+          setOverviewProduct(OutfitObj);
+        }}
+      >
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {OutfitObj.name}
