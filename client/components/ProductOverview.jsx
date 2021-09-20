@@ -1,100 +1,100 @@
-import React from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-import MainImageCarousel from './MainImageCarousel.jsx';
-import AverageStarRating from './AverageStarRating.jsx';
+import MainImageCarousel from './MainImageCarousel';
+import AverageStarRating from './AverageStarRating';
 import StyleSelector from './StyleSelector';
+import ProductDetails from './ProductDetails';
+import ProductFeatures from './ProductFeatures';
+import AddToCart from './AddToCart';
 const axios = require('axios');
+import { ProductsContext } from './ProductsContext';
 
 export default function ProductOverview(props) {
-  // needed in state: styles, selectedStyle
-  // const [styles, setStyles] = useState([]);
-  // const [selectedStyle, setSelectedStyle] = useState(styles[0]);
-  // const getStyles = () => {
-  //   axios.get
-  // }
+  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  const [isLoading, setLoading] = useState(true);
+  const [currentProduct, setCurrentProduct] = useState([]);
+  const [styles, setStyles] = useState([]);
+  const [selectedStyle, setSelectedStyle] = useState(styles[0]);
 
-  const styles = [
-    {
-      style_id: 227498,
-      name: 'Forest Green & Black',
-      original_price: '140.00',
-      photos: [
-        {thumbnail_url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
-      ]
-    },
-    {
-      style_id: 227499,
-      name: 'Desert Brown & Tan',
-      original_price: '140.00',
-      photos: [
-        {thumbnail_url: "https://images.unsplash.com/photo-1533779183510-8f55a55f15c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
-      ]
-    },
-    {
-      style_id: 227500,
-      name: "Ocean Blue & Grey",
-      original_price: '140.00',
-      photos: [
-        {thumbnail_url: "https://images.unsplash.com/photo-1556304653-cba65c59b3c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
-      ]
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+        axios.get("/currentProduct", {
+          params: {
+            ID: overviewProduct.id,
+          },
+        })
+        .then((product) => {
+          setCurrentProduct(product.data);
+          return axios.get("/styles", {
+            params: {
+              ID: overviewProduct.id,
+          }})
+        })
+        .then((productStyles) => {
+          setStyles(productStyles.data.results);
+          setSelectedStyle(productStyles.data.results[0])
+          setLoading(false)
+        })
+        .then(() => setLoading(false))
+        .catch(err => console.log(err))
+    } else {
+      isMounted.current = true;
     }
-  ];
-  const selectedStyle = {
-      style_id: 227498,
-      name: 'Forest Green & Black',
-      original_price: '140.00',
-      photos: [
-        {thumbnail_url: "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"}
-      ]
-    };
+  }, [overviewProduct]);
 
-  const handleStyleClick = (e) => {
-    console.log('clicked Style')
-    // update state to selectedStyle
+  const handleStyleClick = (clickedStyle) => {
+    setSelectedStyle(styles[clickedStyle]);
   };
 
+  if(isLoading) {
+    return <div>Loading</div>
+  } else {
+    return (
+      <>
+      <Grid container>
+        <Grid item md={8}>
+          <MainImageCarousel photos={selectedStyle.photos}/>
+        </Grid>
+        <Grid item md={4}>
+          <AverageStarRating /><a href=""
+          onClick={(e) => {
+            e.preventDefault();
+            const ratingsAndReviews = document.querySelector('#ratings-and-reviews');
+            ratingsAndReviews.scrollIntoView({ behavior: 'smooth'});
+            }}
+            style={{fontSize: '12px'}} >
+              Read All Reviews
+          </a>
+          <ProductDetails
+            category={currentProduct.category}
+            name={currentProduct.name}
+            originalPrice={selectedStyle.original_price}
+            salePrice={selectedStyle.sale_price}
+          />
 
-
-  return (
-    <>
-    <Grid container>
-      <Grid item md={8}>
-        <MainImageCarousel />
+          <StyleSelector
+            styles={styles}
+            selectedStyle={selectedStyle}
+            handleStyleClick={handleStyleClick}
+          />
+          <AddToCart
+            currentProduct={currentProduct}
+            selectedStyle={selectedStyle}
+          />
+        </Grid>
       </Grid>
-      <Grid item md={4}>
-        <AverageStarRating /><a href=""
-        onClick={(e) => {
-          e.preventDefault()
-          const ratingsAndReviews = document.querySelector('#ratings-and-reviews')
-          ratingsAndReviews.scrollIntoView({ behavior: 'smooth'})
-        }}
-        style={{fontSize: '12px'}} >Read All Reviews</a>
-        <img src="../images/productDetails.png" alt="Product Details" width="90%" />
-        {/* Price */}
-
-        <h4>${selectedStyle.original_price}</h4>
-
-        <StyleSelector
-          styles={styles}
-          selectedStyle={selectedStyle}
-          handleStyleClick={handleStyleClick}
-        />
-        <img src="../images/addToCart.png" alt="Add to cart" width="100%" />
+      <Grid container>
+        <Grid item md={8}>
+          <h5 className="productSlogan">{currentProduct.slogan}</h5>
+          <p className="productDescription">{currentProduct.description}</p>
+        </Grid>
+        <Grid item md={4}>
+          <ProductFeatures features={currentProduct.features}/>
+        </Grid>
       </Grid>
-    </Grid>
-    <Grid container>
-      <Grid item md={8}>
-      {/* refactor for dynamic rendering */}
-        <h5 className="productSlogan">Blend in to your crowd</h5>
-        <p className="productDescription">The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.</p>
-      </Grid>
-      <Grid item md={4}>
-        <ul>
-          <li>Fabric: Canvas</li>
-          <li>Buttons: Brass</li>
-        </ul>
-      </Grid>
-    </Grid>
-    </>
-  )
+      </>
+    )
+  }
 }

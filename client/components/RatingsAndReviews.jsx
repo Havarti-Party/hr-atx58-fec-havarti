@@ -1,83 +1,81 @@
-import React from 'react';
-import AverageStarRating from './AverageStarRating';
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import StarRatings from 'react-star-ratings';
+import Grid from '@material-ui/core/Grid';
+import RatingBreakdownBars from './RARRatingBreakdownBars.jsx';
+import SizeBar from './RARSizeBar.jsx';
+import ComfortBar from './RARComfortBar.jsx';
+import ReviewSorter from './RARReviewSorter.jsx';
+import ReviewDisplay from './RARReviewDisplay.jsx';
+import { ProductsContext } from './ProductsContext';
+const axios = require('axios');
+
 
 export default function RatingsAndReviews(props) {
-  return (
-    <div id='ratings-and-reviews'>
-      <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
-      {/* Note: AverageStarRating is going to need input later */}
-      <div id='RARLeftColumn'>
-        <div>100% of reviews recommend this product</div>
-        <AverageStarRating /><br />
-        <RatingBreakdownBars /><br />
-        <SizeBar /><br />
-        <ComfortBar /><br />
+  const [currentProduct, setCurrentProduct] = useContext(ProductsContext);
+  const [currentReviews, setCurrentReviews] = useState({});
+  const [averageStarRating, updateAverageStarRating] = useState(0);
+  const [isLoading, setLoading] = useState(true);
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      axios.get('/reviews', {
+        params: {
+          ID: currentProduct.id
+        }
+      })
+      .then((reviewData) => {
+
+        setCurrentReviews(reviewData.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log('Error while fetching reviews:');
+        console.log(error);
+      })
+    } else {
+    isMounted.current = true;
+  }}, [currentProduct])
+
+  // const currentProduct = useContext(ProductsContext);
+  // if (currentProduct[0]) {
+  //   console.log(currentProduct[0].id);
+  // }
+  if (isLoading) {
+    return (
+      <div>
+        Loading reviews...
       </div>
-      <div id='RARRightColumn'>
-        <ReviewSorter /><br />
-        <ReviewDisplay />
-      </div>
-    </div>
-  )
+    )
+  } else {
+      return (
+      <>
+        <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
+        <Grid container spacing={6}>
+          <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARLeftColumn">
+            <div>100% of reviews recommend this product</div>
+            {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'} />
+            <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating} currentReviews={currentReviews}/>
+            <SizeBar />
+            <ComfortBar />
+          </Grid>
+          <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
+            <ReviewSorter currentReviews={currentReviews}/>
+            <ReviewDisplay currentReviews={currentReviews}/>
+          </Grid>
+        </Grid>
+      </>
+    )
+  }
 }
 
-var RatingBreakdownBars = (props) => {
-  var starArray = [1, 2, 3, 4, 5];
-  var ratePercent = 60;
-  return (
-    <>
-      {starArray.map(starRating => {
-        return (
-          <ProgressBar key={starRating} starRating={starRating} ratePercent={ratePercent}/>
-        )
-      })}
-    </>
-  )
-}
 
-var ProgressBar = (props) => {
-  return (
-    <>
-      <span>{props.starRating} stars: </span>
-      <div className='RARProgressBarContainer'>
-        <div className='RARProgressBarFiller' style={{width: `${props.ratePercent}%`}}>
-          <div>&nbsp;</div>
-        </div>
-      </div><br />
-    </>
-  )
-}
 
-var SizeBar = (props) => {
-  return (
-    <img src="/Images/ratingssizebar.png"></img>
-  )
-}
 
-var ComfortBar = (props) => {
-  return (
-    <img src="/Images/ratingscomfortbar.png"></img>
-  )
-}
 
-var ReviewSorter = (props) => {
-  return (
-    <img src="/Images/ratingsreviewsorter.png"></img>
-  )
-}
 
-var ReviewDisplay = (props) => {
-  return (
-    <>
-    <img src="/Images/ratingsreviewdisplay.png"></img>
-    {/* <ReviewTile />
-    <ReviewTile /> */}
-    </>
-  )
-}
 
-// var ReviewTile = (props) => {
-//   return (
-//     <div>This is a review tile</div>
-//   )
-// }
+
+
+
+

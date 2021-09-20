@@ -16,12 +16,12 @@ export default function Answer({answerData}) {
   //additional conditional based on if its the first answer/top answer in the list
 
   // if (answerData.answerer_name === 'Seller') {
+  //   console.log('bold this name')
+  // }
   return (
-    <div class='answer'>
+    <div className='answer'>
       <h3>A: {answerData.body}</h3>
-      {/* add an on hover feature for the helpfulness section to make it pop*/}
-      {/* make the date and answer creator styled to be faded */}
-      <span><p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | answer helpfulness:<a onClick={() => incrementHelpfulCount()}>yes ({helpfulCount})</a>/<a onClick={() => decrementHelpfulCount()}>no</a></p></span>
+      <span><p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | answer helpfulness:<a href='' onClick={() => incrementHelpfulCount()}>yes ({helpfulCount})</a>/<a href='' onClick={() => decrementHelpfulCount()}>no</a></p></span>
       <br/>
     </div>
   )

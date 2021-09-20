@@ -6,18 +6,16 @@ import IconButton from '@material-ui/core/IconButton';
 import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
 
 export default function StyleSelector( { styles, selectedStyle, handleStyleClick }) {
-
-
+// console.log(selectedStyle)
   return (
     <>
-    <Grid container>
-
-      {/* STYLE > Selected Style  */}
-      <Grid container  spacing={3} alignItems="center" id="style-selector">
-        {styles.map(style => (
-          // if selectedStyle, use badge on avatar
-          (style.style_id === selectedStyle.style_id ?
-            <Grid item id="style">
+      <Grid container>
+        <p>STYLE > {selectedStyle.name.toUpperCase()}</p>
+      </Grid>
+      <Grid container alignItems="center" id="style-selector">
+        {styles.map((style, i) => (
+          style.style_id === selectedStyle.style_id ?
+            <Grid item md={3} key={style.style_id}>
               <Badge
                 overlap="circular"
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -25,18 +23,18 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
                   <CheckCircleTwoToneIcon />
                 }
               >
-                <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} key={style.style_id} />
+                <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} />
               </Badge>
-            </Grid> :
-            <Grid item id="style">
-              <IconButton onClick={handleStyleClick}>
-                <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} key={style.style_id} />
+            </Grid>
+            :
+            <Grid item md={3} key={style.style_id}>
+              <IconButton onClick={() => handleStyleClick(i)} >
+                <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} />
               </IconButton>
             </Grid>
-          )
+
         ))}
       </Grid>
-    </Grid>
     </>
   )
 }
