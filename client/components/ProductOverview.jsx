@@ -10,48 +10,52 @@ const axios = require('axios');
 import { ProductsContext } from './ProductsContext';
 
 export default function ProductOverview(props) {
-  const { overviewProduct } = useContext(ProductsContext)
+  const { overviewProduct, stylesState } = useContext(ProductsContext)
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
-  const [isLoading, setLoading] = useState(true);
-  const [currentProduct, setCurrentProduct] = useState([]);
-  const [styles, setStyles] = useState([]);
+  const [ styles, setStyles] = stylesState
+  // const [isLoading, setLoading] = useState(true);
+  // const [currentProduct, setCurrentProduct] = useState([]);
+  // const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState(styles[0]);
 
   const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current) {
-        axios.get("/currentProduct", {
-          params: {
-            ID: overviewProductState.id,
-          },
-        })
-        .then((product) => {
-          setCurrentProduct(product.data);
-          return axios.get("/styles", {
-            params: {
-              ID: overviewProductState.id,
-          }})
-        })
-        .then((productStyles) => {
-          setStyles(productStyles.data.results);
-          setSelectedStyle(productStyles.data.results[0])
-          setLoading(false)
-        })
-        .then(() => setLoading(false))
-        .catch(err => console.log(err))
-    } else {
-      isMounted.current = true;
-    }
-  }, [overviewProductState]);
+    // if (isMounted.current) {
+        // axios.get("/currentProduct", {
+        //   params: {
+        //     ID: overviewProductState.id,
+        //   },
+        // })
+        // .then((product) => {
+        //   setCurrentProduct(product.data);
+        //   return
+          // axios.get("/styles", {
+          //   params: {
+          //     ID: overviewProductState.id,
+          // }})
+        // })
+        // .then((productStyles) => {
+        //   setStyles(productStyles.data.results);
+        //   setSelectedStyle(productStyles.data.results[0])
+        //   setLoading(false)
+        // })
+        // .then(() => setLoading(false))
+        // .catch(err => console.log(err))
+    // } else {
+    //   isMounted.current = true;
+    // }
+    setSelectedStyle(styles[0])
+
+  }, [overviewProduct]);
 
   const handleStyleClick = (clickedStyle) => {
     setSelectedStyle(styles[clickedStyle]);
   };
 
-  if(isLoading) {
-    return <div>Loading</div>
-  } else {
+  // if(isLoading) {
+  //   return <div>Loading Product</div>
+  // } else {
     return (
       <>
       <Grid container>
@@ -69,8 +73,8 @@ export default function ProductOverview(props) {
               Read All Reviews
           </a>
           <ProductDetails
-            category={currentProduct.category}
-            name={currentProduct.name}
+            category={overviewProductState.category}
+            name={overviewProductState.name}
             originalPrice={selectedStyle.original_price}
             salePrice={selectedStyle.sale_price}
           />
@@ -81,21 +85,21 @@ export default function ProductOverview(props) {
             handleStyleClick={handleStyleClick}
           />
           <AddToCart
-            currentProduct={currentProduct}
+            currentProduct={overviewProductState}
             selectedStyle={selectedStyle}
           />
         </Grid>
       </Grid>
       <Grid container>
         <Grid item md={8}>
-          <h5 className="productSlogan">{currentProduct.slogan}</h5>
-          <p className="productDescription">{currentProduct.description}</p>
+          <h5 className="productSlogan">{overviewProductState.slogan}</h5>
+          <p className="productDescription">{overviewProductState.description}</p>
         </Grid>
         <Grid item md={4}>
-          <ProductFeatures features={currentProduct.features}/>
+          <ProductFeatures features={overviewProductState.features}/>
         </Grid>
       </Grid>
       </>
     )
-  }
+  // }
 }
