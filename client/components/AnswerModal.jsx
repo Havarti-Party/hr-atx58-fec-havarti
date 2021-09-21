@@ -43,9 +43,11 @@ export default function AnswerModal(props) {
   // const [answerImage, setAnswerImage] = useState({})
 
   const validateForm = (answerBody, nickname, email) => {
+    var formValid = true;
     if (email.indexOf('@') === -1 || email.indexOf('.com') === -1) {
       setAllValues({...allValues, [email]: ''})
       setEmailInvalid(true);
+      formValid = false;
     } else {
       setEmailInvalid(false);
     }
@@ -53,6 +55,7 @@ export default function AnswerModal(props) {
     if (answerBody === '') {
       setAllValues({...allValues, [question]: ''})
       setQuestionInvalid(true);
+      formValid = false;
     } else {
       setQuestionInvalid(false);
     }
@@ -61,9 +64,11 @@ export default function AnswerModal(props) {
       //left this setValue incase I add more parameters for the nickname
       setAllValues({...allValues, [nickname]: ''})
       setNicknameInvalid(true);
+      formValid = false;
     } else {
       setNicknameInvalid(false);
     }
+    return formValid
   }
 
   const handleOpen = () => {
@@ -84,6 +89,11 @@ export default function AnswerModal(props) {
     var email = allValues.email;
 
     validateForm(answerBody, nickname, email);
+    if (validateForm(answerBody, nickname, email)) {
+      axios.post(`/qa/questions/:${question_id}/answers`)
+    } else {
+      console.log('something went wrong');
+    }
     //needs to make a post request to the server/append it to state
     console.log(allValues);
     //need to format the inputs. Easiest way would be to append them to the database and have it auto increment question id, and then also update state for us in the form of a request body.

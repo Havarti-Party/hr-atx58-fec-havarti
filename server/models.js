@@ -57,6 +57,34 @@ let getProductQuestions = (id, callback) => {
     });
 };
 
+let addNewQuestion = (questionBody, nickname, email, product_id, callback) => {
+  axios.post(apiURL + '/qa/questions', {
+    body: questionBody,
+    name: nickname,
+    email: email,
+    product_id: product_id,
+  }, {
+    headers: {Authorization: config.token}
+  })
+  .then(response => {
+    callback(null, response.data)
+  })
+  .catch(error => {
+    console.log('error in models', error);
+    callback(error, null)
+  })
+}
+
+let addNewAnswer = (answerBody, nickname, email) => {
+
+}
+let updateAnswerHelpfulness = () => {
+
+}
+let updateQuestionHelpfulness = () => {
+
+}
+
 let getCurrentProduct = (id) => {
   return axios
     .get(apiURL + `/products/${id}`, {
@@ -118,4 +146,8 @@ module.exports = {
   getProductReviews,
   getProductMetadata,
   postProductReview,
+  addNewQuestion,
+  addNewAnswer,
+  updateAnswerHelpfulness,
+  updateQuestionHelpfulness,
 };

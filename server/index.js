@@ -146,6 +146,38 @@ app.post("/reviews", (req, res) => {
   });
 });
 
+// app.put('/qa/questionHelpfulness', (req, res) => {
+//   console.log(req.body)
+//   models.updateQuestionHelpfulness
+//   res.status(200).send(result.data)
+// })
+
+// app.put('/qa/answerHelpfulness', (req, res) => {
+//   console.log(req.body)
+//   models.updateQuestionHelpfulness
+//   res.status(200).send(result.data)
+// })
+
+app.post('/qa/questions', (req, res) => {
+  var body = req.body.question_body;
+  var email = req.body.email;
+  var name = req.body.asker_name;
+  var product_id = req.body.product_id;
+  models.addNewQuestion(body, name, email, product_id, (err, result) => {
+    if (err) {
+      console.log('error index.js')
+      res.status(500).send('error creating your question')
+    } else {
+      res.status(201).send('CREATED');
+    }
+  })
+})
+
+// app.post('/qa/questions/:question_id/answers', (req, res) => {
+//   console.log(req.body)
+//   res.status(200).send(result.data)
+// })
+
 app.listen(PORT, (err, success) => {
   if (err) {
     console.log("Error listening to Server...", err);

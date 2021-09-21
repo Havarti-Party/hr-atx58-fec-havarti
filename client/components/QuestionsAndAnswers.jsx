@@ -45,13 +45,12 @@ export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
   const { overviewProduct } = useContext(ProductsContext)
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
-
-  const [questions, setQuestions] = useState([])
+  const [ productId, setProductId ] = useState(0);
+  const [ questions, setQuestions ] = useState([])
 
   const [searchValue, setSearchValue] = useState('');
 
   const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
-
   var currentQuestions = questions.slice(0, questionDisplayCount)
   const isMounted = useRef(false);
 
@@ -63,6 +62,7 @@ export default function QuestionsAndAnswers(props) {
         }})
         .then(response => {
           var newQuestions = response.data.results
+          setProductId(overviewProductState.id);
           setQuestions(newQuestions.sort((a, b) => {
             a.question_helpfulness - b.question_helpfulness
           }));
@@ -109,7 +109,9 @@ export default function QuestionsAndAnswers(props) {
         </Grid>
         <Grid item sm={1} />
         <Grid item md={2}>
-          <QuestionModal styles={classes} questions={questions}/>
+          <QuestionsContext.Provider value={[questions, setQuestions]}>
+            <QuestionModal styles={classes} questions={questions} product_id={productId}/>
+          </QuestionsContext.Provider >
         </Grid>
         <Grid item xl={2}>
         </Grid>

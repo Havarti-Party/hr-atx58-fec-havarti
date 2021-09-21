@@ -20,12 +20,36 @@ export default function Question({question, style}) {
 
   function incrementHelpfulCount() {
     //post //how to limit to one time click only
-    setQuestionHelpfulCount(prevCount => prevCount + 1);
+    setQuestionHelpfulCount(prevCount => prevCount + 1); //may not need to do this anymore.
+    axios.put('/qa/questionHelpful', {
+      params: {
+        helpfulCount: questionHelpfulCount,
+        questionId: question.question_id,
+      }
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log('there was an error updating the question\'s helpful count', error);
+    })
   }
 
   function decrementHelpfulCount() {
     //post //how to limit one time click
     setQuestionHelpfulCount(prevCount => prevCount - 1);
+    axios.patch('/qa/questionHelpful', {
+      params: {
+        helpfulCount: questionHelpfulCount,
+        questionId: question.question_id,
+      }
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log('there was an error updating the question\'s helpful count', error);
+    })
   }
 
   return (
