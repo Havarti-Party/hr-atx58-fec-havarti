@@ -16,37 +16,41 @@ const modalStyles = makeStyles({
     left: '50%',
     top: '50%',
     transform: 'translate(-50%, -50%)',
-    'text-align': 'center'
+    'text-align': 'center',
+    'background-color': 'white',
   },
   form: {
     padding: '10px',
     width: 500
-  }
+  },
+  button: {
+    padding: '0 5px',
+    margin: '10px',
+  },
 
 });
 
 
-export default function QuestionModal({styles, questions}) {
+export default function AnswerModal(props) {
   const classes = modalStyles()
-  const [open, setOpen] = useState(false);
+  const [aModalOpen, setAModalOpen] = useState(false);
 
-  const [allValues, setAllValues] = useState({
-    question: '',
+  const [allFormValues, setAllFormValues] = useState({
+    answer: '',
     nickname: '',
     email: '',
- });
+  });
 
   const handleOpen = () => {
-    setOpen(true);
+    setAModalOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAModalOpen(false);
   };
 
   const changeHandler = (e) => {
-    // console.log('question:', e.target.name, e.target.value)
-    setAllValues({...allValues, [e.target.name]: e.target.value})
+    setAllFormValues({...allFormValues, [e.target.name]: e.target.value})
   }
 
   const handleSubmit = (e) => {
@@ -54,35 +58,35 @@ export default function QuestionModal({styles, questions}) {
     //needs to make a post request to the server/append it to state
     console.log(allValues);
     //need to format the inputs. Easiest way would be to append them to the database and have it auto increment question id, and then also update state for us in the form of a request body.
-    console.log(questions);
+
     //ALSO NEEDS TO CLOSE THE MODAL (after successful validation)
   }
   return (
-    <div id='answerModal' className={styles.modal}>
-      <Button id='addAnswer' variant='contained' onClick={handleOpen} className={styles.button}>Add an Answer</Button>
+    <div id='answerModal'>
+      <Button id='addAnswer' variant='contained' onClick={handleOpen} className={classes.button}>Add an Answer</Button>
       <Modal
-        open={open}
+        open={aModalOpen}
         onClose={handleClose}
         aria-labelledby='Submit your Answer'
         aria-describedby='a modal to post a new answer'
       >
         <div className={classes.modal}>
-          <h3>Ask Your Question </h3>
+          <h3>Submit your Answer</h3>
           <h4>About the [product name here]</h4>
-          <form className='addQuestionForm' onClick={handleSubmit}>
+          <form className='addAnswerForm' onClick={handleSubmit}>
             <TextField
-              id='questionField'
+              id='answerField'
               required
               multiline
               rows={6}
-              label='Write your question'
+              label='Write your answer'
               variant='outlined'
               className={classes.form}
-              name='question'
+              name='answer'
               onChange={changeHandler}
             /><br/>
             <TextField
-              id='nicknameField'
+              id='nicknameFieldA'
               required
               label='What is your nickname'
               variant='outlined'
@@ -91,7 +95,7 @@ export default function QuestionModal({styles, questions}) {
               onChange={changeHandler}
             /><br/>
             <TextField
-              id='emailField'
+              id='emailFieldA'
               required
               //error attribute to add here and trigger helper text
               label='What is your email'
@@ -107,7 +111,7 @@ export default function QuestionModal({styles, questions}) {
                 <PhotoCamera />
               </IconButton>
             </label>
-            <Button variant='contained' className={styles.button} >submit</Button>
+            <Button variant='contained' className={classes.button} >submit</Button>
           </form>
         </div>
       </Modal>

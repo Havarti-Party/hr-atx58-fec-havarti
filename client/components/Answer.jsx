@@ -22,7 +22,6 @@ export default function Answer({answerData}) {
   //additional conditional based on if its the first answer/top answer in the list
 
 
-  console.log(answerData.photos)
   // if (answerData.answerer_name === 'Seller') {
   //   console.log('bold this name')
   // }

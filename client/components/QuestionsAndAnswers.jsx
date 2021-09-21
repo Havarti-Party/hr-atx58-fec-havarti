@@ -5,6 +5,7 @@ import axios from 'axios';
 import { ProductsContext } from './ProductsContext.jsx';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
+import AnswerModal from './AnswerModal.jsx';
 import ExpandQuestions from './QuestionExpand.jsx';
 
 import Grid from '@mui/material/Grid';
@@ -30,7 +31,7 @@ const questionListStyles = makeStyles({
   },
   searchbar: {
     margin: '10px',
-    width: '50%',
+    width: '100%',
   },
   list: {
     height: '500px',
@@ -88,7 +89,7 @@ export default function QuestionsAndAnswers(props) {
         </Grid>
         <Grid item md={2}>
         </Grid>
-        <Grid item md={10}>
+        <Grid item md={4}>
           <TextField
             id='questionSearch'
             label='Have a question? Search for answers…'
@@ -104,7 +105,11 @@ export default function QuestionsAndAnswers(props) {
             )
           }}/>
         </Grid>
+        <Grid item sm={1} />
         <Grid item md={2}>
+          <QuestionModal styles={classes} questions={questions}/>
+        </Grid>
+        <Grid item xl={2}>
         </Grid>
         <Grid item md={10} className={classes.list}>
           {currentQuestions.filter((question) => {
@@ -119,8 +124,7 @@ export default function QuestionsAndAnswers(props) {
         </Grid>
         <Grid item md={2}>
         </Grid>
-        <Grid item md={10}>
-          <QuestionModal styles={classes} questions={questions}/>
+        <Grid item md={4}>
           <QuestionsContext.Provider value={[questionDisplayCount, setQuestionDisplayCount]} >
             <ExpandQuestions style={classes} questions={questions} currentQuestions={currentQuestions}/>
           </QuestionsContext.Provider>

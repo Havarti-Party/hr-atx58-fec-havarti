@@ -83,7 +83,7 @@ export default function QuestionModal({styles, questions}) {
               onChange={changeHandler}
             /><br/>
             <TextField
-              id='nicknameField'
+              id='nicknameFieldQ'
               required
               label='What is your nickname'
               variant='outlined'
@@ -92,7 +92,7 @@ export default function QuestionModal({styles, questions}) {
               onChange={changeHandler}
             /><br/>
             <TextField
-              id='emailField'
+              id='emailFieldQ'
               required
               //error attribute to add here and trigger helper text
               label='What is your email'

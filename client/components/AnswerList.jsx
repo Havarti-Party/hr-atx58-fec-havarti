@@ -1,6 +1,7 @@
 import React, { useState, createContext } from 'react';
 import Answer from './Answer.jsx';
 import ExpandAnswers from './AnswerExpand.jsx';
+import AnswerModal from './AnswerModal.jsx';
 
 import Button from '@material-ui/core/Button';
 
@@ -20,6 +21,7 @@ export default function AnswerList({answers, style}) {
       <AnswersContext.Provider value={[answerDisplayCount, setAnswerDisplayCount]} >
         <ExpandAnswers style={style} answers={answers} currentAnswers={currentAnswers} />
       </AnswersContext.Provider>
+      <AnswerModal />
     </div>
   )
 }
