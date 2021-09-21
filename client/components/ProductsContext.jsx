@@ -9,8 +9,8 @@ export const ProductsProvider = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [starRating, setStarRating] = useState(0);
   const [styles, setStyles] = useState([]);
-
   const isMounted = useRef(false);
+
   useEffect(() => {
     axios
       .get("/products")
@@ -21,8 +21,6 @@ export const ProductsProvider = (props) => {
         console.log("error, unable to get productsArray from localhost server");
       });
   }, []);
-
-
 
   useEffect(() => {
     if (isMounted.current) {
@@ -41,9 +39,6 @@ export const ProductsProvider = (props) => {
         products[0].features = overviewProductDetails.data.features;
         products[0].url = overviewProductDetails.data.url;
         setStyles(overviewProductStyles.data.results)
-        // console.log(overviewProductStyles.data.results)
-
-
         setOverviewProduct(products[0]);
         setIsLoading(false);
       })
