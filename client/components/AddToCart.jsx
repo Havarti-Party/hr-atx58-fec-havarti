@@ -51,11 +51,11 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
 
   useEffect(() => checkStock());
 
-  const handleClose = () => {
+  const handleSizeSelectorClose = () => {
     setSelectQuantityOpen(false);
   };
 
-  const handleOpen = () => {
+  const handleSizeSelectorOpen = () => {
     setSelectQuantityOpen(true);
   };
 
@@ -85,19 +85,26 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     setSelectedQuantity(e.target.value);
   };
 
-  const handleAddToCartClick = (e) => {
-    // if size has not been selected, prompt to select size and open drop down
-    selectedSize === '' ?
-    console.log('open size drop down')
-    :
-    console.log('add to cart', selectedStyle)
-
+  const handleAddToCartWhenSizeSelected = () => {
     setCart({
       product: currentProduct.name,
       style: selectedStyle.name,
       size: selectedSize,
       quantity: selectedQuantity
-    })
+    });
+    console.log(selectedStyle, currentProduct)
+    // axios.push('/addToCart', {
+    //   sku: selectedStyle.sku
+    // })
+    alert('Successfully added to your cart!')
+  }
+
+  const handleAddToCartClick = (e) => {
+    // if size has not been selected, prompt to select size and open drop down
+    selectedSize === '' ?
+    handleSizeSelectorOpen()
+    :
+    handleAddToCartWhenSizeSelected()
   }
 
   return (
@@ -113,8 +120,8 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
             //className={classes.selectEmpty}
             onChange={handleSizeChange}
             open={selectQuantityOpen}
-            onClose={handleClose}
-            onOpen={handleOpen}
+            onClose={handleSizeSelectorClose}
+            onOpen={handleSizeSelectorOpen}
           >
             {Object.keys(skus).map((sku, i) => (
               skus[sku].quantity > 0 ?
@@ -176,11 +183,9 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     </Grid>
     <Grid container>
       {outOfStock ?
-      <></> :
-        selectedSize === '' ?
-        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleOpen}>Add To Cart</Button>
-        :
-        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
+      <></>
+      :
+      <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
       }
 
     </Grid>
