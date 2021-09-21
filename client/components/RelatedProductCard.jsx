@@ -44,42 +44,45 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const isInitialMount = useRef(true);
 
   const handleStarClick = (relatedProduct) => {
-    let relatedProductFeaturesArr = [];
-    let overviewProductFeaturesArr = [];
+    let relatedProductFeaturesObj = {};
+    let overviewProductFeaturesObj = {};
+    let combinedFeatures = [];
 
     if (relatedProduct.features && overviewProductState.features) {
       relatedProduct.features.forEach((feature) => {
-        relatedProductFeaturesArr.push(feature.value);
+        combinedFeatures.push(feature.feature);
+        relatedProductFeaturesObj[feature.feature] = feature.value;
       });
-      console.log(overviewProductState);
 
       overviewProductState.features.forEach((feature) => {
-        overviewProductFeaturesArr.push(feature.value);
+        combinedFeatures.push(feature.feature);
+        overviewProductFeaturesObj[feature.feature] = feature.value;
       });
 
-      let combinedFeatures = [
-        ...new Set([
-          ...relatedProductFeaturesArr,
-          ...overviewProductFeaturesArr,
-        ]),
-      ];
+      console.log("combined", combinedFeatures);
+      console.log("ov obj", overviewProductFeaturesObj);
+      console.log("rp obj", relatedProductFeaturesObj);
 
-      setOverviewProductFeatures(overviewProductFeaturesArr);
-      setRelatedProductFeatures(relatedProductFeaturesArr);
+      setOverviewProductFeatures(overviewProductFeaturesObj);
+      setRelatedProductFeatures(relatedProductFeaturesObj);
       setCompareFeatures(combinedFeatures);
     } else if (relatedProduct.features) {
       relatedProduct.features.forEach((feature) => {
-        relatedProductFeaturesArr.push(feature.value);
+        combinedFeatures.push(feature.feature);
+        relatedProductFeaturesObj[feature.feature] = feature.value;
       });
-      setRelatedProductFeatures(relatedProductFeaturesArr);
-      setCompareFeatures(relatedProductFeaturesArr);
+      setRelatedProductFeatures(relatedProductFeaturesObj);
+      let temp = Object.keys(relatedProductFeaturesObj);
+      setCompareFeatures(temp);
     } else if (overviewProductState.features) {
       overviewProductState.features.forEach((feature) => {
-        overviewProductFeaturesArr.push(feature.value);
+        combinedFeatures.push(feature.feature);
+        overviewProductFeaturesObj[feature.feature] = feature.value;
       });
 
-      setOverviewProductFeatures(overviewProductFeaturesArr);
-      setCompareFeatures(overviewProductFeaturesArr);
+      setOverviewProductFeatures(overviewProductFeaturesObj);
+      let temp = Object.keys(relatedProductFeaturesObj);
+      setCompareFeatures(temp);
     } else {
       setCompareFeatures(["no features to compare!"]);
     }
