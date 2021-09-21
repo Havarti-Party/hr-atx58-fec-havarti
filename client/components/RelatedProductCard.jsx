@@ -30,8 +30,8 @@ let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const { overviewProduct } = useContext(ProductsContext)
-  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
+  const { overviewProduct } = useContext(ProductsContext);
+  const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   //State
   const [open, setOpen] = React.useState(false);
@@ -47,13 +47,14 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     let relatedProductFeaturesArr = [];
     let overviewProductFeaturesArr = [];
 
-    if (relatedProduct.features && overviewProduct.features) {
+    if (relatedProduct.features && overviewProductState.features) {
       relatedProduct.features.forEach((feature) => {
-        relatedProductFeaturesArr.push(feature.feature);
+        relatedProductFeaturesArr.push(feature.value);
       });
+      console.log(overviewProductState);
 
       overviewProductState.features.forEach((feature) => {
-        overviewProductFeaturesArr.push(feature.feature);
+        overviewProductFeaturesArr.push(feature.value);
       });
 
       let combinedFeatures = [
@@ -68,13 +69,13 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       setCompareFeatures(combinedFeatures);
     } else if (relatedProduct.features) {
       relatedProduct.features.forEach((feature) => {
-        relatedProductFeaturesArr.push(feature.feature);
+        relatedProductFeaturesArr.push(feature.value);
       });
       setRelatedProductFeatures(relatedProductFeaturesArr);
       setCompareFeatures(relatedProductFeaturesArr);
     } else if (overviewProductState.features) {
       overviewProductState.features.forEach((feature) => {
-        overviewProductFeaturesArr.push(feature.feature);
+        overviewProductFeaturesArr.push(feature.value);
       });
 
       setOverviewProductFeatures(overviewProductFeaturesArr);
