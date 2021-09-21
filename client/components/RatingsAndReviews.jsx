@@ -43,17 +43,6 @@ export default function RatingsAndReviews(props) {
     isMounted.current = true;
   }}, [overviewProductState])
 
-  if (currentReviews.recommended) {
-    recommendRatio = (100 * Number(currentReviews.recommended.true) / (Number(currentReviews.recommended.true) + Number(currentReviews.recommended.false)));
-    } else {
-      recommendRatio = 0;
-    }
-
-  if (isNaN(recommendRatio)) {
-    recommendRatio = 0;
-  }
-  console.log(recommendRatio);
-
   if (isLoading) {
     return (
       <div>
