@@ -59,8 +59,6 @@ export default function RelatedProducts(props) {
 
   useEffect(() => {
     if (isMounted.current && relatedProductsIDs) {
-      setRelatedProductsArr([]);
-
       let promiseArray = relatedProductsIDs.map((id) => {
         return axios.get("/related", {
           params: {
