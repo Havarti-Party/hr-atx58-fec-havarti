@@ -12,8 +12,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import StarRatings from "react-star-ratings";
 
-//Grid
-import Grid from "@material-ui/core/Grid";
+//Modal
 
 //Icons
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
@@ -37,7 +36,9 @@ const useStyles = makeStyles({
 export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  //useContext
+  const { overviewProduct } = useContext(ProductsContext);
+  const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   return (
     <Card className={classes.root}>
@@ -46,26 +47,24 @@ export default function OutfitCard({ OutfitObj, remove }) {
         image={OutfitObj.url ? OutfitObj.url : noImage}
         title={OutfitObj.name}
       >
-        <div className={classes.align}>
-          <Grid container direction="column" alignItems="flex-end">
-            <Grid item>
-              <HighlightOffIcon
-                onClick={() => {
-                  remove(OutfitObj);
-                }}
-              />
-            </Grid>
-          </Grid>
-        </div>
+        <HighlightOffIcon
+          onClick={() => {
+            remove(OutfitObj);
+          }}
+        />
       </CardMedia>
       <CardActionArea
         onClick={() => {
-          setOverviewProduct(OutfitObj);
+          setOverviewProductState(OutfitObj);
         }}
       >
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {OutfitObj.name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {OutfitObj.default_price}
+            {OutfitObj.sale_price ? OutfitObj.sale_price : ""}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {OutfitObj.description}
