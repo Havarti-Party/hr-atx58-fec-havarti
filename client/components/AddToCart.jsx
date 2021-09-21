@@ -23,13 +23,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCart = ({ skus }) => {
+const AddToCart = ({ currentProduct, selectedStyle }) => {
   const classes = useStyles();
   const [size, setSize] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
   const [quantities, setQuantities] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
+  const [selectQuantityOpen, setSelectQuantityOpen] = useState(false);
+  const [cart, setCart] = useState({
+    product: '',
+    style: '',
+    size: '',
+    quantity: 0
+  })
+  const skus = selectedStyle.skus;
 
   const checkStock = () => {
     var totalStock = 0;
@@ -39,9 +47,17 @@ const AddToCart = ({ skus }) => {
     if (totalStock === 0) {
       setOutOfStock(true);
     }
-  }
+  };
 
   useEffect(() => checkStock());
+
+  const handleClose = () => {
+    setSelectQuantityOpen(false);
+  };
+
+  const handleOpen = () => {
+    setSelectQuantityOpen(true);
+  };
 
   const handleSizeChange = (e) => {
     var maxQuantity = 0;
@@ -63,15 +79,25 @@ const AddToCart = ({ skus }) => {
     setQuantities(quantityArr);
     setSelectedSize(e.target.value);
     setSelectedQuantity(1);
-  }
+  };
 
   const handleQtyChange = (e) => {
     setSelectedQuantity(e.target.value);
-  }
+  };
 
   const handleAddToCartClick = (e) => {
     // if size has not been selected, prompt to select size and open drop down
-    console.log('You clicked add to cart!')
+    selectedSize === '' ?
+    console.log('open size drop down')
+    :
+    console.log('add to cart', selectedStyle)
+
+    setCart({
+      product: currentProduct.name,
+      style: selectedStyle.name,
+      size: selectedSize,
+      quantity: selectedQuantity
+    })
   }
 
   return (
@@ -86,6 +112,9 @@ const AddToCart = ({ skus }) => {
             value={selectedSize}
             //className={classes.selectEmpty}
             onChange={handleSizeChange}
+            open={selectQuantityOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
           >
             {Object.keys(skus).map((sku, i) => (
               skus[sku].quantity > 0 ?
@@ -146,7 +175,13 @@ const AddToCart = ({ skus }) => {
     }
     </Grid>
     <Grid container>
-      <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
+      {outOfStock ?
+      <></> :
+        selectedSize === '' ?
+        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleOpen}>Add To Cart</Button>
+        :
+        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
+      }
 
     </Grid>
     </>

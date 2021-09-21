@@ -42,13 +42,6 @@ let getProductStyles = (id) => {
     .catch((error) => {
       return error;
     });
-
-  // .then((productStyles) => {
-  //   callback(null, productStyles.data);
-  // })
-  // .catch((error) => {
-  //   callback(error, null);
-  // });
 };
 
 let getProductQuestions = (id, callback) => {

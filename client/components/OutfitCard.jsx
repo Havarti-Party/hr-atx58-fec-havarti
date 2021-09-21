@@ -18,37 +18,44 @@ import StarRatings from "react-star-ratings";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import CheckIcon from "@material-ui/icons/Check";
 
+//Image
+const noImage = require("../../dist/Images/No-Image-Found.jpg");
+
 const useStyles = makeStyles({
   root: {
-    maxWidth: 300,
+    maxWidth: 500,
   },
   media: {
     height: 250,
   },
+  iconDepth: {
+    zIndex: 1,
+  },
 });
 
-export default function OutfitCard({ OutfitObj, updateWardrobe, remove }) {
+export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
   const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardMedia
+        className={classes.media}
+        image={OutfitObj.url ? OutfitObj.url : noImage}
+        title={OutfitObj.name}
+      >
         <HighlightOffIcon
           onClick={() => {
             remove(OutfitObj);
           }}
         />
-        <CardMedia
-          component="img"
-          className={classes.media}
-          image={OutfitObj.url}
-          title={OutfitObj.name}
-          onClick={() => {
-            setOverviewProduct(OutfitObj);
-          }}
-        />
+      </CardMedia>
+      <CardActionArea
+        onClick={() => {
+          setOverviewProduct(OutfitObj);
+        }}
+      >
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {OutfitObj.name}

@@ -58,28 +58,20 @@ app.get("/related", (req, res) => {
       console.log("failed to get related data");
       res.status(501).send(error);
     });
-
-  // models.getRelatedProductsIDs(id, (err, results) => {
-  //   if (err) {
-  //     res
-  //       .status(404)
-  //       .send("you hit an error trying to get the relatedProductsIDs");
-  //   } else {
-  //     res.status(200).send(results);
-  //   }
-  // });
 });
 
 app.get("/styles", (req, res) => {
   let id = req.query.ID;
-
-  models.getProductStyles(id)
-    .then(productStyles => {
+  models
+    .getProductStyles(id)
+    .then((productStyles) => {
       res.send(productStyles);
     })
-    .catch(err => {
-      res.status(404).send("you hit an error trying to get the products styles");
-    })
+    .catch((err) => {
+      res
+        .status(404)
+        .send("you hit an error trying to get the products styles");
+    });
 });
 
 app.get("/qa", (req, res) => {
@@ -97,20 +89,23 @@ app.get("/qa", (req, res) => {
 
 app.get("/currentProduct", (req, res) => {
   let id = req.query.ID;
-  models.getCurrentProduct(id)
+  models
+    .getCurrentProduct(id)
     .then((currentProductData) => {
-      res.send(currentProductData)
+      res.send(currentProductData);
     })
-    .catch(err => res.status(404).send("you hit an error trying to get the current product", err))
+    .catch((err) =>
+      res
+        .status(404)
+        .send("you hit an error trying to get the current product", err)
+    );
 });
 
 app.get("/reviews", (req, res) => {
   let id = req.query.ID;
   models.getProductReviews(id, (err, result) => {
     if (err) {
-      res
-        .status(404)
-        .send("Error: could not find product reviews.");
+      res.status(404).send("Error: could not find product reviews.");
     } else {
       res.status(200).send(result.data);
     }
