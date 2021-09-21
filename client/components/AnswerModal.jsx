@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -13,34 +12,37 @@ const modalStyles = makeStyles({
     position: 'absolute',
     width: 800,
     height: 800,
-    'background-color': 'white',
     border: '2px solid #000',
     left: '50%',
     top: '50%',
     transform: 'translate(-50%, -50%)',
-    'text-align': 'center'
+    'text-align': 'center',
+    'background-color': 'white',
   },
   form: {
     padding: '10px',
     width: 500
-  }
+  },
+  button: {
+    padding: '0 5px',
+    margin: '10px',
+  },
 
 });
 
 
-export default function QuestionModal({styles, questions}) {
+export default function AnswerModal(props) {
   const classes = modalStyles()
-  const [open, setOpen] = useState(false);
+  const [aModalOpen, setAModalOpen] = useState(false);
   const [emailInvalid, setEmailInvalid] = useState(false);
-  const [nicknameInvalid, setNicknameInvalid] = useState(false);
-  const [questionInvalid, setQuestionInvalid] = useState(false);
   const [allValues, setAllValues] = useState({
-    question: '',
+    answer: '',
     nickname: '',
     email: '',
- });
+  });
+  // const [answerImage, setAnswerImage] = useState({})
 
-  const validateForm = (questionBody, nickname, email) => {
+  const validateForm = (answerBody, nickname, email) => {
     if (email.indexOf('@') === -1 || email.indexOf('.com') === -1) {
       setAllValues({...allValues, [email]: ''})
       setEmailInvalid(true);
@@ -48,7 +50,7 @@ export default function QuestionModal({styles, questions}) {
       setEmailInvalid(false);
     }
 
-    if (questionBody === '') {
+    if (answerBody === '') {
       setAllValues({...allValues, [question]: ''})
       setQuestionInvalid(true);
     } else {
@@ -65,62 +67,55 @@ export default function QuestionModal({styles, questions}) {
   }
 
   const handleOpen = () => {
-    setOpen(true);
+    setAModalOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAModalOpen(false);
   };
 
   const changeHandler = (e) => {
-    // console.log('question:', e.target.name, e.target.value)
     setAllValues({...allValues, [e.target.name]: e.target.value})
   }
 
   const handleSubmit = (e) => {
-    var questionBody = allValues.question
-    var nickname = allValues.nickname
-    var email = allValues.email
+    var answerBody = allValues.answer;
+    var nickname = allValues.nickname;
+    var email = allValues.email;
 
-    validateForm(questionBody, nickname, email);
-
+    validateForm(answerBody, nickname, email);
     //needs to make a post request to the server/append it to state
-      //also validate in the server side
-        //if server comes up greenlights
-        //close modal (setopen = false)
-        //maybe an alert
-        //reset all the values
     console.log(allValues);
     //need to format the inputs. Easiest way would be to append them to the database and have it auto increment question id, and then also update state for us in the form of a request body.
 
-    //ALSO NEEDS TO CLOSE THE MODAL
+    //ALSO NEEDS TO CLOSE THE MODAL (after successful validation)
   }
   return (
-    <div id='questionModal' className={styles.modal}>
-      <Button id='addQuestion' variant='contained' onClick={handleOpen} className={styles.button}>add a question</Button>
+    <div id='answerModal'>
+      <Button id='addAnswer' variant='contained' onClick={handleOpen} className={classes.button}>Add an Answer</Button>
       <Modal
-        open={open}
+        open={aModalOpen}
         onClose={handleClose}
-        aria-labelledby='Ask Your Question'
-        aria-describedby='a modal to post a new question'
+        aria-labelledby='Submit your Answer'
+        aria-describedby='a modal to post a new answer'
       >
         <div className={classes.modal}>
-          <h3>Ask Your Question </h3>
+          <h3>Submit your Answer</h3>
           <h4>About the [product name here]</h4>
-          <form className='addQuestionForm' onSubmit={handleSubmit}>
+          <form className='addAnswerForm'>
             <TextField
-              id='questionField'
+              id='answerField'
               required
               multiline
               rows={6}
-              label='Write your question'
+              label='Write your answer'
               variant='outlined'
               className={classes.form}
-              name='question'
+              name='answer'
               onChange={changeHandler}
             /><br/>
             <TextField
-              id='nicknameFieldQ'
+              id='nicknameFieldA'
               required
               label='What is your nickname'
               variant='outlined'
@@ -129,7 +124,7 @@ export default function QuestionModal({styles, questions}) {
               onChange={changeHandler}
             /><br/>
             <TextField
-              id='emailFieldQ'
+              id='emailFieldA'
               required
               error={emailInvalid}
               label='What is your email'
@@ -145,9 +140,7 @@ export default function QuestionModal({styles, questions}) {
                 <PhotoCamera />
               </IconButton>
             </label>
-            <Button variant='contained' className={styles.button} onClick={handleSubmit}>submit</Button>
-            {/* <Button variant='contained' className={styles.button} type='submit'>submit</Button> ============= I can use this if I do a form submit, but it re-renders the whole page, but
-            also closes out the modal for you... AND it utilizes the 'required' attributes I have on the textFields*/}
+            <Button variant='contained' className={classes.button} onClick={handleSubmit} >submit</Button>
           </form>
         </div>
       </Modal>
