@@ -13,6 +13,7 @@ const modalStyles = makeStyles({
     position: 'absolute',
     width: 800,
     height: 800,
+    'background-color': 'white',
     border: '2px solid #000',
     left: '50%',
     top: '50%',

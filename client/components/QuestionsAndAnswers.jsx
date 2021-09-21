@@ -81,8 +81,12 @@ export default function QuestionsAndAnswers(props) {
   return (
     <div id='questionList' className={classes.widget}>
       <Grid container spacing={2}>
+        <Grid item md={2}>
+        </Grid>
         <Grid item md={10}>
           <h1>Customer Questions And Answers</h1>
+        </Grid>
+        <Grid item md={2}>
         </Grid>
         <Grid item md={10}>
           <TextField
@@ -100,9 +104,9 @@ export default function QuestionsAndAnswers(props) {
             )
           }}/>
         </Grid>
-        {/* <Grid item md={3}>
-        </Grid> */}
-        <Grid item md="auto" className={classes.list}>
+        <Grid item md={2}>
+        </Grid>
+        <Grid item md={10} className={classes.list}>
           {currentQuestions.filter((question) => {
             if (searchValue === '') {
               return question;
@@ -112,6 +116,8 @@ export default function QuestionsAndAnswers(props) {
           }).map(question => {
             return <Question key={question.question_id} question={question} style={classes}/>
           })}
+        </Grid>
+        <Grid item md={2}>
         </Grid>
         <Grid item md={10}>
           <QuestionModal styles={classes} questions={questions}/>

@@ -21,12 +21,22 @@ export default function Answer({answerData}) {
   //conditional based on if the answer came from the Seller: make the name say seller and BOLD it
   //additional conditional based on if its the first answer/top answer in the list
 
+
+  console.log(answerData.photos)
   // if (answerData.answerer_name === 'Seller') {
   //   console.log('bold this name')
   // }
   return (
     <div className='answer'>
       <h3>A: {answerData.body}</h3>
+      <div>
+        {answerData.photos.map((image, index) => {
+          var tempIndex = image.indexOf('crop') + 4;
+          var slicedUrl = image.slice(0, tempIndex);
+          var newUrl = (slicedUrl + '&w=100&q=80')
+          return <img src={newUrl} key={index} />
+        })}
+      </div>
       <span>
         <p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | answer helpfulness:
           <a href='' onClick={() => incrementHelpfulCount()}>yes ({helpfulCount})</a>/<a href='' onClick={() => decrementHelpfulCount()}>no</a>

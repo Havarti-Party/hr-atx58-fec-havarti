@@ -22,7 +22,7 @@ export default function ExpandAnswers({answers, currentAnswers, style}) {
   } else {
     return (
       <div>
-        {/* <Button id='collapseAnswers' variant='contained' onClick={collapseAnswersButton} className={style.button}>Collapse Answers</Button> */}
+        <Button id='collapseAnswers' variant='contained' onClick={collapseAnswersButton} className={style.button}>Collapse Answers</Button>
       </div>
     )
   }

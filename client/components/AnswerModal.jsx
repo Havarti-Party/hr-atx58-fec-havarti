@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -51,20 +50,21 @@ export default function QuestionModal({styles, questions}) {
   }
 
   const handleSubmit = (e) => {
+    //first validate values
     //needs to make a post request to the server/append it to state
     console.log(allValues);
     //need to format the inputs. Easiest way would be to append them to the database and have it auto increment question id, and then also update state for us in the form of a request body.
     console.log(questions);
-    //ALSO NEEDS TO CLOSE THE MODAL
+    //ALSO NEEDS TO CLOSE THE MODAL (after successful validation)
   }
   return (
-    <div id='questionModal' className={styles.modal}>
-      <Button id='addQuestion' variant='contained' onClick={handleOpen} className={styles.button}>add a question</Button>
+    <div id='answerModal' className={styles.modal}>
+      <Button id='addAnswer' variant='contained' onClick={handleOpen} className={styles.button}>Add an Answer</Button>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby='Ask Your Question'
-        aria-describedby='a modal to post a new question'
+        aria-labelledby='Submit your Answer'
+        aria-describedby='a modal to post a new answer'
       >
         <div className={classes.modal}>
           <h3>Ask Your Question </h3>
