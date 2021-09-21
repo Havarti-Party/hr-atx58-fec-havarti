@@ -8,6 +8,7 @@ export const ProductsProvider = (props) => {
 
   const [overviewProduct, setOverviewProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [starRating, setStarRating] = useState(0);
 
   const isMounted = useRef(false);
   useEffect(() => {
@@ -46,7 +47,7 @@ export const ProductsProvider = (props) => {
   }, [products]);
 
   return (
-    <ProductsContext.Provider value={[overviewProduct, setOverviewProduct]}>
+    <ProductsContext.Provider value={{ overviewProduct: [overviewProduct, setOverviewProduct], isLoading: [isLoading, setIsLoading]}}>
       {props.children}
     </ProductsContext.Provider>
   );

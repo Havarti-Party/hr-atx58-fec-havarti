@@ -30,7 +30,8 @@ let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
 
   //State
   const [open, setOpen] = React.useState(false);
@@ -51,7 +52,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         relatedProductFeaturesArr.push(feature.feature);
       });
 
-      overviewProduct.features.forEach((feature) => {
+      overviewProductState.features.forEach((feature) => {
         overviewProductFeaturesArr.push(feature.feature);
       });
 
@@ -71,8 +72,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       });
       setRelatedProductFeatures(relatedProductFeaturesArr);
       setCompareFeatures(relatedProductFeaturesArr);
-    } else if (overviewProduct.features) {
-      overviewProduct.features.forEach((feature) => {
+    } else if (overviewProductState.features) {
+      overviewProductState.features.forEach((feature) => {
         overviewProductFeaturesArr.push(feature.feature);
       });
 
@@ -152,7 +153,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       <CardActionArea>
         <CardContent
           onClick={() => {
-            setOverviewProduct(RelatedObj);
+            setOverviewProductState(RelatedObj);
           }}
         >
           <Typography gutterBottom variant="h5" component="h2">
