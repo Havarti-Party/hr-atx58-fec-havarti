@@ -40,6 +40,28 @@ export const ProductsProvider = (props) => {
         products[0].url = overviewProductDetails.data.url;
         setStyles(overviewProductStyles.data.results)
         setOverviewProduct(products[0]);
+        console.log(products[0])
+        // setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log("could not get styles for overview product");
+      });
+    }
+  }, [products]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      console.log(products[0])
+
+      let overviewProductID = overviewProduct.id;
+      axios.get("/styles", {
+        params: {
+          ID: overviewProductID,
+      }})
+      .then((overviewProductStyles) => {
+
+        setStyles(overviewProductStyles.data.results)
+        // setOverviewProduct(products[0]);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -48,7 +70,7 @@ export const ProductsProvider = (props) => {
     } else {
       isMounted.current = true;
     }
-  }, [products]);
+  }, [overviewProduct]);
 
   return (
     <ProductsContext.Provider value={{ overviewProduct: [overviewProduct, setOverviewProduct], isLoading: [isLoading, setIsLoading], starRating: [starRating, setStarRating], stylesState: [styles, setStyles]}}>

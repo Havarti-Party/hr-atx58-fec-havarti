@@ -12,12 +12,12 @@ import { ProductsContext } from './ProductsContext';
 export default function ProductOverview(props) {
   const { overviewProduct, stylesState } = useContext(ProductsContext)
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
-  const [ styles, setStyles] = stylesState
-  const [selectedStyle, setSelectedStyle] = useState(styles[0]);
+  const [ styles, setStyles ] = stylesState
+  const [ selectedStyle, setSelectedStyle ] = useState(styles[0]);
 
   useEffect(() => {
     setSelectedStyle(styles[0])
-  }, [overviewProduct]);
+  }, [stylesState]);
 
   const handleStyleClick = (clickedStyle) => {
     setSelectedStyle(styles[clickedStyle]);

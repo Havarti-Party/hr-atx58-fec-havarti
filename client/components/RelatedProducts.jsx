@@ -39,10 +39,10 @@ export default function RelatedProducts(props) {
   const [relatedProductsIDs, setRelatedProductsIDs] = React.useState();
   const [relatedProductsArr, setRelatedProductsArr] = React.useState([]);
 
-  const isMounted = useRef(false);
+  // const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current) {
+    // if (isMounted.current) {
       axios
         .get("/related/id", {
           params: {
@@ -52,13 +52,13 @@ export default function RelatedProducts(props) {
         .then((relatedProductsIDs) => {
           setRelatedProductsIDs(relatedProductsIDs.data);
         });
-    } else {
-      isMounted.current = true;
-    }
+    // } else {
+    //   isMounted.current = true;
+    // }
   }, [overviewProductState]);
 
   useEffect(() => {
-    if (isMounted.current && relatedProductsIDs) {
+    if (relatedProductsIDs) {
       let promiseArray = relatedProductsIDs.map((id) => {
         return axios.get("/related", {
           params: {
@@ -73,7 +73,7 @@ export default function RelatedProducts(props) {
         setRelatedProductsArr(relatedProductsObjs);
       });
     } else {
-      isMounted.current = true;
+      // isMounted.current = true;
     }
   }, [relatedProductsIDs]);
 
