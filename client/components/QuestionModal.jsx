@@ -32,11 +32,37 @@ export default function QuestionModal({styles, questions}) {
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
   const [emailInvalid, setEmailInvalid] = useState(false);
+  const [nicknameInvalid, setNicknameInvalid] = useState(false);
+  const [questionInvalid, setQuestionInvalid] = useState(false);
   const [allValues, setAllValues] = useState({
     question: '',
     nickname: '',
     email: '',
  });
+
+  const validateForm = (questionBody, nickname, email) => {
+    if (email.indexOf('@') === -1 || email.indexOf('.com') === -1) {
+      setAllValues({...allValues, [email]: ''})
+      setEmailInvalid(true);
+    } else {
+      setEmailInvalid(false);
+    }
+
+    if (questionBody === '') {
+      setAllValues({...allValues, [question]: ''})
+      setQuestionInvalid(true);
+    } else {
+      setQuestionInvalid(false);
+    }
+
+    if (nickname === '') {
+      //left this setValue incase I add more parameters for the nickname
+      setAllValues({...allValues, [nickname]: ''})
+      setNicknameInvalid(true);
+    } else {
+      setNicknameInvalid(false);
+    }
+  }
 
   const handleOpen = () => {
     setOpen(true);
@@ -56,22 +82,7 @@ export default function QuestionModal({styles, questions}) {
     var nickname = allValues.nickname
     var email = allValues.email
 
-    if (email.indexOf('@') === -1) {
-      setAllValues({...allValues, [email]: ''})
-      setEmailInvalid(true);
-    } else {
-      setEmailInvalid(false);
-      // setAllValues({
-      //   answer: '',
-      //   nickname: '',
-      //   email: '',
-      // })
-    }
-    //VALIDATION
-      //if nickname is a string?
-      //body isn't too long?
-      //email is a valid email
-
+    validateForm(questionBody, nickname, email);
 
     //needs to make a post request to the server/append it to state
       //also validate in the server side
@@ -96,7 +107,7 @@ export default function QuestionModal({styles, questions}) {
         <div className={classes.modal}>
           <h3>Ask Your Question </h3>
           <h4>About the [product name here]</h4>
-          <form className='addQuestionForm' >
+          <form className='addQuestionForm' onSubmit={handleSubmit}>
             <TextField
               id='questionField'
               required
@@ -135,6 +146,8 @@ export default function QuestionModal({styles, questions}) {
               </IconButton>
             </label>
             <Button variant='contained' className={styles.button} onClick={handleSubmit}>submit</Button>
+            {/* <Button variant='contained' className={styles.button} type='submit'>submit</Button> ============= I can use this if I do a form submit, but it re-renders the whole page, but
+            also closes out the modal for you... AND it utilizes the 'required' attributes I have on the textFields*/}
           </form>
         </div>
       </Modal>
