@@ -82,6 +82,8 @@ export default function QuestionModal({styles, questions}) {
     var nickname = allValues.nickname
     var email = allValues.email
 
+    e.prevent.default();
+
     validateForm(questionBody, nickname, email);
 
     //needs to make a post request to the server/append it to state
@@ -145,7 +147,7 @@ export default function QuestionModal({styles, questions}) {
                 <PhotoCamera />
               </IconButton>
             </label>
-            <Button variant='contained' className={styles.button} onClick={handleSubmit}>submit</Button>
+            <Button variant='contained' className={styles.button}>submit</Button>
             {/* <Button variant='contained' className={styles.button} type='submit'>submit</Button> ============= I can use this if I do a form submit, but it re-renders the whole page, but
             also closes out the modal for you... AND it utilizes the 'required' attributes I have on the textFields*/}
           </form>

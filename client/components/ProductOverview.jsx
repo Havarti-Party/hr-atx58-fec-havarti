@@ -10,7 +10,8 @@ const axios = require('axios');
 import { ProductsContext } from './ProductsContext';
 
 export default function ProductOverview(props) {
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
   const [isLoading, setLoading] = useState(true);
   const [currentProduct, setCurrentProduct] = useState([]);
   const [styles, setStyles] = useState([]);
@@ -22,14 +23,14 @@ export default function ProductOverview(props) {
     if (isMounted.current) {
         axios.get("/currentProduct", {
           params: {
-            ID: overviewProduct.id,
+            ID: overviewProductState.id,
           },
         })
         .then((product) => {
           setCurrentProduct(product.data);
           return axios.get("/styles", {
             params: {
-              ID: overviewProduct.id,
+              ID: overviewProductState.id,
           }})
         })
         .then((productStyles) => {
@@ -42,7 +43,7 @@ export default function ProductOverview(props) {
     } else {
       isMounted.current = true;
     }
-  }, [overviewProduct]);
+  }, [overviewProductState]);
 
   const handleStyleClick = (clickedStyle) => {
     setSelectedStyle(styles[clickedStyle]);

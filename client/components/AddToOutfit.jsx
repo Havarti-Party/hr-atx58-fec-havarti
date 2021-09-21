@@ -14,14 +14,15 @@ import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 
 export default function AddToOutfitCard({ updateWardrobe }) {
   //useContext
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
 
-  const addToOutfitList = (overviewProduct) => {
-    updateWardrobe(overviewProduct);
+  const addToOutfitList = (overviewProductState) => {
+    updateWardrobe(overviewProductState);
   };
 
   return (
-    <Card className={{ maxWidth: 300 }}>
+    <Card className={ 'maxWidth: 300' }>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           Like the above outift?
@@ -30,7 +31,7 @@ export default function AddToOutfitCard({ updateWardrobe }) {
           <DoneOutlineIcon
             style={{ fontSize: 250 }}
             onClick={() => {
-              addToOutfitList(overviewProduct);
+              addToOutfitList(overviewProductState);
             }}
           />
         </CardActionArea>
