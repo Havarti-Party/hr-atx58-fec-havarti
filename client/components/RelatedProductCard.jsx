@@ -160,6 +160,10 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
             {RelatedObj.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
+            {RelatedObj.default_price}
+            {RelatedObj.sale_price ? RelatedObj.sale_price : ""}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
             {RelatedObj.description}
           </Typography>
           <StarRatings rating={2} starDimension={"15px"} starSpacing={"1px"} />

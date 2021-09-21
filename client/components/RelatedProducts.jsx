@@ -31,8 +31,8 @@ export default function RelatedProducts(props) {
     },
   };
   //useContext
-  const { overviewProduct } = useContext(ProductsContext)
-  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
+  const { overviewProduct } = useContext(ProductsContext);
+  const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   //RelatedProductsState
 
@@ -59,21 +59,19 @@ export default function RelatedProducts(props) {
 
   useEffect(() => {
     if (isMounted.current && relatedProductsIDs) {
-      setRelatedProductsArr([]);
-      for (let i = 0; i < relatedProductsIDs.length; i++) {
-        axios
-          .get("/related", {
-            params: {
-              ID: relatedProductsIDs[i],
-            },
-          })
-          .then((relatedProductsObj) => {
-            setRelatedProductsArr((relatedProductsArr) => [
-              ...relatedProductsArr,
-              relatedProductsObj.data,
-            ]);
-          });
-      }
+      let promiseArray = relatedProductsIDs.map((id) => {
+        return axios.get("/related", {
+          params: {
+            ID: id,
+          },
+        });
+      });
+      Promise.all(promiseArray).then((relatedProductsArrOfObjs) => {
+        let relatedProductsObjs = relatedProductsArrOfObjs.map(
+          (obj) => obj.data
+        );
+        setRelatedProductsArr(relatedProductsObjs);
+      });
     } else {
       isMounted.current = true;
     }

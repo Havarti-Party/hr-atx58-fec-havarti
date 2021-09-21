@@ -41,9 +41,11 @@ app.get("/related", (req, res) => {
 
   Promise.all([models.getCurrentProduct(id), models.getProductStyles(id)])
     .then((data) => {
-      //console.log("data from /related", data);
+      // console.log("data from /related", data[1].results[0].sale_price);
       const relatedProductDataObj = {
         id: data[0].id,
+        default_price: data[0].default_price,
+        sale_price: data[1].results[0].sale_price,
         name: data[0].name,
         slogan: data[0].slogan,
         description: data[0].description,
@@ -112,7 +114,6 @@ app.get("/reviews", (req, res) => {
   });
 });
 
-
 app.get("/reviewtotal", (req, res) => {
   let id = req.query.ID;
   Promise.all([models.getProductReviews(id), models.getProductMetadata(id)])
@@ -137,10 +138,8 @@ app.post("/reviews", (req, res) => {
   let id = req.query.ID;
   models.postProductReview(req.body, (err, result) => {
     if (err) {
-      console.log('Error posting new review: ', err);
-      res
-        .status(404)
-        .send("Error: could not add new product review.");
+      console.log("Error posting new review: ", err);
+      res.status(404).send("Error: could not add new product review.");
     } else {
       res.status(201).send(result.data);
     }
