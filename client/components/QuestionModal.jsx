@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState, useContext} from 'react';
 import axios from 'axios';
 
+import { QuestionsContext } from './QuestionsAndAnswers.jsx';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
@@ -30,9 +31,10 @@ const modalStyles = makeStyles({
 });
 
 
-export default function QuestionModal({styles, questions, }) {
+export default function QuestionModal({styles, product_id}) {
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
+  const [questions, setQuestions] = useContext(QuestionsContext);
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [nicknameInvalid, setNicknameInvalid] = useState(false);
   const [questionInvalid, setQuestionInvalid] = useState(false);
@@ -52,23 +54,6 @@ export default function QuestionModal({styles, questions, }) {
     } else {
       setEmailInvalid(false);
     }
-
-    // if (questionBody === '') {
-    //   setAllValues({...allValues, [question]: ''})
-    //   setQuestionInvalid(true);
-    //   formValid = false;
-    // } else {
-    //   setQuestionInvalid(false);
-    // }
-
-    // if (nickname === '') {
-    //   //left this setValue incase I add more parameters for the nickname
-    //   setAllValues({...allValues, [nickname]: ''})
-    //   setNicknameInvalid(true);
-    //   formValid = false;
-    // } else {
-    //   setNicknameInvalid(false);
-    // }
     return formValid;
   }
 
@@ -81,7 +66,6 @@ export default function QuestionModal({styles, questions, }) {
   };
 
   const changeHandler = (e) => {
-    // console.log('question:', e.target.name, e.target.value)
     setAllValues({...allValues, [e.target.name]: e.target.value})
   }
 
@@ -95,32 +79,45 @@ export default function QuestionModal({styles, questions, }) {
     validateForm(questionBody, nickname, email);
 
     if (validateForm(questionBody, nickname, email)) {
-      var currentDate = new Date().toLocaleDateString();
-
+      // var currentDate = new Date().toLocaleDateString();
       axios.post('/qa/questions', {
         question_body: questionBody,
-        question_date: currentDate,
         asker_name: nickname,
-        question_helpfulness: 0,
+        email: email,
+        product_id: product_id,
+      })
+      .then(response => {
+        setAllValues({
+          question: '',
+          nickname: '',
+          email: '',
+        });
+        setOpen(false);
+      })
+      .then(next => {
+        axios.get('/qa', {
+          params: {
+            id: product_id,
+          }})
+          .then(response => {
+            var newQuestions = response.data.results
+            setQuestions(newQuestions.sort((a, b) => {
+              a.question_helpfulness - b.question_helpfulness
+            }));
+          })
+          .catch(error => {
+            console.log('Error retrieving related questions for this product', error)
+          })
+      })
+      .catch(error => {
+        console.log('error creating a new question')
+        window.alert('error creating a new question, please try again')
       })
     } else {
       console.log('something went wrong')
     }
     //needs to make a post request to the server/append it to state
-      //also validate in the server side
-        //if server comes up greenlights
-        //close modal (setopen = false)
-        //maybe an alert
-        //reset all the values
     console.log(allValues);
-    //need to format the inputs. Easiest way would be to append them to the database and have it auto increment question id, and then also update state for us in the form of a request body.
-    // setAllValues({
-    //   question: '',
-    //   nickname: '',
-    //   email: '',
-    // })
-    // //ALSO NEEDS TO CLOSE THE MODAL
-    // setOpen(false);
   }
   return (
     <div id='questionModal' className={styles.modal}>

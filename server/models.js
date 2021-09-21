@@ -57,9 +57,24 @@ let getProductQuestions = (id, callback) => {
     });
 };
 
-let addNewQuestion = (questionBody, nickname, email) => {
-
+let addNewQuestion = (questionBody, nickname, email, product_id, callback) => {
+  axios.post(apiURL + '/qa/questions', {
+    body: questionBody,
+    name: nickname,
+    email: email,
+    product_id: product_id,
+  }, {
+    headers: {Authorization: config.token}
+  })
+  .then(response => {
+    callback(null, response.data)
+  })
+  .catch(error => {
+    console.log('error in models', error);
+    callback(error, null)
+  })
 }
+
 let addNewAnswer = (answerBody, nickname, email) => {
 
 }

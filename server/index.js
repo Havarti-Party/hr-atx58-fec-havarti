@@ -160,12 +160,16 @@ app.post("/reviews", (req, res) => {
 // })
 
 app.post('/qa/questions', (req, res) => {
-  console.log(req.body)
-  models.addNewQuestion(body ,(err, res) => {
+  var body = req.body.question_body;
+  var email = req.body.email;
+  var name = req.body.asker_name;
+  var product_id = req.body.product_id;
+  models.addNewQuestion(body, name, email, product_id, (err, result) => {
     if (err) {
-
+      console.log('error index.js')
+      res.status(500).send('error creating your question')
     } else {
-      res.status(201).send('created', result.data)
+      res.status(201).send('CREATED');
     }
   })
 })
