@@ -19,13 +19,13 @@ export default function RatingsAndReviews(props) {
 
   useEffect(() => {
     if (isMounted.current) {
-      axios.get('/reviews', {
+      axios.get('/reviewtotal', {
         params: {
           ID: currentProduct.id
         }
       })
       .then((reviewData) => {
-
+        // console.log('Review data object: ', reviewData);
         setCurrentReviews(reviewData.data);
         setLoading(false);
       })
@@ -37,10 +37,6 @@ export default function RatingsAndReviews(props) {
     isMounted.current = true;
   }}, [currentProduct])
 
-  // const currentProduct = useContext(ProductsContext);
-  // if (currentProduct[0]) {
-  //   console.log(currentProduct[0].id);
-  // }
   if (isLoading) {
     return (
       <div>
@@ -61,7 +57,7 @@ export default function RatingsAndReviews(props) {
           </Grid>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
             <ReviewSorter currentReviews={currentReviews}/>
-            <ReviewDisplay currentReviews={currentReviews}/>
+            <ReviewDisplay currentReviews={currentReviews} currentProduct={currentProduct}/>
           </Grid>
         </Grid>
       </>
