@@ -34,7 +34,6 @@ export default function Question({question, style}) {
         <h3>Q: {question.question_body}?</h3>
         <span>Helpful? <a href='' onClick={() => incrementHelpfulCount()}>yes ({questionHelpfulCount})</a>/<a href='' onClick={() => decrementHelpfulCount()}>no</a></span>
       </div>
-
       <div id='answerList'>
         <AnswerList answers={answers} style={style}/>
       </div>

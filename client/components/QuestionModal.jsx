@@ -31,7 +31,7 @@ const modalStyles = makeStyles({
 export default function QuestionModal({styles, questions}) {
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
-
+  const [emailInvalid, setEmailInvalid] = useState(false);
   const [allValues, setAllValues] = useState({
     question: '',
     nickname: '',
@@ -52,10 +52,36 @@ export default function QuestionModal({styles, questions}) {
   }
 
   const handleSubmit = (e) => {
+    var questionBody = allValues.question
+    var nickname = allValues.nickname
+    var email = allValues.email
+
+    if (email.indexOf('@') === -1) {
+      setAllValues({...allValues, [email]: ''})
+      setEmailInvalid(true);
+    } else {
+      setEmailInvalid(false);
+      // setAllValues({
+      //   answer: '',
+      //   nickname: '',
+      //   email: '',
+      // })
+    }
+    //VALIDATION
+      //if nickname is a string?
+      //body isn't too long?
+      //email is a valid email
+
+
     //needs to make a post request to the server/append it to state
+      //also validate in the server side
+        //if server comes up greenlights
+        //close modal (setopen = false)
+        //maybe an alert
+        //reset all the values
     console.log(allValues);
     //need to format the inputs. Easiest way would be to append them to the database and have it auto increment question id, and then also update state for us in the form of a request body.
-    console.log(questions);
+
     //ALSO NEEDS TO CLOSE THE MODAL
   }
   return (
@@ -70,7 +96,7 @@ export default function QuestionModal({styles, questions}) {
         <div className={classes.modal}>
           <h3>Ask Your Question </h3>
           <h4>About the [product name here]</h4>
-          <form className='addQuestionForm' onClick={handleSubmit}>
+          <form className='addQuestionForm' >
             <TextField
               id='questionField'
               required
@@ -94,13 +120,13 @@ export default function QuestionModal({styles, questions}) {
             <TextField
               id='emailFieldQ'
               required
-              //error attribute to add here and trigger helper text
+              error={emailInvalid}
               label='What is your email'
               variant='outlined'
               className={classes.form}
               name='email'
               onChange={changeHandler}
-              //helperText='must provide a valid email'
+              helperText={emailInvalid ? 'Please provide a valid email' : ''}
             /><br/>
             <label htmlFor="addYourPictures">
               <input accept="image/*" id="addYourPictures" type="file" />
@@ -108,7 +134,7 @@ export default function QuestionModal({styles, questions}) {
                 <PhotoCamera />
               </IconButton>
             </label>
-            <Button variant='contained' className={styles.button} >submit</Button>
+            <Button variant='contained' className={styles.button} onClick={handleSubmit}>submit</Button>
           </form>
         </div>
       </Modal>
