@@ -23,8 +23,6 @@ export default function RatingsAndReviews(props) {
   // const [recommendRatio, setRecommendRatio] = useState(0);
   const isMounted = useRef(false);
 
-  var recommendRatio = 0;
-
   useEffect(() => {
     if (isMounted.current) {
       axios.get('/reviewtotal', {
@@ -33,7 +31,7 @@ export default function RatingsAndReviews(props) {
         }
       })
       .then((reviewData) => {
-        console.log('Review data object: ', reviewData);
+        // console.log('Review data object: ', reviewData);
         setCurrentReviews(reviewData.data);
         setLoading(false);
       })
