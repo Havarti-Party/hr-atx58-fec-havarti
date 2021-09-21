@@ -7,6 +7,9 @@ import ComfortBar from './RARComfortBar.jsx';
 import ReviewSorter from './RARReviewSorter.jsx';
 import ReviewDisplay from './RARReviewDisplay.jsx';
 import { ProductsContext } from './ProductsContext';
+import Typography from '@mui/material/Typography';
+import RecommendRatio from './RARRecommendRatio';
+
 const axios = require('axios');
 
 
@@ -17,6 +20,7 @@ export default function RatingsAndReviews(props) {
   const [currentReviews, setCurrentReviews] = useState({});
   const [averageStarRating, updateAverageStarRating] = useState(0);
   const [isLoading, setLoading] = useState(true);
+  // const [recommendRatio, setRecommendRatio] = useState(0);
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -51,9 +55,9 @@ export default function RatingsAndReviews(props) {
         <h3 id='ratings-and-reviews'>Ratings And Reviews</h3>
         <Grid container spacing={6}>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARLeftColumn">
-            <div>100% of reviews recommend this product</div>
+            <RecommendRatio currentReviews = {currentReviews} />
             {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'} />
-            <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating} currentReviews={currentReviews}/>
+            <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating} currentReviews={currentReviews} overviewProduct = {overviewProduct}/>
             <SizeBar />
             <ComfortBar />
           </Grid>
@@ -66,14 +70,3 @@ export default function RatingsAndReviews(props) {
     )
   }
 }
-
-
-
-
-
-
-
-
-
-
-
