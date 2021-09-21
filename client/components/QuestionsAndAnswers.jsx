@@ -43,7 +43,9 @@ export const QuestionsContext = createContext()
 
 export default function QuestionsAndAnswers(props) {
   const classes = questionListStyles()
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext)
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
+
   const [questions, setQuestions] = useState([])
 
   const [searchValue, setSearchValue] = useState('');
@@ -57,7 +59,7 @@ export default function QuestionsAndAnswers(props) {
     if (isMounted.current) {
       axios.get('/qa', {
         params: {
-          id: overviewProduct.id - 1,
+          id: overviewProductState.id,
         }})
         .then(response => {
           var newQuestions = response.data.results
@@ -71,7 +73,7 @@ export default function QuestionsAndAnswers(props) {
     } else {
       isMounted.current = true;
     }
-  }, [overviewProduct])
+  }, [overviewProductState])
 
 
   function expandQuestions() {
