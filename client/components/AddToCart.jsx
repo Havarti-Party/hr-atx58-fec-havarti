@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import AddIcon from '@material-ui/icons/Add';
+import { ProductsContext } from './ProductsContext';
 
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
@@ -25,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 const AddToCart = ({ currentProduct, selectedStyle }) => {
   const classes = useStyles();
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
   const [size, setSize] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
@@ -46,6 +49,8 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     })
     if (totalStock === 0) {
       setOutOfStock(true);
+    } else {
+      setOutOfStock(false);
     }
   };
 
