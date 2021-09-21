@@ -11,7 +11,9 @@ const axios = require('axios');
 
 
 export default function RatingsAndReviews(props) {
-  const [currentProduct, setCurrentProduct] = useContext(ProductsContext);
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
+
   const [currentReviews, setCurrentReviews] = useState({});
   const [averageStarRating, updateAverageStarRating] = useState(0);
   const [isLoading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ export default function RatingsAndReviews(props) {
     if (isMounted.current) {
       axios.get('/reviewtotal', {
         params: {
-          ID: currentProduct.id
+          ID: overviewProductState.id
         }
       })
       .then((reviewData) => {
@@ -35,7 +37,7 @@ export default function RatingsAndReviews(props) {
       })
     } else {
     isMounted.current = true;
-  }}, [currentProduct])
+  }}, [overviewProductState])
 
   if (isLoading) {
     return (
@@ -57,7 +59,7 @@ export default function RatingsAndReviews(props) {
           </Grid>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
             <ReviewSorter currentReviews={currentReviews}/>
-            <ReviewDisplay currentReviews={currentReviews} currentProduct={currentProduct}/>
+            <ReviewDisplay currentReviews={currentReviews} currentProduct={overviewProduct}/>
           </Grid>
         </Grid>
       </>

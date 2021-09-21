@@ -7,12 +7,13 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export default function MainImageCarousel({photos}) {
   const imageHeight = '625px';
   const parsedPhotos = [];
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     setCurrentImageIndex(0);
-  }, [overviewProduct])
+  }, [overviewProductState])
   const imageParse = ((selectedStylePhotos) => {
     selectedStylePhotos.map(photoObj => {
       parsedPhotos.push({
