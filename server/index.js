@@ -147,6 +147,34 @@ app.post("/reviews", (req, res) => {
   });
 });
 
+// app.put('/qa/questionHelpfulness', (req, res) => {
+//   console.log(req.body)
+//   models.updateQuestionHelpfulness
+//   res.status(200).send(result.data)
+// })
+
+// app.put('/qa/answerHelpfulness', (req, res) => {
+//   console.log(req.body)
+//   models.updateQuestionHelpfulness
+//   res.status(200).send(result.data)
+// })
+
+app.post('/qa/questions', (req, res) => {
+  console.log(req.body)
+  models.addNewQuestion(body ,(err, res) => {
+    if (err) {
+
+    } else {
+      res.status(201).send('created', result.data)
+    }
+  })
+})
+
+// app.post('/qa/questions/:question_id/answers', (req, res) => {
+//   console.log(req.body)
+//   res.status(200).send(result.data)
+// })
+
 app.listen(PORT, (err, success) => {
   if (err) {
     console.log("Error listening to Server...", err);

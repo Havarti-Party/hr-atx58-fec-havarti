@@ -46,7 +46,7 @@ export default function QuestionsAndAnswers(props) {
   const { overviewProduct } = useContext(ProductsContext)
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
 
-  const [questions, setQuestions] = useState([])
+  const [ questions, setQuestions ] = useState([])
 
   const [searchValue, setSearchValue] = useState('');
 

@@ -57,6 +57,19 @@ let getProductQuestions = (id, callback) => {
     });
 };
 
+let addNewQuestion = (questionBody, nickname, email) => {
+
+}
+let addNewAnswer = (answerBody, nickname, email) => {
+
+}
+let updateAnswerHelpfulness = () => {
+
+}
+let updateQuestionHelpfulness = () => {
+
+}
+
 let getCurrentProduct = (id) => {
   return axios
     .get(apiURL + `/products/${id}`, {
@@ -118,4 +131,8 @@ module.exports = {
   getProductReviews,
   getProductMetadata,
   postProductReview,
+  addNewQuestion,
+  addNewAnswer,
+  updateAnswerHelpfulness,
+  updateQuestionHelpfulness,
 };
