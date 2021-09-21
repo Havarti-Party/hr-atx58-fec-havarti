@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import OutfitCard from "./OutfitCard.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
 import Carousel from "react-multi-carousel";
+//Grid
+import Grid from "@material-ui/core/Grid";
 import "react-multi-carousel/lib/styles.css";
 const _ = require("underscore");
 
@@ -29,6 +31,7 @@ const CustomerOutfit = (props) => {
   //State
   const [outfitList, updateOutfitList] = React.useState([]);
   const [currentProduct, setCurrentProduct] = React.useState({});
+
   const updateWardrobe = (OutfitObj) => {
     if (_.contains(outfitList, OutfitObj)) {
       updateOutfitList(outfitList);
@@ -51,19 +54,17 @@ const CustomerOutfit = (props) => {
   const isInitialMount = useRef(true);
 
   if (!outfitList.length) {
-    return (
-      <Carousel responsive={responsive}>
-        <AddToOutfitCard updateWardrobe={updateWardrobe} />
-      </Carousel>
-    );
+    return <AddToOutfitCard updateWardrobe={updateWardrobe} />;
   } else {
     return (
       <>
         <div id="outfit-card">
           <h1> Your Wardrobe </h1>
         </div>
+
+        <AddToOutfitCard updateWardrobe={updateWardrobe} />
+
         <Carousel centerMode={true} responsive={responsive}>
-          <AddToOutfitCard updateWardrobe={updateWardrobe} />
           {outfitList.map((obj, index) => {
             return (
               <OutfitCard
