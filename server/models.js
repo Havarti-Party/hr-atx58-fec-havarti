@@ -70,9 +70,35 @@ let getCurrentProduct = (id) => {
     });
 };
 
-let getProductReviews = (id, callback) => {
-  axios
+let getProductReviews = (id) => {
+  return axios
     .get(apiURL + `/reviews?product_id=${id}`, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      return result.data;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+let getProductMetadata = (id) => {
+  return axios
+    .get(apiURL + `/reviews/meta?product_id=${id}`, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      return result.data;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
+let postProductReview = (data, callback) => {
+  axios
+    .post(apiURL + `/reviews?product_id=${data.id}`, data, {
       headers: { Authorization: config.token },
     })
     .then((result) => {
@@ -90,4 +116,6 @@ module.exports = {
   getProductQuestions,
   getCurrentProduct,
   getProductReviews,
+  getProductMetadata,
+  postProductReview,
 };

@@ -15,6 +15,9 @@ import Typography from "@material-ui/core/Typography";
 import StarRatings from "react-star-ratings";
 import { positions } from "@material-ui/system";
 
+//Grid
+import Grid from "@material-ui/core/Grid";
+
 //Icons
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
@@ -27,7 +30,8 @@ let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
 
   //State
   const [open, setOpen] = React.useState(false);
@@ -48,7 +52,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         relatedProductFeaturesArr.push(feature.feature);
       });
 
-      overviewProduct.features.forEach((feature) => {
+      overviewProductState.features.forEach((feature) => {
         overviewProductFeaturesArr.push(feature.feature);
       });
 
@@ -68,8 +72,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       });
       setRelatedProductFeatures(relatedProductFeaturesArr);
       setCompareFeatures(relatedProductFeaturesArr);
-    } else if (overviewProduct.features) {
-      overviewProduct.features.forEach((feature) => {
+    } else if (overviewProductState.features) {
+      overviewProductState.features.forEach((feature) => {
         overviewProductFeaturesArr.push(feature.feature);
       });
 
@@ -103,6 +107,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     },
     iconDepth: {
       zIndex: 1,
+      marginLeft: "auto",
     },
   });
 
@@ -123,28 +128,32 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         className={classes.media}
         image={RelatedObj.url ? RelatedObj.url : noImage}
       >
-        <>
-          {clickedStar ? (
-            <StarIcon
-              className={classes.iconDepth}
-              onClick={() => {
-                handleStarClick(RelatedObj);
-              }}
-            />
-          ) : (
-            <StarBorderIcon
-              className={classes.iconDepth}
-              onClick={() => {
-                handleStarClick(RelatedObj);
-              }}
-            />
-          )}
-        </>
+        <Grid container direction="column" alignItems="flex-end">
+          <Grid item>
+            {clickedStar ? (
+              <StarBorderIcon
+                className={classes.iconDepth}
+                onClick={() => {
+                  handleStarClick(RelatedObj);
+                }}
+                style={{ fill: "white" }}
+              />
+            ) : (
+              <StarIcon
+                className={classes.iconDepth}
+                onClick={() => {
+                  handleStarClick(RelatedObj);
+                }}
+                style={{ fill: "white" }}
+              />
+            )}
+          </Grid>
+        </Grid>
       </CardMedia>
       <CardActionArea>
         <CardContent
           onClick={() => {
-            setOverviewProduct(RelatedObj);
+            setOverviewProductState(RelatedObj);
           }}
         >
           <Typography gutterBottom variant="h5" component="h2">

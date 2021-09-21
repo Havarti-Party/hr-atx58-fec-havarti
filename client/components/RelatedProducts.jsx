@@ -31,7 +31,8 @@ export default function RelatedProducts(props) {
     },
   };
   //useContext
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
 
   //RelatedProductsState
 
@@ -45,7 +46,7 @@ export default function RelatedProducts(props) {
       axios
         .get("/related/id", {
           params: {
-            ID: overviewProduct.id,
+            ID: overviewProductState.id,
           },
         })
         .then((relatedProductsIDs) => {
@@ -54,7 +55,7 @@ export default function RelatedProducts(props) {
     } else {
       isMounted.current = true;
     }
-  }, [overviewProduct]);
+  }, [overviewProductState]);
 
   useEffect(() => {
     if (isMounted.current && relatedProductsIDs) {

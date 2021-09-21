@@ -112,6 +112,41 @@ app.get("/reviews", (req, res) => {
   });
 });
 
+
+app.get("/reviewtotal", (req, res) => {
+  let id = req.query.ID;
+  Promise.all([models.getProductReviews(id), models.getProductMetadata(id)])
+    .then((data) => {
+      const totalReviewObj = {
+        id: data[0].product,
+        count: data[0].results.length,
+        results: data[0].results,
+        ratings: data[1].ratings,
+        recommended: data[1].recommended,
+        characteristics: data[1].characteristics,
+      };
+      res.status(201).send(totalReviewObj);
+    })
+    .catch((error) => {
+      console.log("Error: failed to get review data.");
+      res.status(501).send(error);
+    });
+});
+
+app.post("/reviews", (req, res) => {
+  let id = req.query.ID;
+  models.postProductReview(req.body, (err, result) => {
+    if (err) {
+      console.log('Error posting new review: ', err);
+      res
+        .status(404)
+        .send("Error: could not add new product review.");
+    } else {
+      res.status(201).send(result.data);
+    }
+  });
+});
+
 app.listen(PORT, (err, success) => {
   if (err) {
     console.log("Error listening to Server...", err);
