@@ -18,6 +18,9 @@ import StarRatings from "react-star-ratings";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import CheckIcon from "@material-ui/icons/Check";
 
+//Image
+const noImage = require("../../dist/Images/No-Image-Found.jpg");
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 500,
@@ -39,7 +42,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={OutfitObj.url}
+        image={OutfitObj.url ? OutfitObj.url : noImage}
         title={OutfitObj.name}
       >
         <HighlightOffIcon
