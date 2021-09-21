@@ -15,6 +15,9 @@ import Typography from "@material-ui/core/Typography";
 import StarRatings from "react-star-ratings";
 import { positions } from "@material-ui/system";
 
+//Grid
+import Grid from "@material-ui/core/Grid";
+
 //Icons
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
@@ -103,6 +106,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     },
     iconDepth: {
       zIndex: 1,
+      marginLeft: "auto",
     },
   });
 
@@ -123,23 +127,27 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         className={classes.media}
         image={RelatedObj.url ? RelatedObj.url : noImage}
       >
-        <>
-          {clickedStar ? (
-            <StarIcon
-              className={classes.iconDepth}
-              onClick={() => {
-                handleStarClick(RelatedObj);
-              }}
-            />
-          ) : (
-            <StarBorderIcon
-              className={classes.iconDepth}
-              onClick={() => {
-                handleStarClick(RelatedObj);
-              }}
-            />
-          )}
-        </>
+        <Grid container direction="column" alignItems="flex-end">
+          <Grid item>
+            {clickedStar ? (
+              <StarBorderIcon
+                className={classes.iconDepth}
+                onClick={() => {
+                  handleStarClick(RelatedObj);
+                }}
+                style={{ fill: "white" }}
+              />
+            ) : (
+              <StarIcon
+                className={classes.iconDepth}
+                onClick={() => {
+                  handleStarClick(RelatedObj);
+                }}
+                style={{ fill: "white" }}
+              />
+            )}
+          </Grid>
+        </Grid>
       </CardMedia>
       <CardActionArea>
         <CardContent

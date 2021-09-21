@@ -21,7 +21,7 @@ export default function AddToOutfitCard({ updateWardrobe }) {
   };
 
   return (
-    <Card>
+    <Card className={{ maxWidth: 300 }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           Like the above outift?
