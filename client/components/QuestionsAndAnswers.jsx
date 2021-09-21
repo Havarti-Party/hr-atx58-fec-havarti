@@ -20,25 +20,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const questionListStyles = makeStyles({
   widget: {
-    backgroundColor: '#B5FFEB',
-    'border-style': 'solid',
     height: '800px',
   },
   modal: {
-    backgroundColor: '#B5FFEB',
   },
   button: {
     padding: '0 5px',
     margin: '10px',
-    backgroundColor: '#95F5DB',
   },
   searchbar: {
     margin: '10px',
     width: '50%',
   },
   list: {
-    backgroundColor: '#B5FFEB',
-    'border-style': 'solid',
     height: '500px',
     overflow: 'auto',
   },
@@ -56,7 +50,6 @@ export default function QuestionsAndAnswers(props) {
   const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
 
   var currentQuestions = questions.slice(0, questionDisplayCount)
-
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -94,7 +87,7 @@ export default function QuestionsAndAnswers(props) {
         <Grid item md={10}>
           <TextField
             id='questionSearch'
-            label='search for a specific question here'
+            label='Have a question? Search for answers…'
             className={classes.searchbar}
             variant='outlined'
             name='questionSearch'
@@ -107,7 +100,9 @@ export default function QuestionsAndAnswers(props) {
             )
           }}/>
         </Grid>
-        <Grid item md={12} className={classes.list}>
+        {/* <Grid item md={3}>
+        </Grid> */}
+        <Grid item md="auto" className={classes.list}>
           {currentQuestions.filter((question) => {
             if (searchValue === '') {
               return question;
