@@ -36,7 +36,9 @@ const useStyles = makeStyles({
 export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  //useContext
+  const { overviewProduct } = useContext(ProductsContext);
+  const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   return (
     <Card className={classes.root}>
@@ -53,7 +55,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
       </CardMedia>
       <CardActionArea
         onClick={() => {
-          setOverviewProduct(OutfitObj);
+          setOverviewProductState(OutfitObj);
         }}
       >
         <CardContent>
