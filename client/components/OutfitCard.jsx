@@ -63,11 +63,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
           </Grid>
         </Grid>
       </CardMedia>
-      <CardActionArea
-        onClick={() => {
-          setOverviewProductState(OutfitObj);
-        }}
-      >
+      <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="body1" component="h2">
             {OutfitObj.name}
@@ -77,6 +73,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {OutfitObj.original_price}
+            {"Sale Price"}
             {OutfitObj.sale_price ? OutfitObj.sale_price : ""}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
