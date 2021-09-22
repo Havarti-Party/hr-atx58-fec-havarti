@@ -5,8 +5,9 @@ import AddToOutfitCard from "./AddToOutfit.jsx";
 const axios = require("axios");
 const _ = require("underscore");
 
-import Carousel from "react-multi-carousel";
+import Carousel from "react-elastic-carousel";
 import "react-multi-carousel/lib/styles.css";
+
 import RelatedProductCard from "./RelatedProductCard.jsx";
 import Grid from "@material-ui/core/Grid";
 
@@ -89,7 +90,7 @@ export default function RelatedProducts(props) {
         <div id="related-product-card">
           <h1> Related Products </h1>
         </div>
-        <Carousel centerMode={true} responsive={responsive}>
+        <Carousel itemsToShow={4}>
           {relatedProductsArr.map((obj, index) => {
             return <RelatedProductCard RelatedObj={obj} key={index} />;
           })}
