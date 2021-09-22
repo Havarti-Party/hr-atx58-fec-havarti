@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, createContext } from "react";
 import axios from "axios";
+import PropTypes from 'prop-types';
 
 export const ProductsContext = createContext();
 
@@ -18,8 +19,8 @@ export const ProductsProvider = (props) => {
       .then((productsArray) => {
         setProducts(productsArray.data);
       })
-      .catch((error) => {
-        console.log("error, unable to get productsArray from localhost server");
+      .catch(() => {
+        console.error("error, unable to get productsArray from localhost server");
       });
   }, []);
 
@@ -42,8 +43,8 @@ export const ProductsProvider = (props) => {
         setStyles(overviewProductStyles.data.results)
         setOverviewProduct(products[0]);
       })
-      .catch((error) => {
-        console.log("could not get styles for overview product");
+      .catch(() => {
+        console.error("could not get styles for overview product");
       });
     }
   }, [products]);
@@ -61,8 +62,8 @@ export const ProductsProvider = (props) => {
         setSelectedStyle(overviewProductStyles.data.results[0])
         setIsLoading(false);
       })
-      .catch((error) => {
-        console.log("could not get styles for overview product");
+      .catch(() => {
+        console.error("could not get styles for overview product");
       });
     } else {
       isMounted.current = true;
@@ -75,3 +76,7 @@ export const ProductsProvider = (props) => {
     </ProductsContext.Provider>
   );
 };
+
+// ProductsContext.propTypes = {
+//   children: PropTypes.symbol.isRequired,
+// }
