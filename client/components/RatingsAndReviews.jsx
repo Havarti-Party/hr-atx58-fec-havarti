@@ -29,7 +29,7 @@ export default function RatingsAndReviews(props) {
         }
       })
       .then((reviewData) => {
-        console.log('Review data object: ', reviewData.data);
+        // console.log('Review data object: ', reviewData.data);
         setCurrentReviews(reviewData.data);
         setLoading(false);
       })
