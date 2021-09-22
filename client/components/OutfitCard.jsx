@@ -74,7 +74,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
 
           {OutfitObj.sale_price ? (
             <Typography variant="body2" color="textSecondary" component="p">
-              Original: {OutfitObj.original_price} On Sale!!{" "}
+              Original: {OutfitObj.original_price} Sale Price:{" "}
               {OutfitObj.sale_price}{" "}
             </Typography>
           ) : (
