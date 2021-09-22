@@ -9,8 +9,6 @@ import Select from '@mui/material/Select';
 
 export default function ReviewSorter(props) {
 
-  // const [sorter, setSorter] = useState(true);
-
   var numReviews = props.currentReviews.results.length;
 
   const handleChange = (event) => {
@@ -38,13 +36,23 @@ export default function ReviewSorter(props) {
       })
     }
     if (event.target.value === 'relevance') {
+      // 'Relevance' prioritizes helpfulness, but only if a more helpful post
+      // is less than a year older than the next post.
+
       sortedResults.sort(function(a, b) {
-        console.log(a.date - b.date);
         if (a.helpfulness > b.helpfulness) {
-          return -1;
+          if (Date.parse(b.date) - Date.parse(a.date) >= 31556952000) {
+            return 1;
+          } else {
+            return -1;
+          }
         }
         if (a.helpfulness < b.helpfulness) {
-          return 1;
+          if (Date.parse(b.date) - Date.parse(a.date) >= 31556952000) {
+            return -1;
+          } else {
+            return 1;
+          }
         }
         return 0;
       })
@@ -53,36 +61,12 @@ export default function ReviewSorter(props) {
       ...props.currentReviews,
       results: sortedResults
     });
-    console.log(sortedResults);
   };
 
   var sortedResults = [];
   props.currentReviews.results.map((result) => {
     sortedResults.push(result);
   })
-
-  // useEffect(() => {
-  //   props.setCurrentReviews({
-  //       ...props.currentReviews,
-  //       results: sortedResults
-  //     });
-  // }, [props.sortedResults])
-
-
-  // var sortByDate = function(a, b) {
-  //   console.log(a);
-  //   console.log(b);
-  //   var aDate = a.date;
-  //   var bDate = b.date;
-  //   if (aDate > bDate) {
-  //     return -1;
-  //   }
-  //   if (aDate < bDate) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // }
-
 
   return (
     <div>

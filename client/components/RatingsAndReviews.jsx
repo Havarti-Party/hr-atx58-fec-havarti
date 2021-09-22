@@ -17,7 +17,7 @@ export default function RatingsAndReviews(props) {
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
   const { starRating } = useContext(ProductsContext);
   const [ starRatingState, setStarRating ] = starRating;
-  const [sorter, setSorter] = useState('false');
+  const [sorter, setSorter] = useState('relevance');
   const [currentReviews, setCurrentReviews] = useState({});
   const [averageStarRating, updateAverageStarRating] = useState(0);
   const [isLoading, setLoading] = useState(true);
@@ -33,7 +33,7 @@ export default function RatingsAndReviews(props) {
       .then((reviewData) => {
         setCurrentReviews(reviewData.data);
         setLoading(false);
-        console.log(reviewData.data);
+        // console.log(reviewData.data);
       })
       .catch((error) => {
         console.log('Error while fetching reviews:');
