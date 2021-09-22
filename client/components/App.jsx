@@ -20,14 +20,12 @@ export default function App(props) {
     )
   }
   return (
-      <Container maxWidth="lg">
-        {/* <div className="App"> */}
+      <Container maxWidth="lg" className="App">
           <ProductOverview />
           <RelatedProducts />
           <CustomerOutfit />
           <RatingsAndReviews />
           <QuestionsAndAnswers />
-        {/* </div> */}
       </Container>
   );
 }
