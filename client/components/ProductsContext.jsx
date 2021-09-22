@@ -9,6 +9,7 @@ export const ProductsProvider = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [starRating, setStarRating] = useState(0);
   const [styles, setStyles] = useState([]);
+  const [selectedStyle, setSelectedStyle] = useState([]);
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -40,8 +41,6 @@ export const ProductsProvider = (props) => {
         products[0].url = overviewProductDetails.data.url;
         setStyles(overviewProductStyles.data.results)
         setOverviewProduct(products[0]);
-        console.log(products[0])
-        // setIsLoading(false);
       })
       .catch((error) => {
         console.log("could not get styles for overview product");
@@ -51,8 +50,6 @@ export const ProductsProvider = (props) => {
 
   useEffect(() => {
     if (isMounted.current) {
-      console.log(products[0])
-
       let overviewProductID = overviewProduct.id;
       axios.get("/styles", {
         params: {
@@ -61,7 +58,7 @@ export const ProductsProvider = (props) => {
       .then((overviewProductStyles) => {
 
         setStyles(overviewProductStyles.data.results)
-        // setOverviewProduct(products[0]);
+        setSelectedStyle(overviewProductStyles.data.results[0])
         setIsLoading(false);
       })
       .catch((error) => {
@@ -73,7 +70,7 @@ export const ProductsProvider = (props) => {
   }, [overviewProduct]);
 
   return (
-    <ProductsContext.Provider value={{ overviewProduct: [overviewProduct, setOverviewProduct], isLoading: [isLoading, setIsLoading], starRating: [starRating, setStarRating], stylesState: [styles, setStyles]}}>
+    <ProductsContext.Provider value={{ overviewProduct: [overviewProduct, setOverviewProduct], isLoading: [isLoading, setIsLoading], starRating: [starRating, setStarRating], stylesState: [styles, setStyles], selectedStyleState: [selectedStyle, setSelectedStyle]}}>
       {props.children}
     </ProductsContext.Provider>
   );
