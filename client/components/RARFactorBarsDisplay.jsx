@@ -17,35 +17,27 @@ export default function FactorBars(props) {
   if (Object.keys(props.currentReviews.characteristics).length > 0) {
     Object.keys(props.currentReviews.characteristics).map((characteristic, index) => {
       var value = props.currentReviews.characteristics[characteristic].value;
-      if (characteristic === "Size") {
-        if (value !== null) {
-          characteristicsToRender.push(<FactorBar key={index} propKey = {index} name={characteristic} factors={sizeFactors} value={value}/>);
-        }
-      }
+      var factors = '';
       if (value !== null) {
+        if (characteristic === "Size") {
+          factors = sizeFactors;
+        }
         if (characteristic === "Width") {
-          characteristicsToRender.push(<FactorBar key={index} name={characteristic} factors={widthFactors} value={value} />);
-      }
-      }
-      if (characteristic === "Comfort") {
-        if (value !== null) {
-          characteristicsToRender.push(<FactorBar key={index} name={characteristic} factors={comfortFactors} value={value} />);
+          factors = widthFactors;
         }
-      }
-      if (characteristic === "Quality") {
-        if (value !== null) {
-          characteristicsToRender.push(<FactorBar key={index} name={characteristic} factors={qualityFactors} value={value} />);
+        if (characteristic === "Comfort") {
+          factors = comfortFactors;
         }
-      }
-      if (characteristic === "Length") {
-        if (value !== null) {
-          characteristicsToRender.push(<FactorBar key={index} name={characteristic} factors={lengthFactors} value={value} />);
+        if (characteristic === "Quality") {
+          factors = qualityFactors;
         }
-      }
-      if (characteristic === "Fit") {
-        if (value !== null) {
-          characteristicsToRender.push(<FactorBar key={index} name={characteristic} factors={fitFactors} value={value} />);
+        if (characteristic === "Length") {
+          factors = lengthFactors;
         }
+        if (characteristic === "Fit") {
+          factors = fitFactors;
+        }
+        characteristicsToRender.push(<FactorBar key={index} name={characteristic} factors={factors} value={value} />);
       }
     })
   } else {

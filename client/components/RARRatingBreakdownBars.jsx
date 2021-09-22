@@ -12,12 +12,11 @@ export default function RatingBreakdownBars(props) {
     5: 0
   };
 
-
   var numReviews = props.currentReviews.results.length;
 
   props.currentReviews.results.map(review => {
     starBreakdown[review.rating]++;
-  }, [props.currentReviews]);
+  }, [props.currentProduct]);
 
   var percentBreakdown = {
     1: starBreakdown[1] / numReviews * 100,
