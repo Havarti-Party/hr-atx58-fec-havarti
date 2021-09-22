@@ -21,18 +21,19 @@ export default function ProductOverview(props) {
 
   useEffect(() => {
     if (isMounted.current) {
-        axios.get("/currentProduct", {
-          params: {
-            ID: overviewProductState.id,
-          },
-        })
-        .then((product) => {
-          setCurrentProduct(product.data);
-          return axios.get("/styles", {
+        // axios.get("/currentProduct", {
+        //   params: {
+        //     ID: overviewProductState.id,
+        //   },
+        // })
+        // .then((product) => {
+        //   setCurrentProduct(product.data);
+        //   return
+          axios.get("/styles", {
             params: {
               ID: overviewProductState.id,
           }})
-        })
+        // })
         .then((productStyles) => {
           setStyles(productStyles.data.results);
           setSelectedStyle(productStyles.data.results[0])
@@ -69,8 +70,8 @@ export default function ProductOverview(props) {
               Read All Reviews
           </a>
           <ProductDetails
-            category={currentProduct.category}
-            name={currentProduct.name}
+            category={overviewProductState.category}
+            name={overviewProductState.name}
             originalPrice={selectedStyle.original_price}
             salePrice={selectedStyle.sale_price}
           />
@@ -81,18 +82,18 @@ export default function ProductOverview(props) {
             handleStyleClick={handleStyleClick}
           />
           <AddToCart
-            currentProduct={currentProduct}
+            currentProduct={overviewProductState}
             selectedStyle={selectedStyle}
           />
         </Grid>
       </Grid>
       <Grid container>
         <Grid item md={8}>
-          <h5 className="productSlogan">{currentProduct.slogan}</h5>
-          <p className="productDescription">{currentProduct.description}</p>
+          <h5 className="productSlogan">{overviewProductState.slogan}</h5>
+          <p className="productDescription">{overviewProductState.description}</p>
         </Grid>
         <Grid item md={4}>
-          <ProductFeatures features={currentProduct.features}/>
+          <ProductFeatures features={overviewProductState.features}/>
         </Grid>
       </Grid>
       </>
