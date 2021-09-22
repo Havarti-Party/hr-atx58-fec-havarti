@@ -5,8 +5,9 @@ import AddToOutfitCard from "./AddToOutfit.jsx";
 const axios = require("axios");
 const _ = require("underscore");
 
-import Carousel from "react-multi-carousel";
+import Carousel from "react-elastic-carousel";
 import "react-multi-carousel/lib/styles.css";
+
 import RelatedProductCard from "./RelatedProductCard.jsx";
 import Grid from "@material-ui/core/Grid";
 
@@ -31,8 +32,8 @@ export default function RelatedProducts(props) {
     },
   };
   //useContext
-  const { overviewProduct } = useContext(ProductsContext)
-  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
+  const { overviewProduct } = useContext(ProductsContext);
+  const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   //RelatedProductsState
 
@@ -59,21 +60,19 @@ export default function RelatedProducts(props) {
 
   useEffect(() => {
     if (isMounted.current && relatedProductsIDs) {
-      setRelatedProductsArr([]);
-      for (let i = 0; i < relatedProductsIDs.length; i++) {
-        axios
-          .get("/related", {
-            params: {
-              ID: relatedProductsIDs[i],
-            },
-          })
-          .then((relatedProductsObj) => {
-            setRelatedProductsArr((relatedProductsArr) => [
-              ...relatedProductsArr,
-              relatedProductsObj.data,
-            ]);
-          });
-      }
+      let promiseArray = relatedProductsIDs.map((id) => {
+        return axios.get("/related", {
+          params: {
+            ID: id,
+          },
+        });
+      });
+      Promise.all(promiseArray).then((relatedProductsArrOfObjs) => {
+        let relatedProductsObjs = relatedProductsArrOfObjs.map(
+          (obj) => obj.data
+        );
+        setRelatedProductsArr(relatedProductsObjs);
+      });
     } else {
       isMounted.current = true;
     }
@@ -91,7 +90,7 @@ export default function RelatedProducts(props) {
         <div id="related-product-card">
           <h1> Related Products </h1>
         </div>
-        <Carousel centerMode={true} responsive={responsive}>
+        <Carousel itemsToShow={4}>
           {relatedProductsArr.map((obj, index) => {
             return <RelatedProductCard RelatedObj={obj} key={index} />;
           })}

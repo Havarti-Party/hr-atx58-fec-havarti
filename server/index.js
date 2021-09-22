@@ -41,9 +41,11 @@ app.get("/related", (req, res) => {
 
   Promise.all([models.getCurrentProduct(id), models.getProductStyles(id)])
     .then((data) => {
-      //console.log("data from /related", data);
+      // console.log("data from /related", data[1].results[0].sale_price);
       const relatedProductDataObj = {
         id: data[0].id,
+        default_price: data[0].default_price,
+        sale_price: data[1].results[0].sale_price,
         name: data[0].name,
         slogan: data[0].slogan,
         description: data[0].description,
@@ -112,7 +114,6 @@ app.get("/reviews", (req, res) => {
   });
 });
 
-
 app.get("/reviewtotal", (req, res) => {
   let id = req.query.ID;
   Promise.all([models.getProductReviews(id), models.getProductMetadata(id)])
@@ -137,15 +138,64 @@ app.post("/reviews", (req, res) => {
   let id = req.query.ID;
   models.postProductReview(req.body, (err, result) => {
     if (err) {
-      console.log('Error posting new review: ', err);
-      res
-        .status(404)
-        .send("Error: could not add new product review.");
+      console.log("Error posting new review: ", err);
+      res.status(404).send("Error: could not add new product review.");
     } else {
       res.status(201).send(result.data);
     }
   });
 });
+
+app.post('/qa/questionHelpfulness', (req, res) => {
+  var question_id = req.body.questionId;
+  // console.log(question_id)
+  models.updateQuestionHelpfulness(question_id, (err, result) => {
+    if (err) {
+      console.log('error in index')
+      res.status(500).send(err);
+    } else {
+      res.status(204).send()
+    }
+  })
+})
+
+// app.put('/qa/answerHelpfulness', (req, res) => {
+//   console.log(req.body)
+//   models.updateQuestionHelpfulness
+//   res.status(200).send(result.data)
+// })
+
+app.post('/qa/questions', (req, res) => {
+  var body = req.body.question_body;
+  var email = req.body.email;
+  var name = req.body.asker_name;
+  var product_id = req.body.product_id;
+  models.addNewQuestion(body, name, email, product_id, (err, result) => {
+    if (err) {
+
+      res.status(500).send('error creating your question')
+    } else {
+      res.status(201).send('CREATED');
+    }
+  })
+})
+
+app.post('/qa/answers', (req, res) => {
+  console.log(req.body)
+  var body = req.body.answerBody
+  var name = req.body.nickname
+  var email = req.body.email;
+  var images = req.body.images;
+  var question_id = req.body.question_id;
+  models.addNewAnswer(body, name, email, images, question_id, (err, result) => {
+    if (err) {
+      console.log('error index.js')
+      res.status(500).send('error creating your answer')
+    } else {
+      res.status(201).send('CREATED')
+    }
+  })
+})
 
 app.listen(PORT, (err, success) => {
   if (err) {

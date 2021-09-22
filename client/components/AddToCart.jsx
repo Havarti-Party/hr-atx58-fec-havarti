@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import AddIcon from '@material-ui/icons/Add';
+import { ProductsContext } from './ProductsContext';
 
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
@@ -25,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 const AddToCart = ({ currentProduct, selectedStyle }) => {
   const classes = useStyles();
+  const { overviewProduct } = useContext(ProductsContext)
+  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
   const [size, setSize] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
@@ -46,16 +49,18 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     })
     if (totalStock === 0) {
       setOutOfStock(true);
+    } else {
+      setOutOfStock(false);
     }
   };
 
   useEffect(() => checkStock());
 
-  const handleClose = () => {
+  const handleSizeSelectorClose = () => {
     setSelectQuantityOpen(false);
   };
 
-  const handleOpen = () => {
+  const handleSizeSelectorOpen = () => {
     setSelectQuantityOpen(true);
   };
 
@@ -85,19 +90,26 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     setSelectedQuantity(e.target.value);
   };
 
-  const handleAddToCartClick = (e) => {
-    // if size has not been selected, prompt to select size and open drop down
-    selectedSize === '' ?
-    console.log('open size drop down')
-    :
-    console.log('add to cart', selectedStyle)
-
+  const handleAddToCartWhenSizeSelected = () => {
     setCart({
       product: currentProduct.name,
       style: selectedStyle.name,
       size: selectedSize,
       quantity: selectedQuantity
-    })
+    });
+    console.log(selectedStyle, currentProduct)
+    // axios.push('/addToCart', {
+    //   sku: selectedStyle.sku
+    // })
+    alert('Successfully added to your cart!')
+  }
+
+  const handleAddToCartClick = (e) => {
+    // if size has not been selected, prompt to select size and open drop down
+    selectedSize === '' ?
+    handleSizeSelectorOpen()
+    :
+    handleAddToCartWhenSizeSelected()
   }
 
   return (
@@ -113,8 +125,8 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
             //className={classes.selectEmpty}
             onChange={handleSizeChange}
             open={selectQuantityOpen}
-            onClose={handleClose}
-            onOpen={handleOpen}
+            onClose={handleSizeSelectorClose}
+            onOpen={handleSizeSelectorOpen}
           >
             {Object.keys(skus).map((sku, i) => (
               skus[sku].quantity > 0 ?
@@ -176,11 +188,9 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     </Grid>
     <Grid container>
       {outOfStock ?
-      <></> :
-        selectedSize === '' ?
-        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleOpen}>Add To Cart</Button>
-        :
-        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
+      <></>
+      :
+      <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
       }
 
     </Grid>

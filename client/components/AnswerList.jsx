@@ -5,9 +5,9 @@ import AnswerModal from './AnswerModal.jsx';
 
 import Button from '@material-ui/core/Button';
 
-export const AnswersContext = createContext();
+export const AnswerCountContext = createContext();
 
-export default function AnswerList({answers, style}) {
+export default function AnswerList({answers, style, product_id}) {
   const [answerDisplayCount, setAnswerDisplayCount] = useState(2)
 
   var currentAnswers = answers.slice(0, answerDisplayCount);
@@ -18,12 +18,9 @@ export default function AnswerList({answers, style}) {
         //again only map the top two initially but save all answers inside of state
         return <Answer key={answer.id}answerData={answer}/>
       })}
-      <AnswersContext.Provider value={[answerDisplayCount, setAnswerDisplayCount]} >
+      <AnswerCountContext.Provider value={[answerDisplayCount, setAnswerDisplayCount]} >
         <ExpandAnswers style={style} answers={answers} currentAnswers={currentAnswers} />
-      </AnswersContext.Provider>
-      <AnswerModal />
+      </AnswerCountContext.Provider>
     </div>
   )
 }
-
-{/* <Button id='expandQuestions' variant='contained' className={style.button} onClick={() => setAnswerDisplayCount(answerDisplayCount + 2)}>See More Answers</Button> */}

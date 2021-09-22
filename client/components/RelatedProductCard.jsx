@@ -30,8 +30,8 @@ let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const { overviewProduct } = useContext(ProductsContext)
-  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
+  const { overviewProduct } = useContext(ProductsContext);
+  const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   //State
   const [open, setOpen] = React.useState(false);
@@ -44,41 +44,41 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const isInitialMount = useRef(true);
 
   const handleStarClick = (relatedProduct) => {
-    let relatedProductFeaturesArr = [];
-    let overviewProductFeaturesArr = [];
+    let relatedProductFeaturesObj = {};
+    let overviewProductFeaturesObj = {};
+    let combinedFeatures = [];
 
-    if (relatedProduct.features && overviewProduct.features) {
+    if (relatedProduct.features && overviewProductState.features) {
       relatedProduct.features.forEach((feature) => {
-        relatedProductFeaturesArr.push(feature.feature);
+        combinedFeatures.push(feature.feature);
+        relatedProductFeaturesObj[feature.feature] = feature.value;
       });
 
       overviewProductState.features.forEach((feature) => {
-        overviewProductFeaturesArr.push(feature.feature);
+        combinedFeatures.push(feature.feature);
+        overviewProductFeaturesObj[feature.feature] = feature.value;
       });
 
-      let combinedFeatures = [
-        ...new Set([
-          ...relatedProductFeaturesArr,
-          ...overviewProductFeaturesArr,
-        ]),
-      ];
-
-      setOverviewProductFeatures(overviewProductFeaturesArr);
-      setRelatedProductFeatures(relatedProductFeaturesArr);
+      setOverviewProductFeatures(overviewProductFeaturesObj);
+      setRelatedProductFeatures(relatedProductFeaturesObj);
       setCompareFeatures(combinedFeatures);
     } else if (relatedProduct.features) {
       relatedProduct.features.forEach((feature) => {
-        relatedProductFeaturesArr.push(feature.feature);
+        combinedFeatures.push(feature.feature);
+        relatedProductFeaturesObj[feature.feature] = feature.value;
       });
-      setRelatedProductFeatures(relatedProductFeaturesArr);
-      setCompareFeatures(relatedProductFeaturesArr);
+      setRelatedProductFeatures(relatedProductFeaturesObj);
+      let temp = Object.keys(relatedProductFeaturesObj);
+      setCompareFeatures(temp);
     } else if (overviewProductState.features) {
       overviewProductState.features.forEach((feature) => {
-        overviewProductFeaturesArr.push(feature.feature);
+        combinedFeatures.push(feature.feature);
+        overviewProductFeaturesObj[feature.feature] = feature.value;
       });
 
-      setOverviewProductFeatures(overviewProductFeaturesArr);
-      setCompareFeatures(overviewProductFeaturesArr);
+      setOverviewProductFeatures(overviewProductFeaturesObj);
+      let temp = Object.keys(relatedProductFeaturesObj);
+      setCompareFeatures(temp);
     } else {
       setCompareFeatures(["no features to compare!"]);
     }
@@ -156,8 +156,15 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
             setOverviewProductState(RelatedObj);
           }}
         >
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="body1" component="h2">
             {RelatedObj.name}
+          </Typography>
+          <Typography gutterBottom variant="caption" component="h2">
+            {RelatedObj.category}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {RelatedObj.default_price}
+            {RelatedObj.sale_price ? RelatedObj.sale_price : ""}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {RelatedObj.description}

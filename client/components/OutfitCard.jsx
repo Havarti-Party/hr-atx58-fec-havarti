@@ -37,7 +37,9 @@ const useStyles = makeStyles({
 export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
-  const [overviewProduct, setOverviewProduct] = useContext(ProductsContext);
+  //useContext
+  const { overviewProduct } = useContext(ProductsContext);
+  const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   return (
     <Card className={classes.root}>
@@ -46,26 +48,31 @@ export default function OutfitCard({ OutfitObj, remove }) {
         image={OutfitObj.url ? OutfitObj.url : noImage}
         title={OutfitObj.name}
       >
-        <div className={classes.align}>
-          <Grid container direction="column" alignItems="flex-end">
-            <Grid item>
-              <HighlightOffIcon
-                onClick={() => {
-                  remove(OutfitObj);
-                }}
-              />
-            </Grid>
+        <Grid container direction="column" alignItems="flex-end">
+          <Grid item>
+            <HighlightOffIcon
+              onClick={() => {
+                remove(OutfitObj);
+              }}
+            />
           </Grid>
-        </div>
+        </Grid>
       </CardMedia>
       <CardActionArea
         onClick={() => {
-          setOverviewProduct(OutfitObj);
+          setOverviewProductState(OutfitObj);
         }}
       >
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="body1" component="h2">
             {OutfitObj.name}
+          </Typography>
+          <Typography gutterBottom variant="caption" component="h2">
+            {OutfitObj.category}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {OutfitObj.default_price}
+            {OutfitObj.sale_price ? OutfitObj.sale_price : ""}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {OutfitObj.description}

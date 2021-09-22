@@ -12,6 +12,7 @@ export default function RatingBreakdownBars(props) {
     5: 0
   };
 
+
   var numReviews = props.currentReviews.results.length;
 
   props.currentReviews.results.map(review => {
@@ -25,19 +26,32 @@ export default function RatingBreakdownBars(props) {
     4: starBreakdown[4] / numReviews * 100,
     5: starBreakdown[5] / numReviews * 100
   }
+
   var newAverageStarRating = 0;
+
   for (var key in starBreakdown) {
     newAverageStarRating += key * starBreakdown[key];
   }
+
   if (numReviews != 0) {
     newAverageStarRating /= numReviews;
   } else {
     newAverageStarRating = 0;
   }
 
+  if (Object.keys(props.currentReviews.ratings).length === 0) {
+    percentBreakdown = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0
+    }
+  }
+
   useEffect(() => {
-    props.updateAverageStarRating(newAverageStarRating);
-  }, [props.currentReviews]);
+    props.setStarRating(newAverageStarRating);
+  });
 
   return (
     <div>
