@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+import React from "react";
 
 //modal
 import PropTypes from "prop-types";
@@ -9,9 +10,6 @@ import Dialog from "@material-ui/core/Dialog";
 import Grid from "@material-ui/core/Grid";
 //Icons
 import CheckIcon from "@material-ui/icons/Check";
-
-//Hard Coded Features
-let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
 
 export default function ModalPopup({
   onClose,
@@ -84,6 +82,9 @@ export default function ModalPopup({
   );
 }
 ModalPopup.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  open: PropTypes.bool,
+  compareFeatures: PropTypes.array,
+  relatedProductFeatures: PropTypes.object,
+  overviewProductFeatures: PropTypes.object,
 };
