@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+
+// import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const AnswerStyles = makeStyles({
@@ -10,19 +14,35 @@ const AnswerStyles = makeStyles({
 export default function Answer({answerData}) {
   const [helpfulCount, setHelpfulCount] = useState(answerData.helpfulness)
   const classes = AnswerStyles()
-  //eventually these buttons will send axios requests to UPDATE this information in the api/database
-  function incrementHelpfulCount() {
-    //axios.update
+
+  function incrementHelpfulCount(e) {
+    e.preventDefault();
     setHelpfulCount(prevCount => prevCount + 1);
+    axios.post('/qa/answerHelpfulness', {
+      answer_id: answerData.id
+    })
+    .then()
+    .catch(error => {
+      console.log('there was an error updating the question\'s helpful count', error);
+    })
+  }
+
+
+  function handleReport(e) {
+    e.preventDefault();
+    axios.post('/qa/reportAnswer', {
+      answer_id: answerData.id,
+    })
+    .then(() => {
+      window.alert('You\'ve successfully reported this Answer. We will remove this as soon as possible')
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
 
   //conditional based on if the answer came from the Seller: make the name say seller and BOLD it
   //additional conditional based on if its the first answer/top answer in the list
-  function handleReport() {
-    //will need to XpostX (not post, but update) the reported data to server
-    //axios.post('/qa/reportAnswer', {how to })
-  }
-
   // if (answerData.answerer_name === 'Seller') {
   //   console.log('bold this name')
   // }
@@ -39,7 +59,7 @@ export default function Answer({answerData}) {
       </div>
       <span>
         <p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | answer helpfulness:
-          <a href='' onClick={() => incrementHelpfulCount()}>yes ({helpfulCount})</a> ||
+          <a href='' onClick={incrementHelpfulCount}>yes ({helpfulCount})</a> ||
           <br />
           <a href='' onClick={handleReport}className={classes.report}>report</a>
         </p>
@@ -47,4 +67,9 @@ export default function Answer({answerData}) {
       <br/>
     </div>
   )
+}
+
+Answer.propTypes = {
+  answerData: PropTypes.object,
+  product_id: PropTypes.number
 }

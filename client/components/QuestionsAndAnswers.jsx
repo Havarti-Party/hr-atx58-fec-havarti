@@ -1,21 +1,17 @@
-import React, { useState, useEffect, useContext, createContext, useRef } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
 
 import axios from 'axios';
 
 import { ProductsContext } from './ProductsContext.jsx';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
-import AnswerModal from './AnswerModal.jsx';
 import ExpandQuestions from './QuestionExpand.jsx';
 
 import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 
-import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -41,9 +37,10 @@ const questionListStyles = makeStyles({
 
 export const QuestionsContext = createContext()
 
-export default function QuestionsAndAnswers(props) {
+export default function QuestionsAndAnswers() {
   const classes = questionListStyles()
   const { overviewProduct } = useContext(ProductsContext)
+  // eslint-disable-next-line no-unused-vars
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
   const [ productId, setProductId ] = useState(0);
   const [ questions, setQuestions ] = useState([])
@@ -52,8 +49,6 @@ export default function QuestionsAndAnswers(props) {
   const [ questionDisplayCount, setQuestionDisplayCount ] = useState(2);
   const [ currentQuestions, setCurrentQuestions ] = useState(questions.slice(0, 2))
 
-  const isMounted = useRef(false);
-
   useEffect(() => {
       axios.get('/qa', {
         params: {
@@ -61,7 +56,6 @@ export default function QuestionsAndAnswers(props) {
         }})
         .then(response => {
           var newQuestions = response.data.results
-          setProductId(overviewProductState.id);
           setQuestions(newQuestions.sort((a, b) => {
             a.question_helpfulness - b.question_helpfulness
           }));
@@ -73,6 +67,7 @@ export default function QuestionsAndAnswers(props) {
 
   useEffect(() => {
     setCurrentQuestions(questions.slice(0, questionDisplayCount))
+    setProductId(overviewProductState.id);
   }, [questions])
 
   useEffect(() => {
@@ -82,14 +77,9 @@ export default function QuestionsAndAnswers(props) {
     setCurrentQuestions(questions.slice(0, questionDisplayCount))
   }, [questionDisplayCount])
 
-  function expandQuestions() {
-    setQuestionDisplayCount(questionDisplayCount + 2)
-  }
-
-
   return (
     <div id='questionList' className={classes.widget}>
-      <QuestionsContext.Provider value={[questions, setQuestions]}>
+    <QuestionsContext.Provider value={[questions, setQuestions]}>
       <Grid container spacing={2}>
         <Grid item md={2}>
         </Grid>
@@ -141,7 +131,7 @@ export default function QuestionsAndAnswers(props) {
           </QuestionsContext.Provider>
         </Grid>
       </Grid>
-      </QuestionsContext.Provider>
+    </QuestionsContext.Provider>
     </div>
   )
 }

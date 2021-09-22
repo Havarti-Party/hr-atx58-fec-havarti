@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const express = require("express");
 
 const config = require("./config.js");
@@ -50,7 +52,7 @@ app.get("/related", (req, res) => {
         slogan: data[0].slogan,
         description: data[0].description,
         category: data[0].category,
-        default_price: data[0].default_price,
+        // default_price: data[0].default_price,
         features: data[0].features,
         url: data[1].results[0].photos[0].url,
       };
@@ -146,35 +148,67 @@ app.post("/reviews", (req, res) => {
   });
 });
 
+app.post('/qa/reportQuestion', (req, res) => {
+  var question_id = req.body.question_id;
+  models.reportQuestion(question_id, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(204);
+    }
+  })
+})
+
+app.post('/qa/reportAnswer', (req, res) => {
+  var answer_id = req.body.answer_id;
+  models.reportAnswer(answer_id, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(204);
+    }
+  })
+})
+
 app.post('/qa/questionHelpfulness', (req, res) => {
   var question_id = req.body.questionId;
-  // console.log(question_id)
   models.updateQuestionHelpfulness(question_id, (err, result) => {
     if (err) {
       console.log('error in index')
       res.status(500).send(err);
     } else {
-      res.status(204).send()
+      res.status(204)
     }
   })
 })
 
-// app.put('/qa/answerHelpfulness', (req, res) => {
-//   console.log(req.body)
-//   models.updateQuestionHelpfulness
-//   res.status(200).send(result.data)
-// })
+app.post('/qa/answerHelpfulness', (req, res) => {
+  var answer_id = req.body.answer_id;
+  models.updateAnswerHelpfulness(answer_id, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(204)
+    }
+  })
+})
 
+// var body = req.body.question_body;
+//   var email = req.body.email;
+//   var name = req.body.asker_name;
+//   var product_id = req.body.product_id;
 app.post('/qa/questions', (req, res) => {
   var body = req.body.question_body;
   var email = req.body.email;
   var name = req.body.asker_name;
   var product_id = req.body.product_id;
+  console.log(product_id);
   models.addNewQuestion(body, name, email, product_id, (err, result) => {
     if (err) {
-
+      console.log(err);
       res.status(500).send('error creating your question')
     } else {
+      console.log('response in index.js')
       res.status(201).send('CREATED');
     }
   })
