@@ -24,6 +24,8 @@ export default function ModalPopup({
     onClose();
   };
 
+  let uniqueFeatures = [...new Set(compareFeatures)];
+
   return (
     <Dialog
       onClose={handleClose}
@@ -53,7 +55,7 @@ export default function ModalPopup({
             </Grid>
           </Grid>
         </Grid>
-        {compareFeatures.map((feature, index) => (
+        {uniqueFeatures.map((feature, index) => (
           <Grid item xs={12} key={index}>
             <Grid
               container
@@ -62,13 +64,17 @@ export default function ModalPopup({
               alignItems="center"
             >
               <Grid item xs={2}>
-                {overviewProductFeatures.includes(feature) ? <CheckIcon /> : ""}
+                {overviewProductFeatures[feature]
+                  ? overviewProductFeatures[feature]
+                  : ""}
               </Grid>
               <Grid item xs={6}>
                 <DialogTitle>{feature}</DialogTitle>
               </Grid>
               <Grid item xs={2}>
-                {relatedProductFeatures.includes(feature) ? <CheckIcon /> : ""}
+                {relatedProductFeatures[feature]
+                  ? relatedProductFeatures[feature]
+                  : ""}
               </Grid>
             </Grid>
           </Grid>

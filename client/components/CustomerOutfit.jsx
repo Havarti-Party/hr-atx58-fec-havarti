@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import OutfitCard from "./OutfitCard.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Carousel from "react-elastic-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 const _ = require("underscore");
 
 const CustomerOutfit = (props) => {
@@ -27,8 +29,8 @@ const CustomerOutfit = (props) => {
   };
 
   //State
-  const [outfitList, updateOutfitList] = React.useState([]);
-  const [currentProduct, setCurrentProduct] = React.useState({});
+  const [outfitList, updateOutfitList] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState({});
   const updateWardrobe = (OutfitObj) => {
     if (_.contains(outfitList, OutfitObj)) {
       updateOutfitList(outfitList);
@@ -48,8 +50,6 @@ const CustomerOutfit = (props) => {
     updateOutfitList(copyOfOutfitList);
   };
 
-  const isInitialMount = useRef(true);
-
   if (!outfitList.length) {
     return (
       <Carousel responsive={responsive}>
@@ -62,7 +62,8 @@ const CustomerOutfit = (props) => {
         <div id="outfit-card">
           <h1> Your Wardrobe </h1>
         </div>
-        <Carousel centerMode={true} responsive={responsive}>
+
+        <Carousel showEmptySlots itemsToShow={4}>
           <AddToOutfitCard updateWardrobe={updateWardrobe} />
           {outfitList.map((obj, index) => {
             return (

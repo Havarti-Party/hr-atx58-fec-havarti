@@ -2,13 +2,12 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import StarRatings from 'react-star-ratings';
 import Grid from '@material-ui/core/Grid';
 import RatingBreakdownBars from './RARRatingBreakdownBars.jsx';
-import SizeBar from './RARSizeBar.jsx';
-import ComfortBar from './RARComfortBar.jsx';
 import ReviewSorter from './RARReviewSorter.jsx';
 import ReviewDisplay from './RARReviewDisplay.jsx';
 import { ProductsContext } from './ProductsContext';
 import Typography from '@mui/material/Typography';
-import RecommendRatio from './RARRecommendRatio';
+import RecommendRatio from './RARRecommendRatio.jsx';
+import FactorBarsDisplay from './RARFactorBarsDisplay.jsx';
 
 const axios = require('axios');
 
@@ -31,7 +30,7 @@ export default function RatingsAndReviews(props) {
         }
       })
       .then((reviewData) => {
-        // console.log('Review data object: ', reviewData);
+        // console.log('Review data object: ', reviewData.data);
         setCurrentReviews(reviewData.data);
         setLoading(false);
       })
@@ -58,8 +57,7 @@ export default function RatingsAndReviews(props) {
             <RecommendRatio currentReviews = {currentReviews} />
             {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'} />
             <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating} currentReviews={currentReviews} overviewProduct = {overviewProduct}/>
-            <SizeBar />
-            <ComfortBar />
+            <FactorBarsDisplay currentReviews={currentReviews} />
           </Grid>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
             <ReviewSorter currentReviews={currentReviews}/>

@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+
+import { QuestionsContext } from './QuestionsAndAnswers.jsx';
+
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
@@ -31,70 +35,95 @@ const modalStyles = makeStyles({
 });
 
 
-export default function AnswerModal(props) {
+export default function AnswerModal({questionId, product_id}) {
   const classes = modalStyles()
-  const [aModalOpen, setAModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [questions, setQuestions] = useContext(QuestionsContext);
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [allValues, setAllValues] = useState({
     answer: '',
     nickname: '',
     email: '',
+    images: [],
   });
-  // const [answerImage, setAnswerImage] = useState({})
-
-  const validateForm = (answerBody, nickname, email) => {
-    if (email.indexOf('@') === -1 || email.indexOf('.com') === -1) {
-      setAllValues({...allValues, [email]: ''})
-      setEmailInvalid(true);
-    } else {
-      setEmailInvalid(false);
-    }
-
-    if (answerBody === '') {
-      setAllValues({...allValues, [question]: ''})
-      setQuestionInvalid(true);
-    } else {
-      setQuestionInvalid(false);
-    }
-
-    if (nickname === '') {
-      //left this setValue incase I add more parameters for the nickname
-      setAllValues({...allValues, [nickname]: ''})
-      setNicknameInvalid(true);
-    } else {
-      setNicknameInvalid(false);
-    }
-  }
 
   const handleOpen = () => {
-    setAModalOpen(true);
+    setOpen(true);
   };
 
   const handleClose = () => {
-    setAModalOpen(false);
+    setOpen(false);
   };
 
   const changeHandler = (e) => {
     setAllValues({...allValues, [e.target.name]: e.target.value})
   }
 
+  const validateForm = (answerBody, nickname, email) => {
+    var formValid = true;
+    if (email.indexOf('@') === -1 || email.indexOf('.com') === -1) {
+      setAllValues({...allValues, [email]: ''})
+      setEmailInvalid(true);
+      formValid = false;
+    } else {
+      setEmailInvalid(false);
+    }
+    return formValid
+  }
+
   const handleSubmit = (e) => {
     var answerBody = allValues.answer;
     var nickname = allValues.nickname;
     var email = allValues.email;
+    var images = [];
 
     validateForm(answerBody, nickname, email);
+    if (validateForm(answerBody, nickname, email)) {
+      axios.post(`/qa/answers`, {
+        answerBody: answerBody,
+        nickname: nickname,
+        email: email,
+        images: images,
+        question_id: questionId,
+      })
+      .then(response => {
+        axios.get('/qa', {
+          params: {
+            id: product_id,
+          }})
+          .then(response => {
+            var newQuestions = response.data.results
+            setQuestions(newQuestions.sort((a, b) => {
+              a.question_helpfulness - b.question_helpfulness
+            }));
+          })
+          .then(done => {
+            setAllValues({
+              question: '',
+              nickname: '',
+              email: '',
+            });
+            setOpen(false);
+          })
+          .catch(error => {
+            console.log('Error retrieving related questions for this product', error)
+          })
+      })
+      .catch(error => {
+        console.log('error creating a new Answer', error)
+      })
+    } else {
+      console.log('something went wrong');
+    }
     //needs to make a post request to the server/append it to state
     console.log(allValues);
-    //need to format the inputs. Easiest way would be to append them to the database and have it auto increment question id, and then also update state for us in the form of a request body.
 
-    //ALSO NEEDS TO CLOSE THE MODAL (after successful validation)
   }
   return (
     <div id='answerModal'>
       <Button id='addAnswer' variant='contained' onClick={handleOpen} className={classes.button}>Add an Answer</Button>
       <Modal
-        open={aModalOpen}
+        open={open}
         onClose={handleClose}
         aria-labelledby='Submit your Answer'
         aria-describedby='a modal to post a new answer'

@@ -1,10 +1,10 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
-import { AnswersContext } from './AnswerList.jsx';
+import { AnswerCountContext } from './AnswerList.jsx';
 
 export default function ExpandAnswers({answers, currentAnswers, style}) {
 
-  const [answerDisplayCount, setAnswerDisplayCount] = useContext(AnswersContext)
+  const [answerDisplayCount, setAnswerDisplayCount] = useContext(AnswerCountContext)
 
   function expandAnswersButton() {
     setAnswerDisplayCount(answers.length)
@@ -17,6 +17,11 @@ export default function ExpandAnswers({answers, currentAnswers, style}) {
     return (
       <div>
         <Button id='expandAnswers' variant='contained' onClick={expandAnswersButton} className={style.button}>See More Answers</Button>
+      </div>
+    )
+  } else if (answers.length <= 2) {
+    return (
+      <div>
       </div>
     )
   } else {
