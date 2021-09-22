@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+
+// import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const AnswerStyles = makeStyles({
@@ -28,7 +30,6 @@ export default function Answer({answerData}) {
 
   function handleReport(e) {
     e.preventDefault();
-    window.alert('You\'ve successfully reported this Answer. We will review this as soon as possible')
     axios.post('/qa/reportAnswer', {
       answer_id: answerData.id,
     })

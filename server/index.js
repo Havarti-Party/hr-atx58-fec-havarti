@@ -52,7 +52,7 @@ app.get("/related", (req, res) => {
         slogan: data[0].slogan,
         description: data[0].description,
         category: data[0].category,
-        default_price: data[0].default_price,
+        // default_price: data[0].default_price,
         features: data[0].features,
         url: data[1].results[0].photos[0].url,
       };

@@ -33,11 +33,25 @@ export default function Question({question, style, product_id}) {
     })
   }
 
+  function handleReport(e) {
+    e.preventDefault();
+    axios.post('/qa/reportQuestion', {
+      question_id: question.question_id,
+    })
+    .then(() => {
+      window.alert('You\'ve successfully reported this Question. We will remove this as soon as possible')
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }
+
   return (
     <div id='question' className={classes.questionTile}>
       <span>
         <h3>Q: {question.question_body}?</h3>
         <span>Helpful? <a href='' onClick={incrementHelpfulCount}>yes ({questionHelpfulCount})</a> | <AnswerModal questionId={question.question_id} product_id={product_id}/></span>
+        <a href='' onClick={handleReport}className={classes.report}>report question</a>
       </span>
       <div id='answerList'>
         <AnswerList answers={answers} style={style} product_id={product_id} />
