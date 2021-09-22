@@ -92,10 +92,17 @@ let addNewAnswer = (answerBody, nickname, email, images, question_id, callback) 
   })
 }
 
-let updateAnswerHelpfulness = () => {
-
+let updateQuestionHelpfulness = (question_id, callback) => {
+  axios.put(`/qa/questions/${question_id}/helpful`)
+  .then(result => {
+    callback(null, result.data)
+  })
+  .catch(error => {
+    callback(error, null)
+  })
 }
-let updateQuestionHelpfulness = () => {
+
+let updateAnswerHelpfulness = () => {
 
 }
 

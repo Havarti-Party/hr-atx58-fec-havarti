@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect }from 'react';
 import AnswerList from './AnswerList.jsx';
+import AnswerModal from './AnswerModal.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 
 const questionStyles = makeStyles({
@@ -18,12 +19,12 @@ export default function Question({question, style, product_id}) {
   const [answers, setAnswers] = useState(Object.values(question.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
   const [questionHelpfulCount, setQuestionHelpfulCount] = useState(question.question_helpfulness)
 
-  function incrementHelpfulCount() {
-    //post //how to limit to one time click only
+  function incrementHelpfulCount(e) {
+    e.preventDefault();
+    //put //how to limit to one time click only
     setQuestionHelpfulCount(prevCount => prevCount + 1); //may not need to do this anymore.
-    axios.put('/qa/questionHelpful', {
+    axios.put('/qa/questionHelpfulness', {
       params: {
-        helpfulCount: questionHelpfulCount,
         questionId: question.question_id,
       }
     })
@@ -35,31 +36,15 @@ export default function Question({question, style, product_id}) {
     })
   }
 
-  function decrementHelpfulCount() {
-    //post //how to limit one time click
-    setQuestionHelpfulCount(prevCount => prevCount - 1);
-    axios.put('/qa/questionHelpful', {
-      params: {
-        helpfulCount: questionHelpfulCount,
-        questionId: question.question_id,
-      }
-    })
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.log('there was an error updating the question\'s helpful count', error);
-    })
-  }
 
   return (
     <div id='question' className={classes.questionTile}>
-      <div>
+      <span>
         <h3>Q: {question.question_body}?</h3>
-        <span>Helpful? <a href='' onClick={() => incrementHelpfulCount()}>yes ({questionHelpfulCount})</a>/<a href='' onClick={() => decrementHelpfulCount()}>no</a></span>
-      </div>
+        <span>Helpful? <a href='' onClick={() => incrementHelpfulCount()}>yes ({questionHelpfulCount})</a> | <AnswerModal questionId={question.question_id} product_id={product_id}/></span>
+      </span>
       <div id='answerList'>
-        <AnswerList answers={answers} style={style} questionId={question.question_id} product_id={product_id}/>
+        <AnswerList answers={answers} style={style} product_id={product_id}/>
       </div>
     </div>
   )

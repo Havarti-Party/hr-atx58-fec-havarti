@@ -146,11 +146,16 @@ app.post("/reviews", (req, res) => {
   });
 });
 
-// app.put('/qa/questionHelpfulness', (req, res) => {
-//   console.log(req.body)
-//   models.updateQuestionHelpfulness
-//   res.status(200).send(result.data)
-// })
+app.put('/qa/questionHelpfulness', (req, res) => {
+  console.log(req.body)
+  models.updateQuestionHelpfulness(question_id, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(result.data)
+    }
+  })
+})
 
 // app.put('/qa/answerHelpfulness', (req, res) => {
 //   console.log(req.body)
