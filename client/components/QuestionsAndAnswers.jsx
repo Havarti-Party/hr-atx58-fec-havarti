@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext, useRef } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
 
 import axios from 'axios';
 
@@ -41,7 +41,7 @@ const questionListStyles = makeStyles({
 
 export const QuestionsContext = createContext()
 
-export default function QuestionsAndAnswers(props) {
+export default function QuestionsAndAnswers() {
   const classes = questionListStyles()
   const { overviewProduct } = useContext(ProductsContext)
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
@@ -52,8 +52,6 @@ export default function QuestionsAndAnswers(props) {
   const [ questionDisplayCount, setQuestionDisplayCount ] = useState(2);
   const [ currentQuestions, setCurrentQuestions ] = useState(questions.slice(0, 2))
 
-  const isMounted = useRef(false);
-
   useEffect(() => {
       axios.get('/qa', {
         params: {
@@ -61,7 +59,6 @@ export default function QuestionsAndAnswers(props) {
         }})
         .then(response => {
           var newQuestions = response.data.results
-          setProductId(overviewProductState.id);
           setQuestions(newQuestions.sort((a, b) => {
             a.question_helpfulness - b.question_helpfulness
           }));
@@ -73,6 +70,7 @@ export default function QuestionsAndAnswers(props) {
 
   useEffect(() => {
     setCurrentQuestions(questions.slice(0, questionDisplayCount))
+    setProductId(overviewProductState.id);
   }, [questions])
 
   useEffect(() => {
@@ -81,11 +79,6 @@ export default function QuestionsAndAnswers(props) {
   useEffect(() => {
     setCurrentQuestions(questions.slice(0, questionDisplayCount))
   }, [questionDisplayCount])
-
-  function expandQuestions() {
-    setQuestionDisplayCount(questionDisplayCount + 2)
-  }
-
 
   return (
     <div id='questionList' className={classes.widget}>

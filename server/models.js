@@ -53,6 +53,7 @@ let getProductQuestions = (id, callback) => {
       callback(null, result);
     })
     .catch((error) => {
+      console.log('error getting qs in models', error)
       callback(error, null);
     });
 };
@@ -67,9 +68,11 @@ let addNewQuestion = (questionBody, nickname, email, product_id, callback) => {
     headers: {Authorization: config.token}
   })
   .then(response => {
-    callback(null, response.data)
+    console.log('in models', response)
+    callback(null, response)
   })
   .catch(error => {
+    console.log('in modesl err:', error);
     callback(error, null)
   })
 }
@@ -105,7 +108,7 @@ let updateQuestionHelpfulness = (question_id, callback) => {
 }
 
 let updateAnswerHelpfulness = (answer_id, callback) => {
-  debugger;
+  // debugger;
   axios.put(apiURL + `/qa/answers/${answer_id}/helpful`, null, {
     headers: { Authorization: config.token }
   })

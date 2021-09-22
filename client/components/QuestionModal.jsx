@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
 import { QuestionsContext } from './QuestionsAndAnswers.jsx';
@@ -32,6 +32,7 @@ const modalStyles = makeStyles({
 
 
 export default function QuestionModal({styles, product_id}) {
+
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
   const [questions, setQuestions] = useContext(QuestionsContext);
@@ -73,7 +74,6 @@ export default function QuestionModal({styles, product_id}) {
     var questionBody = allValues.question
     var nickname = allValues.nickname
     var email = allValues.email
-
     e.preventDefault();
 
     validateForm(questionBody, nickname, email);
@@ -87,6 +87,7 @@ export default function QuestionModal({styles, product_id}) {
         product_id: product_id,
       })
       .then(response => {
+        console.log('successful post', response.data);
         axios.get('/qa', {
           params: {
             id: product_id,
@@ -97,7 +98,7 @@ export default function QuestionModal({styles, product_id}) {
               a.question_helpfulness - b.question_helpfulness
             }));
           })
-          .then(done => {
+          .then(() => {
             setAllValues({
               question: '',
               nickname: '',
@@ -110,15 +111,15 @@ export default function QuestionModal({styles, product_id}) {
           })
       })
       .catch(error => {
-        console.log('error creating a new question')
+        console.log('error creating a new question', error)
         window.alert('error creating a new question, please try again')
       })
     } else {
       console.log('something went wrong')
     }
-    //needs to make a post request to the server/append it to state
-    console.log(allValues);
   }
+
+
   return (
     <div id='questionModal' className={styles.modal}>
       <Button id='addQuestion' variant='contained' onClick={handleOpen} className={styles.button}>add a question</Button>

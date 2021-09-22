@@ -28,8 +28,7 @@ export default function Question({question, style, product_id}) {
     axios.post('/qa/questionHelpfulness', {
       questionId: question.question_id,
     })
-    .then(response => {
-    })
+    .then()
     .catch(error => {
       console.log('there was an error updating the question\'s helpful count', error);
     })

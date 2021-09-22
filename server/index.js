@@ -192,16 +192,22 @@ app.post('/qa/answerHelpfulness', (req, res) => {
   })
 })
 
+// var body = req.body.question_body;
+//   var email = req.body.email;
+//   var name = req.body.asker_name;
+//   var product_id = req.body.product_id;
 app.post('/qa/questions', (req, res) => {
   var body = req.body.question_body;
   var email = req.body.email;
   var name = req.body.asker_name;
   var product_id = req.body.product_id;
+  console.log(product_id);
   models.addNewQuestion(body, name, email, product_id, (err, result) => {
     if (err) {
-
+      console.log(err);
       res.status(500).send('error creating your question')
     } else {
+      console.log('response in index.js')
       res.status(201).send('CREATED');
     }
   })
