@@ -50,7 +50,7 @@ export default function RatingBreakdownBars(props) {
   }
 
   useEffect(() => {
-    props.updateAverageStarRating(newAverageStarRating);
+    props.setStarRating(newAverageStarRating);
   });
 
   return (
