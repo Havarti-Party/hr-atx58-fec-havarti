@@ -25,14 +25,12 @@ export default function RatingsAndReviews(props) {
   const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current) {
       axios.get('/reviewtotal', {
         params: {
           ID: overviewProductState.id
         }
       })
       .then((reviewData) => {
-        // console.log('Review data object: ', reviewData.data);
         setCurrentReviews(reviewData.data);
         setLoading(false);
       })
@@ -40,9 +38,7 @@ export default function RatingsAndReviews(props) {
         console.log('Error while fetching reviews:');
         console.log(error);
       })
-    } else {
-    isMounted.current = true;
-  }}, [overviewProductState])
+}, [overviewProductState])
 
   if (isLoading) {
     return (
