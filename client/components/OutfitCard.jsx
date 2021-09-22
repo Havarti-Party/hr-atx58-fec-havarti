@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ProductsContext } from "./ProductsContext.jsx";
@@ -44,7 +46,11 @@ export default function OutfitCard({ OutfitObj, remove }) {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={OutfitObj.url ? OutfitObj.url : noImage}
+        image={
+          OutfitObj.photos[0].thumbnail_url
+            ? OutfitObj.photos[0].thumbnail_url
+            : noImage
+        }
         title={OutfitObj.name}
       >
         <Grid container direction="column" alignItems="flex-end">
@@ -70,7 +76,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
             {OutfitObj.category}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {OutfitObj.default_price}
+            {OutfitObj.original_price}
             {OutfitObj.sale_price ? OutfitObj.sale_price : ""}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

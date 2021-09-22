@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import { ProductsContext } from "./ProductsContext.jsx";
 import PropTypes from "prop-types";
@@ -14,11 +15,17 @@ import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 
 export default function AddToOutfitCard({ updateWardrobe }) {
   //useContext
-  const { overviewProduct } = useContext(ProductsContext);
+  const { overviewProduct, selectedStyleState } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
+  const [selectedStyle, setSelectedStyle] = selectedStyleState;
 
-  const addToOutfitList = (overviewProductState) => {
-    updateWardrobe(overviewProductState);
+  const addToOutfitList = (selectedStyleObj) => {
+    //add a property for the overviewProduct ID to the style
+    selectedStyleObj.overviewProductID = overviewProductState.id;
+    selectedStyleObj.description = overviewProductState.description;
+    selectedStyleObj.category = overviewProductState.category;
+
+    updateWardrobe(selectedStyleObj);
   };
 
   return (
@@ -31,7 +38,7 @@ export default function AddToOutfitCard({ updateWardrobe }) {
           <DoneOutlineIcon
             style={{ fontSize: 250 }}
             onClick={() => {
-              addToOutfitList(overviewProductState);
+              addToOutfitList(selectedStyle);
             }}
           />
         </CardActionArea>
