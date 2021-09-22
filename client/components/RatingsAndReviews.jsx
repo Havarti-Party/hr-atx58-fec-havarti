@@ -19,6 +19,7 @@ export default function RatingsAndReviews(props) {
   const [currentReviews, setCurrentReviews] = useState({});
   const [averageStarRating, updateAverageStarRating] = useState(0);
   const [isLoading, setLoading] = useState(true);
+  // const [recommendRatio, setRecommendRatio] = useState(0);
   const isMounted = useRef(false);
 
   useEffect(() => {
