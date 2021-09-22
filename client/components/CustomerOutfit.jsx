@@ -4,6 +4,7 @@ import AddToOutfitCard from "./AddToOutfit.jsx";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-elastic-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Typography from "@material-ui/core/Typography";
 
 const _ = require("underscore");
 
@@ -52,16 +53,21 @@ const CustomerOutfit = (props) => {
 
   if (!outfitList.length) {
     return (
-      <Carousel responsive={responsive}>
-        <AddToOutfitCard updateWardrobe={updateWardrobe} />
-      </Carousel>
+      <>
+        <Typography gutterBottom variant="h4" component="h4">
+          Your Wardrobe
+        </Typography>
+        <Carousel responsive={responsive}>
+          <AddToOutfitCard updateWardrobe={updateWardrobe} />
+        </Carousel>
+      </>
     );
   } else {
     return (
       <>
-        <div id="outfit-card">
-          <h1> Your Wardrobe </h1>
-        </div>
+        <Typography gutterBottom variant="h4" component="h4">
+          Your Wardrobe
+        </Typography>
 
         <Carousel showEmptySlots itemsToShow={4}>
           <AddToOutfitCard updateWardrobe={updateWardrobe} />
