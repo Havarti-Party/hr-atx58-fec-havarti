@@ -29,8 +29,8 @@ const CustomerOutfit = (props) => {
   };
 
   //State
-  const [outfitList, updateOutfitList] = React.useState([]);
-  const [currentProduct, setCurrentProduct] = React.useState({});
+  const [outfitList, updateOutfitList] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState({});
   const updateWardrobe = (OutfitObj) => {
     if (_.contains(outfitList, OutfitObj)) {
       updateOutfitList(outfitList);
@@ -49,8 +49,6 @@ const CustomerOutfit = (props) => {
 
     updateOutfitList(copyOfOutfitList);
   };
-
-  const isInitialMount = useRef(true);
 
   if (!outfitList.length) {
     return (

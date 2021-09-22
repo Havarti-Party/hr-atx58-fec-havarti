@@ -59,8 +59,11 @@ export default function OutfitCard({ OutfitObj, remove }) {
         }}
       >
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="title" component="h2">
             {OutfitObj.name}
+          </Typography>
+          <Typography gutterBottom variant="subtitle" component="p">
+            {OutfitObj.category}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {OutfitObj.default_price}
