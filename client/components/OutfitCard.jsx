@@ -66,7 +66,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
       <CardActionArea>
         <CardContent
           onClick={() => {
-            setOverviewProductState(OutfitObj.overviewProduct[0]);
+            setOverviewProductState(OutfitObj.overviewProduct);
           }}
         >
           <Typography gutterBottom variant="body1" component="h2">
