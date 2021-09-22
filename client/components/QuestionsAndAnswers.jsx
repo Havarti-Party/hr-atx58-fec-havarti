@@ -55,7 +55,6 @@ export default function QuestionsAndAnswers(props) {
   const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current) {
       axios.get('/qa', {
         params: {
           id: overviewProductState.id,
@@ -70,9 +69,6 @@ export default function QuestionsAndAnswers(props) {
         .catch(error => {
           console.log('Error retrieving related questions for this product', error)
         })
-    } else {
-      isMounted.current = true;
-    }
   }, [overviewProductState])
 
   useEffect(() => {

@@ -14,6 +14,7 @@ export default function MainImageCarousel({photos}) {
   useEffect(() => {
     setCurrentImageIndex(0);
   }, [overviewProductState])
+
   const imageParse = ((selectedStylePhotos) => {
     selectedStylePhotos.map(photoObj => {
       parsedPhotos.push({
