@@ -47,11 +47,11 @@ export default function QuestionsAndAnswers(props) {
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
   const [ productId, setProductId ] = useState(0);
   const [ questions, setQuestions ] = useState([])
+  const [ searchValue, setSearchValue ] = useState('');
 
-  const [searchValue, setSearchValue] = useState('');
+  const [ questionDisplayCount, setQuestionDisplayCount ] = useState(2);
+  const [ currentQuestions, setCurrentQuestions ] = useState(questions.slice(0, 2))
 
-  const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
-  var currentQuestions = questions.slice(0, questionDisplayCount)
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -75,6 +75,16 @@ export default function QuestionsAndAnswers(props) {
     }
   }, [overviewProductState])
 
+  useEffect(() => {
+    setCurrentQuestions(questions.slice(0, questionDisplayCount))
+  }, [questions])
+
+  useEffect(() => {
+  }, [currentQuestions])
+
+  useEffect(() => {
+    setCurrentQuestions(questions.slice(0, questionDisplayCount))
+  }, [questionDisplayCount])
 
   function expandQuestions() {
     setQuestionDisplayCount(questionDisplayCount + 2)
@@ -83,6 +93,7 @@ export default function QuestionsAndAnswers(props) {
 
   return (
     <div id='questionList' className={classes.widget}>
+      <QuestionsContext.Provider value={[questions, setQuestions]}>
       <Grid container spacing={2}>
         <Grid item md={2}>
         </Grid>
@@ -109,9 +120,9 @@ export default function QuestionsAndAnswers(props) {
         </Grid>
         <Grid item sm={1} />
         <Grid item md={2}>
-          <QuestionsContext.Provider value={[questions, setQuestions]}>
-            <QuestionModal styles={classes} questions={questions} product_id={productId}/>
-          </QuestionsContext.Provider >
+          {/* <QuestionsContext.Provider value={[questions, setQuestions]}> */}
+            <QuestionModal styles={classes} product_id={productId}/>
+          {/* </QuestionsContext.Provider > */}
         </Grid>
         <Grid item xl={2}>
         </Grid>
@@ -123,7 +134,7 @@ export default function QuestionsAndAnswers(props) {
               return question;
             }
           }).map(question => {
-            return <Question key={question.question_id} question={question} style={classes}/>
+            return <Question key={question.question_id} question={question} style={classes} product_id={productId}/>
           })}
         </Grid>
         <Grid item md={2}>
@@ -134,6 +145,7 @@ export default function QuestionsAndAnswers(props) {
           </QuestionsContext.Provider>
         </Grid>
       </Grid>
+      </QuestionsContext.Provider>
     </div>
   )
 }

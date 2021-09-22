@@ -16,9 +16,6 @@ export default function Answer({answerData}) {
     setHelpfulCount(prevCount => prevCount + 1);
   }
 
-  function decrementHelpfulCount() {
-    setHelpfulCount(prevCount => prevCount - 1);
-  }
   //conditional based on if the answer came from the Seller: make the name say seller and BOLD it
   //additional conditional based on if its the first answer/top answer in the list
   function handleReport() {
@@ -42,7 +39,7 @@ export default function Answer({answerData}) {
       </div>
       <span>
         <p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | answer helpfulness:
-          <a href='' onClick={() => incrementHelpfulCount()}>yes ({helpfulCount})</a>/<a href='' onClick={() => decrementHelpfulCount()}>no</a>
+          <a href='' onClick={() => incrementHelpfulCount()}>yes ({helpfulCount})</a> ||
           <br />
           <a href='' onClick={handleReport}className={classes.report}>report</a>
         </p>
