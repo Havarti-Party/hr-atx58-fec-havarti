@@ -10,9 +10,6 @@ import Grid from "@material-ui/core/Grid";
 //Icons
 import CheckIcon from "@material-ui/icons/Check";
 
-//Hard Coded Features
-let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
-
 export default function ModalPopup({
   onClose,
   open,
@@ -86,4 +83,7 @@ export default function ModalPopup({
 ModalPopup.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
+  compareFeatures: PropTypes.array,
+  relatedProductFeatures: PropTypes.object,
+  overviewProductFeatures: PropTypes.object,
 };

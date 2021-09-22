@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 const _ = require("underscore");
 
-const CustomerOutfit = (props) => {
+const CustomerOutfit = () => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
