@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import OutfitCard from "./OutfitCard.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
 import "react-multi-carousel/lib/styles.css";
@@ -31,7 +31,6 @@ const CustomerOutfit = () => {
 
   //State
   const [outfitList, updateOutfitList] = useState([]);
-  const [currentProduct, setCurrentProduct] = useState({});
   const updateWardrobe = (OutfitObj) => {
     if (_.contains(outfitList, OutfitObj)) {
       updateOutfitList(outfitList);

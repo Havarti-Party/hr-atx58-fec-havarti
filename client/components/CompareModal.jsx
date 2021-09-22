@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 //modal
 import PropTypes from "prop-types";
@@ -81,8 +81,8 @@ export default function ModalPopup({
   );
 }
 ModalPopup.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  open: PropTypes.bool,
   compareFeatures: PropTypes.array,
   relatedProductFeatures: PropTypes.object,
   overviewProductFeatures: PropTypes.object,

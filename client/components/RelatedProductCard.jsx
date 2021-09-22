@@ -34,8 +34,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const [currentItem, setCurrentItem] = useState({});
   const [compareFeatures, setCompareFeatures] = useState([]);
   const [clickedStar, setClickedStar] = useState(false);
-  const [relatedProductFeatures, setRelatedProductFeatures] = useState([]);
-  const [overviewProductFeatures, setOverviewProductFeatures] = useState([]);
+  const [relatedProductFeatures, setRelatedProductFeatures] = useState({});
+  const [overviewProductFeatures, setOverviewProductFeatures] = useState({});
 
   const isInitialMount = useRef(true);
 
@@ -183,6 +183,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
 }
 
 RelatedProductCard.propTypes = {
-  updatedWardrobe: PropTypes.func.isRequired,
+  updatedWardrobe: PropTypes.func,
   RelatedObj: PropTypes.object,
 };

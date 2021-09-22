@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ProductsContext } from "./ProductsContext.jsx";
+import PropTypes from "prop-types";
 
 //Cards
 import Card from "@material-ui/core/Card";
@@ -8,7 +9,6 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import StarRatings from "react-star-ratings";
 
@@ -17,9 +17,8 @@ import Grid from "@material-ui/core/Grid";
 
 //Icons
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import CheckIcon from "@material-ui/icons/Check";
 
-//Image
+//No-Image-Found-Image
 const noImage = require("../../dist/Images/No-Image-Found.jpg");
 
 const useStyles = makeStyles({
@@ -88,3 +87,8 @@ export default function OutfitCard({ OutfitObj, remove }) {
     </Card>
   );
 }
+
+OutfitCard.propTypes = {
+  remove: PropTypes.func.isRequired,
+  OutfitObj: PropTypes.object,
+};

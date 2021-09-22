@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { ProductsContext } from "./ProductsContext.jsx";
+import PropTypes from "prop-types";
 
 //Card Features
 import Card from "@material-ui/core/Card";
@@ -41,3 +42,7 @@ export default function AddToOutfitCard({ updateWardrobe }) {
     </Card>
   );
 }
+
+AddToOutfitCard.propTypes = {
+  updateWardrobe: PropTypes.func.isRequired,
+};
