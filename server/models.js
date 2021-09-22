@@ -70,14 +70,28 @@ let addNewQuestion = (questionBody, nickname, email, product_id, callback) => {
     callback(null, response.data)
   })
   .catch(error => {
+    callback(error, null)
+  })
+}
+
+let addNewAnswer = (answerBody, nickname, email, images, question_id, callback) => {
+  axios.post(apiURL + `/qa/questions/${question_id}/answers`, {
+    body: answerBody,
+    name: nickname,
+    email: email,
+    photos: images,
+  }, {
+    headers: {Authorization: config.token}
+  })
+  .then(response => {
+    callback(null, response.data)
+  })
+  .catch(error => {
     console.log('error in models', error);
     callback(error, null)
   })
 }
 
-let addNewAnswer = (answerBody, nickname, email) => {
-
-}
 let updateAnswerHelpfulness = () => {
 
 }

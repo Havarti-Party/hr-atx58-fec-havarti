@@ -12,7 +12,7 @@ const questionStyles = makeStyles({
 
 //the list initally maps the top four questions
 //inside each question. map top two answers
-export default function Question({question, style}) {
+export default function Question({question, style, product_id}) {
   const classes = questionStyles();
    //also need to sort by seller responses
   const [answers, setAnswers] = useState(Object.values(question.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
@@ -38,7 +38,7 @@ export default function Question({question, style}) {
   function decrementHelpfulCount() {
     //post //how to limit one time click
     setQuestionHelpfulCount(prevCount => prevCount - 1);
-    axios.patch('/qa/questionHelpful', {
+    axios.put('/qa/questionHelpful', {
       params: {
         helpfulCount: questionHelpfulCount,
         questionId: question.question_id,
@@ -59,7 +59,7 @@ export default function Question({question, style}) {
         <span>Helpful? <a href='' onClick={() => incrementHelpfulCount()}>yes ({questionHelpfulCount})</a>/<a href='' onClick={() => decrementHelpfulCount()}>no</a></span>
       </div>
       <div id='answerList'>
-        <AnswerList answers={answers} style={style}/>
+        <AnswerList answers={answers} style={style} questionId={question.question_id} product_id={product_id}/>
       </div>
     </div>
   )
