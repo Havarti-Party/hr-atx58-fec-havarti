@@ -5,18 +5,22 @@ import CustomerOutfit from "./CustomerOutfit.jsx";
 import QuestionsAndAnswers from "./QuestionsAndAnswers.jsx";
 import RatingsAndReviews from "./RatingsAndReviews.jsx";
 import Container from "@material-ui/core/Container";
-// import { ProductsProvider } from "./ProductsContext.jsx";
+import CircularProgress from '@mui/material/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+
 import { ProductsContext } from './ProductsContext';
 
 export default function App(props) {
   const { isLoading } = useContext(ProductsContext)
   const [ isLoadingState, setIsLoadingState ] = isLoading;
 
-  // useEffect([isLoading])
-
   if(isLoadingState) {
     return (
-        <h1>Loading...</h1>
+        <Container maxWidth="lg" className="loading" >
+          <Grid container justifyContent="center" alignItems="center">
+            <CircularProgress />
+          </Grid>
+        </Container>
     )
   }
   return (
