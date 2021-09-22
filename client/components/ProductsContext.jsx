@@ -47,7 +47,7 @@ export const ProductsProvider = (props) => {
   }, [products]);
 
   return (
-    <ProductsContext.Provider value={{ overviewProduct: [overviewProduct, setOverviewProduct], isLoading: [isLoading, setIsLoading], starRating: [starRating, setStarRating]}}>
+    <ProductsContext.Provider value={{ overviewProduct: [overviewProduct, setOverviewProduct], isLoading: [isLoading, setIsLoading], starRating: [starRating, setStarRating] }}>
       {props.children}
     </ProductsContext.Provider>
   );
