@@ -156,10 +156,10 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
             setOverviewProductState(RelatedObj);
           }}
         >
-          <Typography gutterBottom variant="title" component="h2">
+          <Typography gutterBottom variant="body1" component="h2">
             {RelatedObj.name}
           </Typography>
-          <Typography gutterBottom variant="subtitle" component="p">
+          <Typography gutterBottom variant="caption" component="h2">
             {RelatedObj.category}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">

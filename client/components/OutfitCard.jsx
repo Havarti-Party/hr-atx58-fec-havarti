@@ -12,7 +12,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import StarRatings from "react-star-ratings";
 
-//Modal
+//Grid
+import Grid from "@material-ui/core/Grid";
 
 //Icons
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
@@ -47,11 +48,15 @@ export default function OutfitCard({ OutfitObj, remove }) {
         image={OutfitObj.url ? OutfitObj.url : noImage}
         title={OutfitObj.name}
       >
-        <HighlightOffIcon
-          onClick={() => {
-            remove(OutfitObj);
-          }}
-        />
+        <Grid container direction="column" alignItems="flex-end">
+          <Grid item>
+            <HighlightOffIcon
+              onClick={() => {
+                remove(OutfitObj);
+              }}
+            />
+          </Grid>
+        </Grid>
       </CardMedia>
       <CardActionArea
         onClick={() => {
@@ -59,10 +64,10 @@ export default function OutfitCard({ OutfitObj, remove }) {
         }}
       >
         <CardContent>
-          <Typography gutterBottom variant="title" component="h2">
+          <Typography gutterBottom variant="body1" component="h2">
             {OutfitObj.name}
           </Typography>
-          <Typography gutterBottom variant="subtitle" component="p">
+          <Typography gutterBottom variant="caption" component="h2">
             {OutfitObj.category}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
