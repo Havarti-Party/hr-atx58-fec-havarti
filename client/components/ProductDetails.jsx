@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ShareOnSocial from './ShareOnSocial';
+import PropTypes from 'prop-types';
 
 const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
 
@@ -22,6 +23,13 @@ const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
       <ShareOnSocial name={name} />
     </>
   )
+}
+
+ProductDetails.propTypes = {
+  category: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  originalPrice: PropTypes.string.isRequired,
+  salePrice: PropTypes.string,
 }
 
 export default ProductDetails;

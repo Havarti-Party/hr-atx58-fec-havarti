@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import AddIcon from '@material-ui/icons/Add';
-import { ProductsContext } from './ProductsContext';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
@@ -19,22 +18,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(0),
-  },
 }));
 
 const AddToCart = ({ currentProduct, selectedStyle }) => {
   const classes = useStyles();
-  const { overviewProduct } = useContext(ProductsContext)
-  const [ overviewProductState, setOverviewProductState ] = overviewProduct;
-  const [size, setSize] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
   const [quantities, setQuantities] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
   const [selectQuantityOpen, setSelectQuantityOpen] = useState(false);
-  const [cart, setCart] = useState({
+  const [setCart] = useState({
     product: '',
     style: '',
     size: '',
@@ -98,14 +91,14 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
       quantity: selectedQuantity
     });
     console.log(selectedStyle, currentProduct)
+    // Add axios push request here to add product to cart
     // axios.push('/addToCart', {
     //   sku: selectedStyle.sku
     // })
     alert('Successfully added to your cart!')
   }
 
-  const handleAddToCartClick = (e) => {
-    // if size has not been selected, prompt to select size and open drop down
+  const handleAddToCartClick = () => {
     selectedSize === '' ?
     handleSizeSelectorOpen()
     :
@@ -122,7 +115,6 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
             labelId="select-size"
             id="select-size"
             value={selectedSize}
-            //className={classes.selectEmpty}
             onChange={handleSizeChange}
             open={selectQuantityOpen}
             onClose={handleSizeSelectorClose}
@@ -142,7 +134,6 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
             labelId="select-size"
             id="select-size"
             value={selectedSize}
-            //className={classes.selectEmpty}
             onChange={handleSizeChange}
           >
             {Object.keys(skus).map((sku, i) => (
@@ -160,7 +151,6 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
           labelId="select-quantity"
           id="select-quantity"
           value={selectedQuantity}
-          //className={classes.selectEmpty}
           onChange={handleQtyChange}
         >
           {quantities.map((selectQuantity, j) => (
@@ -175,7 +165,6 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
           labelId="select-quantity"
           id="select-quantity"
           value={selectedQuantity}
-          //className={classes.selectEmpty}
           onChange={handleQtyChange}
         >
           {quantities.map((selectQuantity, j) => (
@@ -196,6 +185,11 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
     </Grid>
     </>
   )
+}
+
+AddToCart.propTypes = {
+  currentProduct: PropTypes.object.isRequired,
+  selectedStyle: PropTypes.object.isRequired
 }
 
 export default AddToCart;
