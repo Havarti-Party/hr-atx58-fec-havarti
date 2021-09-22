@@ -146,6 +146,28 @@ app.post("/reviews", (req, res) => {
   });
 });
 
+app.post('/qa/reportQuestion', (req, res) => {
+  var question_id = req.body.question_id;
+  models.reportQuestion(question_id, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(204);
+    }
+  })
+})
+
+app.post('/qa/reportAnswer', (req, res) => {
+  var answer_id = req.body.answer_id;
+  models.reportAnswer(answer_id, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(204);
+    }
+  })
+})
+
 app.post('/qa/questionHelpfulness', (req, res) => {
   var question_id = req.body.questionId;
   models.updateQuestionHelpfulness(question_id, (err, result) => {

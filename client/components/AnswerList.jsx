@@ -16,10 +16,10 @@ export default function AnswerList({answers, style, product_id}) {
     <div>
       {currentAnswers.map(answer => {
         //again only map the top two initially but save all answers inside of state
-        return <Answer key={answer.id}answerData={answer}/>
+        return <Answer key={answer.id} answerData={answer}/>
       })}
       <AnswerCountContext.Provider value={[answerDisplayCount, setAnswerDisplayCount]} >
-        <ExpandAnswers style={style} answers={answers} currentAnswers={currentAnswers} />
+        <ExpandAnswers style={style} answers={answers} currentAnswers={currentAnswers} product_id={product_id}/>
       </AnswerCountContext.Provider>
     </div>
   )

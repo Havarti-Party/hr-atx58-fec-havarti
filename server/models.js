@@ -117,6 +117,30 @@ let updateAnswerHelpfulness = (answer_id, callback) => {
   })
 }
 
+let reportQuestion = (question_id, callback) => {
+  axios.put(apiURL + `/qa/questions/${question_id}`, null, {
+    headers: { Authorization: config.token }
+  })
+  .then(result => {
+    callback(null, result)
+  })
+  .catch(error => {
+    callback(error, null)
+  })
+}
+
+let reportAnswer = (answer_id, callback) => {
+  axios.put(apiURL + `/qa/answers/${answer_id}/report`, null, {
+    headers: { Authorization: config.token }
+  })
+  .then(result => {
+    callback(null, result)
+  })
+  .catch(error => {
+    callback(error, null);
+  })
+}
+
 let getCurrentProduct = (id) => {
   return axios
     .get(apiURL + `/products/${id}`, {
@@ -182,4 +206,6 @@ module.exports = {
   addNewAnswer,
   updateAnswerHelpfulness,
   updateQuestionHelpfulness,
+  reportQuestion,
+  reportAnswer,
 };

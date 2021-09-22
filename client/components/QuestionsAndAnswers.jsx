@@ -93,7 +93,7 @@ export default function QuestionsAndAnswers(props) {
 
   return (
     <div id='questionList' className={classes.widget}>
-      <QuestionsContext.Provider value={[questions, setQuestions]}>
+    <QuestionsContext.Provider value={[questions, setQuestions]}>
       <Grid container spacing={2}>
         <Grid item md={2}>
         </Grid>
@@ -145,7 +145,7 @@ export default function QuestionsAndAnswers(props) {
           </QuestionsContext.Provider>
         </Grid>
       </Grid>
-      </QuestionsContext.Provider>
+    </QuestionsContext.Provider>
     </div>
   )
 }

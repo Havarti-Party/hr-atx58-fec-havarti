@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
+
+import QuestionsContext from './QuestionsAndAnswers.jsx';
 
 const AnswerStyles = makeStyles({
   report: {
@@ -8,8 +10,9 @@ const AnswerStyles = makeStyles({
   }
 })
 
-export default function Answer({answerData}) {
+export default function Answer({answerData, product_id}) {
   const [helpfulCount, setHelpfulCount] = useState(answerData.helpfulness)
+  // const [questions, setQuestions] = useContext(QuestionsContext)
   const classes = AnswerStyles()
   //eventually these buttons will send axios requests to UPDATE this information in the api/database
   function incrementHelpfulCount(e) {
@@ -27,9 +30,28 @@ export default function Answer({answerData}) {
 
   //conditional based on if the answer came from the Seller: make the name say seller and BOLD it
   //additional conditional based on if its the first answer/top answer in the list
-  function handleReport() {
-    //will need to XpostX (not post, but update) the reported data to server
-    //axios.post('/qa/reportAnswer', {how to })
+  function handleReport(e) {
+    e.preventDefault();
+    window.alert('You\'ve successfully reported this Answer. We will review this as soon as possible')
+    axios.post('/qa/reportAnswer', {
+      answer_id: answerData.id,
+    })
+    .then(response => {
+      window.alert('You\'ve successfully reported this Answer. We will review this as soon as possible')
+      // axios.get('/qa', {
+      //   params: {
+      //     id: product_id,
+      //   }})
+      //   .then(response => {
+      //     var newQuestions = response.data.results
+      //     setQuestions(newQuestions.sort((a, b) => {
+      //       a.question_helpfulness - b.question_helpfulness
+      //     }));
+      //   })
+    })
+    .catch(error => {
+      console.log('error', error)
+    })
   }
 
   // if (answerData.answerer_name === 'Seller') {

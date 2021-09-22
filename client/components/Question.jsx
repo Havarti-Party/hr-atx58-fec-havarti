@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect }from 'react';
+import React, { useState, useRef, useEffect, createContext, useContext }from 'react';
 import axios from 'axios';
 
 import AnswerList from './AnswerList.jsx';
@@ -13,6 +13,7 @@ const questionStyles = makeStyles({
   }
 })
 
+export const AnswersContext = createContext();
 //the list initally maps the top four questions
 //inside each question. map top two answers
 export default function Question({question, style, product_id}) {
