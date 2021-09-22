@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import OutfitCard from "./OutfitCard.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-elastic-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Typography from "@material-ui/core/Typography";
 
 const _ = require("underscore");
 
-const CustomerOutfit = (props) => {
+const CustomerOutfit = () => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -30,7 +31,6 @@ const CustomerOutfit = (props) => {
 
   //State
   const [outfitList, updateOutfitList] = useState([]);
-  const [currentProduct, setCurrentProduct] = useState({});
   const updateWardrobe = (OutfitObj) => {
     if (_.contains(outfitList, OutfitObj)) {
       updateOutfitList(outfitList);
@@ -52,16 +52,21 @@ const CustomerOutfit = (props) => {
 
   if (!outfitList.length) {
     return (
-      <Carousel responsive={responsive}>
-        <AddToOutfitCard updateWardrobe={updateWardrobe} />
-      </Carousel>
+      <>
+        <Typography gutterBottom variant="h4" component="h4">
+          Your Wardrobe
+        </Typography>
+        <Carousel responsive={responsive}>
+          <AddToOutfitCard updateWardrobe={updateWardrobe} />
+        </Carousel>
+      </>
     );
   } else {
     return (
       <>
-        <div id="outfit-card">
-          <h1> Your Wardrobe </h1>
-        </div>
+        <Typography gutterBottom variant="h4" component="h4">
+          Your Wardrobe
+        </Typography>
 
         <Carousel showEmptySlots itemsToShow={4}>
           <AddToOutfitCard updateWardrobe={updateWardrobe} />

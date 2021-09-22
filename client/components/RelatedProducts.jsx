@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { ProductsContext } from "./ProductsContext.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
+import Typography from "@material-ui/core/Typography";
 
 const axios = require("axios");
 const _ = require("underscore");
@@ -81,15 +82,17 @@ export default function RelatedProducts(props) {
   if (!relatedProductsArr) {
     return (
       <>
-        <h1>Loading Recommended Products</h1>
+        <Typography gutterBottom variant="h4" component="h4">
+          Related Products
+        </Typography>
       </>
     );
   } else
     return (
       <>
-        <div id="related-product-card">
-          <h1> Related Products </h1>
-        </div>
+        <Typography gutterBottom variant="h4" component="h4">
+          Related Products
+        </Typography>
         <Carousel itemsToShow={4}>
           {relatedProductsArr.map((obj, index) => {
             return <RelatedProductCard RelatedObj={obj} key={index} />;

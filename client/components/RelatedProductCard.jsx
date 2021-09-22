@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { ProductsContext } from "./ProductsContext.jsx";
 import ModalPopup from "./CompareModal.jsx";
+import PropTypes from "prop-types";
 
 //Card Features
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,11 +10,9 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 import StarRatings from "react-star-ratings";
-import { positions } from "@material-ui/system";
 
 //Grid
 import Grid from "@material-ui/core/Grid";
@@ -25,9 +24,6 @@ import StarIcon from "@material-ui/icons/Star";
 //Image
 const noImage = require("../../dist/Images/No-Image-Found.jpg");
 
-//Hard Coded Features
-let features = ["blue", "satin", "something extra cool!!", "not as cool!"];
-
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
   const { overviewProduct } = useContext(ProductsContext);
@@ -38,8 +34,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const [currentItem, setCurrentItem] = useState({});
   const [compareFeatures, setCompareFeatures] = useState([]);
   const [clickedStar, setClickedStar] = useState(false);
-  const [relatedProductFeatures, setRelatedProductFeatures] = useState([]);
-  const [overviewProductFeatures, setOverviewProductFeatures] = useState([]);
+  const [relatedProductFeatures, setRelatedProductFeatures] = useState({});
+  const [overviewProductFeatures, setOverviewProductFeatures] = useState({});
 
   const isInitialMount = useRef(true);
 
@@ -117,7 +113,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     setOpen(true);
   };
 
-  const handleClose = (value) => {
+  const handleClose = () => {
     setClickedStar(false);
     setOpen(false);
   };
@@ -174,6 +170,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       </CardActionArea>
       <CardActions>
         <ModalPopup
+          maxWidth={"lg"}
           compareFeatures={compareFeatures}
           relatedProductFeatures={relatedProductFeatures}
           overviewProductFeatures={overviewProductFeatures}
@@ -184,3 +181,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     </Card>
   );
 }
+
+RelatedProductCard.propTypes = {
+  updatedWardrobe: PropTypes.func,
+  RelatedObj: PropTypes.object,
+};
