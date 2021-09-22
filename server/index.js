@@ -148,22 +148,27 @@ app.post("/reviews", (req, res) => {
 
 app.post('/qa/questionHelpfulness', (req, res) => {
   var question_id = req.body.questionId;
-  // console.log(question_id)
   models.updateQuestionHelpfulness(question_id, (err, result) => {
     if (err) {
       console.log('error in index')
       res.status(500).send(err);
     } else {
-      res.status(204).send()
+      res.status(204)
     }
   })
 })
 
-// app.put('/qa/answerHelpfulness', (req, res) => {
-//   console.log(req.body)
-//   models.updateQuestionHelpfulness
-//   res.status(200).send(result.data)
-// })
+app.post('/qa/answerHelpfulness', (req, res) => {
+  var answer_id = req.body.answer_id;
+  models.updateAnswerHelpfulness(answer_id, (err, result) => {
+    if (err) {
+      debugger;
+      res.status(500).send(err);
+    } else {
+      res.status(204)
+    }
+  })
+})
 
 app.post('/qa/questions', (req, res) => {
   var body = req.body.question_body;

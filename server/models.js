@@ -93,20 +93,28 @@ let addNewAnswer = (answerBody, nickname, email, images, question_id, callback) 
 }
 
 let updateQuestionHelpfulness = (question_id, callback) => {
-  axios.put(`/qa/questions/${question_id}/helpful`, null, {
+  axios.put(apiURL + `/qa/questions/${question_id}/helpful`, null, {
     headers: {Authorization: config.token}
   })
   .then(result => {
-    callback(null, result.data)
+    callback(null, result)
   })
   .catch(error => {
-    console.log(error)
     callback(error, null)
   })
 }
 
-let updateAnswerHelpfulness = () => {
-
+let updateAnswerHelpfulness = (answer_id, callback) => {
+  debugger;
+  axios.put(apiURL + `/qa/answers/${answer_id}/helpful`, null, {
+    headers: { Authorization: config.token }
+  })
+  .then(result => {
+    callback(null, result)
+  })
+  .catch(error => {
+    callback(error, null);
+  })
 }
 
 let getCurrentProduct = (id) => {

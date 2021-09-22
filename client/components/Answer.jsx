@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 
 const AnswerStyles = makeStyles({
@@ -11,9 +12,17 @@ export default function Answer({answerData}) {
   const [helpfulCount, setHelpfulCount] = useState(answerData.helpfulness)
   const classes = AnswerStyles()
   //eventually these buttons will send axios requests to UPDATE this information in the api/database
-  function incrementHelpfulCount() {
-    //axios.update
+  function incrementHelpfulCount(e) {
+    e.preventDefault();
     setHelpfulCount(prevCount => prevCount + 1);
+    axios.post('/qa/answerHelpfulness', {
+      answer_id: answerData.id
+    })
+    .then(response => {
+    })
+    .catch(error => {
+      console.log('there was an error updating the question\'s helpful count', error);
+    })
   }
 
   //conditional based on if the answer came from the Seller: make the name say seller and BOLD it
@@ -39,7 +48,7 @@ export default function Answer({answerData}) {
       </div>
       <span>
         <p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | answer helpfulness:
-          <a href='' onClick={() => incrementHelpfulCount()}>yes ({helpfulCount})</a> ||
+          <a href='' onClick={incrementHelpfulCount}>yes ({helpfulCount})</a> ||
           <br />
           <a href='' onClick={handleReport}className={classes.report}>report</a>
         </p>
