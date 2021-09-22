@@ -15,6 +15,8 @@ const axios = require('axios');
 export default function RatingsAndReviews(props) {
   const { overviewProduct } = useContext(ProductsContext)
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
+  const { starRating } = useContext(ProductsContext);
+  const [ starRatingState, setStarRating ] = starRating;
 
   const [currentReviews, setCurrentReviews] = useState({});
   const [averageStarRating, updateAverageStarRating] = useState(0);
@@ -55,8 +57,8 @@ export default function RatingsAndReviews(props) {
         <Grid container spacing={6}>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARLeftColumn">
             <RecommendRatio currentReviews = {currentReviews} />
-            {averageStarRating} <StarRatings rating={averageStarRating} starDimension={'15px'} starSpacing={'1px'} />
-            <RatingBreakdownBars updateAverageStarRating = {updateAverageStarRating} currentReviews={currentReviews} overviewProduct = {overviewProduct}/>
+            {starRatingState} <StarRatings rating={starRatingState} starDimension={'15px'} starSpacing={'1px'} />
+            <RatingBreakdownBars setStarRating = {setStarRating} currentReviews={currentReviews} overviewProduct = {overviewProduct}/>
             <FactorBarsDisplay currentReviews={currentReviews} />
           </Grid>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
