@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import { QuestionsContext } from './QuestionsAndAnswers.jsx';
 import Button from '@material-ui/core/Button';
@@ -35,10 +36,11 @@ export default function QuestionModal({styles, product_id}) {
 
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [questions, setQuestions] = useContext(QuestionsContext);
   const [emailInvalid, setEmailInvalid] = useState(false);
-  const [nicknameInvalid, setNicknameInvalid] = useState(false);
-  const [questionInvalid, setQuestionInvalid] = useState(false);
+  // const [nicknameInvalid, setNicknameInvalid] = useState(false);
+  // const [questionInvalid, setQuestionInvalid] = useState(false);
   const [allValues, setAllValues] = useState({
     question: '',
     nickname: '',
@@ -176,4 +178,9 @@ export default function QuestionModal({styles, product_id}) {
       </Modal>
     </div>
   )
+}
+
+QuestionModal.propTypes = {
+  styles: PropTypes.object,
+  product_id: PropTypes.number
 }

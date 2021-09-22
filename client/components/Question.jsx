@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect, createContext, useContext }from 'react';
+import React, { useState, createContext }from 'react';
 import axios from 'axios';
-
+import PropTypes from 'prop-types';
 import AnswerList from './AnswerList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,8 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const questionStyles = makeStyles({
   questionTile: {
     margin: '10px',
-    // height: '400px',
-    // overflow: 'auto',
   }
 })
 
@@ -18,6 +16,7 @@ export const AnswersContext = createContext();
 //inside each question. map top two answers
 export default function Question({question, style, product_id}) {
   const classes = questionStyles();
+  // eslint-disable-next-line no-unused-vars
   const [answers, setAnswers] = useState(Object.values(question.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
   const [questionHelpfulCount, setQuestionHelpfulCount] = useState(question.question_helpfulness)
 
@@ -45,4 +44,10 @@ export default function Question({question, style, product_id}) {
       </div>
     </div>
   )
+}
+
+Question.propTypes = {
+  question: PropTypes.object,
+  style: PropTypes.object,
+  product_id: PropTypes.number,
 }

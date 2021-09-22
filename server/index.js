@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const express = require("express");
 
 const config = require("./config.js");
@@ -184,7 +186,6 @@ app.post('/qa/answerHelpfulness', (req, res) => {
   var answer_id = req.body.answer_id;
   models.updateAnswerHelpfulness(answer_id, (err, result) => {
     if (err) {
-      debugger;
       res.status(500).send(err);
     } else {
       res.status(204)

@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-
-import QuestionsContext from './QuestionsAndAnswers.jsx';
 
 const AnswerStyles = makeStyles({
   report: {
@@ -10,50 +9,39 @@ const AnswerStyles = makeStyles({
   }
 })
 
-export default function Answer({answerData, product_id}) {
+export default function Answer({answerData}) {
   const [helpfulCount, setHelpfulCount] = useState(answerData.helpfulness)
-  // const [questions, setQuestions] = useContext(QuestionsContext)
   const classes = AnswerStyles()
-  //eventually these buttons will send axios requests to UPDATE this information in the api/database
+
   function incrementHelpfulCount(e) {
     e.preventDefault();
     setHelpfulCount(prevCount => prevCount + 1);
     axios.post('/qa/answerHelpfulness', {
       answer_id: answerData.id
     })
-    .then(response => {
-    })
+    .then()
     .catch(error => {
       console.log('there was an error updating the question\'s helpful count', error);
     })
   }
 
-  //conditional based on if the answer came from the Seller: make the name say seller and BOLD it
-  //additional conditional based on if its the first answer/top answer in the list
+
   function handleReport(e) {
     e.preventDefault();
     window.alert('You\'ve successfully reported this Answer. We will review this as soon as possible')
     axios.post('/qa/reportAnswer', {
       answer_id: answerData.id,
     })
-    .then(response => {
-      window.alert('You\'ve successfully reported this Answer. We will review this as soon as possible')
-      // axios.get('/qa', {
-      //   params: {
-      //     id: product_id,
-      //   }})
-      //   .then(response => {
-      //     var newQuestions = response.data.results
-      //     setQuestions(newQuestions.sort((a, b) => {
-      //       a.question_helpfulness - b.question_helpfulness
-      //     }));
-      //   })
+    .then(() => {
+      window.alert('You\'ve successfully reported this Answer. We will remove this as soon as possible')
     })
     .catch(error => {
-      console.log('error', error)
+      console.error(error)
     })
   }
 
+  //conditional based on if the answer came from the Seller: make the name say seller and BOLD it
+  //additional conditional based on if its the first answer/top answer in the list
   // if (answerData.answerer_name === 'Seller') {
   //   console.log('bold this name')
   // }
@@ -78,4 +66,9 @@ export default function Answer({answerData, product_id}) {
       <br/>
     </div>
   )
+}
+
+Answer.propTypes = {
+  answerData: PropTypes.object,
+  product_id: PropTypes.number
 }

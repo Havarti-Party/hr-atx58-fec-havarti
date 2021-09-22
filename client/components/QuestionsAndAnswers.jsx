@@ -5,17 +5,13 @@ import axios from 'axios';
 import { ProductsContext } from './ProductsContext.jsx';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
-import AnswerModal from './AnswerModal.jsx';
 import ExpandQuestions from './QuestionExpand.jsx';
 
 import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 
-import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -44,6 +40,7 @@ export const QuestionsContext = createContext()
 export default function QuestionsAndAnswers() {
   const classes = questionListStyles()
   const { overviewProduct } = useContext(ProductsContext)
+  // eslint-disable-next-line no-unused-vars
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
   const [ productId, setProductId ] = useState(0);
   const [ questions, setQuestions ] = useState([])
