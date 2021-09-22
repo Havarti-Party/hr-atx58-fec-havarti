@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ProductsContext } from "./ProductsContext.jsx";
@@ -44,7 +46,11 @@ export default function OutfitCard({ OutfitObj, remove }) {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={OutfitObj.url ? OutfitObj.url : noImage}
+        image={
+          OutfitObj.photos[0].thumbnail_url
+            ? OutfitObj.photos[0].thumbnail_url
+            : noImage
+        }
         title={OutfitObj.name}
       >
         <Grid container direction="column" alignItems="flex-end">
@@ -57,11 +63,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
           </Grid>
         </Grid>
       </CardMedia>
-      <CardActionArea
-        onClick={() => {
-          setOverviewProductState(OutfitObj);
-        }}
-      >
+      <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="body1" component="h2">
             {OutfitObj.name}
@@ -69,10 +71,18 @@ export default function OutfitCard({ OutfitObj, remove }) {
           <Typography gutterBottom variant="caption" component="h2">
             {OutfitObj.category}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {OutfitObj.default_price}
-            {OutfitObj.sale_price ? OutfitObj.sale_price : ""}
-          </Typography>
+
+          {OutfitObj.sale_price ? (
+            <Typography variant="body2" color="textSecondary" component="p">
+              Original: {OutfitObj.original_price} Sale Price:{" "}
+              {OutfitObj.sale_price}{" "}
+            </Typography>
+          ) : (
+            <Typography variant="body2" color="textSecondary" component="p">
+              {OutfitObj.original_price}
+            </Typography>
+          )}
+
           <Typography variant="body2" color="textSecondary" component="p">
             {OutfitObj.description}
           </Typography>
