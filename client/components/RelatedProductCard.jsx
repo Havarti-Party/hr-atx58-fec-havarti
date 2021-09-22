@@ -59,10 +59,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         overviewProductFeaturesObj[feature.feature] = feature.value;
       });
 
-      console.log("combined", combinedFeatures);
-      console.log("ov obj", overviewProductFeaturesObj);
-      console.log("rp obj", relatedProductFeaturesObj);
-
       setOverviewProductFeatures(overviewProductFeaturesObj);
       setRelatedProductFeatures(relatedProductFeaturesObj);
       setCompareFeatures(combinedFeatures);
@@ -160,8 +156,11 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
             setOverviewProductState(RelatedObj);
           }}
         >
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="body1" component="h2">
             {RelatedObj.name}
+          </Typography>
+          <Typography gutterBottom variant="caption" component="h2">
+            {RelatedObj.category}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {RelatedObj.default_price}
