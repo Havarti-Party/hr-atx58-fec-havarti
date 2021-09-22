@@ -70,13 +70,15 @@ export const ProductsProvider = (props) => {
     }
   }, [overviewProduct]);
 
+  const children = props.children
+
   return (
     <ProductsContext.Provider value={{ overviewProduct: [overviewProduct, setOverviewProduct], isLoading: [isLoading, setIsLoading], starRating: [starRating, setStarRating], stylesState: [styles, setStyles], selectedStyleState: [selectedStyle, setSelectedStyle]}}>
-      {props.children}
+      {children}
     </ProductsContext.Provider>
   );
 };
 
-// ProductsContext.propTypes = {
-//   children: PropTypes.symbol.isRequired,
-// }
+ProductsContext.propTypes = {
+  children: PropTypes.element.isRequired
+}
