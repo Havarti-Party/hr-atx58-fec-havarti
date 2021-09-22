@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import ProductOverview from "./ProductOverview.jsx";
 import RelatedProducts from "./RelatedProducts.jsx";
 import CustomerOutfit from "./CustomerOutfit.jsx";
@@ -10,9 +10,9 @@ import Grid from '@material-ui/core/Grid';
 
 import { ProductsContext } from './ProductsContext';
 
-export default function App(props) {
+export default function App() {
   const { isLoading } = useContext(ProductsContext)
-  const [ isLoadingState, setIsLoadingState ] = isLoading;
+  const [ isLoadingState ] = isLoading;
 
   if(isLoadingState) {
     return (
