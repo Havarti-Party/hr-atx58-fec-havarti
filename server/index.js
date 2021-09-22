@@ -146,13 +146,15 @@ app.post("/reviews", (req, res) => {
   });
 });
 
-app.put('/qa/questionHelpfulness', (req, res) => {
-  console.log(req.body)
+app.post('/qa/questionHelpfulness', (req, res) => {
+  var question_id = req.body.questionId;
+  // console.log(question_id)
   models.updateQuestionHelpfulness(question_id, (err, result) => {
     if (err) {
+      console.log('error in index')
       res.status(500).send(err);
     } else {
-      res.status(200).send(result.data)
+      res.status(204).send()
     }
   })
 })

@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect }from 'react';
+import axios from 'axios';
+
 import AnswerList from './AnswerList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,10 +25,8 @@ export default function Question({question, style, product_id}) {
     e.preventDefault();
     //put //how to limit to one time click only
     setQuestionHelpfulCount(prevCount => prevCount + 1); //may not need to do this anymore.
-    axios.put('/qa/questionHelpfulness', {
-      params: {
-        questionId: question.question_id,
-      }
+    axios.post('/qa/questionHelpfulness', {
+      questionId: question.question_id,
     })
     .then(response => {
       console.log(response.data);
@@ -41,7 +41,7 @@ export default function Question({question, style, product_id}) {
     <div id='question' className={classes.questionTile}>
       <span>
         <h3>Q: {question.question_body}?</h3>
-        <span>Helpful? <a href='' onClick={() => incrementHelpfulCount()}>yes ({questionHelpfulCount})</a> | <AnswerModal questionId={question.question_id} product_id={product_id}/></span>
+        <span>Helpful? <a href='' onClick={incrementHelpfulCount}>yes ({questionHelpfulCount})</a> | <AnswerModal questionId={question.question_id} product_id={product_id}/></span>
       </span>
       <div id='answerList'>
         <AnswerList answers={answers} style={style} product_id={product_id}/>
