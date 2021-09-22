@@ -71,11 +71,18 @@ export default function OutfitCard({ OutfitObj, remove }) {
           <Typography gutterBottom variant="caption" component="h2">
             {OutfitObj.category}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {OutfitObj.original_price}
-            {"Sale Price"}
-            {OutfitObj.sale_price ? OutfitObj.sale_price : ""}
-          </Typography>
+
+          {OutfitObj.sale_price ? (
+            <Typography variant="body2" color="textSecondary" component="p">
+              Original: {OutfitObj.original_price} On Sale!!{" "}
+              {OutfitObj.sale_price}{" "}
+            </Typography>
+          ) : (
+            <Typography variant="body2" color="textSecondary" component="p">
+              {OutfitObj.original_price}
+            </Typography>
+          )}
+
           <Typography variant="body2" color="textSecondary" component="p">
             {OutfitObj.description}
           </Typography>
