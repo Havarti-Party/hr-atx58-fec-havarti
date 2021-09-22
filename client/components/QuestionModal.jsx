@@ -87,14 +87,6 @@ export default function QuestionModal({styles, product_id}) {
         product_id: product_id,
       })
       .then(response => {
-        setAllValues({
-          question: '',
-          nickname: '',
-          email: '',
-        });
-        setOpen(false);
-      })
-      .then(next => {
         axios.get('/qa', {
           params: {
             id: product_id,
@@ -104,6 +96,14 @@ export default function QuestionModal({styles, product_id}) {
             setQuestions(newQuestions.sort((a, b) => {
               a.question_helpfulness - b.question_helpfulness
             }));
+          })
+          .then(done => {
+            setAllValues({
+              question: '',
+              nickname: '',
+              email: '',
+            });
+            setOpen(false);
           })
           .catch(error => {
             console.log('Error retrieving related questions for this product', error)
@@ -170,8 +170,6 @@ export default function QuestionModal({styles, product_id}) {
               </IconButton>
             </label>
             <Button variant='contained' className={styles.button} type='submit'>submit</Button>
-            {/* <Button variant='contained' className={styles.button} type='submit'>submit</Button> ============= I can use this if I do a form submit, but it re-renders the whole page, but
-            also closes out the modal for you... AND it utilizes the 'required' attributes I have on the textFields*/}
           </form>
         </div>
       </Modal>

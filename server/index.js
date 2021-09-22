@@ -146,11 +146,18 @@ app.post("/reviews", (req, res) => {
   });
 });
 
-// app.put('/qa/questionHelpfulness', (req, res) => {
-//   console.log(req.body)
-//   models.updateQuestionHelpfulness
-//   res.status(200).send(result.data)
-// })
+app.post('/qa/questionHelpfulness', (req, res) => {
+  var question_id = req.body.questionId;
+  // console.log(question_id)
+  models.updateQuestionHelpfulness(question_id, (err, result) => {
+    if (err) {
+      console.log('error in index')
+      res.status(500).send(err);
+    } else {
+      res.status(204).send()
+    }
+  })
+})
 
 // app.put('/qa/answerHelpfulness', (req, res) => {
 //   console.log(req.body)
@@ -165,7 +172,7 @@ app.post('/qa/questions', (req, res) => {
   var product_id = req.body.product_id;
   models.addNewQuestion(body, name, email, product_id, (err, result) => {
     if (err) {
-      console.log('error index.js')
+
       res.status(500).send('error creating your question')
     } else {
       res.status(201).send('CREATED');
@@ -173,10 +180,22 @@ app.post('/qa/questions', (req, res) => {
   })
 })
 
-// app.post('/qa/questions/:question_id/answers', (req, res) => {
-//   console.log(req.body)
-//   res.status(200).send(result.data)
-// })
+app.post('/qa/answers', (req, res) => {
+  console.log(req.body)
+  var body = req.body.answerBody
+  var name = req.body.nickname
+  var email = req.body.email;
+  var images = req.body.images;
+  var question_id = req.body.question_id;
+  models.addNewAnswer(body, name, email, images, question_id, (err, result) => {
+    if (err) {
+      console.log('error index.js')
+      res.status(500).send('error creating your answer')
+    } else {
+      res.status(201).send('CREATED')
+    }
+  })
+})
 
 app.listen(PORT, (err, success) => {
   if (err) {

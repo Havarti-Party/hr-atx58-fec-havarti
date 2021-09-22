@@ -9,25 +9,51 @@ import Select from '@mui/material/Select';
 
 export default function ReviewSorter(props) {
 
-  const [sorter, setSorter] = useState(true);
+  // const [sorter, setSorter] = useState(true);
 
   var numReviews = props.currentReviews.results.length;
 
   const handleChange = (event) => {
-    sortedResults.sort(function(a, b) {
-      console.log(a);
-      console.log(b);
-      var aDate = a.date;
-      var bDate = b.date;
-      if (aDate > bDate) {
-        return -1;
-      }
-      if (aDate < bDate) {
-        return 1;
-      }
-      return 0;
-    })
-    setSorter(!sorter);
+    props.setSorter(event.target.value);
+    if (event.target.value === 'most recent') {
+      sortedResults.sort(function(a, b) {
+        if (a.date > b.date) {
+          return -1;
+        }
+        if (a.date < b.date) {
+          return 1;
+        }
+        return 0;
+      })
+    }
+    if (event.target.value === 'most helpful') {
+      sortedResults.sort(function(a, b) {
+        if (a.helpfulness > b.helpfulness) {
+          return -1;
+        }
+        if (a.helpfulness < b.helpfulness) {
+          return 1;
+        }
+        return 0;
+      })
+    }
+    if (event.target.value === 'relevance') {
+      sortedResults.sort(function(a, b) {
+        console.log(a.date - b.date);
+        if (a.helpfulness > b.helpfulness) {
+          return -1;
+        }
+        if (a.helpfulness < b.helpfulness) {
+          return 1;
+        }
+        return 0;
+      })
+    }
+    props.setCurrentReviews({
+      ...props.currentReviews,
+      results: sortedResults
+    });
+    console.log(sortedResults);
   };
 
   var sortedResults = [];
@@ -35,12 +61,12 @@ export default function ReviewSorter(props) {
     sortedResults.push(result);
   })
 
-  useEffect(() => {
-    props.setCurrentReviews({
-        ...props.currentReviews,
-        results: sortedResults
-      });
-  }, [sorter])
+  // useEffect(() => {
+  //   props.setCurrentReviews({
+  //       ...props.currentReviews,
+  //       results: sortedResults
+  //     });
+  // }, [props.sortedResults])
 
 
   // var sortByDate = function(a, b) {
@@ -59,10 +85,10 @@ export default function ReviewSorter(props) {
 
 
   return (
-    <Typography>
+    <div>
       {numReviews} reviews, sorted by
       <Box sx={{ minWidth: 60 }}>
-        <FormControl halfWidth>
+        <FormControl fullWidth>
           <InputLabel id="reviewSorter"></InputLabel>
           <Select
             labelId="reviewSorterLabel"
@@ -77,6 +103,6 @@ export default function ReviewSorter(props) {
           </Select>
         </FormControl>
       </Box>
-    </Typography>
+    </div>
   )
 }
