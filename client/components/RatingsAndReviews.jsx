@@ -15,6 +15,7 @@ const axios = require('axios');
 export default function RatingsAndReviews(props) {
   const { overviewProduct } = useContext(ProductsContext)
   const [ overviewProductState, setOverviewProductState ] = overviewProduct;
+  const [sorter, setSorter] = useState('relevance');
 
   const [currentReviews, setCurrentReviews] = useState({});
   const [averageStarRating, updateAverageStarRating] = useState(0);
@@ -29,7 +30,7 @@ export default function RatingsAndReviews(props) {
         }
       })
       .then((reviewData) => {
-        // console.log('Review data object: ', reviewData.data);
+        console.log('Review data object: ', reviewData.data);
         setCurrentReviews(reviewData.data);
         setLoading(false);
       })
@@ -59,7 +60,7 @@ export default function RatingsAndReviews(props) {
             <FactorBarsDisplay currentReviews={currentReviews} />
           </Grid>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
-            <ReviewSorter currentReviews={currentReviews}/>
+            <ReviewSorter currentReviews={currentReviews} setCurrentReviews={setCurrentReviews} sorter={sorter} setSorter={setSorter}/>
             <ReviewDisplay currentReviews={currentReviews} currentProduct={overviewProduct}/>
           </Grid>
         </Grid>

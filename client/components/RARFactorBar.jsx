@@ -27,9 +27,9 @@ export default function FactorBar(props) {
     },
   ];
 
-  function valuetext(value) {
-    return `${value}`;
-  }
+  // function valuetext(value) {
+  //   return `${value}`;
+  // }
 
   return (
     <>
@@ -40,8 +40,8 @@ export default function FactorBar(props) {
       defaultValue={Number(props.value) * 20}
       step={20}
       marks={marks}
-      valueLabelDisplay="auto"
-      aria-labelledby="disabled-slider" />
+      valueLabelDisplay="off"
+      aria-labelledby="reviewFactorSlider" />
     </>
   )
 }

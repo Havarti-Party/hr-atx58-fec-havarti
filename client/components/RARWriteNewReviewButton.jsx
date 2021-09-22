@@ -11,8 +11,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
-const _ = require("underscore");
+import Rating from '@mui/material/Rating';
 
+const _ = require("underscore");
 const axios = require("axios");
 
 
@@ -78,19 +79,19 @@ export default function FormDialog(props) {
 
   const handleSubmit = () => {
     console.log('Sending form data: ', formData);
-    axios.post(`/reviews`, formData, {
-      params: {
-        ID: props.currentProduct.id
-      },
-    })
-    .then((postResponse) => {
-      console.log('Received post response:');
-      console.log(postResponse);
-    })
-    .catch((err) => {
-      console.log('Error received from post request:');
-      console.log(err);
-    })
+    // axios.post(`/reviews`, formData, {
+    //   params: {
+    //     ID: props.currentProduct.id
+    //   },
+    // })
+    // .then((postResponse) => {
+    //   console.log('Received post response:');
+    //   console.log(postResponse);
+    // })
+    // .catch((err) => {
+    //   console.log('Error received from post request:');
+    //   console.log(err);
+    // })
   }
 
   return (
@@ -106,13 +107,14 @@ export default function FormDialog(props) {
           </DialogContentText>
           <FormControl required component='fieldset'>
             <FormLabel component='legend'>On a scale of 1-5, how would you rate this product?</FormLabel>
-            <RadioGroup onChange={handleChange} row aria-label='reviewStars' defaultValue='5' name='rating'>
-              <FormControlLabel value='1' control={<Radio />} label='1' />
-              <FormControlLabel value='2' control={<Radio />} label='2' />
-              <FormControlLabel value='3' control={<Radio />} label='3' />
-              <FormControlLabel value='4' control={<Radio />} label='4' />
-              <FormControlLabel value='5' control={<Radio />} label='5' />
-            </RadioGroup>
+            <Rating name='reviewStars' value={formData.rating} onChange={(event, newValue) => {setFormData({...formData, rating: newValue})}} />
+            {/* // <RadioGroup onChange={handleChange} row aria-label='reviewStars' defaultValue='5' name='rating'>
+            //   <FormControlLabel value='1' control={<Radio />} label='1' />
+            //   <FormControlLabel value='2' control={<Radio />} label='2' />
+            //   <FormControlLabel value='3' control={<Radio />} label='3' />
+            //   <FormControlLabel value='4' control={<Radio />} label='4' />
+            //   <FormControlLabel value='5' control={<Radio />} label='5' />
+            // </RadioGroup> */}
           </FormControl>
           <FormControl required component='fieldset'>
             <FormLabel required component='legend'>Would you recommend this product?</FormLabel>
