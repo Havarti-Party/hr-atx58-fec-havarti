@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
 
 export default function FactorBar(props) {
 
@@ -27,21 +28,25 @@ export default function FactorBar(props) {
     },
   ];
 
-  // function valuetext(value) {
-  //   return `${value}`;
-  // }
-
   return (
     <>
       <Typography>{props.name}:</Typography>
       <Slider
       disabled
       key={props.propKey}
-      defaultValue={Number(props.value) * 20}
+      defaultValue={Number(props.propValue) * 20}
       step={20}
       marks={marks}
       valueLabelDisplay="off"
       aria-labelledby="reviewFactorSlider" />
     </>
   )
+}
+
+FactorBar.propTypes = {
+  factors: PropTypes.array,
+  product_id: PropTypes.number,
+  propKey: PropTypes.number,
+  name: PropTypes.string,
+  propValue: PropTypes.string,
 }
