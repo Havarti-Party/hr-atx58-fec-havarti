@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import AddIcon from '@material-ui/icons/Add';
 import PropTypes from 'prop-types';
+import { ProductsContext } from "../ProductsContext";
 
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
@@ -20,7 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCart = ({ currentProduct, selectedStyle }) => {
+const AddToCart = () => {
+  const { overviewProduct, selectedStyleState } =
+    useContext(ProductsContext);
+  const [overviewProductState] = overviewProduct;
+  const [selectedStyle] = selectedStyleState;
   const classes = useStyles();
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
@@ -46,6 +51,11 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
       setOutOfStock(false);
     }
   };
+
+  useEffect(() => {
+    setSelectedSize('');
+    setSelectedQuantity('')
+  }, [overviewProductState, selectedStyle]);
 
   useEffect(() => checkStock());
 
@@ -85,7 +95,7 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
 
   const handleAddToCartWhenSizeSelected = () => {
     setCart({
-      product: currentProduct.name,
+      product: overviewProductState.name,
       style: selectedStyle.name,
       size: selectedSize,
       quantity: selectedQuantity
@@ -194,7 +204,7 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
 }
 
 AddToCart.propTypes = {
-  currentProduct: PropTypes.object.isRequired,
+  overviewProductState: PropTypes.object,
   selectedStyle: PropTypes.object.isRequired
 }
 
