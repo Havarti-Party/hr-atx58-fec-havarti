@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-
+import PropTypes from 'prop-types';
 import { QuestionsContext } from './QuestionsAndAnswers.jsx';
 
 import Button from '@material-ui/core/Button';
@@ -38,6 +38,7 @@ const modalStyles = makeStyles({
 export default function AnswerModal({questionId, product_id}) {
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [questions, setQuestions] = useContext(QuestionsContext);
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [allValues, setAllValues] = useState({
@@ -76,7 +77,7 @@ export default function AnswerModal({questionId, product_id}) {
     var nickname = allValues.nickname;
     var email = allValues.email;
     var images = [];
-
+    e.preventDefault();
     validateForm(answerBody, nickname, email);
     if (validateForm(answerBody, nickname, email)) {
       axios.post(`/qa/answers`, {
@@ -86,7 +87,7 @@ export default function AnswerModal({questionId, product_id}) {
         images: images,
         question_id: questionId,
       })
-      .then(response => {
+      .then(() => {
         axios.get('/qa', {
           params: {
             id: product_id,
@@ -97,7 +98,7 @@ export default function AnswerModal({questionId, product_id}) {
               a.question_helpfulness - b.question_helpfulness
             }));
           })
-          .then(done => {
+          .then(() => {
             setAllValues({
               question: '',
               nickname: '',
@@ -115,10 +116,8 @@ export default function AnswerModal({questionId, product_id}) {
     } else {
       console.log('something went wrong');
     }
-    //needs to make a post request to the server/append it to state
-    console.log(allValues);
-
   }
+
   return (
     <div id='answerModal'>
       <Button id='addAnswer' variant='contained' onClick={handleOpen} className={classes.button}>Add an Answer</Button>
@@ -175,4 +174,9 @@ export default function AnswerModal({questionId, product_id}) {
       </Modal>
     </div>
   )
+}
+
+AnswerModal.propTypes = {
+  questionId: PropTypes.number,
+  product_id: PropTypes.number,
 }

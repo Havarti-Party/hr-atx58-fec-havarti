@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const axios = require("axios");
 const config = require("./config.js");
 
@@ -53,6 +54,7 @@ let getProductQuestions = (id, callback) => {
       callback(null, result);
     })
     .catch((error) => {
+      console.log('error getting qs in models', error)
       callback(error, null);
     });
 };
@@ -67,9 +69,11 @@ let addNewQuestion = (questionBody, nickname, email, product_id, callback) => {
     headers: {Authorization: config.token}
   })
   .then(response => {
-    callback(null, response.data)
+    console.log('in models', response)
+    callback(null, response)
   })
   .catch(error => {
+    console.log('in modesl err:', error);
     callback(error, null)
   })
 }
@@ -93,20 +97,52 @@ let addNewAnswer = (answerBody, nickname, email, images, question_id, callback) 
 }
 
 let updateQuestionHelpfulness = (question_id, callback) => {
-  axios.put(`/qa/questions/${question_id}/helpful`, null, {
+  axios.put(apiURL + `/qa/questions/${question_id}/helpful`, null, {
     headers: {Authorization: config.token}
   })
   .then(result => {
-    callback(null, result.data)
+    callback(null, result)
   })
   .catch(error => {
-    console.log(error)
     callback(error, null)
   })
 }
 
-let updateAnswerHelpfulness = () => {
+let updateAnswerHelpfulness = (answer_id, callback) => {
+  // debugger;
+  axios.put(apiURL + `/qa/answers/${answer_id}/helpful`, null, {
+    headers: { Authorization: config.token }
+  })
+  .then(result => {
+    callback(null, result)
+  })
+  .catch(error => {
+    callback(error, null);
+  })
+}
 
+let reportQuestion = (question_id, callback) => {
+  axios.put(apiURL + `/qa/questions/${question_id}/report`, null, {
+    headers: { Authorization: config.token }
+  })
+  .then(result => {
+    callback(null, result)
+  })
+  .catch(error => {
+    callback(error, null)
+  })
+}
+
+let reportAnswer = (answer_id, callback) => {
+  axios.put(apiURL + `/qa/answers/${answer_id}/report`, null, {
+    headers: { Authorization: config.token }
+  })
+  .then(result => {
+    callback(null, result)
+  })
+  .catch(error => {
+    callback(error, null);
+  })
 }
 
 let getCurrentProduct = (id) => {
@@ -188,4 +224,6 @@ module.exports = {
   updateAnswerHelpfulness,
   updateQuestionHelpfulness,
   putProductReview,
+  reportQuestion,
+  reportAnswer,
 };

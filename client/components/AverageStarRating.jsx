@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import StarRatings from 'react-star-ratings';
 import { ProductsContext } from './ProductsContext';
 
-export default function AverageStarRating(props) {
+export default function AverageStarRating() {
   const { starRating } = useContext(ProductsContext)
-  const [ starRatingState, setStarRating ] = starRating
+  const [ starRatingState ] = starRating
 
   return (
     <StarRatings

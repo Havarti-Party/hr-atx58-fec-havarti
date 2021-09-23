@@ -24,7 +24,7 @@ export default function AddToOutfitCard({ updateWardrobe }) {
     selectedStyleObj.overviewProductID = overviewProductState.id;
     selectedStyleObj.description = overviewProductState.description;
     selectedStyleObj.category = overviewProductState.category;
-    selectedStyleObj.overviewProduct = overviewProduct;
+    selectedStyleObj.overviewProduct = overviewProductState;
 
     updateWardrobe(selectedStyleObj);
   };
