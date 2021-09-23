@@ -85,7 +85,6 @@ export default function OutfitCard({ OutfitObj, remove }) {
               </Typography>
               <Typography
                 variant="body2"
-                className={{ textDecoration: "line-through" }}
                 style={{ color: "red" }}
                 component="div"
               >

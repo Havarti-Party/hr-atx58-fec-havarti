@@ -22,6 +22,7 @@ export default function AddToOutfitCard({ updateWardrobe }) {
   const addToOutfitList = (selectedStyleObj) => {
     let copy = selectedStyleObj;
     selectedStyleObj.selectedStyleObj = copy;
+    selectedStyleObj.slogan = overviewProduct.slogan;
     selectedStyleObj.overviewProduct = overviewProductState;
     selectedStyleObj.description = overviewProductState.description;
     selectedStyleObj.category = overviewProductState.category;
