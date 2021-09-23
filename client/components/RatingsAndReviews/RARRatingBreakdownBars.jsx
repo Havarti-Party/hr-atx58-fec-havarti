@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ProgressBar from './RARProgressBar.jsx';
+import PropTypes from 'prop-types';
 
 export default function RatingBreakdownBars(props) {
   // TODO: cleanup this mess. This can probably be done with like 3 functions and some 6th-grade math.
-  var starArray = [1, 2, 3, 4, 5];
+  // var starArray = [1, 2, 3, 4, 5];
   var starBreakdown = {
     1: 0,
     2: 0,
@@ -66,4 +67,10 @@ export default function RatingBreakdownBars(props) {
       })} */}
     </div>
   )
+}
+
+RatingBreakdownBars.propTypes = {
+  currentReviews: PropTypes.object,
+  currentProduct: PropTypes.object,
+  setStarRating: PropTypes.function,
 }

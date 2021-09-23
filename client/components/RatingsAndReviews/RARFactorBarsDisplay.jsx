@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import Slider from '@material-ui/core/Slider';
+import React from 'react';
 import FactorBar from './RARFactorBar.jsx';
-const _ = require("underscore");
+import PropTypes from 'prop-types';
 
 
 var sizeFactors = ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'];
@@ -37,7 +36,7 @@ export default function FactorBars(props) {
         if (characteristic === "Fit") {
           factors = fitFactors;
         }
-        characteristicsToRender.push(<FactorBar key={index} name={characteristic} factors={factors} value={value} />);
+        characteristicsToRender.push(<FactorBar key={index} name={characteristic} factors={factors} propValue={value} />);
       }
     })
   } else {
@@ -48,4 +47,8 @@ export default function FactorBars(props) {
       {characteristicsToRender}
     </>
   )
+}
+
+FactorBars.propTypes = {
+  currentReviews: PropTypes.object,
 }

@@ -125,7 +125,7 @@ export default function FormDialog(props) {
           </FormControl>
           <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the size of this product?</FormLabel>
-            <RadioGroup aria-label='reviewSize' name='14'>
+            <RadioGroup aria-label='reviewSize' defaultValue='3' name='14'>
               <FormControlLabel value='1' control={<Radio />} label='A size too small' />
               <FormControlLabel value='2' control={<Radio />} label='½ a size too small' />
               <FormControlLabel value='3' control={<Radio />} label='Perfect' />
@@ -135,7 +135,7 @@ export default function FormDialog(props) {
           </FormControl>
           <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the width of this product?</FormLabel>
-            <RadioGroup aria-label='reviewWidth' defaultValue='5' name='15'>
+            <RadioGroup aria-label='reviewWidth' defaultValue='3' name='15'>
               <FormControlLabel value='1' control={<Radio />} label='Too narrow' />
               <FormControlLabel value='2' control={<Radio />} label='Slightly narrow' />
               <FormControlLabel value='3' control={<Radio />} label='Perfect' />
@@ -165,7 +165,7 @@ export default function FormDialog(props) {
           </FormControl>
           <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the length of this product?</FormLabel>
-            <RadioGroup aria-label='reviewLength' defaultValue='5' name='18'>
+            <RadioGroup aria-label='reviewLength' defaultValue='3' name='18'>
               <FormControlLabel value='1' control={<Radio />} label='Runs short' />
               <FormControlLabel value='2' control={<Radio />} label='Runs slightly short' />
               <FormControlLabel value='3' control={<Radio />} label='Perfect' />
@@ -175,7 +175,7 @@ export default function FormDialog(props) {
           </FormControl>
           <FormControl required component='fieldset'>
             <FormLabel component='legend'>How would you rate the fit of this product?</FormLabel>
-            <RadioGroup aria-label='reviewFit' defaultValue='5' name='19'>
+            <RadioGroup aria-label='reviewFit' defaultValue='3' name='19'>
               <FormControlLabel value='1' control={<Radio />} label='Runs tight' />
               <FormControlLabel value='2' control={<Radio />} label='Runs slightly tight' />
               <FormControlLabel value='3' control={<Radio />} label='Perfect' />

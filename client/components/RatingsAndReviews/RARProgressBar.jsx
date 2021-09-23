@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 
 export default function ProgressBar(props) {
   return (
@@ -11,4 +13,10 @@ export default function ProgressBar(props) {
       </div><br />
     </div>
   )
+}
+
+ProgressBar.propTypes = {
+  currentReviews: PropTypes.object,
+  starRating: PropTypes.number,
+  ratePercent: PropTypes.number,
 }
