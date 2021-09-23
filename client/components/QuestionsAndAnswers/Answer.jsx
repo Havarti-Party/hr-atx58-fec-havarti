@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -48,7 +49,7 @@ export default function Answer({answerData}) {
   // }
   return (
     <div className='answer'>
-      <h3>A: {answerData.body}</h3>
+      <Typography variant='h4'>A: {answerData.body}</Typography >
       <div>
         {answerData.photos.map((image, index) => {
           var tempIndex = image.indexOf('crop') + 4;
@@ -58,10 +59,10 @@ export default function Answer({answerData}) {
         })}
       </div>
       <span>
-        <p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | Helpful?:
+        <Typography variant='body1'>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | Helpful?:
           <Button onClick={incrementHelpfulCount} variant='text' color='primary'> yes ({helpfulCount})</Button>
           <Button onClick={handleReport} className={classes.report} variant='text'>report</Button>
-        </p>
+        </Typography>
       </span>
       <br/>
     </div>

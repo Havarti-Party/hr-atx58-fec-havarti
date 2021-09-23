@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { QuestionsContext } from './QuestionsAndAnswers.jsx';
 
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
@@ -14,8 +15,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const modalStyles = makeStyles({
   modal: {
     position: 'absolute',
-    width: 800,
-    height: 800,
+    width: 700,
+    height: 500,
     border: '2px solid #000',
     left: '50%',
     top: '50%',
@@ -133,8 +134,8 @@ export default function AnswerModal({questionId, product_id}) {
         aria-describedby='a modal to post a new answer'
       >
         <div className={classes.modal}>
-          <h3>Submit your Answer</h3>
-          <h4>About the [product name here]</h4>
+          <Typography variant='h4'>Submit your Answer</Typography>
+          <Typography variant='body1'>About the [product name here]</Typography>
           <form className='addAnswerForm'>
             <TextField
               id='answerField'

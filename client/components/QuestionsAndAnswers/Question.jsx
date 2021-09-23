@@ -5,12 +5,16 @@ import PropTypes from 'prop-types';
 import AnswerList from './AnswerList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const questionStyles = makeStyles({
   questionTile: {
     margin: '10px',
+  },
+  report: {
+    color: 'red',
   }
 })
 
@@ -52,9 +56,11 @@ export default function Question({question, style, product_id}) {
   return (
     <div id='question' className={classes.questionTile}>
       <span>
-        <h3>Q: {question.question_body}?</h3>
-        <span>Helpful? <Button onClick={incrementHelpfulCount} variant='text' color='primary'>yes ({questionHelpfulCount})</Button> | <AnswerModal questionId={question.question_id} product_id={product_id}/></span>
-        <a href='' onClick={handleReport}className={classes.report}>report question</a>
+        <Typography variant='h4'>Q: {question.question_body}?</Typography >
+        <Typography variant='body1'>
+          Helpful? <Button onClick={incrementHelpfulCount} variant='text' color='primary'>yes ({questionHelpfulCount})</Button> | <AnswerModal questionId={question.question_id} product_id={product_id}/>
+        </Typography>
+        <Button onClick={handleReport} variant='text' className={classes.report}>report question</Button>
       </span>
       <div id='answerList'>
         <AnswerList answers={answers} style={style} product_id={product_id} />
