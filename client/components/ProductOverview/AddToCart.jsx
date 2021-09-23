@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -115,11 +115,10 @@ const AddToCart = () => {
   }
 
   return (
-    <>
-    <Grid container justifyContent="flex-start" spacing={2} >
+    <Grid container justifyContent="flex-start" spacing={3} >
       { !outOfStock ?
         <Grid item xs={7}>
-          <FormControl variant="filled" className={classes.selectSizeForm} fullWidth={true}>
+          <FormControl variant="outlined" className={classes.selectSizeForm} fullWidth={true}>
             <InputLabel id="size">Select Size</InputLabel>
             <Select
               labelId="select-size"
@@ -140,7 +139,7 @@ const AddToCart = () => {
         </Grid>
         :
         <Grid item xs={7}>
-          <FormControl variant="filled" className={classes.selectSizeForm} disabled fullWidth={true}>
+          <FormControl variant="outlined" className={classes.selectSizeForm} disabled fullWidth={true}>
             <InputLabel id="size">OUT OF STOCK</InputLabel>
             <Select
               labelId="select-size"
@@ -159,7 +158,7 @@ const AddToCart = () => {
       }
       {selectedSize === '' ?
         <Grid item xs={5}>
-          <FormControl variant="filled" className={classes.selectQtyForm} disabled >
+          <FormControl variant="outlined" className={classes.selectQtyForm} disabled fullWidth={true} >
           <InputLabel id="quantity">Quantity</InputLabel>
           <Select
             labelId="select-quantity"
@@ -175,7 +174,7 @@ const AddToCart = () => {
         </Grid>
         :
         <Grid item xs={5}>
-          <FormControl variant="filled" className={classes.selectQtyForm}>
+          <FormControl variant="outlined" className={classes.selectQtyForm} fullWidth={true} >
             <InputLabel id="quantity">Quantity</InputLabel>
             <Select
               labelId="select-quantity"
@@ -195,11 +194,10 @@ const AddToCart = () => {
         {outOfStock ?
         <></>
         :
-        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
+        <Button size="large" color="success" variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick} fullWidth={true}>Add To Cart</Button>
         }
       </Grid>
     </Grid>
-    </>
   )
 }
 
