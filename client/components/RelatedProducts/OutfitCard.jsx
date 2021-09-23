@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutfitCard({ OutfitObj, remove }) {
+export default function OutfitCard({ OutfitObj, remove, clickTracker }) {
   const classes = useStyles();
   //useContext
   //useContext
@@ -44,7 +44,10 @@ export default function OutfitCard({ OutfitObj, remove }) {
   const [selectedStyle, setSelectedStyle] = selectedStyleState;
 
   return (
-    <Card className={classes.root}>
+    <Card
+      onClick={() => clickTracker("Related Products", event.target)}
+      className={classes.root}
+    >
       <CardMedia
         className={classes.media}
         image={
@@ -116,4 +119,5 @@ export default function OutfitCard({ OutfitObj, remove }) {
 OutfitCard.propTypes = {
   remove: PropTypes.func.isRequired,
   OutfitObj: PropTypes.object,
+  clickTracker: PropTypes.func,
 };

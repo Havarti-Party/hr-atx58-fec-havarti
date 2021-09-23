@@ -69,12 +69,12 @@ export default function App() {
   return (
     <Container maxWidth="lg" className="App">
       <ThemeProvider theme={theme}>
-        <Header />
-        <ProductOverview />
+        <Header clickTracker={clickTracker} />
+        <ProductOverview clickTracker={clickTracker} />
         <RelatedProducts clickTracker={clickTracker} />
-        <CustomerOutfit />
-        <RatingsAndReviews />
-        <QuestionsAndAnswers />
+        <CustomerOutfit clickTracker={clickTracker} />
+        <RatingsAndReviews clickTracker={clickTracker} />
+        <QuestionsAndAnswers clickTracker={clickTracker} />
         <Footer />
       </ThemeProvider>
     </Container>
