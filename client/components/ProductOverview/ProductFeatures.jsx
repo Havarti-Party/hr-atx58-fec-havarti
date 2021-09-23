@@ -15,7 +15,11 @@ export default function ProductFeatures({features}) {
       <Grid item xs={12}>
         <ul>
           {features.map((feature, i) => (
-            <li key={i}>{feature.feature}: {feature.value}</li>
+            <li key={i}>
+              <Typography>
+                {feature.feature}: {feature.value}
+              </Typography>
+            </li>
           ))}
         </ul>
       </Grid>

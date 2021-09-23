@@ -23,8 +23,7 @@ export default function ProductOverview() {
   };
 
   return (
-    <>
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
         <Grid item md={8}>
           <MainImageCarousel photos={selectedStyle.photos} />
         </Grid>
@@ -59,19 +58,18 @@ export default function ProductOverview() {
             selectedStyle={selectedStyle}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={4}>
-        <Grid item md={8}>
+        <Grid item xs={7}>
           <Typography variant='h5' className="productSlogan">{overviewProductState.slogan}</Typography>
-          <Typography variant='body1'className="productDescription">
+          <Typography className="productDescription">
             {overviewProductState.description}
           </Typography>
+        </Grid>
+        <Grid item xs={1} style={{ display: "flex", justifyContent: "center" }}>
+          <Divider orientation="vertical" variant="middle" />
         </Grid>
         <Grid item xs={4}>
           <ProductFeatures features={overviewProductState.features} />
         </Grid>
       </Grid>
-      <Divider />
-    </>
   );
 }
