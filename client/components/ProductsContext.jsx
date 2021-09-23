@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useRef, useState, createContext } from "react";
 import axios from "axios";
@@ -12,6 +13,11 @@ export const ProductsProvider = (props) => {
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState([]);
   const isMounted = useRef(false);
+
+  //clickTracking
+  const [clickedComponent, setClickedComponent] = useState("");
+  const [clickedElement, setClickedElement] = useState("");
+  const [trackedClicks, updateTrackedClicks] = useState([]);
 
   useEffect(() => {
     axios
@@ -50,6 +56,32 @@ export const ProductsProvider = (props) => {
         });
     }
   }, [products]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const today = new Date();
+      let clickTrackObj = {
+        user: "Current User Cookies",
+        element: clickedElement,
+        clickedComponent: clickedComponent,
+        time:
+          today.getMonth() +
+          1 +
+          "-" +
+          today.getDate() +
+          "-" +
+          today.getFullYear() +
+          " -- " +
+          today.getHours() +
+          ":" +
+          today.getMinutes() +
+          ":" +
+          today.getSeconds(),
+      };
+      let updateClickList = [...trackedClicks, clickTrackObj];
+      updateTrackedClicks(updateClickList);
+    }
+  }, [clickedElement]);
 
   const checkStyles = (arrOfStyles, styleID) => {
     let boolean = false;
@@ -97,6 +129,8 @@ export const ProductsProvider = (props) => {
         starRating: [starRating, setStarRating],
         stylesState: [styles, setStyles],
         selectedStyleState: [selectedStyle, setSelectedStyle],
+        clickedComponent: [clickedComponent, setClickedComponent],
+        clickedElement: [setClickedElement, setClickedElement],
       }}
     >
       {props.children}
