@@ -17,14 +17,14 @@ export default function App() {
   if(isLoadingState) {
     return (
         <Container maxWidth="lg" className="loading" >
-          <Grid container justifyContent="center" alignItems="center">
+          <Grid container justifyContent="center" alignItems="center" >
             <CircularProgress />
           </Grid>
         </Container>
     )
   }
   return (
-      <Container maxWidth="lg" className="App">
+      <Container maxWidth="lg" className="App" spacing={2} >
           <ProductOverview />
           <RelatedProducts />
           <CustomerOutfit />
