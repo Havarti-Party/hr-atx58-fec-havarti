@@ -10,6 +10,7 @@ import ExpandQuestions from "./QuestionExpand.jsx";
 import Grid from "@mui/material/Grid";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Typography from '@mui/material/Typography';
 import SearchIcon from "@material-ui/icons/Search";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -89,7 +90,7 @@ export default function QuestionsAndAnswers() {
         <Grid container spacing={2}>
           <Grid item md={2}></Grid>
           <Grid item md={10}>
-            <h1>Customer Questions And Answers</h1>
+            <Typography variant='h4' >Customer Questions And Answers</Typography>
           </Grid>
           <Grid item md={2}></Grid>
           <Grid item md={4}>

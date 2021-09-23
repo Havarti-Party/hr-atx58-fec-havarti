@@ -124,7 +124,7 @@ export default function QuestionModal({styles, product_id}) {
 
   return (
     <div id='questionModal' className={styles.modal}>
-      <Button id='addQuestion' variant='contained' onClick={handleOpen} className={styles.button}>add a question</Button>
+      <Button id='addQuestion' variant='contained' color='primary' onClick={handleOpen} className={styles.button}>add a question</Button>
       <Modal
         open={open}
         onClose={handleClose}
