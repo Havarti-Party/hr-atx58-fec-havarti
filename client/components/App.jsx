@@ -11,6 +11,25 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 
 import { ProductsContext } from "./ProductsContext";
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+const theme = createTheme({
+  pallette: {
+    primary: {
+      main: '2FC3A8',
+    },
+    secondary: {
+      main: '2FB1C3'
+    },
+  },
+  typography: {
+    fontFamily: 'Roboto'
+  }
+})
 
 export default function App() {
   const { isLoading } = useContext(ProductsContext);
@@ -29,13 +48,15 @@ export default function App() {
   return (
 
       <Container maxWidth="lg" className="App" >
-        <Header />
-        <ProductOverview />
-        <RelatedProducts />
-        <CustomerOutfit />
-        <RatingsAndReviews />
-        <QuestionsAndAnswers />
-        <Footer />
+        <ThemeProvider theme={theme}>
+          <Header />
+          <ProductOverview />
+          <RelatedProducts />
+          <CustomerOutfit />
+          <RatingsAndReviews />
+          <QuestionsAndAnswers />
+          <Footer />
+        </ThemeProvider>
       </Container>
 
   );

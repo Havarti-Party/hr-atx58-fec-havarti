@@ -1,4 +1,6 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+
 import Grid from "@material-ui/core/Grid";
 
 export default function ProductFeatures({features}) {
@@ -6,7 +8,9 @@ export default function ProductFeatures({features}) {
   return (
     <>
       <Grid item xs={12}>
-        <h3>Product features</h3>
+        <Typography variant='h5'>
+          Product features
+        </Typography>
       </Grid>
       <Grid item xs={12}>
         <ul>

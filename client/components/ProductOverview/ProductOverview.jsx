@@ -7,6 +7,8 @@ import ProductDetails from "./ProductDetails";
 import ProductFeatures from "./ProductFeatures";
 import AddToCart from "./AddToCart";
 import { ProductsContext } from "../ProductsContext";
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import Divider from '@mui/material/Divider';
 
 
@@ -28,8 +30,8 @@ export default function ProductOverview() {
         </Grid>
         <Grid item md={4}>
           <AverageStarRating />
-          <a
-            href=""
+          <Button
+            color='primary'
             onClick={(e) => {
               e.preventDefault();
               const ratingsAndReviews = document.querySelector(
@@ -40,7 +42,7 @@ export default function ProductOverview() {
             style={{ fontSize: "12px" }}
           >
             Read All Reviews
-          </a>
+          </Button>
           <ProductDetails
             category={overviewProductState.category}
             name={overviewProductState.name}
@@ -59,11 +61,11 @@ export default function ProductOverview() {
         </Grid>
       </Grid>
       <Grid container spacing={4}>
-        <Grid item xs={8}>
-          <h3 className="productSlogan">{overviewProductState.slogan}</h3>
-          <p className="productDescription">
+        <Grid item md={8}>
+          <Typography variant='h5' className="productSlogan">{overviewProductState.slogan}</Typography>
+          <Typography variant='body1'className="productDescription">
             {overviewProductState.description}
-          </p>
+          </Typography>
         </Grid>
         <Grid item xs={4}>
           <ProductFeatures features={overviewProductState.features} />

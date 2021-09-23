@@ -17,7 +17,7 @@ export default function ExpandQuestions({questions, currentQuestions, style}) {
   if (questions.length > currentQuestions.length) {
     return (
       <div>
-        <Button id='expandQuestions' variant='contained' onClick={expandQuestionsButton} className={style.button}>More Answered Questions</Button>
+        <Button id='expandQuestions' variant='contained' color='primary' onClick={expandQuestionsButton} className={style.button}>More Answered Questions</Button>
       </div>
     )
   } else {

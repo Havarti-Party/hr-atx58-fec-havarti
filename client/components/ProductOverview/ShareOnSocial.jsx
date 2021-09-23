@@ -5,6 +5,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import Grid from '@material-ui/core/Grid';
 import Link from '@mui/material/Link';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 
 export default function ShareOnSocial ({name}) {
 
@@ -14,7 +15,7 @@ export default function ShareOnSocial ({name}) {
 
   return(
     <Grid item>
-      <h4>Share on Social:</h4>
+      <Typography variant='h5'>Share on Social:</Typography>
       <IconButton onClick={()=> handleIconClick('Facebook')} >
         <FacebookIcon />
       </IconButton>

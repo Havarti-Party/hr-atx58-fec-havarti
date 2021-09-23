@@ -1,8 +1,11 @@
 import React, { useState, createContext }from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+
 import AnswerList from './AnswerList.jsx';
 import AnswerModal from './AnswerModal.jsx';
+
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const questionStyles = makeStyles({
@@ -50,7 +53,7 @@ export default function Question({question, style, product_id}) {
     <div id='question' className={classes.questionTile}>
       <span>
         <h3>Q: {question.question_body}?</h3>
-        <span>Helpful? <a href='' onClick={incrementHelpfulCount}>yes ({questionHelpfulCount})</a> | <AnswerModal questionId={question.question_id} product_id={product_id}/></span>
+        <span>Helpful? <Button onClick={incrementHelpfulCount} variant='text' color='primary'>yes ({questionHelpfulCount})</Button> | <AnswerModal questionId={question.question_id} product_id={product_id}/></span>
         <a href='' onClick={handleReport}className={classes.report}>report question</a>
       </span>
       <div id='answerList'>
