@@ -231,6 +231,17 @@ app.post('/qa/answers', (req, res) => {
   })
 })
 
+app.put('/reviews/put', (req, res) => {
+  models.putProductReview(req.body, (err, result) => {
+    if (err) {
+      console.log('Error during review PUT request.');
+      res.status(500).send('Error during review PUT request.');
+    } else {
+      res.status(204).send('Resources updated successfully.');
+    }
+  })
+})
+
 app.listen(PORT, (err, success) => {
   if (err) {
     console.log("Error listening to Server...", err);

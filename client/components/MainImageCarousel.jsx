@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import ImageGallery from 'react-image-gallery';
+import React, { useState, useEffect, useContext } from "react";
+import ImageGallery from "react-image-gallery";
 import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 import { ProductsContext } from './ProductsContext';
 import PropTypes from 'prop-types';
 
-export default function MainImageCarousel({photos}) {
-  const imageHeight = '625px';
+export default function MainImageCarousel({ photos }) {
+  const imageHeight = "625px";
   const parsedPhotos = [];
   const { overviewProduct } = useContext(ProductsContext)
   const [ overviewProductState ] = overviewProduct;
@@ -16,7 +16,7 @@ export default function MainImageCarousel({photos}) {
   }, [overviewProductState]);
 
   const imageParse = ((selectedStylePhotos) => {
-    selectedStylePhotos.map(photoObj => {
+    selectedStylePhotos.map((photoObj) => {
       parsedPhotos.push({
         original: photoObj.url,
         thumbnail: photoObj.thumbnail_url,
@@ -30,8 +30,8 @@ export default function MainImageCarousel({photos}) {
   return (
     <ImageGallery
       items={parsedPhotos}
-      thumbnailPosition={'left'}
-      originalHeight={'50px'}
+      thumbnailPosition={"left"}
+      originalHeight={"50px"}
       showPlayButton={false}
       showBullets={true}
       infinite={false}
@@ -40,11 +40,11 @@ export default function MainImageCarousel({photos}) {
         :
         parsedPhotos[parsedPhotos.length - 1]}
       onThumbnailClick={(event, i) => {
-        setCurrentImageIndex(i)
+        setCurrentImageIndex(i);
       }}
       useBrowserFullscreen={false}
     />
-  )
+  );
 }
 
 MainImageCarousel.propTypes = {
