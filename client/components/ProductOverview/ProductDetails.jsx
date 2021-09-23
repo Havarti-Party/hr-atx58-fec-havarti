@@ -2,12 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ShareOnSocial from './ShareOnSocial';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
 import Typography from '@material-ui/core/Typography';
 
-=======
-import Typography from '@mui/material/Typography';
->>>>>>> master
 
 const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
 
