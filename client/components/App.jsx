@@ -48,18 +48,18 @@ export default function App() {
   return (
 
       <Container maxWidth="lg" className="App" >
-        <Grid container spacing={2}>
         <ThemeProvider theme={theme}>
-          <Header />
-          <ProductOverview />
-          <Divider />
-          <RelatedProducts />
-          <CustomerOutfit />
-          <RatingsAndReviews />
-          <QuestionsAndAnswers />
-          <Footer />
-        </ThemeProvider>
+        <Grid container spacing={5}>
+          <Grid item xs={12}><Header /></Grid>
+          <Grid item xs={12}><ProductOverview /></Grid>
+          <Grid item xs={12}><Divider /></Grid>
+          <Grid item xs={12}><RelatedProducts /></Grid>
+          <Grid item xs={12}><CustomerOutfit /></Grid>
+          <Grid item xs={12}><RatingsAndReviews /></Grid>
+          <Grid item xs={12}><QuestionsAndAnswers /></Grid>
+          <Grid item xs={12}><Footer /></Grid>
         </Grid>
+        </ThemeProvider>
       </Container>
 
   );
