@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { ProductsContext } from "./ProductsContext.jsx";
 import ModalPopup from "./CompareModal.jsx";
