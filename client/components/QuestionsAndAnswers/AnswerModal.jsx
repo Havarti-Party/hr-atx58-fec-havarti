@@ -123,7 +123,7 @@ export default function AnswerModal({questionId, product_id}) {
     <div id='answerModal'>
       <Button
         id='addAnswer'
-        variant='contained'
+        variant='text'
         color='primary'
         onClick={handleOpen}
         className={classes.button}>Add an Answer</Button>

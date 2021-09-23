@@ -8,6 +8,7 @@ import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Grid from "@mui/material/Grid";
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -123,8 +124,10 @@ export default function QuestionModal({styles, product_id}) {
 
 
   return (
-    <div id='questionModal' className={styles.modal}>
-      <Button id='addQuestion' variant='contained' color='primary' onClick={handleOpen} className={styles.button}>add a question</Button>
+    <div id='questionModal' >
+    <Grid item>
+      <Button id='addQuestion' variant='contained' color='primary' onClick={handleOpen} className={styles.addQuestion}>add a question</Button>
+    </Grid>
       <Modal
         open={open}
         onClose={handleClose}
