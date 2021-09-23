@@ -2,22 +2,24 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ShareOnSocial from './ShareOnSocial';
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+
 
 const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
 
   return (
     <>
       <Grid item md={12} id="category">
-        {category}
+        <Typography variant='body1'>{category.toUpperCase()}</Typography>
       </Grid>
       <Grid item md={12} id="product-name">
-        <h1>{name}</h1>
+        <Typography variant='h4'>{name}</Typography>
       </Grid>
       <Grid item md={12} id="price">
         {salePrice === null ?
-          <h4>${originalPrice}</h4>
+          <Typography variant='body1'>${originalPrice}</Typography>
           :
-          <h4>${salePrice} <strike>${originalPrice}</strike></h4>
+          <Typography variant='body1'>${salePrice} <strike>${originalPrice}</strike></Typography>
         }
       </Grid>
       <ShareOnSocial name={name} />
