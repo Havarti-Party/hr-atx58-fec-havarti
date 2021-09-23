@@ -57,6 +57,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
         <Grid container direction="column" alignItems="flex-end">
           <Grid item>
             <HighlightOffIcon
+              style={{ fill: "black", fontSize: 45 }}
               onClick={() => {
                 remove(OutfitObj);
               }}
