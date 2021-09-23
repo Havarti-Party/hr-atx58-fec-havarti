@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
-import { ProductsContext } from "./ProductsContext.jsx";
+import { ProductsContext } from "../ProductsContext.jsx";
 import PropTypes from "prop-types";
 
 //Card Features

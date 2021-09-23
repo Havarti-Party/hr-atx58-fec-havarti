@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import ImageGallery from "react-image-gallery";
-import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
-import { ProductsContext } from "./ProductsContext";
+import "../../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+import { ProductsContext } from "../ProductsContext";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function MainImageCarousel({ photos }) {

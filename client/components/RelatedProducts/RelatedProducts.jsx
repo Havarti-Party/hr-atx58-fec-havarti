@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useEffect, useContext } from "react";
-import { ProductsContext } from "./ProductsContext.jsx";
+import { ProductsContext } from "../ProductsContext.jsx";
 
 import Typography from "@material-ui/core/Typography";
 

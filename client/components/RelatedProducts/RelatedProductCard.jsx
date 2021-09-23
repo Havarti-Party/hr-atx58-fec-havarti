@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { ProductsContext } from "./ProductsContext.jsx";
+import { ProductsContext } from "../ProductsContext.jsx";
 import ModalPopup from "./CompareModal.jsx";
 import PropTypes from "prop-types";
 
@@ -23,7 +23,8 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 
 //Image
-const noImage = require("../../dist/Images/No-Image-Found.jpg");
+// import noImage from "../../../dist/Images/No-Image-Found.jpg";
+// // const noImage = require
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
@@ -123,7 +124,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={RelatedObj.url ? RelatedObj.url : noImage}
+        image={RelatedObj.url ? RelatedObj.url : ""}
       >
         <Grid container direction="column" alignItems="flex-end">
           <Grid item>

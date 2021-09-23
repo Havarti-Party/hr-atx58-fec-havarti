@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { ProductsContext } from "./ProductsContext.jsx";
+import { ProductsContext } from "../ProductsContext.jsx";
 import PropTypes from "prop-types";
 
 //Cards
@@ -21,7 +21,7 @@ import Grid from "@material-ui/core/Grid";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 //No-Image-Found-Image
-const noImage = require("../../dist/Images/No-Image-Found.jpg");
+// const noImage = require("../../dist/Images/No-Image-Found.jpg");
 
 const useStyles = makeStyles({
   root: {
@@ -50,7 +50,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
         image={
           OutfitObj.photos[0].thumbnail_url
             ? OutfitObj.photos[0].thumbnail_url
-            : noImage
+            : ""
         }
         title={OutfitObj.name}
       >
