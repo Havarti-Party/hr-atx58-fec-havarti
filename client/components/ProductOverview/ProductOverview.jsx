@@ -7,6 +7,8 @@ import ProductDetails from "./ProductDetails";
 import ProductFeatures from "./ProductFeatures";
 import AddToCart from "./AddToCart";
 import { ProductsContext } from "../ProductsContext";
+import Divider from '@mui/material/Divider';
+
 
 export default function ProductOverview() {
   const { overviewProduct, stylesState, selectedStyleState } =
@@ -20,7 +22,7 @@ export default function ProductOverview() {
 
   return (
     <>
-      <Grid container>
+      <Grid container >
         <Grid item md={8}>
           <MainImageCarousel photos={selectedStyle.photos} />
         </Grid>
@@ -56,17 +58,18 @@ export default function ProductOverview() {
           />
         </Grid>
       </Grid>
-      <Grid container>
-        <Grid item md={8}>
-          <h5 className="productSlogan">{overviewProductState.slogan}</h5>
+      <Grid container spacing={4}>
+        <Grid item xs={8}>
+          <h3 className="productSlogan">{overviewProductState.slogan}</h3>
           <p className="productDescription">
             {overviewProductState.description}
           </p>
         </Grid>
-        <Grid item md={4}>
+        <Grid item xs={4}>
           <ProductFeatures features={overviewProductState.features} />
         </Grid>
       </Grid>
+      <Divider />
     </>
   );
 }
