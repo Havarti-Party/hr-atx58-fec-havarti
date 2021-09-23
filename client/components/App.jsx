@@ -16,23 +16,6 @@ export default function App() {
 
   if (isLoadingState) {
     return (
-<<<<<<< HEAD
-      <Container maxWidth="lg" className="loading">
-        <Grid container justifyContent="center" alignItems="center">
-          <CircularProgress />
-        </Grid>
-      </Container>
-    );
-  }
-  return (
-    <Container maxWidth="lg" className="App">
-      <ProductOverview />
-      <RelatedProducts />
-      <CustomerOutfit />
-      <RatingsAndReviews />
-      <QuestionsAndAnswers />
-    </Container>
-=======
         <Container maxWidth="lg" className="loading" >
           <Grid container justifyContent="center" alignItems="center" >
             <CircularProgress />
@@ -48,6 +31,5 @@ export default function App() {
           <RatingsAndReviews />
           <QuestionsAndAnswers />
       </Container>
->>>>>>> master
   );
 }
