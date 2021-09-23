@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import ImageGallery from "react-image-gallery";
 import "../../../node_modules/react-image-gallery/styles/css/image-gallery.css";
-import { ProductsContext } from "../ProductsContext";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { ProductsContext } from "./ProductsContext";
+import PropTypes from "prop-types";
 
 export default function MainImageCarousel({ photos }) {
   const imageHeight = "625px";
   const parsedPhotos = [];
   const { overviewProduct } = useContext(ProductsContext);
-  const [overviewProductState, setOverviewProductState] = overviewProduct;
+  const [overviewProductState] = overviewProduct;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     setCurrentImageIndex(0);
   }, [overviewProductState]);
 
-  const imageParse = ((selectedStylePhotos) => {
+  const imageParse = (selectedStylePhotos) => {
     selectedStylePhotos.map((photoObj) => {
       parsedPhotos.push({
         original: photoObj.url,
@@ -23,7 +23,9 @@ export default function MainImageCarousel({ photos }) {
         originalHeight: imageHeight,
       });
     });
-  })(photos);
+  };
+
+  imageParse(photos);
 
   return (
     <ImageGallery
@@ -33,7 +35,11 @@ export default function MainImageCarousel({ photos }) {
       showPlayButton={false}
       showBullets={true}
       infinite={false}
-      startIndex={currentImageIndex}
+      startIndex={
+        !parsedPhotos.currentImageIndex
+          ? currentImageIndex
+          : parsedPhotos[parsedPhotos.length - 1]
+      }
       onThumbnailClick={(event, i) => {
         setCurrentImageIndex(i);
       }}
@@ -41,3 +47,7 @@ export default function MainImageCarousel({ photos }) {
     />
   );
 }
+
+MainImageCarousel.propTypes = {
+  photos: PropTypes.array.isRequired,
+};

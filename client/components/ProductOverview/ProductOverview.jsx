@@ -14,7 +14,6 @@ export default function ProductOverview() {
   const [overviewProductState] = overviewProduct;
   const [styles] = stylesState;
   const [selectedStyle, setSelectedStyle] = selectedStyleState;
-
   const handleStyleClick = (clickedStyle) => {
     setSelectedStyle(styles[clickedStyle]);
   };
