@@ -39,8 +39,9 @@ export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
   //useContext
-  const { overviewProduct } = useContext(ProductsContext);
+  const { overviewProduct, selectedStyleState } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
+  const [selectedStyle, setSelectedStyle] = selectedStyleState;
 
   return (
     <Card className={classes.root}>
@@ -67,6 +68,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
         <CardContent
           onClick={() => {
             setOverviewProductState(OutfitObj.overviewProduct);
+            setSelectedStyle(OutfitObj.selectedStyleObj);
           }}
         >
           <Typography gutterBottom variant="body1" component="h2">
@@ -77,13 +79,22 @@ export default function OutfitCard({ OutfitObj, remove }) {
           </Typography>
 
           {OutfitObj.sale_price ? (
-            <Typography variant="body2" color="textSecondary" component="p">
-              Original: {OutfitObj.original_price} Sale Price:{" "}
-              {OutfitObj.sale_price}{" "}
-            </Typography>
+            <>
+              <Typography variant="body2" color="textSecondary" component="p">
+                ${OutfitObj.original_price}
+              </Typography>
+              <Typography
+                variant="body2"
+                className={{ textDecoration: "line-through" }}
+                style={{ color: "red" }}
+                component="div"
+              >
+                Sale Price: ${OutfitObj.sale_price}{" "}
+              </Typography>
+            </>
           ) : (
             <Typography variant="body2" color="textSecondary" component="p">
-              {OutfitObj.original_price}
+              ${OutfitObj.original_price}
             </Typography>
           )}
 

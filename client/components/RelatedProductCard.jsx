@@ -159,8 +159,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
             {RelatedObj.category}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {RelatedObj.default_price}
-            {RelatedObj.sale_price ? RelatedObj.sale_price : ""}
+            ${RelatedObj.default_price}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {RelatedObj.description}

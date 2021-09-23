@@ -23,10 +23,17 @@ export default function RelatedProducts() {
   const [relatedProductsArr, setRelatedProductsArr] = React.useState([]);
 
   useEffect(() => {
+    let id;
+    if (overviewProductState.id) {
+      id = overviewProductState.id;
+    } else {
+      id = overviewProductState.overviewProduct.id;
+    }
+
     axios
       .get("/related/id", {
         params: {
-          ID: overviewProductState.id,
+          ID: id,
         },
       })
       .then((relatedProductsIDs) => {
