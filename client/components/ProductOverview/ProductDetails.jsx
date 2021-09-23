@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import ShareOnSocial from './ShareOnSocial';
 import PropTypes from 'prop-types';
+import Typography from '@mui/material/Typography';
 
 const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
 
