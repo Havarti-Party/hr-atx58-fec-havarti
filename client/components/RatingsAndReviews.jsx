@@ -33,7 +33,7 @@ export default function RatingsAndReviews(props) {
       .then((reviewData) => {
         setCurrentReviews(reviewData.data);
         setLoading(false);
-        console.log(reviewData.data);
+        // console.log(reviewData.data);
       })
       .catch((error) => {
         console.log('Error while fetching reviews: ', error);

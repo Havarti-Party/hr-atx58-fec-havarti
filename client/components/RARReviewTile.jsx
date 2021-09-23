@@ -38,22 +38,15 @@ export default function ReviewTile(props) {
 
   var handleClick= () => {
     if (!clicked) {
-      console.log('Attempting put request.');
       setReview({
         ...review,
         recommend: review.recommend + 1
       });
         setClicked(true);
-        console.log(review);
       axios.put('/reviews/put', review)
-      .then((putResponse) => {
-        console.log('Successfully put data!')
-      })
       .catch((error) => {
         console.log('Error putting data.')
       })
-    } else {
-      console.log('Dis one has, doe!');
     }
   }
 
