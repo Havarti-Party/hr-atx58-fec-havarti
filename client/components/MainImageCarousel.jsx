@@ -33,7 +33,10 @@ export default function MainImageCarousel({photos}) {
       showPlayButton={false}
       showBullets={true}
       infinite={false}
-      startIndex={currentImageIndex}
+      startIndex={!parsedPhotos.currentImageIndex ?
+        currentImageIndex
+        :
+        parsedPhotos[parsedPhotos.length - 1]}
       onThumbnailClick={(event, i) => {
         setCurrentImageIndex(i)
       }}
