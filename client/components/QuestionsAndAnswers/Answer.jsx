@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const AnswerStyles = makeStyles({
@@ -58,10 +58,9 @@ export default function Answer({answerData}) {
         })}
       </div>
       <span>
-        <p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | answer helpfulness:
-          <a href='' onClick={incrementHelpfulCount}>yes ({helpfulCount})</a> ||
-          <br />
-          <a href='' onClick={handleReport}className={classes.report}>report</a>
+        <p>by: {answerData.answerer_name}, {answerData.date.slice(0, 10)} | Helpful?:
+          <Button onClick={incrementHelpfulCount} variant='text' color='primary'> yes ({helpfulCount})</Button>
+          <Button onClick={handleReport} className={classes.report} variant='text'>report</Button>
         </p>
       </span>
       <br/>
