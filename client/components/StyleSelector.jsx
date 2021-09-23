@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
 
 export default function StyleSelector( { styles, selectedStyle, handleStyleClick }) {
-// console.log(selectedStyle)
   return (
     <>
       <Grid container>

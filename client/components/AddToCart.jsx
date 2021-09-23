@@ -90,7 +90,6 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
       size: selectedSize,
       quantity: selectedQuantity
     });
-    console.log(selectedStyle, currentProduct)
     // Add axios push request here to add product to cart
     // axios.push('/addToCart', {
     //   sku: selectedStyle.sku
