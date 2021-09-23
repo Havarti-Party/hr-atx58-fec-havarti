@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { ProductsContext } from "./ProductsContext.jsx";
+import { ProductsContext } from "../ProductsContext.jsx";
 import PropTypes from "prop-types";
 
 //Cards
@@ -21,7 +21,7 @@ import Grid from "@material-ui/core/Grid";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 //No-Image-Found-Image
-const noImage = require("../../dist/Images/No-Image-Found.jpg");
+// const noImage = require("../../dist/Images/No-Image-Found.jpg");
 
 const useStyles = makeStyles({
   root: {
@@ -39,8 +39,9 @@ export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
   //useContext
-  const { overviewProduct } = useContext(ProductsContext);
+  const { overviewProduct, selectedStyleState } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
+  const [selectedStyle, setSelectedStyle] = selectedStyleState;
 
   return (
     <Card className={classes.root}>
@@ -49,7 +50,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
         image={
           OutfitObj.photos[0].thumbnail_url
             ? OutfitObj.photos[0].thumbnail_url
-            : noImage
+            : ""
         }
         title={OutfitObj.name}
       >
@@ -67,6 +68,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
         <CardContent
           onClick={() => {
             setOverviewProductState(OutfitObj.overviewProduct);
+            setSelectedStyle(OutfitObj.selectedStyleObj);
           }}
         >
           <Typography gutterBottom variant="body1" component="h2">
@@ -77,13 +79,21 @@ export default function OutfitCard({ OutfitObj, remove }) {
           </Typography>
 
           {OutfitObj.sale_price ? (
-            <Typography variant="body2" color="textSecondary" component="p">
-              Original: {OutfitObj.original_price} Sale Price:{" "}
-              {OutfitObj.sale_price}{" "}
-            </Typography>
+            <>
+              <Typography variant="body2" color="textSecondary" component="p">
+                ${OutfitObj.original_price}
+              </Typography>
+              <Typography
+                variant="body2"
+                style={{ color: "red" }}
+                component="div"
+              >
+                Sale Price: ${OutfitObj.sale_price}{" "}
+              </Typography>
+            </>
           ) : (
             <Typography variant="body2" color="textSecondary" component="p">
-              {OutfitObj.original_price}
+              ${OutfitObj.original_price}
             </Typography>
           )}
 

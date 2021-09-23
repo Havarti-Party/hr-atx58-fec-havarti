@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useEffect, useContext } from "react";
-import { ProductsContext } from "./ProductsContext.jsx";
+import { ProductsContext } from "../ProductsContext.jsx";
 
 import Typography from "@material-ui/core/Typography";
 
@@ -23,10 +23,17 @@ export default function RelatedProducts() {
   const [relatedProductsArr, setRelatedProductsArr] = React.useState([]);
 
   useEffect(() => {
+    let id;
+    if (overviewProductState.id) {
+      id = overviewProductState.id;
+    } else {
+      id = overviewProductState.overviewProduct.id;
+    }
+
     axios
       .get("/related/id", {
         params: {
-          ID: overviewProductState.id,
+          ID: id,
         },
       })
       .then((relatedProductsIDs) => {

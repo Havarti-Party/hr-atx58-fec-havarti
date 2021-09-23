@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
-import { ProductsContext } from "./ProductsContext.jsx";
+import { ProductsContext } from "../ProductsContext.jsx";
 import PropTypes from "prop-types";
 
 //Card Features
@@ -20,11 +20,13 @@ export default function AddToOutfitCard({ updateWardrobe }) {
   const [selectedStyle, setSelectedStyle] = selectedStyleState;
 
   const addToOutfitList = (selectedStyleObj) => {
-    //add a property for the overviewProduct ID to the style
-    selectedStyleObj.overviewProductID = overviewProductState.id;
+    let copy = selectedStyleObj;
+    selectedStyleObj.selectedStyleObj = copy;
+    selectedStyleObj.slogan = overviewProduct.slogan;
+    selectedStyleObj.overviewProduct = overviewProductState;
     selectedStyleObj.description = overviewProductState.description;
     selectedStyleObj.category = overviewProductState.category;
-    selectedStyleObj.overviewProduct = overviewProductState;
+    selectedStyleObj.features = overviewProductState.features;
 
     updateWardrobe(selectedStyleObj);
   };

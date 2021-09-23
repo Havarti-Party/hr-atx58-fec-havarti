@@ -51,6 +51,16 @@ export const ProductsProvider = (props) => {
     }
   }, [products]);
 
+  const checkStyles = (arrOfStyles, styleID) => {
+    let boolean = false;
+    arrOfStyles.forEach((obj) => {
+      if (obj.style_id === styleID) {
+        boolean = true;
+      }
+    });
+    return boolean;
+  };
+
   useEffect(() => {
     if (isMounted.current) {
       let overviewProductID = overviewProduct.id;
@@ -62,7 +72,13 @@ export const ProductsProvider = (props) => {
         })
         .then((overviewProductStyles) => {
           setStyles(overviewProductStyles.data.results);
-          setSelectedStyle(overviewProductStyles.data.results[0]);
+          if (
+            Array.isArray(selectedStyle) ||
+            checkStyles(styles, selectedStyle.style_id)
+          ) {
+            setSelectedStyle(overviewProductStyles.data.results[0]);
+          }
+
           setIsLoading(false);
         })
         .catch(() => {
