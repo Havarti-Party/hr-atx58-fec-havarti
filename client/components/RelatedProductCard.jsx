@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { ProductsContext } from "./ProductsContext.jsx";
 import ModalPopup from "./CompareModal.jsx";
@@ -159,8 +160,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
             {RelatedObj.category}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {RelatedObj.default_price}
-            {RelatedObj.sale_price ? RelatedObj.sale_price : ""}
+            ${RelatedObj.default_price}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             {RelatedObj.description}
