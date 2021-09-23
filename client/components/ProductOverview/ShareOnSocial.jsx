@@ -15,7 +15,7 @@ export default function ShareOnSocial ({name}) {
 
   return(
     <Grid item>
-      <Typography variant='h5'>Share on Social:</Typography>
+      <Typography variant='h6'>Share on Social:
       <IconButton onClick={()=> handleIconClick('Facebook')} >
         <FacebookIcon />
       </IconButton>
@@ -25,6 +25,7 @@ export default function ShareOnSocial ({name}) {
       <IconButton onClick={()=> handleIconClick('Pinterest')} >
         <PinterestIcon />
       </IconButton>
+      </Typography>
     </Grid>
   )
 }

@@ -24,7 +24,7 @@ export default function ProductOverview() {
 
   return (
     <>
-      <Grid container >
+      <Grid container spacing={2}>
         <Grid item md={8}>
           <MainImageCarousel photos={selectedStyle.photos} />
         </Grid>
