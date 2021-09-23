@@ -205,7 +205,7 @@ const AddToCart = () => {
 
 AddToCart.propTypes = {
   overviewProductState: PropTypes.object,
-  selectedStyle: PropTypes.object.isRequired
+  selectedStyle: PropTypes.object
 }
 
 export default AddToCart;

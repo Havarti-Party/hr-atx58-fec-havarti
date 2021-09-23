@@ -53,10 +53,7 @@ export default function ProductOverview() {
             selectedStyle={selectedStyle}
             handleStyleClick={handleStyleClick}
           />
-          <AddToCart
-            currentProduct={overviewProductState}
-            selectedStyle={selectedStyle}
-          />
+          <AddToCart />
         </Grid>
         <Grid item xs={7}>
           <Typography variant='h5' className="productSlogan">{overviewProductState.slogan}</Typography>
