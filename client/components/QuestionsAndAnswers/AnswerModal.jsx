@@ -36,7 +36,7 @@ const modalStyles = makeStyles({
 });
 
 
-export default function AnswerModal({questionId, product_id}) {
+export default function AnswerModal({questionId, product_id, setAnswers}) {
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -95,15 +95,17 @@ export default function AnswerModal({questionId, product_id}) {
           }})
           .then(response => {
             var newQuestions = response.data.results
+            console.log(newQuestions);
             setQuestions(newQuestions.sort((a, b) => {
               a.question_helpfulness - b.question_helpfulness
             }));
           })
           .then(() => {
             setAllValues({
-              question: '',
+              answer: '',
               nickname: '',
               email: '',
+              images: [],
             });
             setOpen(false);
           })
@@ -134,8 +136,10 @@ export default function AnswerModal({questionId, product_id}) {
         aria-describedby='a modal to post a new answer'
       >
         <div className={classes.modal}>
-          <Typography variant='h4'>Submit your Answer</Typography>
-          <Typography variant='body1'>About the [product name here]</Typography>
+          <div>
+            <Typography variant='h4'>Submit your Answer</Typography>
+            <Typography variant='body1'>About the [product name here]</Typography>
+          </div>
           <form className='addAnswerForm'>
             <TextField
               id='answerField'
@@ -185,4 +189,5 @@ export default function AnswerModal({questionId, product_id}) {
 AnswerModal.propTypes = {
   questionId: PropTypes.number,
   product_id: PropTypes.number,
+  setAnswers: PropTypes.func,
 }

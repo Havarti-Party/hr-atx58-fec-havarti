@@ -1,4 +1,4 @@
-import React, { useState, createContext }from 'react';
+import React, { useState, createContext, useEffect }from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -24,15 +24,23 @@ const questionStyles = makeStyles({
 export const AnswersContext = createContext();
 //the list initally maps the top four questions
 //inside each question. map top two answers
-export default function Question({question, style, product_id}) {
+export default function Question({question, style, product_id, questions}) {
   const classes = questionStyles();
   // eslint-disable-next-line no-unused-vars
   const [answers, setAnswers] = useState(Object.values(question.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
   const [questionHelpfulCount, setQuestionHelpfulCount] = useState(question.question_helpfulness)
   const [ reported, setReported ] = useState(false)
+  const [ markHelpful, setMarkHelpful ] = useState(false);
+
+  useEffect(() => {
+    setAnswers(Object.values(question.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
+  }, [questions])
+
+
   function incrementHelpfulCount(e) {
     //limit to one click
     e.preventDefault();
+    setMarkHelpful(true);
     setQuestionHelpfulCount(prevCount => prevCount + 1);
     axios.post('/qa/questionHelpfulness', {
       questionId: question.question_id,
@@ -46,6 +54,7 @@ export default function Question({question, style, product_id}) {
   function handleReport(e) {
     e.preventDefault();
     //TURN THE QUESTION BACKGROUND RED?
+    //disable the reported button
     setReported(true)
     axios.post('/qa/reportQuestion', {
       question_id: question.question_id,
@@ -61,21 +70,31 @@ export default function Question({question, style, product_id}) {
   return (
     <div>
       <Grid container>
-        <Grid item md={10}>
+        <Grid item md={8}>
           <Typography variant='h4'>Q: {question.question_body}?</Typography >
         </Grid>
-        <Grid item md>
+        <Grid item>
           <Typography variant='body1'>
             Helpful?
-            <Button onClick={incrementHelpfulCount} variant='text' color='primary'>
-              yes ({questionHelpfulCount})
+            <Button
+              onClick={incrementHelpfulCount}
+              variant='text'
+              color='primary'
+              disabled={markHelpful ? true : false}>
+                yes ({questionHelpfulCount})
             </Button>
-            |
-            <AnswerModal questionId={question.question_id} product_id={product_id}/>
+            ||
+            <AnswerModal questionId={question.question_id} product_id={product_id} setAnswers={setAnswers}/>
           </Typography>
         </Grid>
-        <Grid item justifyContent='right'>
-          <Button onClick={handleReport} variant='text' className={classes.report}>report question</Button>
+        <Grid item>
+          <Button
+            onClick={handleReport}
+            variant='text'
+            className={classes.report}
+            disabled={reported ? true : false}>
+              report question
+            </Button>
         </Grid>
         <Grid item id='answerList'>
           <AnswerList answers={answers} style={style} product_id={product_id} />
@@ -89,4 +108,5 @@ Question.propTypes = {
   question: PropTypes.object,
   style: PropTypes.object,
   product_id: PropTypes.number,
+  questions: PropTypes.array,
 }

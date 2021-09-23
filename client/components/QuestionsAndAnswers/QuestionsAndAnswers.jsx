@@ -118,7 +118,7 @@ export default function QuestionsAndAnswers() {
           <Grid item xs>
             <QuestionModal styles={classes} product_id={productId} />
           </Grid>
-          <Grid item md={10} className={classes.list}>
+          <Grid item md={12} className={classes.list}>
             {currentQuestions
               .filter((question) => {
                 if (searchValue === "") {
@@ -138,6 +138,7 @@ export default function QuestionsAndAnswers() {
                     question={question}
                     style={classes}
                     product_id={productId}
+                    questions={questions}
                   />
                 );
               })}
