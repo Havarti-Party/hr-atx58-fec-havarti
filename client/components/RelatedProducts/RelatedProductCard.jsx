@@ -134,7 +134,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
                 onClick={() => {
                   handleStarClick(RelatedObj);
                 }}
-                style={{ fill: "white" }}
+                color="primary"
+                style={{ fontSize: 45 }}
               />
             ) : (
               <StarIcon
@@ -142,7 +143,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
                 onClick={() => {
                   handleStarClick(RelatedObj);
                 }}
-                style={{ fill: "white" }}
+                color="primary"
+                style={{ fontSize: 45 }}
               />
             )}
           </Grid>
