@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext, createContext } from "react";
 
 import axios from "axios";
@@ -44,15 +45,14 @@ export const QuestionsContext = createContext();
 export default function QuestionsAndAnswers() {
   const classes = questionListStyles();
   const { overviewProduct } = useContext(ProductsContext);
-  // eslint-disable-next-line no-unused-vars
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const [productId, setProductId] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
 
-  const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
+  const [questionDisplayCount, setQuestionDisplayCount] = useState(4);
   const [currentQuestions, setCurrentQuestions] = useState(
-    questions.slice(0, 2)
+    questions.slice(0, 4)
   );
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function QuestionsAndAnswers() {
     setProductId(overviewProductState.id);
   }, [questions]);
 
-  useEffect(() => {}, [currentQuestions]);
+  // useEffect(() => {}, [currentQuestions]);
 
   useEffect(() => {
     setCurrentQuestions(questions.slice(0, questionDisplayCount));

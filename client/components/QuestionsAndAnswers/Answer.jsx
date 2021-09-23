@@ -36,14 +36,11 @@ export default function Answer({answerData}) {
 
   function handleReport(e) {
     e.preventDefault();
+    setReported(true);
     axios.post('/qa/reportAnswer', {
       answer_id: answerData.id,
     })
-    .then(() => {
-      window.alert('You\'ve successfully reported this Answer. We will remove this as soon as possible')
-      setReported(true);
-      //maybe turn it red or something
-    })
+    .then()
     .catch(error => {
       console.error(error)
     })

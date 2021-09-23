@@ -24,17 +24,19 @@ const questionStyles = makeStyles({
 export const AnswersContext = createContext();
 //the list initally maps the top four questions
 //inside each question. map top two answers
-export default function Question({question, style, product_id, questions}) {
+export default function Question({question, style, product_id}) {
   const classes = questionStyles();
   // eslint-disable-next-line no-unused-vars
-  const [answers, setAnswers] = useState(Object.values(question.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
-  const [questionHelpfulCount, setQuestionHelpfulCount] = useState(question.question_helpfulness)
+  const [ answers, setAnswers ] = useState(Object.values(question.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
+  const [ questionHelpfulCount, setQuestionHelpfulCount ] = useState(question.question_helpfulness)
   const [ reported, setReported ] = useState(false)
   const [ markHelpful, setMarkHelpful ] = useState(false);
 
   useEffect(() => {
-    setAnswers(Object.values(question.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
-  }, [questions])
+  }, [answers])
+
+  useEffect(() => {
+  }, [question])
 
 
   function incrementHelpfulCount(e) {
@@ -84,8 +86,8 @@ export default function Question({question, style, product_id, questions}) {
                 yes ({questionHelpfulCount})
             </Button>
             ||
-            <AnswerModal questionId={question.question_id} product_id={product_id} setAnswers={setAnswers}/>
           </Typography>
+          <AnswerModal questionId={question.question_id} product_id={product_id} setAnswers={setAnswers} answers={answers}/>
         </Grid>
         <Grid item>
           <Button
@@ -97,7 +99,7 @@ export default function Question({question, style, product_id, questions}) {
             </Button>
         </Grid>
         <Grid item id='answerList'>
-          <AnswerList answers={answers} style={style} product_id={product_id} />
+          <AnswerList answers={answers} style={style} product_id={product_id} question={question}/>
         </Grid>
       </Grid>
     </div>
