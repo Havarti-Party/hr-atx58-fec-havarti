@@ -23,8 +23,7 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 
 //Image
-// import noImage from "../../../dist/Images/No-Image-Found.jpg";
-// // const noImage = require
+import noImage from "./No-Image-Found.jpg";
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
@@ -124,7 +123,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={RelatedObj.url ? RelatedObj.url : ""}
+        image={RelatedObj.url ? RelatedObj.url : noImage}
       >
         <Grid container direction="column" alignItems="flex-end">
           <Grid item>
