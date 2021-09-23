@@ -72,5 +72,5 @@ export default function RatingBreakdownBars(props) {
 RatingBreakdownBars.propTypes = {
   currentReviews: PropTypes.object,
   currentProduct: PropTypes.object,
-  setStarRating: PropTypes.function,
+  setStarRating: PropTypes.func,
 }

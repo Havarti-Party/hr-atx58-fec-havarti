@@ -12,9 +12,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
+import PropTypes from 'prop-types';
 
 const _ = require("underscore");
-const axios = require("axios");
 
 
 export default function FormDialog(props) {
@@ -65,17 +65,17 @@ export default function FormDialog(props) {
     )
   }
 
-  const handleCharacteristic = (event) => {
-    setFormData(
-      {
-        ...formData,
-        characteristics: {
-          ...formData.characteristics,
-          [event.target.name]: event.target.value
-        }
-      }
-    )
-  }
+  // const handleCharacteristic = (event) => {
+  //   setFormData(
+  //     {
+  //       ...formData,
+  //       characteristics: {
+  //         ...formData.characteristics,
+  //         [event.target.name]: event.target.value
+  //       }
+  //     }
+  //   )
+  // }
 
   const handleSubmit = () => {
     console.log('Sending form data: ', formData);
@@ -252,4 +252,9 @@ export default function FormDialog(props) {
       </Dialog>
     </div>
   );
+}
+
+FormDialog.propTypes = {
+  currentProduct: PropTypes.array,
+  currentReviews: PropTypes.object,
 }

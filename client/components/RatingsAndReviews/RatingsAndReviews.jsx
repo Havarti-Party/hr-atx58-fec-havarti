@@ -1,27 +1,28 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import StarRatings from "react-star-ratings";
 import Grid from "@material-ui/core/Grid";
 import RatingBreakdownBars from "./RARRatingBreakdownBars.jsx";
 import ReviewSorter from "./RARReviewSorter.jsx";
 import ReviewDisplay from "./RARReviewDisplay.jsx";
 import { ProductsContext } from "../ProductsContext";
-import Typography from "@mui/material/Typography";
 import RecommendRatio from "./RARRecommendRatio.jsx";
 import FactorBarsDisplay from "./RARFactorBarsDisplay.jsx";
 
+// eslint-disable-next-line no-undef
 const axios = require("axios");
 
-export default function RatingsAndReviews(props) {
+export default function RatingsAndReviews() {
   const { overviewProduct } = useContext(ProductsContext);
+  // eslint-disable-next-line no-unused-vars
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const { starRating } = useContext(ProductsContext);
   const [starRatingState, setStarRating] = starRating;
   const [sorter, setSorter] = useState("relevance");
   const [currentReviews, setCurrentReviews] = useState({});
-  const [averageStarRating, updateAverageStarRating] = useState(0);
+  // const [averageStarRating, updateAverageStarRating] = useState(0);
   const [isLoading, setLoading] = useState(true);
   // const [recommendRatio, setRecommendRatio] = useState(0);
-  const isMounted = useRef(false);
+  // const isMounted = useRef(false);
 
   useEffect(() => {
     axios

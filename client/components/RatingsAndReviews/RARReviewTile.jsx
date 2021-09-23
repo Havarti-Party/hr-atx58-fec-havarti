@@ -3,6 +3,8 @@ import StarRatings from 'react-star-ratings';
 import Button from '@material-ui/core/Button';
 import ThumbUpOffAlt from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbUpAlt from '@mui/icons-material/ThumbUpAlt';
+import PropTypes from 'prop-types';
+// eslint-disable-next-line no-undef
 const axios = require('axios');
 
 export default function ReviewTile(props) {
@@ -44,6 +46,7 @@ export default function ReviewTile(props) {
       });
         setClicked(true);
       axios.put('/reviews/put', review)
+      // eslint-disable-next-line no-unused-vars
       .catch((error) => {
         console.log('Error putting data.')
       })
@@ -69,4 +72,19 @@ export default function ReviewTile(props) {
         {!clicked ? (<ThumbUpOffAlt />) : (<ThumbUpAlt />)}{review.helpfulness}</Button>
     </div>
   )
+}
+
+ReviewTile.propTypes = {
+  currentReviews: PropTypes.object,
+  body: PropTypes.string,
+  date: PropTypes.string,
+  helpfulness: PropTypes.number,
+  photos: PropTypes.array,
+  rating: PropTypes.number,
+  recommend: PropTypes.bool,
+  response: PropTypes.string,
+  review_id: PropTypes.number,
+  reviewer_name: PropTypes.string,
+  summary: PropTypes.string,
+  title: PropTypes.string
 }

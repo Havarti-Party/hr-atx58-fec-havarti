@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
-
+import PropTypes from 'prop-types';
 
 export default function MoreReviewsButton(props) {
   if (props.count === 0 || props.reviewDisplayCount >= props.count) {
@@ -12,4 +12,8 @@ export default function MoreReviewsButton(props) {
   }
 }
 
-
+MoreReviewsButton.propTypes = {
+  count: PropTypes.number,
+  reviewDisplayCount: PropTypes.number,
+  updateDisplayCount: PropTypes.func,
+}

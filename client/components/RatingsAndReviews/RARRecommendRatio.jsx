@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React from 'react';
 import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
 
 export default function RecommendRatio(props) {
 
@@ -18,4 +19,8 @@ if (isNaN(recommendRatio)) {
   return (
     <Typography>{recommendRatio.toFixed(2)}% of reviews recommend this product</Typography>
     )
+  }
+
+  RecommendRatio.propTypes = {
+    currentReviews: PropTypes.object,
   }
