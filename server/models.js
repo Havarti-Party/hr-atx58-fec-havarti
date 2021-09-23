@@ -161,6 +161,19 @@ let postProductReview = (data, callback) => {
     });
 };
 
+let putProductReview = (data, callback) => {
+  axios
+    .put(apiURL + `/reviews/${data.review_id}/helpful`, data, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      callback(null, result);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
+
 module.exports = {
   getAllProducts,
   getRelatedProductsIDs,
@@ -174,4 +187,5 @@ module.exports = {
   addNewAnswer,
   updateAnswerHelpfulness,
   updateQuestionHelpfulness,
+  putProductReview,
 };

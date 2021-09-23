@@ -32,7 +32,7 @@ export default function ReviewDisplay(props) {
   displayReviews.map((review, index) => {
     displayArray.push(
       <div key={index}>
-        <ReviewTile {...review}/><br />
+        <ReviewTile {...review} setCurrentReviews={props.setCurrentReviews} /><br />
         <Divider />
       </div>
     )

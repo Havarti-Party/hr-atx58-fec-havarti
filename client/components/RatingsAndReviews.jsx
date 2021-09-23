@@ -33,11 +33,10 @@ export default function RatingsAndReviews(props) {
       .then((reviewData) => {
         setCurrentReviews(reviewData.data);
         setLoading(false);
-        // console.log(reviewData.data);
+        console.log(reviewData.data);
       })
       .catch((error) => {
-        console.log('Error while fetching reviews:');
-        console.log(error);
+        console.log('Error while fetching reviews: ', error);
       })
 }, [overviewProductState])
 
@@ -60,7 +59,7 @@ export default function RatingsAndReviews(props) {
           </Grid>
           <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARRightColumn">
             <ReviewSorter currentReviews={currentReviews} setCurrentReviews={setCurrentReviews} sorter={sorter} setSorter={setSorter}/>
-            <ReviewDisplay currentReviews={currentReviews} currentProduct={overviewProduct}/>
+            <ReviewDisplay currentReviews={currentReviews} setCurrentReviews={setCurrentReviews} currentProduct={overviewProduct}/>
           </Grid>
         </Grid>
       </>
