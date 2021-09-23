@@ -16,6 +16,7 @@ export default function App() {
 
   if (isLoadingState) {
     return (
+
       <Container maxWidth="lg" className="loading">
         <Grid container justifyContent="center" alignItems="center">
           <CircularProgress />
@@ -31,5 +32,6 @@ export default function App() {
       <RatingsAndReviews />
       <QuestionsAndAnswers />
     </Container>
+
   );
 }
