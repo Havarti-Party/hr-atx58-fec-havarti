@@ -37,14 +37,16 @@ export default function App() {
 
   if (isLoadingState) {
     return (
-        <Container maxWidth="lg" className="loading" >
-          <Grid container justifyContent="center" alignItems="center" >
-            <CircularProgress />
-          </Grid>
-        </Container>
-    )
+
+      <Container maxWidth="lg" className="loading">
+        <Grid container justifyContent="center" alignItems="center">
+          <CircularProgress />
+        </Grid>
+      </Container>
+    );
   }
   return (
+
       <Container maxWidth="lg" className="App" >
         <ThemeProvider theme={theme}>
           <Header />
@@ -56,5 +58,6 @@ export default function App() {
           <Footer />
         </ThemeProvider>
       </Container>
+
   );
 }

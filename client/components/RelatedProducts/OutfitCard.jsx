@@ -21,7 +21,7 @@ import Grid from "@material-ui/core/Grid";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 //No-Image-Found-Image
-// const noImage = require("../../dist/Images/No-Image-Found.jpg");
+import noImage from "./No-Image-Found.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -50,13 +50,14 @@ export default function OutfitCard({ OutfitObj, remove }) {
         image={
           OutfitObj.photos[0].thumbnail_url
             ? OutfitObj.photos[0].thumbnail_url
-            : ""
+            : noImage
         }
         title={OutfitObj.name}
       >
         <Grid container direction="column" alignItems="flex-end">
           <Grid item>
             <HighlightOffIcon
+              style={{ fill: "black", fontSize: 45 }}
               onClick={() => {
                 remove(OutfitObj);
               }}
