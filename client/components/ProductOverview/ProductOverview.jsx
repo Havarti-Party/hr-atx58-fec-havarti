@@ -6,7 +6,7 @@ import StyleSelector from "./StyleSelector";
 import ProductDetails from "./ProductDetails";
 import ProductFeatures from "./ProductFeatures";
 import AddToCart from "./AddToCart";
-import { ProductsContext } from "./ProductsContext";
+import { ProductsContext } from "../ProductsContext";
 
 export default function ProductOverview() {
   const { overviewProduct, stylesState, selectedStyleState } =
