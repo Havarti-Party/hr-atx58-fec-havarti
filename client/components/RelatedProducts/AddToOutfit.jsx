@@ -13,11 +13,13 @@ import Typography from "@material-ui/core/Typography";
 //Icons
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 
-export default function AddToOutfitCard({ updateWardrobe, clickTracker }) {
+export default function AddToOutfitCard({ updateWardrobe }) {
   //useContext
-  const { overviewProduct, selectedStyleState } = useContext(ProductsContext);
+  const { overviewProduct, selectedStyleState, clickTracker } =
+    useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const [selectedStyle, setSelectedStyle] = selectedStyleState;
+  const [clickTrackerFunc] = clickTracker;
 
   const addToOutfitList = (selectedStyleObj) => {
     let copy = selectedStyleObj;
@@ -33,7 +35,12 @@ export default function AddToOutfitCard({ updateWardrobe, clickTracker }) {
 
   return (
     <Card
-      onClick={() => clickTracker("Add To Outfit Card", event.target)}
+      onClick={() =>
+        clickTrackerFunc.clickTrackerFunc(
+          "Add to Outfit List Card",
+          event.target
+        )
+      }
       className={"maxWidth: 300"}
     >
       <CardContent>
@@ -58,5 +65,4 @@ export default function AddToOutfitCard({ updateWardrobe, clickTracker }) {
 
 AddToOutfitCard.propTypes = {
   updateWardrobe: PropTypes.func.isRequired,
-  clickTracker: PropTypes.func,
 };

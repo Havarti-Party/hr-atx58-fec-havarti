@@ -7,12 +7,12 @@ import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
-
 export default function StyleSelector( { styles, selectedStyle, handleStyleClick }) {
   return (
     <>
-      <Grid container>
-        <Typography variant='body1'>STYLE {">"} {selectedStyle.name.toUpperCase()}</Typography >
+      <Grid container style={{ display: "flex", alignItems: "center"}}>
+        <Typography variant='h6'>STYLE {">"}</Typography > &nbsp;
+        <Typography variant='body1'>{selectedStyle.name.toUpperCase()}</Typography >
       </Grid>
       <Grid container alignItems="center" id="style-selector" >
         {styles.map((style, i) => (
@@ -34,7 +34,6 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
                 <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} />
               </IconButton>
             </Grid>
-
         ))}
       </Grid>
     </>

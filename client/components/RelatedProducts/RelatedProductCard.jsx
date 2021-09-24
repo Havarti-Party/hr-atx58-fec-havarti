@@ -26,15 +26,13 @@ import StarIcon from "@material-ui/icons/Star";
 //Image
 import noImage from "./No-Image-Found.jpg";
 
-export default function RelatedProductCard({
-  RelatedObj,
-  updatedWardrobe,
-  clickTracker,
-}) {
+export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const { overviewProduct, clickedComponent, clickedElement } =
+  const { overviewProduct, clickedComponent, clickedElement, clickTracker } =
     useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
+
+  const [clickTrackerFunc] = clickTracker;
 
   //State
   const [open, setOpen] = React.useState(false);
@@ -130,7 +128,9 @@ export default function RelatedProductCard({
 
   return (
     <Card
-      onClick={() => clickTracker("Related Products", event.target)}
+      onClick={() =>
+        clickTrackerFunc.clickTrackerFunc("Related Products", event.target)
+      }
       className={classes.root}
     >
       <CardMedia
@@ -154,7 +154,7 @@ export default function RelatedProductCard({
                   handleStarClick(RelatedObj);
                 }}
                 color="primary"
-                style={{ fontSize: 45 }}
+                style={{ fontSize: 45, color: "rgb(73, 137, 199)" }}
               />
             ) : (
               <StarIcon
@@ -163,7 +163,7 @@ export default function RelatedProductCard({
                   handleStarClick(RelatedObj);
                 }}
                 color="primary"
-                style={{ fontSize: 45 }}
+                style={{ fontSize: 45, color: "rgb(73, 137, 199)" }}
               />
             )}
           </Grid>
@@ -207,7 +207,6 @@ export default function RelatedProductCard({
 }
 
 RelatedProductCard.propTypes = {
-  clickTracker: PropTypes.func,
   updatedWardrobe: PropTypes.func,
   RelatedObj: PropTypes.object,
 };
