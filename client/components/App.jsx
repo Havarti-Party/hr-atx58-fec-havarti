@@ -48,16 +48,9 @@ export default function App() {
     );
   }
 
-<<<<<<< HEAD
   return (
     <Container maxWidth="lg" className="App">
       <ThemeProvider theme={theme}>
-=======
-
-  return (
-      <Container maxWidth="lg" className="App" >
-        <ThemeProvider theme={theme}>
->>>>>>> 6cef7b23b6cb1f88bf9807121235354b42a61cec
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <Header />
@@ -84,13 +77,7 @@ export default function App() {
             <Footer />
           </Grid>
         </Grid>
-<<<<<<< HEAD
       </ThemeProvider>
     </Container>
-=======
-        </ThemeProvider>
-      </Container>
-
->>>>>>> 6cef7b23b6cb1f88bf9807121235354b42a61cec
   );
 }
