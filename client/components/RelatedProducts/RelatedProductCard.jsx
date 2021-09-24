@@ -2,35 +2,32 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
-import ModalPopup from "./CompareModal.jsx";
 import PropTypes from "prop-types";
-
-//Card Features
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-
 import StarRatings from "react-star-ratings";
+//Files
+import ModalPopup from "./CompareModal.jsx";
+import noImage from "./No-Image-Found.jpg";
 
-//Grid
-import Grid from "@material-ui/core/Grid";
+//Material UI
+import {
+  Typography,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 //Icons
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 
-//Image
-import noImage from "./No-Image-Found.jpg";
-
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
   const { overviewProduct, clickTracker } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
-
   const [clickTrackerFunc] = clickTracker;
 
   //State
@@ -42,7 +39,18 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const [overviewProductFeatures, setOverviewProductFeatures] = useState({});
 
   const isInitialMount = useRef(true);
-
+  //Component Updates
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      if (Object.values(currentItem).length > 0) {
+        setCurrentItem({});
+        updatedWardrobe(currentItem, clickedStar);
+      }
+    }
+  });
+  //Functions
   const handleStarClick = (relatedProduct) => {
     let relatedProductFeaturesObj = {};
     let overviewProductFeaturesObj = {};
@@ -66,16 +74,14 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     handleClickOpen();
   };
 
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      if (Object.values(currentItem).length > 0) {
-        setCurrentItem({});
-        updatedWardrobe(currentItem, clickedStar);
-      }
-    }
-  });
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setClickedStar(false);
+    setOpen(false);
+  };
 
   //Styling
   const useStyles = makeStyles({
@@ -92,15 +98,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   });
 
   const classes = useStyles();
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setClickedStar(false);
-    setOpen(false);
-  };
 
   return (
     <Card
@@ -155,7 +152,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
           <Typography variant="body2" color="textSecondary" component="p">
             {RelatedObj.description}
           </Typography>
-          <StarRatings rating={2} starDimension={"15px"} starSpacing={"1px"} />
+          {/* <StarRatings rating={2} starDimension={"15px"} starSpacing={"1px"} /> */}
         </CardContent>
       </CardActionArea>
       <CardActions>
