@@ -6,6 +6,7 @@ import ThumbUpAlt from '@mui/icons-material/ThumbUpAlt';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line no-undef
 const axios = require('axios');
+import Typography from "@mui/material/Typography";
 
 export default function ReviewTile(props) {
 
@@ -24,6 +25,7 @@ export default function ReviewTile(props) {
   });
 
  useEffect(()=>{
+   console.log(new Date(props.date).toDateString());
    setReview({
     body: props.body,
     date: props.date,
@@ -56,17 +58,17 @@ export default function ReviewTile(props) {
   return (
     <div>
       <StarRatings rating={props.rating} starDimension={'15px'} starSpacing={'1px'}/>
-      <div>User: {props.reviewer_name}</div>
-      <div>{props.date}</div>
-      <div>{props.title}</div>
-      <div>{props.body}</div>
+      <Typography>User: {props.reviewer_name}</Typography>
+      <Typography variant="caption">{new Date(props.date).toDateString()}</Typography>
+      <Typography>{props.title}</Typography>
+      <Typography>{props.body}</Typography>
       {props.photos.map((photo, index) => {
         return(
           <img key={index} src={photo}></img>
         )
       })}
       {props.response !== null && props.response.length > 0 &&
-        <div>Staff response: {props.response}</div>
+        <Typography>Staff response: {props.response}</Typography>
       }
       <Button variant="text" color="primary" onClick={handleClick}>Was this helpful?
         {!clicked ? (<ThumbUpOffAlt />) : (<ThumbUpAlt />)}{review.helpfulness}</Button>

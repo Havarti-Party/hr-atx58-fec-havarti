@@ -181,7 +181,7 @@ let getCurrentProduct = (id) => {
 
 let getProductReviews = (id) => {
   return axios
-    .get(apiURL + `/reviews?product_id=${id}`, {
+    .get(apiURL + `/reviews?product_id=${id}&count=99`, {
       headers: { Authorization: config.token },
     })
     .then((result) => {

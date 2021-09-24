@@ -54,7 +54,7 @@ export default function RatingBreakdownBars(props) {
   });
 
   return (
-    <div>
+    <div style={{marginBottom: '40px'}}>
       <ProgressBar starRating={1} ratePercent={percentBreakdown[1]}/>
       <ProgressBar starRating={2} ratePercent={percentBreakdown[2]}/>
       <ProgressBar starRating={3} ratePercent={percentBreakdown[3]}/>
