@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import OutfitCard from "./OutfitCard.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
 import "react-multi-carousel/lib/styles.css";
@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 
 const _ = require("underscore");
 
-const CustomerOutfit = ({ clickTracker }) => {
+const CustomerOutfit = () => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -59,10 +59,7 @@ const CustomerOutfit = ({ clickTracker }) => {
           Your Wardrobe
         </Typography>
         <Carousel responsive={responsive}>
-          <AddToOutfitCard
-            clickTracker={clickTracker}
-            updateWardrobe={updateWardrobe}
-          />
+          <AddToOutfitCard updateWardrobe={updateWardrobe} />
         </Carousel>
       </>
     );
@@ -78,7 +75,6 @@ const CustomerOutfit = ({ clickTracker }) => {
           {outfitList.map((obj, index) => {
             return (
               <OutfitCard
-                clickTracker={clickTracker}
                 updateWardrobe={updateWardrobe}
                 remove={removeItemFromWardrobe}
                 OutfitObj={obj}
@@ -92,7 +88,3 @@ const CustomerOutfit = ({ clickTracker }) => {
   }
 };
 export default CustomerOutfit;
-
-CustomerOutfit.propTypes = {
-  clickTracker: PropTypes.func,
-};
