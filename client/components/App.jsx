@@ -11,7 +11,7 @@ import Footer from "./HeaderFooter/Footer.jsx";
 import Container from "@material-ui/core/Container";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@material-ui/core/Grid";
-import Divider from '@mui/material/Divider';
+import Divider from "@mui/material/Divider";
 import { ProductsContext } from "./ProductsContext";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core";
@@ -79,21 +79,35 @@ export default function App() {
     );
   }
   return (
-
-      <Container maxWidth="lg" className="App" >
-        <ThemeProvider theme={theme}>
+    <Container maxWidth="lg" className="App">
+      <ThemeProvider theme={theme}>
         <Grid container spacing={5}>
-          <Grid item xs={12}><Header /></Grid>
-          <Grid item xs={12}><ProductOverview /></Grid>
-          <Grid item xs={12}><Divider /></Grid>
-          <Grid item xs={12}><RelatedProducts /></Grid>
-          <Grid item xs={12}><CustomerOutfit /></Grid>
-          <Grid item xs={12}><RatingsAndReviews /></Grid>
-          <Grid item xs={12}><QuestionsAndAnswers /></Grid>
-          <Grid item xs={12}><Footer /></Grid>
+          <Grid item xs={12}>
+            <Header />
+          </Grid>
+          <Grid item xs={12}>
+            <ProductOverview clicktracker={clickTracker} />
+          </Grid>
+          <Grid item xs={12}>
+            <Divider clicktracker={clickTracker} />
+          </Grid>
+          <Grid item xs={12}>
+            <RelatedProducts clicktracker={clickTracker} />
+          </Grid>
+          <Grid item xs={12}>
+            <CustomerOutfit clicktracker={clickTracker} />
+          </Grid>
+          <Grid item xs={12}>
+            <RatingsAndReviews clicktracker={clickTracker} />
+          </Grid>
+          <Grid item xs={12}>
+            <QuestionsAndAnswers clicktracker={clickTracker} />
+          </Grid>
+          <Grid item xs={12}>
+            <Footer />
+          </Grid>
         </Grid>
-        </ThemeProvider>
-      </Container>
-
+      </ThemeProvider>
+    </Container>
   );
 }

@@ -84,7 +84,12 @@ export default function OutfitCard({ OutfitObj, remove, clickTracker }) {
 
           {OutfitObj.sale_price ? (
             <>
-              <Typography variant="body2" color="textSecondary" component="p">
+              <Typography
+                className={{ textDecoration: "line-through" }}
+                variant="body2"
+                color="textSecondary"
+                component="p"
+              >
                 ${OutfitObj.original_price}
               </Typography>
               <Typography

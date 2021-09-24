@@ -29,7 +29,7 @@ import noImage from "./No-Image-Found.jpg";
 export default function RelatedProductCard({
   RelatedObj,
   updatedWardrobe,
-  clickTracker,
+  clicktracker,
 }) {
   //useContext
   const { overviewProduct, clickedComponent, clickedElement } =
@@ -130,7 +130,7 @@ export default function RelatedProductCard({
 
   return (
     <Card
-      onClick={() => clickTracker("Related Products", event.target)}
+      onClick={() => clicktracker("Related Products", event.target)}
       className={classes.root}
     >
       <CardMedia
@@ -154,7 +154,7 @@ export default function RelatedProductCard({
                   handleStarClick(RelatedObj);
                 }}
                 color="primary"
-                style={{ fontSize: 45 }}
+                style={{ fontSize: 45, color: "rgb(73, 137, 199)" }}
               />
             ) : (
               <StarIcon
@@ -163,7 +163,7 @@ export default function RelatedProductCard({
                   handleStarClick(RelatedObj);
                 }}
                 color="primary"
-                style={{ fontSize: 45 }}
+                style={{ fontSize: 45, color: "rgb(73, 137, 199)" }}
               />
             )}
           </Grid>
@@ -207,7 +207,7 @@ export default function RelatedProductCard({
 }
 
 RelatedProductCard.propTypes = {
-  clickTracker: PropTypes.func,
+  clicktracker: PropTypes.func,
   updatedWardrobe: PropTypes.func,
   RelatedObj: PropTypes.object,
 };
