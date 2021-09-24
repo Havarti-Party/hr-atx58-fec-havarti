@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const express = require("express");
-
+const compression = require("compression");
 const config = require("./config.js");
 const PORT = 3030;
 const axios = require("axios");
 const models = require("./models.js");
 
 let app = express();
-
+app.use(compression());
 app.use(express.static("dist"));
 
 app.use(express.json());
