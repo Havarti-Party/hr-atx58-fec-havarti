@@ -79,7 +79,6 @@ export default function App() {
     );
   }
   return (
-
       <Container maxWidth="lg" className="App" >
         <ThemeProvider theme={theme}>
         <Grid container spacing={5}>
@@ -94,6 +93,5 @@ export default function App() {
         </Grid>
         </ThemeProvider>
       </Container>
-
   );
 }
