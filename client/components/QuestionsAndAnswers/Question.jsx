@@ -1,7 +1,8 @@
-import React, { useState, createContext, useEffect }from 'react';
+import React, { useState, createContext, useEffect, useContext }from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+import {ProductsContext} from '../ProductsContext.jsx'
 import AnswerList from './AnswerList.jsx';
 import AnswerModal from './AnswerModal.jsx';
 
@@ -31,6 +32,8 @@ export default function Question({question, style, product_id}) {
   const [ questionHelpfulCount, setQuestionHelpfulCount ] = useState(question.question_helpfulness)
   const [ reported, setReported ] = useState(false)
   const [ markHelpful, setMarkHelpful ] = useState(false);
+  const { clickTracker } = useContext(ProductsContext);
+  const [clickTrackerFunc] = clickTracker;
 
   useEffect(() => {
 
@@ -74,23 +77,36 @@ export default function Question({question, style, product_id}) {
     <div>
       <Grid container>
         <Grid item md={8}>
-          <Typography variant='h4'  color={reported ? 'error' : 'textPrimary'}>Q: {question.question_body}?</Typography >
+          <Typography
+            variant='h4'
+            onClick={() =>
+              clickTrackerFunc.clickTrackerFunc('question body', event.target)
+            }
+            color={reported ? 'error' : 'textPrimary'}>
+              Q: {question.question_body}?
+            </Typography >
         </Grid>
         <Grid item>
-          <Typography variant='body1'>
-            Helpful?
-            <Button
-              onClick={incrementHelpfulCount}
-              variant='text'
-              color='primary'
-              disabled={markHelpful ? true : false}>
-                yes ({questionHelpfulCount})
-            </Button>
-            ||
+          <Typography
+            variant='body1'
+            onClick={() =>
+              clickTrackerFunc.clickTrackerFunc('mark question as helpful', event.target)
+            }>
+              Helpful?
+              <Button
+                onClick={incrementHelpfulCount}
+                variant='text'
+                color='primary'
+                disabled={markHelpful ? true : false}>
+                  yes ({questionHelpfulCount})
+              </Button>
+              ||
           </Typography>
           <AnswerModal questionId={question.question_id} product_id={product_id} setAnswers={setAnswers} answers={answers}/>
         </Grid>
-        <Grid item>
+        <Grid item onClick={() =>
+              clickTrackerFunc.clickTrackerFunc('report a question', event.target)
+            }>
           <Button
             onClick={handleReport}
             variant='text'
