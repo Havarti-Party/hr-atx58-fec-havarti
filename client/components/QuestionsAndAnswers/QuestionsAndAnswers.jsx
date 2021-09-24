@@ -44,8 +44,9 @@ export const QuestionsContext = createContext();
 
 export default function QuestionsAndAnswers() {
   const classes = questionListStyles();
-  const { overviewProduct } = useContext(ProductsContext);
+  const { overviewProduct, clickTracker } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
+  const [clickTrackerFunc] = clickTracker;
   const [productId, setProductId] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -92,11 +93,15 @@ export default function QuestionsAndAnswers() {
   return (
     <div id="questionList" className={classes.widget}>
       <QuestionsContext.Provider value={[questions, setQuestions]}>
-        <Grid container spacing={2}>
-          <Grid item md={12}>
+        <Grid container spacing={2} >
+          <Grid item md={12} onClick={() =>
+            clickTrackerFunc.clickTrackerFunc('Q/A header', event.target)
+          }>
             <Typography variant='h4' >Customer Questions And Answers</Typography>
           </Grid>
-          <Grid item md={8}>
+          <Grid item md={8} onClick={() =>
+            clickTrackerFunc.clickTrackerFunc('Question search bar', event.target)
+          }>
             <TextField
               id="questionSearch"
               label="Have a question? Search for answers…"
@@ -115,10 +120,14 @@ export default function QuestionsAndAnswers() {
               }}
             />
           </Grid>
-          <Grid item xs>
+          <Grid item xs onClick={() =>
+            clickTrackerFunc.clickTrackerFunc('add a question modal', event.target)
+          }>
             <QuestionModal styles={classes} product_id={productId} />
           </Grid>
-          <Grid item md={12} className={classes.list}>
+          <Grid item md={12} className={classes.list} onClick={() =>
+            clickTrackerFunc.clickTrackerFunc('Q/A list', event.target)
+          }>
             {currentQuestions
               .filter((question) => {
                 if (searchValue === "") {
@@ -139,6 +148,9 @@ export default function QuestionsAndAnswers() {
                     style={classes}
                     product_id={productId}
                     questions={questions}
+                    onClick={() =>
+                      clickTrackerFunc.clickTrackerFunc('Question Tile', event.target)
+                    }
                   />
                 );
               })}
@@ -151,6 +163,9 @@ export default function QuestionsAndAnswers() {
                 style={classes}
                 questions={questions}
                 currentQuestions={currentQuestions}
+                onClick={() =>
+                  clickTrackerFunc.clickTrackerFunc('more questions button', event.target)
+                }
               />
             </QuestionsContext.Provider>
           </Grid>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -14,10 +15,11 @@ const AnswerStyles = makeStyles({
 })
 
 export default function Answer({answerData}) {
-  const [helpfulCount, setHelpfulCount] = useState(answerData.helpfulness)
   const classes = AnswerStyles()
+  const [helpfulCount, setHelpfulCount] = useState(answerData.helpfulness)
   const [ markHelpful, setMarkHelpful ] = useState(false);
   const [ reported, setReported ] = useState(false);
+
 
   function incrementHelpfulCount(e) {
     e.preventDefault();

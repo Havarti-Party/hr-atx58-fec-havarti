@@ -76,10 +76,10 @@ export default function QuestionModal({styles, product_id}) {
     setAllValues({...allValues, [e.target.name]: e.target.value})
   }
 
-  const imageHandler = (e) => {
-    console.log()
-    setAllValues({...allValues, image: e.target.value})
-  }
+  // const imageHandler = (e) => {
+  //   console.log()
+  //   setAllValues({...allValues, image: e.target.value})
+  // }
 
   const handleSubmit = (e) => {
     var questionBody = allValues.question
@@ -183,7 +183,7 @@ export default function QuestionModal({styles, product_id}) {
                 accept="image/*"
                 id="addYourPictures"
                 type="file"
-                hidden='true'
+                hidden={true}
                  />
               <IconButton
                 color="primary"
