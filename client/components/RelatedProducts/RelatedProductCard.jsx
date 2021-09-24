@@ -28,8 +28,7 @@ import noImage from "./No-Image-Found.jpg";
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const { overviewProduct, clickedComponent, clickedElement, clickTracker } =
-    useContext(ProductsContext);
+  const { overviewProduct, clickTracker } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   const [clickTrackerFunc] = clickTracker;
@@ -42,9 +41,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const [relatedProductFeatures, setRelatedProductFeatures] = useState({});
   const [overviewProductFeatures, setOverviewProductFeatures] = useState({});
 
-  const [clickedComponentState, setClickedComponentState] = clickedComponent;
-  const [clickedElementState, setClickedElementState] = clickedElement;
-
   const isInitialMount = useRef(true);
 
   const handleStarClick = (relatedProduct) => {
@@ -52,40 +48,20 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     let overviewProductFeaturesObj = {};
     let combinedFeatures = [];
 
-    if (relatedProduct.features && overviewProductState.features) {
-      relatedProduct.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        relatedProductFeaturesObj[feature.feature] = feature.value;
-      });
+    relatedProduct.features.forEach((feature) => {
+      combinedFeatures.push(feature.feature);
+      relatedProductFeaturesObj[feature.feature] = feature.value;
+    });
 
-      overviewProductState.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        overviewProductFeaturesObj[feature.feature] = feature.value;
-      });
+    overviewProductState.features.forEach((feature) => {
+      combinedFeatures.push(feature.feature);
+      overviewProductFeaturesObj[feature.feature] = feature.value;
+    });
 
-      setOverviewProductFeatures(overviewProductFeaturesObj);
-      setRelatedProductFeatures(relatedProductFeaturesObj);
-      setCompareFeatures(combinedFeatures);
-    } else if (relatedProduct.features) {
-      relatedProduct.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        relatedProductFeaturesObj[feature.feature] = feature.value;
-      });
-      setRelatedProductFeatures(relatedProductFeaturesObj);
-      let temp = Object.keys(relatedProductFeaturesObj);
-      setCompareFeatures(temp);
-    } else if (overviewProductState.features) {
-      overviewProductState.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        overviewProductFeaturesObj[feature.feature] = feature.value;
-      });
+    setOverviewProductFeatures(overviewProductFeaturesObj);
+    setRelatedProductFeatures(relatedProductFeaturesObj);
+    setCompareFeatures(combinedFeatures);
 
-      setOverviewProductFeatures(overviewProductFeaturesObj);
-      let temp = Object.keys(relatedProductFeaturesObj);
-      setCompareFeatures(temp);
-    } else {
-      setCompareFeatures(["no features to compare!"]);
-    }
     setClickedStar(true);
     handleClickOpen();
   };
@@ -138,15 +114,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         image={RelatedObj.url ? RelatedObj.url : noImage}
       >
         <Grid container direction="column" alignItems="flex-end">
-          <Grid
-            id="starClick"
-            item
-            onClick={() => {
-              setClickedComponentState("Related Product Card");
-              setClickedElementState(event.target);
-              setOverviewProductState(RelatedObj);
-            }}
-          >
+          <Grid id="starClick" item>
             {clickedStar ? (
               <StarBorderIcon
                 className={classes.iconDepth}
@@ -172,8 +140,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       <CardActionArea>
         <CardContent
           onClick={() => {
-            setClickedComponentState("Related Product Card");
-            setClickedElementState(event.target);
             setOverviewProductState(RelatedObj);
           }}
         >
