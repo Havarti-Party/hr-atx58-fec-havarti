@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext, createContext } from "react";
 
 import axios from "axios";
@@ -19,10 +20,15 @@ const questionListStyles = makeStyles({
   widget: {
     height: "800px",
   },
-  modal: {},
   button: {
     padding: "0 5px",
     margin: "10px",
+  },
+  addQuestion: {
+    padding: "0 5px",
+    margin: "10px",
+    height: '50px',
+    width: '100%',
   },
   searchbar: {
     margin: "10px",
@@ -39,15 +45,14 @@ export const QuestionsContext = createContext();
 export default function QuestionsAndAnswers() {
   const classes = questionListStyles();
   const { overviewProduct } = useContext(ProductsContext);
-  // eslint-disable-next-line no-unused-vars
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const [productId, setProductId] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [searchValue, setSearchValue] = useState("");
 
-  const [questionDisplayCount, setQuestionDisplayCount] = useState(2);
+  const [questionDisplayCount, setQuestionDisplayCount] = useState(4);
   const [currentQuestions, setCurrentQuestions] = useState(
-    questions.slice(0, 2)
+    questions.slice(0, 4)
   );
 
   useEffect(() => {
@@ -78,7 +83,7 @@ export default function QuestionsAndAnswers() {
     setProductId(overviewProductState.id);
   }, [questions]);
 
-  useEffect(() => {}, [currentQuestions]);
+  // useEffect(() => {}, [currentQuestions]);
 
   useEffect(() => {
     setCurrentQuestions(questions.slice(0, questionDisplayCount));
@@ -88,12 +93,10 @@ export default function QuestionsAndAnswers() {
     <div id="questionList" className={classes.widget}>
       <QuestionsContext.Provider value={[questions, setQuestions]}>
         <Grid container spacing={2}>
-          <Grid item md={2}></Grid>
-          <Grid item md={10}>
+          <Grid item md={12}>
             <Typography variant='h4' >Customer Questions And Answers</Typography>
           </Grid>
-          <Grid item md={2}></Grid>
-          <Grid item md={4}>
+          <Grid item md={8}>
             <TextField
               id="questionSearch"
               label="Have a question? Search for answers…"
@@ -112,14 +115,10 @@ export default function QuestionsAndAnswers() {
               }}
             />
           </Grid>
-          <Grid item sm={1} />
-          <Grid item md={2}>
-            {/* <QuestionsContext.Provider value={[questions, setQuestions]}> */}
+          <Grid item xs>
             <QuestionModal styles={classes} product_id={productId} />
-            {/* </QuestionsContext.Provider > */}
           </Grid>
-          <Grid item xl={2}></Grid>
-          <Grid item md={10} className={classes.list}>
+          <Grid item md={12} className={classes.list}>
             {currentQuestions
               .filter((question) => {
                 if (searchValue === "") {
@@ -139,11 +138,11 @@ export default function QuestionsAndAnswers() {
                     question={question}
                     style={classes}
                     product_id={productId}
+                    questions={questions}
                   />
                 );
               })}
           </Grid>
-          <Grid item md={2}></Grid>
           <Grid item md={4}>
             <QuestionsContext.Provider
               value={[questionDisplayCount, setQuestionDisplayCount]}
