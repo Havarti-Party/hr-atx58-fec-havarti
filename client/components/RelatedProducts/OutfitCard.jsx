@@ -1,27 +1,26 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { ProductsContext } from "../ProductsContext.jsx";
 import PropTypes from "prop-types";
-
-//Cards
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
 import StarRatings from "react-star-ratings";
+//Files
+import noImage from "./No-Image-Found.jpg";
 
-//Grid
-import Grid from "@material-ui/core/Grid";
+//Material UI
+import {
+  Typography,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 //Icons
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-
-//No-Image-Found-Image
-import noImage from "./No-Image-Found.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -38,7 +37,6 @@ const useStyles = makeStyles({
 export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
-  //useContext
   const {
     overviewProduct,
     clickedComponent,
@@ -46,6 +44,7 @@ export default function OutfitCard({ OutfitObj, remove }) {
     clickTracker,
     selectedStyleState,
   } = useContext(ProductsContext);
+
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const [selectedStyle, setSelectedStyle] = selectedStyleState;
   const [clickTrackerFunc] = clickTracker;

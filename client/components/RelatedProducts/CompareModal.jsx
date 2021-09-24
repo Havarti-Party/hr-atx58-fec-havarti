@@ -4,15 +4,19 @@ import React from "react";
 //modal
 import PropTypes from "prop-types";
 
-import Typography from "@material-ui/core/Typography";
 //Dialog
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
-import { AppBar, Toolbar, IconButton } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  checkIcon,
+} from "@mui/material";
 //Grid
 import Grid from "@material-ui/core/Grid";
 //Icons
-import CheckIcon from "@material-ui/icons/Check";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 
 export default function ModalPopup({
