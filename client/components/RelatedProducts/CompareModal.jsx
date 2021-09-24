@@ -87,17 +87,27 @@ export default function ModalPopup({
           <Grid item xs={12} key={index}>
             <Grid spacing={2} container direction="row" alignItems="center">
               <Grid item xs={4}>
-                {overviewProductFeatures[feature]
-                  ? overviewProductFeatures[feature]
-                  : ""}
+                {overviewProductFeatures[feature] ? (
+                  <Typography variant="h6" color="inherit" component="p">
+                    {overviewProductFeatures[feature]}
+                  </Typography>
+                ) : (
+                  ""
+                )}
               </Grid>
               <Grid item xs={4}>
-                <DialogTitle>{feature}</DialogTitle>
+                <Typography variant="h6" color="inherit" component="p">
+                  {feature}
+                </Typography>
               </Grid>
               <Grid item xs={4}>
-                {relatedProductFeatures[feature]
-                  ? relatedProductFeatures[feature]
-                  : ""}
+                {relatedProductFeatures[feature] ? (
+                  <Typography variant="h6" color="inherit" component="p">
+                    {relatedProductFeatures[feature]}
+                  </Typography>
+                ) : (
+                  ""
+                )}
               </Grid>
             </Grid>
           </Grid>
