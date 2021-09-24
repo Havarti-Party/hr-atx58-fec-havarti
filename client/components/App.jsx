@@ -11,7 +11,7 @@ import Footer from "./HeaderFooter/Footer.jsx";
 import Container from "@material-ui/core/Container";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@material-ui/core/Grid";
-
+import Divider from '@mui/material/Divider';
 import { ProductsContext } from "./ProductsContext";
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core";
@@ -79,6 +79,7 @@ export default function App() {
     );
   }
   return (
+
     <Container maxWidth="lg" className="App">
       <ThemeProvider theme={theme}>
         <Header clickTracker={clickTracker} />
@@ -90,5 +91,6 @@ export default function App() {
         <Footer />
       </ThemeProvider>
     </Container>
+
   );
 }

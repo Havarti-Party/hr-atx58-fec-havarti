@@ -23,55 +23,60 @@ export default function ProductOverview() {
   };
 
   return (
-    <>
-      <Grid container spacing={2}>
-        <Grid item md={8}>
+      <Grid container spacing={4}>
+        <Grid item xs={8}>
           <MainImageCarousel photos={selectedStyle.photos} />
         </Grid>
-        <Grid item md={4}>
-          <AverageStarRating />
-          <Button
-            color='primary'
-            onClick={(e) => {
-              e.preventDefault();
-              const ratingsAndReviews = document.querySelector(
-                "#ratings-and-reviews"
-              );
-              ratingsAndReviews.scrollIntoView({ behavior: "smooth" });
-            }}
-            style={{ fontSize: "12px" }}
-          >
-            Read All Reviews
-          </Button>
-          <ProductDetails
-            category={overviewProductState.category}
-            name={overviewProductState.name}
-            originalPrice={selectedStyle.original_price}
-            salePrice={selectedStyle.sale_price}
-          />
-          <StyleSelector
-            styles={styles}
-            selectedStyle={selectedStyle}
-            handleStyleClick={handleStyleClick}
-          />
-          <AddToCart
-            currentProduct={overviewProductState}
-            selectedStyle={selectedStyle}
-          />
+        <Grid item xs={4}>
+          <Grid container spacing={1}>
+            <Grid item >
+              <AverageStarRating />
+              <Button
+                color='primary'
+                onClick={(e) => {
+                  e.preventDefault();
+                  const ratingsAndReviews = document.querySelector(
+                    "#ratings-and-reviews"
+                  );
+                  ratingsAndReviews.scrollIntoView({ behavior: "smooth" });
+                }}
+                style={{ fontSize: "12px" }}
+              >
+                Read All Reviews
+              </Button>
+            </Grid>
+            <Grid item>
+            <ProductDetails
+              category={overviewProductState.category}
+              name={overviewProductState.name}
+              originalPrice={selectedStyle.original_price}
+              salePrice={selectedStyle.sale_price}
+            />
+            </Grid>
+            <Grid item>
+            <StyleSelector
+              styles={styles}
+              selectedStyle={selectedStyle}
+              handleStyleClick={handleStyleClick}
+            />
+            </Grid>
+            <Grid item>
+            <AddToCart />
+            </Grid>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container spacing={4}>
-        <Grid item md={8}>
+        <Grid item xs={7}>
           <Typography variant='h5' className="productSlogan">{overviewProductState.slogan}</Typography>
-          <Typography variant='body1'className="productDescription">
+          <Typography className="productDescription">
             {overviewProductState.description}
           </Typography>
+        </Grid>
+        <Grid item xs={1} style={{ display: "flex", justifyContent: "center" }}>
+          <Divider orientation="vertical" variant="middle" />
         </Grid>
         <Grid item xs={4}>
           <ProductFeatures features={overviewProductState.features} />
         </Grid>
       </Grid>
-      <Divider />
-    </>
   );
 }
