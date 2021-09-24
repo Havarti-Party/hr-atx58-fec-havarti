@@ -92,20 +92,22 @@ export default function OutfitCard({ OutfitObj, remove }) {
 
           {OutfitObj.sale_price ? (
             <>
-              <Typography
-                className={{ textDecoration: "line-through" }}
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              >
-                ${OutfitObj.original_price}
-              </Typography>
+              <strike>
+                <Typography
+                  className={{ textDecoration: "line-through" }}
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  ${OutfitObj.original_price}
+                </Typography>
+              </strike>
               <Typography
                 variant="body2"
                 style={{ color: "red" }}
                 component="div"
               >
-                Sale Price: ${OutfitObj.sale_price}{" "}
+                On sale!! ${OutfitObj.sale_price}{" "}
               </Typography>
             </>
           ) : (
