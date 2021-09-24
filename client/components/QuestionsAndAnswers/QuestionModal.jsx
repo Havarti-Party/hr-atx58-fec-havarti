@@ -46,6 +46,7 @@ export default function QuestionModal({styles, product_id}) {
     question: '',
     nickname: '',
     email: '',
+    image: [],
   });
 
 
@@ -73,6 +74,11 @@ export default function QuestionModal({styles, product_id}) {
 
   const changeHandler = (e) => {
     setAllValues({...allValues, [e.target.name]: e.target.value})
+  }
+
+  const imageHandler = (e) => {
+    console.log()
+    setAllValues({...allValues, image: e.target.value})
   }
 
   const handleSubmit = (e) => {
@@ -108,6 +114,7 @@ export default function QuestionModal({styles, product_id}) {
               question: '',
               nickname: '',
               email: '',
+              image: [],
             });
             setOpen(false);
           })
@@ -172,8 +179,16 @@ export default function QuestionModal({styles, product_id}) {
               helperText={emailInvalid ? 'Please provide a valid email' : ''}
             /><br/>
             <label htmlFor="addYourPictures">
-              <input accept="image/*" id="addYourPictures" type="file" />
-              <IconButton color="primary" aria-label="upload picture" component="span">
+              <input
+                accept="image/*"
+                id="addYourPictures"
+                type="file"
+                hidden='true'
+                 />
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span">
                 <PhotoCamera />
               </IconButton>
             </label>

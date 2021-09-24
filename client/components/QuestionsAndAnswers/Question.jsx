@@ -74,7 +74,7 @@ export default function Question({question, style, product_id}) {
     <div>
       <Grid container>
         <Grid item md={8}>
-          <Typography variant='h4'  color={reported ? 'red' : 'black'}>Q: {question.question_body}?</Typography >
+          <Typography variant='h4'  color={reported ? 'error' : 'textPrimary'}>Q: {question.question_body}?</Typography >
         </Grid>
         <Grid item>
           <Typography variant='body1'>
