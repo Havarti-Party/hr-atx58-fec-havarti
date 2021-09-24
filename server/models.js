@@ -237,10 +237,11 @@ let postClickTrackInteraction = (clickTrackObj) => {
       headers: { Authorization: config.token },
     })
     .then((successfulPost) => {
-      console.log(successfulPost, "you made a successful post");
+      console.log("successful DB post");
+      return successfulPost;
     })
     .catch((error) => {
-      console.log(error, "you hit an error posting to the DB");
+      return error;
     });
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import axios from "axios";
 import Header from "./HeaderFooter/Header.jsx";
@@ -59,10 +60,12 @@ export default function App() {
     axios
       .post("/interactions", clickTrackObj)
       .then((successfulPost) => {
-        console.log(successfulPost);
+        console.log(
+          `Your click on ${clickTrackObj.widget} was posted to the DB.`
+        );
       })
       .catch((errorPosting) => {
-        console.log(errorPosting);
+        console.log("error from App.jsx:", errorPosting);
       });
   };
 

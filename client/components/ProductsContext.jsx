@@ -57,32 +57,6 @@ export const ProductsProvider = (props) => {
     }
   }, [products]);
 
-  useEffect(() => {
-    if (isMounted.current) {
-      const today = new Date();
-      let clickTrackObj = {
-        user: "Current User Cookies",
-        element: clickedElement,
-        clickedComponent: clickedComponent,
-        time:
-          today.getMonth() +
-          1 +
-          "-" +
-          today.getDate() +
-          "-" +
-          today.getFullYear() +
-          " -- " +
-          today.getHours() +
-          ":" +
-          today.getMinutes() +
-          ":" +
-          today.getSeconds(),
-      };
-      let updateClickList = [...trackedClicks, clickTrackObj];
-      updateTrackedClicks(updateClickList);
-    }
-  }, [clickedElement]);
-
   const checkStyles = (arrOfStyles, styleID) => {
     let boolean = false;
     arrOfStyles.forEach((obj) => {

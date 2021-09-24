@@ -240,15 +240,13 @@ app.put("/reviews/put", (req, res) => {
 
 app.post("/interactions", (req, res) => {
   let clickTrackObj = req.body;
-  console.log(req);
-  console.log(clickTrackObj);
 
   Promise.all([models.postClickTrackInteraction(clickTrackObj)])
     .then((successfulPost) => {
-      res.status(204).send("success posting");
+      res.status(204).send(successfulPost.data);
     })
     .catch((errorPosting) => {
-      res.status(500).send("error posting");
+      res.status(500).send(errorPosting.data);
     });
 });
 
