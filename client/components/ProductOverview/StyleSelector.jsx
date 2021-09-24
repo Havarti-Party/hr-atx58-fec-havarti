@@ -12,7 +12,7 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
   return (
     <>
       <Grid container style={{ display: "flex", alignItems: "center"}}>
-        <Typography variant='h6'>STYLE {">"}</Typography > &nbsp;
+        <Typography variant='body1'><strong>STYLE {">"}</strong></Typography > &nbsp;
         <Typography variant='body1'>{selectedStyle.name.toUpperCase()}</Typography >
       </Grid>
       <Grid container alignItems="center" id="style-selector" >
