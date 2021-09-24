@@ -29,8 +29,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const { overviewProduct, clickTracker } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const [clickTrackerFunc] = clickTracker;
-  const [clickedComponentState, setClickedComponentState] = clickedComponent;
-  const [clickedElementState, setClickedElementState] = clickedElement;
 
   //State
   const [open, setOpen] = React.useState(false);
