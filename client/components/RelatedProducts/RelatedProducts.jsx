@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
+import PropTypes from "prop-types";
 
 import Typography from "@material-ui/core/Typography";
 
@@ -12,7 +13,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import RelatedProductCard from "./RelatedProductCard.jsx";
 
-export default function RelatedProducts() {
+export default function RelatedProducts({ clickTracker }) {
   //useContext
   const { overviewProduct } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
@@ -75,9 +76,19 @@ export default function RelatedProducts() {
         </Typography>
         <Carousel itemsToShow={4}>
           {relatedProductsArr.map((obj, index) => {
-            return <RelatedProductCard RelatedObj={obj} key={index} />;
+            return (
+              <RelatedProductCard
+                clickTracker={clickTracker}
+                RelatedObj={obj}
+                key={index}
+              />
+            );
           })}
         </Carousel>
       </>
     );
 }
+
+RelatedProducts.propTypes = {
+  clickTracker: PropTypes.func,
+};

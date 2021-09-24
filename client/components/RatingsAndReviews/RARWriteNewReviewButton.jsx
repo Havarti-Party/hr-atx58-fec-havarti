@@ -13,7 +13,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import PropTypes from 'prop-types';
+import RenderCharacteristics from './RARRenderCharacteristics.jsx';
 
+// eslint-disable-next-line no-undef
 const _ = require("underscore");
 
 
@@ -34,13 +36,17 @@ export default function FormDialog(props) {
   })
 
   useEffect(() => {
-    setFormData({...formData, product_id: props.currentProduct.id});
+    setFormData({
+      ...formData,
+      product_id: props.currentProduct.id});
   }, [props.currentProduct.id])
 
   useEffect(() => {
     var newCharacteristics = {};
+    var newCharacteristicsArray = [];
     _.map(props.currentReviews.characteristics, ((characteristic) => {
       newCharacteristics[characteristic.id]= 5;
+      newCharacteristicsArray.push(Number(characteristic.id));
     }))
     setFormData({
       ...formData,
@@ -62,23 +68,24 @@ export default function FormDialog(props) {
       ...formData,
       [event.target.name]: event.target.value
       }
+      )
+      // console.log(formData);
+  }
+
+  const handleCharacteristic = (event) => {
+    setFormData(
+      {
+        ...formData,
+        characteristics: {
+          ...formData.characteristics,
+          [event.target.name]: Number(event.target.value)
+        }
+      }
     )
   }
 
-  // const handleCharacteristic = (event) => {
-  //   setFormData(
-  //     {
-  //       ...formData,
-  //       characteristics: {
-  //         ...formData.characteristics,
-  //         [event.target.name]: event.target.value
-  //       }
-  //     }
-  //   )
-  // }
-
   const handleSubmit = () => {
-    console.log('Sending form data: ', formData);
+    // console.log('Sending form data: ', formData);
     // axios.post(`/reviews`, formData, {
     //   params: {
     //     ID: props.currentProduct.id
@@ -108,13 +115,6 @@ export default function FormDialog(props) {
           <FormControl required component='fieldset'>
             <FormLabel component='legend'>On a scale of 1-5, how would you rate this product?</FormLabel>
             <Rating name='reviewStars' value={formData.rating} onChange={(event, newValue) => {setFormData({...formData, rating: newValue})}} />
-            {/* // <RadioGroup onChange={handleChange} row aria-label='reviewStars' defaultValue='5' name='rating'>
-            //   <FormControlLabel value='1' control={<Radio />} label='1' />
-            //   <FormControlLabel value='2' control={<Radio />} label='2' />
-            //   <FormControlLabel value='3' control={<Radio />} label='3' />
-            //   <FormControlLabel value='4' control={<Radio />} label='4' />
-            //   <FormControlLabel value='5' control={<Radio />} label='5' />
-            // </RadioGroup> */}
           </FormControl>
           <FormControl required component='fieldset'>
             <FormLabel required component='legend'>Would you recommend this product?</FormLabel>
@@ -123,66 +123,7 @@ export default function FormDialog(props) {
               <FormControlLabel value='No' control={<Radio />} label='No' />
             </RadioGroup>
           </FormControl>
-          <FormControl required component='fieldset'>
-            <FormLabel component='legend'>How would you rate the size of this product?</FormLabel>
-            <RadioGroup aria-label='reviewSize' defaultValue='3' name='14'>
-              <FormControlLabel value='1' control={<Radio />} label='A size too small' />
-              <FormControlLabel value='2' control={<Radio />} label='½ a size too small' />
-              <FormControlLabel value='3' control={<Radio />} label='Perfect' />
-              <FormControlLabel value='4' control={<Radio />} label='½ a size too big' />
-              <FormControlLabel value='5' control={<Radio />} label='A size too big' />
-            </RadioGroup>
-          </FormControl>
-          <FormControl required component='fieldset'>
-            <FormLabel component='legend'>How would you rate the width of this product?</FormLabel>
-            <RadioGroup aria-label='reviewWidth' defaultValue='3' name='15'>
-              <FormControlLabel value='1' control={<Radio />} label='Too narrow' />
-              <FormControlLabel value='2' control={<Radio />} label='Slightly narrow' />
-              <FormControlLabel value='3' control={<Radio />} label='Perfect' />
-              <FormControlLabel value='4' control={<Radio />} label='Slightly wide' />
-              <FormControlLabel value='5' control={<Radio />} label='Too wide' />
-            </RadioGroup>
-          </FormControl>
-          <FormControl required component='fieldset'>
-            <FormLabel component='legend'>How would you rate the comfort of this product?</FormLabel>
-            <RadioGroup aria-label='reviewComfort' defaultValue='5' name='16'>
-              <FormControlLabel value='1' control={<Radio />} label='Uncomfortable' />
-              <FormControlLabel value='2' control={<Radio />} label='Slightly uncomfortable' />
-              <FormControlLabel value='3' control={<Radio />} label='OK' />
-              <FormControlLabel value='4' control={<Radio />} label='Comfortable' />
-              <FormControlLabel value='5' control={<Radio />} label='Perfect' />
-            </RadioGroup>
-          </FormControl>
-          <FormControl required component='fieldset'>
-            <FormLabel component='legend'>How would you rate the quality of this product?</FormLabel>
-            <RadioGroup aria-label='reviewQuality' defaultValue='5' name='17'>
-              <FormControlLabel value='1' control={<Radio />} label='Poor' />
-              <FormControlLabel value='2' control={<Radio />} label='Below Average' />
-              <FormControlLabel value='3' control={<Radio />} label='What I expected' />
-              <FormControlLabel value='4' control={<Radio />} label='Pretty great' />
-              <FormControlLabel value='5' control={<Radio />} label='Perfect' />
-            </RadioGroup>
-          </FormControl>
-          <FormControl required component='fieldset'>
-            <FormLabel component='legend'>How would you rate the length of this product?</FormLabel>
-            <RadioGroup aria-label='reviewLength' defaultValue='3' name='18'>
-              <FormControlLabel value='1' control={<Radio />} label='Runs short' />
-              <FormControlLabel value='2' control={<Radio />} label='Runs slightly short' />
-              <FormControlLabel value='3' control={<Radio />} label='Perfect' />
-              <FormControlLabel value='4' control={<Radio />} label='Runs slightly long' />
-              <FormControlLabel value='5' control={<Radio />} label='Runs long' />
-            </RadioGroup>
-          </FormControl>
-          <FormControl required component='fieldset'>
-            <FormLabel component='legend'>How would you rate the fit of this product?</FormLabel>
-            <RadioGroup aria-label='reviewFit' defaultValue='3' name='19'>
-              <FormControlLabel value='1' control={<Radio />} label='Runs tight' />
-              <FormControlLabel value='2' control={<Radio />} label='Runs slightly tight' />
-              <FormControlLabel value='3' control={<Radio />} label='Perfect' />
-              <FormControlLabel value='4' control={<Radio />} label='Runs slightly long' />
-              <FormControlLabel value='5' control={<Radio />} label='Runs long' />
-            </RadioGroup>
-          </FormControl>
+          <RenderCharacteristics currentReviews={props.currentReviews} handleCharacteristic={handleCharacteristic}/>
           <TextField
             name='summary'
             onChange={handleChange}
