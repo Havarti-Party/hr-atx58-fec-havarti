@@ -152,7 +152,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
           <Typography variant="body2" color="textSecondary" component="p">
             {RelatedObj.description}
           </Typography>
-          <StarRatings rating={2} starDimension={"15px"} starSpacing={"1px"} />
+          {/* <StarRatings rating={2} starDimension={"15px"} starSpacing={"1px"} /> */}
         </CardContent>
       </CardActionArea>
       <CardActions>

@@ -117,11 +117,11 @@ export default function OutfitCard({ OutfitObj, remove }) {
           <Typography variant="body2" color="textSecondary" component="p">
             {OutfitObj.description}
           </Typography>
-          <StarRatings
+          {/* <StarRatings
             rating={3.75}
             starDimension={"15px"}
             starSpacing={"1px"}
-          />
+          /> */}
         </CardContent>
       </CardActionArea>
       <CardActions></CardActions>
