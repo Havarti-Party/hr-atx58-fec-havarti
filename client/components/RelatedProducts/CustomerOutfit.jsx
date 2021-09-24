@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState } from "react";
+
 import OutfitCard from "./OutfitCard.jsx";
 import AddToOutfitCard from "./AddToOutfit.jsx";
 import "react-multi-carousel/lib/styles.css";

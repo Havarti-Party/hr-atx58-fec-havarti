@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useState, useEffect, useContext } from 'react';
+import Button from '@mui/material/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import AddIcon from '@material-ui/icons/Add';
 import PropTypes from 'prop-types';
+import { ProductsContext } from "../ProductsContext";
 
 const useStyles = makeStyles((theme) => ({
   selectSizeForm: {
@@ -20,14 +21,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCart = ({ currentProduct, selectedStyle }) => {
+const AddToCart = () => {
+  const { overviewProduct, selectedStyleState } =
+    useContext(ProductsContext);
+  const [overviewProductState] = overviewProduct;
+  const [selectedStyle] = selectedStyleState;
   const classes = useStyles();
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState('');
   const [quantities, setQuantities] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
   const [selectQuantityOpen, setSelectQuantityOpen] = useState(false);
-  const [setCart] = useState({
+  const [cart, setCart] = useState({
     product: '',
     style: '',
     size: '',
@@ -46,6 +51,11 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
       setOutOfStock(false);
     }
   };
+
+  useEffect(() => {
+    setSelectedSize('');
+    setSelectedQuantity('')
+  }, [overviewProductState, selectedStyle]);
 
   useEffect(() => checkStock());
 
@@ -85,7 +95,7 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
 
   const handleAddToCartWhenSizeSelected = () => {
     setCart({
-      product: currentProduct.name,
+      product: overviewProductState.name,
       style: selectedStyle.name,
       size: selectedSize,
       quantity: selectedQuantity
@@ -105,11 +115,10 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
   }
 
   return (
-    <>
-    <Grid container justifyContent="flex-start" spacing={2} >
+    <Grid container justifyContent="flex-start" spacing={3} >
       { !outOfStock ?
         <Grid item xs={7}>
-          <FormControl variant="filled" className={classes.selectSizeForm} fullWidth={true}>
+          <FormControl variant="outlined" className={classes.selectSizeForm} fullWidth={true}>
             <InputLabel id="size">Select Size</InputLabel>
             <Select
               labelId="select-size"
@@ -130,7 +139,7 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
         </Grid>
         :
         <Grid item xs={7}>
-          <FormControl variant="filled" className={classes.selectSizeForm} disabled fullWidth={true}>
+          <FormControl variant="outlined" className={classes.selectSizeForm} disabled fullWidth={true}>
             <InputLabel id="size">OUT OF STOCK</InputLabel>
             <Select
               labelId="select-size"
@@ -149,7 +158,7 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
       }
       {selectedSize === '' ?
         <Grid item xs={5}>
-          <FormControl variant="filled" className={classes.selectQtyForm} disabled >
+          <FormControl variant="outlined" className={classes.selectQtyForm} disabled fullWidth={true} >
           <InputLabel id="quantity">Quantity</InputLabel>
           <Select
             labelId="select-quantity"
@@ -165,7 +174,7 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
         </Grid>
         :
         <Grid item xs={5}>
-          <FormControl variant="filled" className={classes.selectQtyForm}>
+          <FormControl variant="outlined" className={classes.selectQtyForm} fullWidth={true} >
             <InputLabel id="quantity">Quantity</InputLabel>
             <Select
               labelId="select-quantity"
@@ -185,17 +194,16 @@ const AddToCart = ({ currentProduct, selectedStyle }) => {
         {outOfStock ?
         <></>
         :
-        <Button variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick}>Add To Cart</Button>
+        <Button size="large" color="success" variant="contained" endIcon={<AddIcon/>} onClick={handleAddToCartClick} fullWidth={true}>Add To Cart</Button>
         }
       </Grid>
     </Grid>
-    </>
   )
 }
 
 AddToCart.propTypes = {
-  currentProduct: PropTypes.object.isRequired,
-  selectedStyle: PropTypes.object.isRequired
+  overviewProductState: PropTypes.object,
+  selectedStyle: PropTypes.object
 }
 
 export default AddToCart;

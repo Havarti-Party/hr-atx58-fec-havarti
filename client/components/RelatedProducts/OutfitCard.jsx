@@ -39,12 +39,24 @@ export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
   //useContext
-  const { overviewProduct, selectedStyleState } = useContext(ProductsContext);
+  const {
+    overviewProduct,
+    clickedComponent,
+    clickedElement,
+    clickTracker,
+    selectedStyleState,
+  } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const [selectedStyle, setSelectedStyle] = selectedStyleState;
+  const [clickTrackerFunc] = clickTracker;
 
   return (
-    <Card className={classes.root}>
+    <Card
+      onClick={() =>
+        clickTrackerFunc.clickTrackerFunc("Outfit List Item", event.target)
+      }
+      className={classes.root}
+    >
       <CardMedia
         className={classes.media}
         image={
@@ -81,7 +93,12 @@ export default function OutfitCard({ OutfitObj, remove }) {
 
           {OutfitObj.sale_price ? (
             <>
-              <Typography variant="body2" color="textSecondary" component="p">
+              <Typography
+                className={{ textDecoration: "line-through" }}
+                variant="body2"
+                color="textSecondary"
+                component="p"
+              >
                 ${OutfitObj.original_price}
               </Typography>
               <Typography

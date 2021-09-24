@@ -15,9 +15,11 @@ import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 
 export default function AddToOutfitCard({ updateWardrobe }) {
   //useContext
-  const { overviewProduct, selectedStyleState } = useContext(ProductsContext);
+  const { overviewProduct, selectedStyleState, clickTracker } =
+    useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const [selectedStyle, setSelectedStyle] = selectedStyleState;
+  const [clickTrackerFunc] = clickTracker;
 
   const addToOutfitList = (selectedStyleObj) => {
     let copy = selectedStyleObj;
@@ -32,7 +34,15 @@ export default function AddToOutfitCard({ updateWardrobe }) {
   };
 
   return (
-    <Card className={"maxWidth: 300"}>
+    <Card
+      onClick={() =>
+        clickTrackerFunc.clickTrackerFunc(
+          "Add to Outfit List Card",
+          event.target
+        )
+      }
+      className={"maxWidth: 300"}
+    >
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           Like the above outift?

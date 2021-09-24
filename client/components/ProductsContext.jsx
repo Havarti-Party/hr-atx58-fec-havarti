@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useRef, useState, createContext } from "react";
 import axios from "axios";
@@ -12,6 +13,45 @@ export const ProductsProvider = (props) => {
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState([]);
   const isMounted = useRef(false);
+
+  //clickTracking
+  const [clickedComponent, setClickedComponent] = useState("");
+  const [clickedElement, setClickedElement] = useState("");
+  const [trackedClicks, updateTrackedClicks] = useState([]);
+
+  const clickTrackerFunc = (component, event) => {
+    const today = new Date();
+    let clickTrackObj = {
+      element: event.toString(),
+      widget: component,
+      time:
+        today.getMonth() +
+        1 +
+        "-" +
+        today.getDate() +
+        "-" +
+        today.getFullYear() +
+        " -- " +
+        today.getHours() +
+        ":" +
+        today.getMinutes() +
+        ":" +
+        today.getSeconds(),
+    };
+
+    axios
+      .post("/interactions", clickTrackObj)
+      .then((successfulPost) => {
+        console.log(
+          `Your click on ${clickTrackObj.widget} was posted to the DB.`
+        );
+      })
+      .catch((errorPosting) => {
+        console.log("error from App.jsx:", errorPosting);
+      });
+  };
+
+  const [clickTracker] = useState({ clickTrackerFunc });
 
   useEffect(() => {
     axios
@@ -97,6 +137,9 @@ export const ProductsProvider = (props) => {
         starRating: [starRating, setStarRating],
         stylesState: [styles, setStyles],
         selectedStyleState: [selectedStyle, setSelectedStyle],
+        clickedComponent: [clickedComponent, setClickedComponent],
+        clickedElement: [setClickedElement, setClickedElement],
+        clickTracker: [clickTracker],
       }}
     >
       {props.children}

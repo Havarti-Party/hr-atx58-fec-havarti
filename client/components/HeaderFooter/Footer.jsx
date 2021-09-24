@@ -8,7 +8,7 @@ import CopyrightIcon from '@mui/icons-material/Copyright';
 export default function Footer() {
   return (
     <Box sx={{ flexGrow: 1, mt: 3 }}>
-      <AppBar position="static">
+      <AppBar position="static" color="primary">
         <Toolbar>
           <Typography
             variant="h6"

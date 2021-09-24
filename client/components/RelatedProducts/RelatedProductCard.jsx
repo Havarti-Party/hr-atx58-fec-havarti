@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
@@ -27,8 +28,10 @@ import noImage from "./No-Image-Found.jpg";
 
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const { overviewProduct } = useContext(ProductsContext);
+  const { overviewProduct, clickTracker } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
+
+  const [clickTrackerFunc] = clickTracker;
 
   //State
   const [open, setOpen] = React.useState(false);
@@ -45,40 +48,20 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
     let overviewProductFeaturesObj = {};
     let combinedFeatures = [];
 
-    if (relatedProduct.features && overviewProductState.features) {
-      relatedProduct.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        relatedProductFeaturesObj[feature.feature] = feature.value;
-      });
+    relatedProduct.features.forEach((feature) => {
+      combinedFeatures.push(feature.feature);
+      relatedProductFeaturesObj[feature.feature] = feature.value;
+    });
 
-      overviewProductState.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        overviewProductFeaturesObj[feature.feature] = feature.value;
-      });
+    overviewProductState.features.forEach((feature) => {
+      combinedFeatures.push(feature.feature);
+      overviewProductFeaturesObj[feature.feature] = feature.value;
+    });
 
-      setOverviewProductFeatures(overviewProductFeaturesObj);
-      setRelatedProductFeatures(relatedProductFeaturesObj);
-      setCompareFeatures(combinedFeatures);
-    } else if (relatedProduct.features) {
-      relatedProduct.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        relatedProductFeaturesObj[feature.feature] = feature.value;
-      });
-      setRelatedProductFeatures(relatedProductFeaturesObj);
-      let temp = Object.keys(relatedProductFeaturesObj);
-      setCompareFeatures(temp);
-    } else if (overviewProductState.features) {
-      overviewProductState.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        overviewProductFeaturesObj[feature.feature] = feature.value;
-      });
+    setOverviewProductFeatures(overviewProductFeaturesObj);
+    setRelatedProductFeatures(relatedProductFeaturesObj);
+    setCompareFeatures(combinedFeatures);
 
-      setOverviewProductFeatures(overviewProductFeaturesObj);
-      let temp = Object.keys(relatedProductFeaturesObj);
-      setCompareFeatures(temp);
-    } else {
-      setCompareFeatures(["no features to compare!"]);
-    }
     setClickedStar(true);
     handleClickOpen();
   };
@@ -120,13 +103,18 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card
+      onClick={() =>
+        clickTrackerFunc.clickTrackerFunc("Related Products", event.target)
+      }
+      className={classes.root}
+    >
       <CardMedia
         className={classes.media}
         image={RelatedObj.url ? RelatedObj.url : noImage}
       >
         <Grid container direction="column" alignItems="flex-end">
-          <Grid item>
+          <Grid id="starClick" item>
             {clickedStar ? (
               <StarBorderIcon
                 className={classes.iconDepth}
@@ -134,7 +122,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
                   handleStarClick(RelatedObj);
                 }}
                 color="primary"
-                style={{ fontSize: 45 }}
+                style={{ fontSize: 45, color: "rgb(73, 137, 199)" }}
               />
             ) : (
               <StarIcon
@@ -143,7 +131,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
                   handleStarClick(RelatedObj);
                 }}
                 color="primary"
-                style={{ fontSize: 45 }}
+                style={{ fontSize: 45, color: "rgb(73, 137, 199)" }}
               />
             )}
           </Grid>

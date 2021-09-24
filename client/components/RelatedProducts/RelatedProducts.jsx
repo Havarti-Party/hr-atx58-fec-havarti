@@ -2,6 +2,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
+import PropTypes from "prop-types";
 
 import Typography from "@material-ui/core/Typography";
 
