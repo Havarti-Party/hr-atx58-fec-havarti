@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useContext } from "react";
+import { ProductsContext } from "../ProductsContext.jsx";
 
 //modal
 import PropTypes from "prop-types";
@@ -26,6 +27,10 @@ export default function ModalPopup({
   relatedProductFeatures,
   overviewProductFeatures,
 }) {
+  //useContext
+  const { clickTracker } = useContext(ProductsContext);
+  const [clickTrackerFunc] = clickTracker;
+
   const handleClose = () => {
     onClose();
   };
@@ -37,6 +42,9 @@ export default function ModalPopup({
       onClose={handleClose}
       aria-labelledby="simple-dialog-title"
       open={open}
+      onClick={() =>
+        clickTrackerFunc.clickTrackerFunc("Comparison Modal", event.target)
+      }
     >
       <AppBar position="static">
         <Toolbar variant="dense">
