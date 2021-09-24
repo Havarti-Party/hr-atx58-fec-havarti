@@ -8,10 +8,12 @@ import Typography from "@material-ui/core/Typography";
 //Dialog
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
+import { AppBar, Toolbar, IconButton } from "@mui/material";
 //Grid
 import Grid from "@material-ui/core/Grid";
 //Icons
 import CheckIcon from "@material-ui/icons/Check";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 
 export default function ModalPopup({
   onClose,
@@ -32,7 +34,21 @@ export default function ModalPopup({
       aria-labelledby="simple-dialog-title"
       open={open}
     >
-      <DialogTitle id="simple-dialog-title">Compare</DialogTitle>
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <CompareArrowsIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" component="div">
+            Compare Items
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Grid
         container
         direction="column"
