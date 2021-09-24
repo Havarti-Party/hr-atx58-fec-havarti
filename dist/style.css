@@ -1,6 +1,5 @@
 /* @import "../../node_modules/react-image-gallery/styles/css/image-gallery.css"; */
 
-
 #icon {
   z-index: -1;
 }
@@ -27,4 +26,30 @@
 
 .RARWriteNewReviewButton {
   width: 100%;
+}
+
+/* square buttons */
+.rec.rec-arrow {
+  background-color: rgb(73, 137, 199);
+  border-radius: 0;
+}
+/* round buttons on hover */
+.rec.rec-arrow:hover {
+  background-color: rgb(73, 137, 199);
+  border-radius: 50%;
+}
+/* hide disabled buttons */
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+button.rec-dot {
+  background-color: rgb(73, 137, 199);
+  box-shadow: black;
+}
+
+button.rec-dot:hover,
+button.rec-dot:active,
+button.rec-dot:focus {
+  box-shadow: black;
 }
