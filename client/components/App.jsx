@@ -19,6 +19,7 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+
 const theme = createTheme({
   pallette: {
     primary: {
@@ -78,8 +79,8 @@ export default function App() {
       </Container>
     );
   }
-  return (
 
+  return (
       <Container maxWidth="lg" className="App" >
         <ThemeProvider theme={theme}>
         <Grid container spacing={5}>
@@ -94,6 +95,5 @@ export default function App() {
         </Grid>
         </ThemeProvider>
       </Container>
-
   );
 }
