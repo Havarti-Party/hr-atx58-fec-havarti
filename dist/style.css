@@ -34,8 +34,10 @@
   border-radius: 0;
 }
 /* round buttons on hover */
-.rec.rec-arrow:hover {
+.rec.rec-arrow-left:hover:enabled,
+.rec.rec-arrow-right:hover:enabled {
   background-color: rgb(73, 137, 199);
+  box-shadow: black;
   border-radius: 50%;
 }
 /* hide disabled buttons */
