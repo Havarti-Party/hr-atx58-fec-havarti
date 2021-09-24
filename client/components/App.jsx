@@ -48,9 +48,12 @@ export default function App() {
     );
   }
 
+
+
   return (
-    <Container maxWidth="lg" className="App">
-      <ThemeProvider theme={theme}>
+      <Container maxWidth="lg" className="App" >
+        <ThemeProvider theme={theme}>
+
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <Header />
@@ -77,7 +80,10 @@ export default function App() {
             <Footer />
           </Grid>
         </Grid>
-      </ThemeProvider>
-    </Container>
+
+        </ThemeProvider>
+      </Container>
+
+
   );
 }
