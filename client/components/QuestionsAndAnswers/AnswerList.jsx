@@ -5,7 +5,7 @@ import ExpandAnswers from './AnswerExpand.jsx';
 import Grid from '@material-ui/core/Grid';
 export const AnswerCountContext = createContext();
 
-export default function AnswerList({answers, style, product_id, question }) {
+export default function AnswerList({answers, style, product_id }) {
   const [answerDisplayCount, setAnswerDisplayCount] = useState(2)
 
   var currentAnswers = answers.slice(0, answerDisplayCount);

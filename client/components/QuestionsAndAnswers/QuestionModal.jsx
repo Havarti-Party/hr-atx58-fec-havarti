@@ -51,6 +51,8 @@ export default function QuestionModal({styles, product_id}) {
 
   const validateForm = (questionBody, nickname, email) => {
     var formValid = true;
+
+
     if (email.indexOf('@') === -1 || email.indexOf('.com') === -1) {
       setAllValues({...allValues, [email]: ''})
       setEmailInvalid(true);

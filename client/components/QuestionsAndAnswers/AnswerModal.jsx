@@ -36,7 +36,7 @@ const modalStyles = makeStyles({
 });
 
 
-export default function AnswerModal({questionId, product_id, setAnswers, answers}) {
+export default function AnswerModal({questionId, product_id, setAnswers}) {
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
