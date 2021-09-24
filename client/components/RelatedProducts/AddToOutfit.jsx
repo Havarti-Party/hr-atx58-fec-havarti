@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 //Icons
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 
-export default function AddToOutfitCard({ updateWardrobe }) {
+export default function AddToOutfitCard({ updateWardrobe, clickTracker }) {
   //useContext
   const { overviewProduct, selectedStyleState } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
@@ -32,7 +32,10 @@ export default function AddToOutfitCard({ updateWardrobe }) {
   };
 
   return (
-    <Card className={"maxWidth: 300"}>
+    <Card
+      onClick={() => clickTracker("Add To Outfit Card", event.target)}
+      className={"maxWidth: 300"}
+    >
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           Like the above outift?
@@ -55,4 +58,5 @@ export default function AddToOutfitCard({ updateWardrobe }) {
 
 AddToOutfitCard.propTypes = {
   updateWardrobe: PropTypes.func.isRequired,
+  clickTracker: PropTypes.func,
 };

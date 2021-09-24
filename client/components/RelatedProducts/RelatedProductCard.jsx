@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
@@ -25,9 +26,14 @@ import StarIcon from "@material-ui/icons/Star";
 //Image
 import noImage from "./No-Image-Found.jpg";
 
-export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
+export default function RelatedProductCard({
+  RelatedObj,
+  updatedWardrobe,
+  clickTracker,
+}) {
   //useContext
-  const { overviewProduct } = useContext(ProductsContext);
+  const { overviewProduct, clickedComponent, clickedElement } =
+    useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   //State
@@ -37,6 +43,9 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const [clickedStar, setClickedStar] = useState(false);
   const [relatedProductFeatures, setRelatedProductFeatures] = useState({});
   const [overviewProductFeatures, setOverviewProductFeatures] = useState({});
+
+  const [clickedComponentState, setClickedComponentState] = clickedComponent;
+  const [clickedElementState, setClickedElementState] = clickedElement;
 
   const isInitialMount = useRef(true);
 
@@ -120,13 +129,24 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card
+      onClick={() => clickTracker("Related Products", event.target)}
+      className={classes.root}
+    >
       <CardMedia
         className={classes.media}
         image={RelatedObj.url ? RelatedObj.url : noImage}
       >
         <Grid container direction="column" alignItems="flex-end">
-          <Grid item>
+          <Grid
+            id="starClick"
+            item
+            onClick={() => {
+              setClickedComponentState("Related Product Card");
+              setClickedElementState(event.target);
+              setOverviewProductState(RelatedObj);
+            }}
+          >
             {clickedStar ? (
               <StarBorderIcon
                 className={classes.iconDepth}
@@ -152,6 +172,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       <CardActionArea>
         <CardContent
           onClick={() => {
+            setClickedComponentState("Related Product Card");
+            setClickedElementState(event.target);
             setOverviewProductState(RelatedObj);
           }}
         >
@@ -185,6 +207,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
 }
 
 RelatedProductCard.propTypes = {
+  clickTracker: PropTypes.func,
   updatedWardrobe: PropTypes.func,
   RelatedObj: PropTypes.object,
 };
