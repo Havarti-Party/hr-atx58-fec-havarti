@@ -2,36 +2,32 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
-import ModalPopup from "./CompareModal.jsx";
 import PropTypes from "prop-types";
-
-//Card Features
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-
 import StarRatings from "react-star-ratings";
+//Files
+import ModalPopup from "./CompareModal.jsx";
+import noImage from "./No-Image-Found.jpg";
 
-//Grid
-import Grid from "@material-ui/core/Grid";
+//Material UI
+import {
+  Typography,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 //Icons
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 
-//Image
-import noImage from "./No-Image-Found.jpg";
-
 export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const { overviewProduct, clickedComponent, clickedElement, clickTracker } =
-    useContext(ProductsContext);
+  const { overviewProduct, clickTracker } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
-
   const [clickTrackerFunc] = clickTracker;
 
   //State
@@ -42,54 +38,8 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const [relatedProductFeatures, setRelatedProductFeatures] = useState({});
   const [overviewProductFeatures, setOverviewProductFeatures] = useState({});
 
-  const [clickedComponentState, setClickedComponentState] = clickedComponent;
-  const [clickedElementState, setClickedElementState] = clickedElement;
-
   const isInitialMount = useRef(true);
-
-  const handleStarClick = (relatedProduct) => {
-    let relatedProductFeaturesObj = {};
-    let overviewProductFeaturesObj = {};
-    let combinedFeatures = [];
-
-    if (relatedProduct.features && overviewProductState.features) {
-      relatedProduct.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        relatedProductFeaturesObj[feature.feature] = feature.value;
-      });
-
-      overviewProductState.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        overviewProductFeaturesObj[feature.feature] = feature.value;
-      });
-
-      setOverviewProductFeatures(overviewProductFeaturesObj);
-      setRelatedProductFeatures(relatedProductFeaturesObj);
-      setCompareFeatures(combinedFeatures);
-    } else if (relatedProduct.features) {
-      relatedProduct.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        relatedProductFeaturesObj[feature.feature] = feature.value;
-      });
-      setRelatedProductFeatures(relatedProductFeaturesObj);
-      let temp = Object.keys(relatedProductFeaturesObj);
-      setCompareFeatures(temp);
-    } else if (overviewProductState.features) {
-      overviewProductState.features.forEach((feature) => {
-        combinedFeatures.push(feature.feature);
-        overviewProductFeaturesObj[feature.feature] = feature.value;
-      });
-
-      setOverviewProductFeatures(overviewProductFeaturesObj);
-      let temp = Object.keys(relatedProductFeaturesObj);
-      setCompareFeatures(temp);
-    } else {
-      setCompareFeatures(["no features to compare!"]);
-    }
-    setClickedStar(true);
-    handleClickOpen();
-  };
-
+  //Component Updates
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -100,6 +50,38 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       }
     }
   });
+  //Functions
+  const handleStarClick = (relatedProduct) => {
+    let relatedProductFeaturesObj = {};
+    let overviewProductFeaturesObj = {};
+    let combinedFeatures = [];
+
+    relatedProduct.features.forEach((feature) => {
+      combinedFeatures.push(feature.feature);
+      relatedProductFeaturesObj[feature.feature] = feature.value;
+    });
+
+    overviewProductState.features.forEach((feature) => {
+      combinedFeatures.push(feature.feature);
+      overviewProductFeaturesObj[feature.feature] = feature.value;
+    });
+
+    setOverviewProductFeatures(overviewProductFeaturesObj);
+    setRelatedProductFeatures(relatedProductFeaturesObj);
+    setCompareFeatures(combinedFeatures);
+
+    setClickedStar(true);
+    handleClickOpen();
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setClickedStar(false);
+    setOpen(false);
+  };
 
   //Styling
   const useStyles = makeStyles({
@@ -117,15 +99,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
 
   const classes = useStyles();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setClickedStar(false);
-    setOpen(false);
-  };
-
   return (
     <Card
       onClick={() =>
@@ -138,15 +111,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         image={RelatedObj.url ? RelatedObj.url : noImage}
       >
         <Grid container direction="column" alignItems="flex-end">
-          <Grid
-            id="starClick"
-            item
-            onClick={() => {
-              setClickedComponentState("Related Product Card");
-              setClickedElementState(event.target);
-              setOverviewProductState(RelatedObj);
-            }}
-          >
+          <Grid id="starClick" item>
             {clickedStar ? (
               <StarBorderIcon
                 className={classes.iconDepth}
@@ -172,8 +137,6 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       <CardActionArea>
         <CardContent
           onClick={() => {
-            setClickedComponentState("Related Product Card");
-            setClickedElementState(event.target);
             setOverviewProductState(RelatedObj);
           }}
         >
@@ -189,7 +152,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
           <Typography variant="body2" color="textSecondary" component="p">
             {RelatedObj.description}
           </Typography>
-          <StarRatings rating={2} starDimension={"15px"} starSpacing={"1px"} />
+          {/* <StarRatings rating={2} starDimension={"15px"} starSpacing={"1px"} /> */}
         </CardContent>
       </CardActionArea>
       <CardActions>

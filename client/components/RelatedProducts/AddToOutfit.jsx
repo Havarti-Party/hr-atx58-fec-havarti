@@ -3,12 +3,8 @@ import React, { useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
 import PropTypes from "prop-types";
 
-//Card Features
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-
-import Typography from "@material-ui/core/Typography";
+//Material UI
+import { Typography, Card, CardActionArea, CardContent } from "@mui/material";
 
 //Icons
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
@@ -22,8 +18,8 @@ export default function AddToOutfitCard({ updateWardrobe }) {
   const [clickTrackerFunc] = clickTracker;
 
   const addToOutfitList = (selectedStyleObj) => {
-    let copy = selectedStyleObj;
-    selectedStyleObj.selectedStyleObj = copy;
+    let copyOfSelectedStyleObj = selectedStyleObj;
+    selectedStyleObj.selectedStyleObj = copyOfSelectedStyleObj;
     selectedStyleObj.slogan = overviewProduct.slogan;
     selectedStyleObj.overviewProduct = overviewProductState;
     selectedStyleObj.description = overviewProductState.description;
