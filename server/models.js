@@ -54,96 +54,117 @@ let getProductQuestions = (id, callback) => {
       callback(null, result);
     })
     .catch((error) => {
-      console.log('error getting qs in models', error)
+      console.log("error getting qs in models", error);
       callback(error, null);
     });
 };
 
 let addNewQuestion = (questionBody, nickname, email, product_id, callback) => {
-  axios.post(apiURL + '/qa/questions', {
-    body: questionBody,
-    name: nickname,
-    email: email,
-    product_id: product_id,
-  }, {
-    headers: {Authorization: config.token}
-  })
-  .then(response => {
-    console.log('in models', response)
-    callback(null, response)
-  })
-  .catch(error => {
-    console.log('in modesl err:', error);
-    callback(error, null)
-  })
-}
+  axios
+    .post(
+      apiURL + "/qa/questions",
+      {
+        body: questionBody,
+        name: nickname,
+        email: email,
+        product_id: product_id,
+      },
+      {
+        headers: { Authorization: config.token },
+      }
+    )
+    .then((response) => {
+      console.log("in models", response);
+      callback(null, response);
+    })
+    .catch((error) => {
+      console.log("in modesl err:", error);
+      callback(error, null);
+    });
+};
 
-let addNewAnswer = (answerBody, nickname, email, images, question_id, callback) => {
-  axios.post(apiURL + `/qa/questions/${question_id}/answers`, {
-    body: answerBody,
-    name: nickname,
-    email: email,
-    photos: images,
-  }, {
-    headers: {Authorization: config.token}
-  })
-  .then(response => {
-    callback(null, response.data)
-  })
-  .catch(error => {
-    console.log('error in models', error);
-    callback(error, null)
-  })
-}
+let addNewAnswer = (
+  answerBody,
+  nickname,
+  email,
+  images,
+  question_id,
+  callback
+) => {
+  axios
+    .post(
+      apiURL + `/qa/questions/${question_id}/answers`,
+      {
+        body: answerBody,
+        name: nickname,
+        email: email,
+        photos: images,
+      },
+      {
+        headers: { Authorization: config.token },
+      }
+    )
+    .then((response) => {
+      callback(null, response.data);
+    })
+    .catch((error) => {
+      console.log("error in models", error);
+      callback(error, null);
+    });
+};
 
 let updateQuestionHelpfulness = (question_id, callback) => {
-  axios.put(apiURL + `/qa/questions/${question_id}/helpful`, null, {
-    headers: {Authorization: config.token}
-  })
-  .then(result => {
-    callback(null, result)
-  })
-  .catch(error => {
-    callback(error, null)
-  })
-}
+  axios
+    .put(apiURL + `/qa/questions/${question_id}/helpful`, null, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      callback(null, result);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
 
 let updateAnswerHelpfulness = (answer_id, callback) => {
   // debugger;
-  axios.put(apiURL + `/qa/answers/${answer_id}/helpful`, null, {
-    headers: { Authorization: config.token }
-  })
-  .then(result => {
-    callback(null, result)
-  })
-  .catch(error => {
-    callback(error, null);
-  })
-}
+  axios
+    .put(apiURL + `/qa/answers/${answer_id}/helpful`, null, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      callback(null, result);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
 
 let reportQuestion = (question_id, callback) => {
-  axios.put(apiURL + `/qa/questions/${question_id}/report`, null, {
-    headers: { Authorization: config.token }
-  })
-  .then(result => {
-    callback(null, result)
-  })
-  .catch(error => {
-    callback(error, null)
-  })
-}
+  axios
+    .put(apiURL + `/qa/questions/${question_id}/report`, null, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      callback(null, result);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
 
 let reportAnswer = (answer_id, callback) => {
-  axios.put(apiURL + `/qa/answers/${answer_id}/report`, null, {
-    headers: { Authorization: config.token }
-  })
-  .then(result => {
-    callback(null, result)
-  })
-  .catch(error => {
-    callback(error, null);
-  })
-}
+  axios
+    .put(apiURL + `/qa/answers/${answer_id}/report`, null, {
+      headers: { Authorization: config.token },
+    })
+    .then((result) => {
+      callback(null, result);
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
+};
 
 let getCurrentProduct = (id) => {
   return axios
@@ -210,6 +231,19 @@ let putProductReview = (data, callback) => {
     });
 };
 
+let postClickTrackInteraction = (clickTrackObj) => {
+  return axios
+    .post(apiURL + "/interactions", clickTrackObj, {
+      headers: { Authorization: config.token },
+    })
+    .then((successfulPost) => {
+      console.log(successfulPost, "you made a successful post");
+    })
+    .catch((error) => {
+      console.log(error, "you hit an error posting to the DB");
+    });
+};
+
 module.exports = {
   getAllProducts,
   getRelatedProductsIDs,
@@ -226,4 +260,5 @@ module.exports = {
   putProductReview,
   reportQuestion,
   reportAnswer,
+  postClickTrackInteraction,
 };

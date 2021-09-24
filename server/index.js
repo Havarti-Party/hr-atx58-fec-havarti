@@ -148,7 +148,7 @@ app.post("/reviews", (req, res) => {
   });
 });
 
-app.post('/qa/reportQuestion', (req, res) => {
+app.post("/qa/reportQuestion", (req, res) => {
   var question_id = req.body.question_id;
   models.reportQuestion(question_id, (err, result) => {
     if (err) {
@@ -156,10 +156,10 @@ app.post('/qa/reportQuestion', (req, res) => {
     } else {
       res.status(204);
     }
-  })
-})
+  });
+});
 
-app.post('/qa/reportAnswer', (req, res) => {
+app.post("/qa/reportAnswer", (req, res) => {
   var answer_id = req.body.answer_id;
   models.reportAnswer(answer_id, (err, result) => {
     if (err) {
@@ -167,37 +167,33 @@ app.post('/qa/reportAnswer', (req, res) => {
     } else {
       res.status(204);
     }
-  })
-})
+  });
+});
 
-app.post('/qa/questionHelpfulness', (req, res) => {
+app.post("/qa/questionHelpfulness", (req, res) => {
   var question_id = req.body.questionId;
   models.updateQuestionHelpfulness(question_id, (err, result) => {
     if (err) {
-      console.log('error in index')
+      console.log("error in index");
       res.status(500).send(err);
     } else {
-      res.status(204)
+      res.status(204);
     }
-  })
-})
+  });
+});
 
-app.post('/qa/answerHelpfulness', (req, res) => {
+app.post("/qa/answerHelpfulness", (req, res) => {
   var answer_id = req.body.answer_id;
   models.updateAnswerHelpfulness(answer_id, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(204)
+      res.status(204);
     }
-  })
-})
+  });
+});
 
-// var body = req.body.question_body;
-//   var email = req.body.email;
-//   var name = req.body.asker_name;
-//   var product_id = req.body.product_id;
-app.post('/qa/questions', (req, res) => {
+app.post("/qa/questions", (req, res) => {
   var body = req.body.question_body;
   var email = req.body.email;
   var name = req.body.asker_name;
@@ -206,41 +202,55 @@ app.post('/qa/questions', (req, res) => {
   models.addNewQuestion(body, name, email, product_id, (err, result) => {
     if (err) {
       console.log(err);
-      res.status(500).send('error creating your question')
+      res.status(500).send("error creating your question");
     } else {
-      console.log('response in index.js')
-      res.status(201).send('CREATED');
+      console.log("response in index.js");
+      res.status(201).send("CREATED");
     }
-  })
-})
+  });
+});
 
-app.post('/qa/answers', (req, res) => {
-  console.log(req.body)
-  var body = req.body.answerBody
-  var name = req.body.nickname
+app.post("/qa/answers", (req, res) => {
+  console.log(req.body);
+  var body = req.body.answerBody;
+  var name = req.body.nickname;
   var email = req.body.email;
   var images = req.body.images;
   var question_id = req.body.question_id;
   models.addNewAnswer(body, name, email, images, question_id, (err, result) => {
     if (err) {
-      console.log('error index.js')
-      res.status(500).send('error creating your answer')
+      console.log("error index.js");
+      res.status(500).send("error creating your answer");
     } else {
-      res.status(201).send('CREATED')
+      res.status(201).send("CREATED");
     }
-  })
-})
+  });
+});
 
-app.put('/reviews/put', (req, res) => {
+app.put("/reviews/put", (req, res) => {
   models.putProductReview(req.body, (err, result) => {
     if (err) {
-      console.log('Error during review PUT request.');
-      res.status(500).send('Error during review PUT request.');
+      console.log("Error during review PUT request.");
+      res.status(500).send("Error during review PUT request.");
     } else {
-      res.status(204).send('Resources updated successfully.');
+      res.status(204).send("Resources updated successfully.");
     }
-  })
-})
+  });
+});
+
+app.post("/interactions", (req, res) => {
+  let clickTrackObj = req.body;
+  console.log(req);
+  console.log(clickTrackObj);
+
+  Promise.all([models.postClickTrackInteraction(clickTrackObj)])
+    .then((successfulPost) => {
+      res.status(204).send("success posting");
+    })
+    .catch((errorPosting) => {
+      res.status(500).send("error posting");
+    });
+});
 
 app.listen(PORT, (err, success) => {
   if (err) {

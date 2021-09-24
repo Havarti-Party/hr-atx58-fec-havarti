@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import Header from "./HeaderFooter/Header.jsx";
 import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 import RelatedProducts from "./RelatedProducts/RelatedProducts.jsx";
@@ -38,7 +39,7 @@ export default function App() {
   const clickTracker = (component, event) => {
     const today = new Date();
     let clickTrackObj = {
-      element: event,
+      element: event.toString(),
       widget: component,
       time:
         today.getMonth() +
@@ -54,7 +55,15 @@ export default function App() {
         ":" +
         today.getSeconds(),
     };
-    console.log(clickTrackObj);
+
+    axios
+      .post("/interactions", clickTrackObj)
+      .then((successfulPost) => {
+        console.log(successfulPost);
+      })
+      .catch((errorPosting) => {
+        console.log(errorPosting);
+      });
   };
 
   if (isLoadingState) {
