@@ -2,16 +2,15 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
-import PropTypes from "prop-types";
-
-import Typography from "@material-ui/core/Typography";
-
-const axios = require("axios");
-
 import Carousel from "react-elastic-carousel";
 import "react-multi-carousel/lib/styles.css";
-
+import PropTypes from "prop-types";
+//Files
 import RelatedProductCard from "./RelatedProductCard.jsx";
+//Material-UI
+import { Typography } from "@mui/material";
+//Axios
+const axios = require("axios");
 
 export default function RelatedProducts() {
   //useContext
@@ -19,7 +18,6 @@ export default function RelatedProducts() {
   const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   //RelatedProductsState
-
   const [relatedProductsIDs, setRelatedProductsIDs] = React.useState();
   const [relatedProductsArr, setRelatedProductsArr] = React.useState([]);
 
