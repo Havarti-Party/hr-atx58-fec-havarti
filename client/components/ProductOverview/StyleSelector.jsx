@@ -4,6 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
@@ -22,7 +23,7 @@ export default function StyleSelector( { styles, selectedStyle, handleStyleClick
                 overlap="circular"
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                 badgeContent={
-                  <CheckCircleTwoToneIcon />
+                  <CheckCircleIcon color="primary"/>
                 }
               >
                 <Avatar alt={style.name} src={style.photos[0].thumbnail_url} sx={{ width: 70, height: 70 }} />
