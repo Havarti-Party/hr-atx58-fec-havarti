@@ -26,15 +26,13 @@ import StarIcon from "@material-ui/icons/Star";
 //Image
 import noImage from "./No-Image-Found.jpg";
 
-export default function RelatedProductCard({
-  RelatedObj,
-  updatedWardrobe,
-  clicktracker,
-}) {
+export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   //useContext
-  const { overviewProduct, clickedComponent, clickedElement } =
+  const { overviewProduct, clickedComponent, clickedElement, clickTracker } =
     useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
+
+  const [clickTrackerFunc] = clickTracker;
 
   //State
   const [open, setOpen] = React.useState(false);
@@ -130,7 +128,9 @@ export default function RelatedProductCard({
 
   return (
     <Card
-      onClick={() => clicktracker("Related Products", event.target)}
+      onClick={() =>
+        clickTrackerFunc.clickTrackerFunc("Related Products", event.target)
+      }
       className={classes.root}
     >
       <CardMedia
@@ -207,7 +207,6 @@ export default function RelatedProductCard({
 }
 
 RelatedProductCard.propTypes = {
-  clicktracker: PropTypes.func,
   updatedWardrobe: PropTypes.func,
   RelatedObj: PropTypes.object,
 };

@@ -37,38 +37,6 @@ export default function App() {
   const { isLoading } = useContext(ProductsContext);
   const [isLoadingState] = isLoading;
 
-  const clickTracker = (component, event) => {
-    const today = new Date();
-    let clickTrackObj = {
-      element: event.toString(),
-      widget: component,
-      time:
-        today.getMonth() +
-        1 +
-        "-" +
-        today.getDate() +
-        "-" +
-        today.getFullYear() +
-        " -- " +
-        today.getHours() +
-        ":" +
-        today.getMinutes() +
-        ":" +
-        today.getSeconds(),
-    };
-
-    axios
-      .post("/interactions", clickTrackObj)
-      .then((successfulPost) => {
-        console.log(
-          `Your click on ${clickTrackObj.widget} was posted to the DB.`
-        );
-      })
-      .catch((errorPosting) => {
-        console.log("error from App.jsx:", errorPosting);
-      });
-  };
-
   if (isLoadingState) {
     return (
       <Container maxWidth="lg" className="loading">
@@ -86,22 +54,22 @@ export default function App() {
             <Header />
           </Grid>
           <Grid item xs={12}>
-            <ProductOverview clicktracker={clickTracker} />
+            <ProductOverview />
           </Grid>
           <Grid item xs={12}>
-            <Divider clicktracker={clickTracker} />
+            <Divider />
           </Grid>
           <Grid item xs={12}>
-            <RelatedProducts clicktracker={clickTracker} />
+            <RelatedProducts />
           </Grid>
           <Grid item xs={12}>
-            <CustomerOutfit clicktracker={clickTracker} />
+            <CustomerOutfit />
           </Grid>
           <Grid item xs={12}>
-            <RatingsAndReviews clicktracker={clickTracker} />
+            <RatingsAndReviews />
           </Grid>
           <Grid item xs={12}>
-            <QuestionsAndAnswers clicktracker={clickTracker} />
+            <QuestionsAndAnswers />
           </Grid>
           <Grid item xs={12}>
             <Footer />

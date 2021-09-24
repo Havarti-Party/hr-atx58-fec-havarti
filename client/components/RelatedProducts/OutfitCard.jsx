@@ -35,17 +35,26 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutfitCard({ OutfitObj, remove, clickTracker }) {
+export default function OutfitCard({ OutfitObj, remove }) {
   const classes = useStyles();
   //useContext
   //useContext
-  const { overviewProduct, selectedStyleState } = useContext(ProductsContext);
+  const {
+    overviewProduct,
+    clickedComponent,
+    clickedElement,
+    clickTracker,
+    selectedStyleState,
+  } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
   const [selectedStyle, setSelectedStyle] = selectedStyleState;
+  const [clickTrackerFunc] = clickTracker;
 
   return (
     <Card
-      onClick={() => clickTracker("Related Products", event.target)}
+      onClick={() =>
+        clickTrackerFunc.clickTrackerFunc("Outfit List Item", event.target)
+      }
       className={classes.root}
     >
       <CardMedia
@@ -124,5 +133,4 @@ export default function OutfitCard({ OutfitObj, remove, clickTracker }) {
 OutfitCard.propTypes = {
   remove: PropTypes.func.isRequired,
   OutfitObj: PropTypes.object,
-  clickTracker: PropTypes.func,
 };

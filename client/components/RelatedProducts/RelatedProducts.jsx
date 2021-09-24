@@ -13,7 +13,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import RelatedProductCard from "./RelatedProductCard.jsx";
 
-export default function RelatedProducts({ clicktracker }) {
+export default function RelatedProducts() {
   //useContext
   const { overviewProduct } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
@@ -76,19 +76,9 @@ export default function RelatedProducts({ clicktracker }) {
         </Typography>
         <Carousel itemsToShow={4}>
           {relatedProductsArr.map((obj, index) => {
-            return (
-              <RelatedProductCard
-                clicktracker={clicktracker}
-                RelatedObj={obj}
-                key={index}
-              />
-            );
+            return <RelatedProductCard RelatedObj={obj} key={index} />;
           })}
         </Carousel>
       </>
     );
 }
-
-RelatedProducts.propTypes = {
-  clicktracker: PropTypes.func,
-};

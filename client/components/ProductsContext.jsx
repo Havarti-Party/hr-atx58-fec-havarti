@@ -19,6 +19,40 @@ export const ProductsProvider = (props) => {
   const [clickedElement, setClickedElement] = useState("");
   const [trackedClicks, updateTrackedClicks] = useState([]);
 
+  const clickTrackerFunc = (component, event) => {
+    const today = new Date();
+    let clickTrackObj = {
+      element: event.toString(),
+      widget: component,
+      time:
+        today.getMonth() +
+        1 +
+        "-" +
+        today.getDate() +
+        "-" +
+        today.getFullYear() +
+        " -- " +
+        today.getHours() +
+        ":" +
+        today.getMinutes() +
+        ":" +
+        today.getSeconds(),
+    };
+
+    axios
+      .post("/interactions", clickTrackObj)
+      .then((successfulPost) => {
+        console.log(
+          `Your click on ${clickTrackObj.widget} was posted to the DB.`
+        );
+      })
+      .catch((errorPosting) => {
+        console.log("error from App.jsx:", errorPosting);
+      });
+  };
+
+  const [clickTracker] = useState({ clickTrackerFunc });
+
   useEffect(() => {
     axios
       .get("/products")
@@ -105,6 +139,7 @@ export const ProductsProvider = (props) => {
         selectedStyleState: [selectedStyle, setSelectedStyle],
         clickedComponent: [clickedComponent, setClickedComponent],
         clickedElement: [setClickedElement, setClickedElement],
+        clickTracker: [clickTracker],
       }}
     >
       {props.children}
