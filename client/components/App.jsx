@@ -80,17 +80,20 @@ export default function App() {
   }
   return (
 
-    <Container maxWidth="lg" className="App">
-      <ThemeProvider theme={theme}>
-        <Header clickTracker={clickTracker} />
-        <ProductOverview clickTracker={clickTracker} />
-        <RelatedProducts clickTracker={clickTracker} />
-        <CustomerOutfit clickTracker={clickTracker} />
-        <RatingsAndReviews clickTracker={clickTracker} />
-        <QuestionsAndAnswers clickTracker={clickTracker} />
-        <Footer />
-      </ThemeProvider>
-    </Container>
+      <Container maxWidth="lg" className="App" >
+        <ThemeProvider theme={theme}>
+        <Grid container spacing={5}>
+          <Grid item xs={12}><Header /></Grid>
+          <Grid item xs={12}><ProductOverview /></Grid>
+          <Grid item xs={12}><Divider /></Grid>
+          <Grid item xs={12}><RelatedProducts /></Grid>
+          <Grid item xs={12}><CustomerOutfit /></Grid>
+          <Grid item xs={12}><RatingsAndReviews /></Grid>
+          <Grid item xs={12}><QuestionsAndAnswers /></Grid>
+          <Grid item xs={12}><Footer /></Grid>
+        </Grid>
+        </ThemeProvider>
+      </Container>
 
   );
 }
