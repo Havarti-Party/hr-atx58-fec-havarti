@@ -205,23 +205,38 @@ This is an example of how to list things you need to use the software and how to
 
 <br><br>
 
+> ## Request Change!
+
+As it happens in the development world, Team Havarti was handed a Requirements update at the start of Week 1 for this project.
+
+> "There is an immediate need for visibility into customer interactions on our online retail portal. Specifically interactions with the Product Detail page should be collected for further analysis and interpretation by our Data Science team. Project Catwalk should incorporate click tracking on the Product Detail page within the scope of the initial release."
+> The click tracking will not be through any 3rd party analytics platform. All will be done in-house. To track interactions, each click on the web page should be recorded, as well as metadata associated with that click.
+> For each click on the page, we need to capture the following:
+>
+> <div align="center">
+> <li >Element of the page which was clicked
+> <li>Time of click
+> <li>Module clicked
+> </div>
+
+To complete this requirement, a helper function was created in the ProductContext file to be handed down to all child components. In each module's outer most wrappers, an onClick property was invoked with that given module title and the target value of the users click. User click information traveled back up to state, time-stamped and was then sent to the Altier DB for storage. All user click interation logs a message to the console, confirming which module was selected by the user.
+
+<br>
+
 <!-- USAGE EXAMPLES -->
 
 > ## Component Break Down
 
 Each member of Team Havarti was resposible for functionality within their own module as well as the overall presentation and functionality of the entire product page.
 
-<br>
-<!-- ROADMAP -->
-
 > ## Product Overview
 >
 > Developed by Cory E.
 
 <br>
-
+<div align="center">
 <img src="http://g.recordit.co/pBWpS1im0D.gif" width="400" />
-
+</div>
 <br><br>
 
 The Product Overview module is the main visual content that is above the fold on page load. It contains the image carousel, product details, product styles, and the various components involved with adding a product to the cart. The biggest challenge when creating the Product Overview module was storing and passing state so that the sub-components would render and re-render approriately. It also had to communicate with the other modules. The solution we developed was a combination of storing state that needed to be shared in a context file (accessed using the useContext hook) while other state was stored locally.<br><br>
@@ -241,8 +256,9 @@ Notable features of this module include:
 >
 > Developed by Alicia V.
 
+<div align="center">
 <img src="READMEimages/RPgif.gif" width="400" height="auto"/>
-
+</div>
 <br><br>
 
 > ## Related Products
@@ -258,9 +274,9 @@ Related Products displays a responsive list of related items based on the curren
 <br>
 
 <br>
-
-<img src="READMEimages/WDgif.gif" width="400" height="auto"/>
-
+<div align="center">
+<img src="READMEimages/WDgif.gif" width="400" height="auto" />
+</div>
 <br><br>
 
 > ## Your Wardrobe
