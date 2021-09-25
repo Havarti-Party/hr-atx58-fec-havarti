@@ -241,7 +241,7 @@ Notable features of this module include:
 >
 > Developed by Alicia V.
 
-<img src="http://g.recordit.co/KPQWTja6zN.gif" width="400" height="auto"/>
+<img src="READMEimages/RPgif.gif" width="400" height="auto"/>
 
 <br><br>
 
@@ -259,7 +259,7 @@ Related Products displays a responsive list of related items based on the curren
 
 <br>
 
-<img src="http://g.recordit.co/xFfjjNi5dm.gif" width="400" height="auto"/>
+<img src="READMEimages/WDgif.gif" width="400" height="auto"/>
 
 <br><br>
 
