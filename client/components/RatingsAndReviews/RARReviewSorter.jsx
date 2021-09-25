@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import PropTypes from 'prop-types';
+import Typography from "@mui/material/Typography";
 
 export default function ReviewSorter(props) {
 
@@ -69,7 +70,7 @@ export default function ReviewSorter(props) {
 
   return (
     <div>
-      {numReviews} reviews, sorted by
+      <Typography>{numReviews} reviews, sorted by</Typography>
       <Box sx={{ minWidth: 60 }}>
         <FormControl fullWidth>
           <InputLabel id="reviewSorter"></InputLabel>

@@ -7,6 +7,7 @@ import ReviewDisplay from "./RARReviewDisplay.jsx";
 import { ProductsContext } from "../ProductsContext";
 import RecommendRatio from "./RARRecommendRatio.jsx";
 import FactorBarsDisplay from "./RARFactorBarsDisplay.jsx";
+import Typography from "@mui/material/Typography";
 
 // eslint-disable-next-line no-undef
 const axios = require("axios");
@@ -45,17 +46,21 @@ export default function RatingsAndReviews() {
     return <div>Loading reviews...</div>;
   } else {
     return (
+      //style={{transform: "translate(80px, -65px)"}}
       <>
-        <h3 id="ratings-and-reviews">Ratings And Reviews</h3>
+        <Typography variant="h3" id="ratings-and-reviews">Ratings And Reviews</Typography>
         <Grid container spacing={6}>
-          <Grid item xs={6} s={6} m={6} lg={6} xl={6} className="RARLeftColumn">
-            <RecommendRatio currentReviews={currentReviews} />
-            {starRatingState}{" "}
-            <StarRatings
-              rating={starRatingState}
-              starDimension={"15px"}
-              starSpacing={"1px"}
-            />
+          <Grid item xs={5} s={5} m={5} lg={5} xl={5} className="RARLeftColumn">
+            <Typography display="inline" fontSize="50px">{starRatingState.toFixed(1)}{" "}</Typography>
+            <div style={{position:"relative", left: "80px", top:"-65px", marginBottom:"-50px"}}>
+              <StarRatings
+                rating={starRatingState}
+                starDimension={"50px"}
+                starSpacing={"1px"}
+                starRatedColor={'gold'}
+                />
+              </div>
+            <RecommendRatio currentReviews={currentReviews} style={{buffer: '10px'}}/>
             <RatingBreakdownBars
               setStarRating={setStarRating}
               currentReviews={currentReviews}
@@ -65,11 +70,11 @@ export default function RatingsAndReviews() {
           </Grid>
           <Grid
             item
-            xs={6}
-            s={6}
-            m={6}
-            lg={6}
-            xl={6}
+            xs={7}
+            s={7}
+            m={7}
+            lg={7}
+            xl={7}
             className="RARRightColumn"
           >
             <ReviewSorter
