@@ -35,6 +35,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
   const [currentItem, setCurrentItem] = useState({});
   const [compareFeatures, setCompareFeatures] = useState([]);
   const [clickedStar, setClickedStar] = useState(false);
+  const [relatedProductName, updateRelatedProductName] = useState("");
   const [relatedProductFeatures, setRelatedProductFeatures] = useState({});
   const [overviewProductFeatures, setOverviewProductFeatures] = useState({});
 
@@ -65,7 +66,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
       combinedFeatures.push(feature.feature);
       overviewProductFeaturesObj[feature.feature] = feature.value;
     });
-
+    updateRelatedProductName(relatedProduct.name);
     setOverviewProductFeatures(overviewProductFeaturesObj);
     setRelatedProductFeatures(relatedProductFeaturesObj);
     setCompareFeatures(combinedFeatures);
@@ -159,6 +160,7 @@ export default function RelatedProductCard({ RelatedObj, updatedWardrobe }) {
         <ModalPopup
           maxWidth={"lg"}
           compareFeatures={compareFeatures}
+          relatedProductName={relatedProductName}
           relatedProductFeatures={relatedProductFeatures}
           overviewProductFeatures={overviewProductFeatures}
           open={open}

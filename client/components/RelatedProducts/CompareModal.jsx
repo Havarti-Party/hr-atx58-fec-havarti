@@ -26,10 +26,13 @@ export default function ModalPopup({
   compareFeatures,
   relatedProductFeatures,
   overviewProductFeatures,
+  relatedProductName,
 }) {
   //useContext
-  const { clickTracker } = useContext(ProductsContext);
+  const { clickTracker, overviewProduct } = useContext(ProductsContext);
   const [clickTrackerFunc] = clickTracker;
+
+  const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   const handleClose = () => {
     onClose();
@@ -117,6 +120,7 @@ export default function ModalPopup({
   );
 }
 ModalPopup.propTypes = {
+  relatedProductName: PropTypes.string,
   onClose: PropTypes.func,
   open: PropTypes.bool,
   compareFeatures: PropTypes.array,
