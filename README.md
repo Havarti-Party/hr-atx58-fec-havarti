@@ -99,7 +99,7 @@ Project Repo: [https://github.com/your_username/repo_name](https://github.com/yo
 <a href="#product-overview">Jump to My Module</a>
 <br><br>
 
-### Travis Morse - @gmail.com
+### Travis Morse - travis503@gmail.com
 
  <img src="READMEimages/Travis-Headshot.jpeg" alt="Logo" width="80" height="80">
 
@@ -277,9 +277,19 @@ Outfit list dynamically adds the current overview product style to a growing lis
 
 > ## Ratings and Reviews
 >
-> Developed by Travis M.)
+> Developed by Travis M.
+
+<img src="READMEimages/RPgif.gif" width="400" height="auto"/>
 
 <br><br>
+
+The Reviews and Ratings section displays a dynamically rendered set of user-provided information regarding the currently selected product. As overview items are selected, this component makes a pair of requests to the Altier API to retrieve review data and metadata, then populates the display with visually expressive ratings, characteristics, and comments, and only loads displays for data that is actually present. The user can also submit new data with the "Write New Review" form, which formats and delivers new data to the API.
+
+- User reviews can be sorted by recency, helpfulness rating, or "relevance", which sorts reviews using an algorithm
+
+- To keep the page compact, only two reviews are initially loaded; more can be loaded using the "More Reviews" button
+
+- The "Write New Review" button will bring up a modal form that allows the user to share information and upload images to the server
 
 > ## Questions and Answers
 >

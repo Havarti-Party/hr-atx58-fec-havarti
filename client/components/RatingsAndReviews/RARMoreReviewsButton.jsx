@@ -7,7 +7,7 @@ export default function MoreReviewsButton(props) {
     return null;
   } else {
     return (
-      <Button style={{width: '100%'}} variant='contained' color='primary' padding="100px" onClick={()=>{props.updateDisplayCount(props.reviewDisplayCount+2)}}>More Reviews, Please</Button>
+      <Button style={{width: '100%'}} variant='contained' color='primary' padding="100px" onClick={()=>{props.updateDisplayCount(props.reviewDisplayCount+2)}}>More Reviews</Button>
     )
   }
 }
