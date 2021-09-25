@@ -70,8 +70,8 @@ export default function ReviewSorter(props) {
 
   return (
     <div>
-      <Typography>{numReviews} reviews, sorted by</Typography>
-      <Box sx={{ minWidth: 60 }}>
+      <Typography style={{float:"left"}}>{numReviews} reviews, sorted by&nbsp;</Typography>
+      <Box sx={{ minWidth: 150, maxWidth: 500, float:"left", position:"relative", top:"-15px" }}>
         <FormControl fullWidth>
           <InputLabel id="reviewSorter"></InputLabel>
           <Select

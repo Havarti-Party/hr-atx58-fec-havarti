@@ -69,13 +69,13 @@ export default function ReviewTile(props) {
   }
 
   return (
-    <div style={{marginTop: "8px"}}>
+    <div style={{marginTop: "8px", clear:"both"}}>
       <StarRatings rating={props.rating} starDimension={'20px'} starSpacing={'1px'} starRatedColor={'gold'} />
       <RecommendCheckmark recommend={props.recommend} />
-      <Typography>User: {props.reviewer_name}</Typography>
+      <Typography fontSize="16px">By <Typography fontSize="16px" fontStyle="italic" display="inline">{props.reviewer_name}</Typography></Typography>
       <Typography variant="caption">{dateString()}</Typography>
       <Typography>{props.title}</Typography>
-      <Typography>{props.body}</Typography>
+      <Typography style={{marginTop: "15px", marginBottom: "15px"}}>{props.body}</Typography>
       {props.photos.map((photo, index) => {
         return(
           <img key={index} src={photo.url} style={{maxWidth:"400px"}}></img>
@@ -84,7 +84,7 @@ export default function ReviewTile(props) {
       {props.response !== null && props.response.length > 0 &&
         <Typography>Staff response: {props.response}</Typography>
       }
-      <Button variant="text" color="primary" onClick={handleClick}>Was this helpful?
+      <Button variant="text" color="primary" onClick={handleClick} style={{positon: "relative", left:"-10px"}}>Was this helpful?
         {!clicked ? (<ThumbUpOffAlt />) : (<ThumbUpAlt />)}{review.helpfulness}</Button>
     </div>
   )
