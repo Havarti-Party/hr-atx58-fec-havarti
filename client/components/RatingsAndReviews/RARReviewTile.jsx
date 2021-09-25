@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 // eslint-disable-next-line no-undef
 const axios = require('axios');
 import Typography from "@mui/material/Typography";
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
 export default function ReviewTile(props) {
 
@@ -68,24 +69,38 @@ export default function ReviewTile(props) {
   }
 
   return (
-    <div>
-      <StarRatings rating={props.rating} starDimension={'15px'} starSpacing={'1px'} starRatedColor={'gold'} />
-      <Typography>User: {props.reviewer_name}</Typography>
+    <div style={{marginTop: "8px", clear:"both"}}>
+      <StarRatings rating={props.rating} starDimension={'20px'} starSpacing={'1px'} starRatedColor={'gold'} />
+      <RecommendCheckmark recommend={props.recommend} />
+      <Typography fontSize="16px">By <Typography fontSize="16px" fontStyle="italic" display="inline">{props.reviewer_name}</Typography></Typography>
       <Typography variant="caption">{dateString()}</Typography>
       <Typography>{props.title}</Typography>
-      <Typography>{props.body}</Typography>
+      <Typography style={{marginTop: "15px", marginBottom: "15px"}}>{props.body}</Typography>
       {props.photos.map((photo, index) => {
         return(
-          <img key={index} src={photo}></img>
+          <img key={index} src={photo.url} style={{maxWidth:"400px"}}></img>
         )
       })}
       {props.response !== null && props.response.length > 0 &&
         <Typography>Staff response: {props.response}</Typography>
       }
-      <Button variant="text" color="primary" onClick={handleClick}>Was this helpful?
+      <Button variant="text" color="primary" onClick={handleClick} style={{positon: "relative", left:"-10px"}}>Was this helpful?
         {!clicked ? (<ThumbUpOffAlt />) : (<ThumbUpAlt />)}{review.helpfulness}</Button>
     </div>
   )
+}
+
+var RecommendCheckmark = (props) => {
+  if (props.recommend) {
+    return (
+      <span>
+        <Typography style={{float:"right"}}>&nbsp;I recommend this product!</Typography>
+        <CheckCircleOutlineIcon color="primary" style={{float:"right"}}/>
+      </span>
+    )
+  } else {
+    return null;
+  }
 }
 
 ReviewTile.propTypes = {
@@ -101,4 +116,8 @@ ReviewTile.propTypes = {
   reviewer_name: PropTypes.string,
   summary: PropTypes.string,
   title: PropTypes.string
+}
+
+RecommendCheckmark.propTypes = {
+  recommend: PropTypes.bool,
 }

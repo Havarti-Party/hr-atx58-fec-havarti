@@ -16,6 +16,7 @@ export default function ProgressBar(props) {
       width: '333px',
       color: '#52af77',
       height: 8,
+      marginBottom: -20,
     },
     thumb: {
       display: 'none',

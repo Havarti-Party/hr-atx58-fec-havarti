@@ -68,21 +68,15 @@ export default function RatingsAndReviews() {
             />
             <FactorBarsDisplay currentReviews={currentReviews} />
           </Grid>
-          <Grid
-            item
-            xs={7}
-            s={7}
-            m={7}
-            lg={7}
-            xl={7}
-            className="RARRightColumn"
-          >
-            <ReviewSorter
-              currentReviews={currentReviews}
-              setCurrentReviews={setCurrentReviews}
-              sorter={sorter}
-              setSorter={setSorter}
-            />
+          <Grid item xs={7} s={7} m={7} lg={7} xl={7} className="RARRightColumn">
+            <div>
+              <ReviewSorter
+                currentReviews={currentReviews}
+                setCurrentReviews={setCurrentReviews}
+                sorter={sorter}
+                setSorter={setSorter}
+                />
+              </div>
             <ReviewDisplay
               currentReviews={currentReviews}
               setCurrentReviews={setCurrentReviews}
