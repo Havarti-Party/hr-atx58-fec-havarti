@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,10 +6,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import PropTypes from 'prop-types';
 import Typography from "@mui/material/Typography";
+import { ProductsContext } from "../ProductsContext.jsx";
 
 export default function ReviewSorter(props) {
 
   var numReviews = props.currentReviews.results.length;
+
+  const { clickTracker } = useContext(ProductsContext);
+  const [clickTrackerFunc] = clickTracker;
 
   const handleChange = (event) => {
     props.setSorter(event.target.value);
@@ -69,7 +73,9 @@ export default function ReviewSorter(props) {
   })
 
   return (
-    <div>
+    <div onClick={() =>
+      clickTrackerFunc.clickTrackerFunc("Review Sorter", event.target)
+    }>
       <Typography style={{float:"left"}}>{numReviews} reviews, sorted by&nbsp;</Typography>
       <Box sx={{ minWidth: 150, maxWidth: 500, float:"left", position:"relative", top:"-15px" }}>
         <FormControl fullWidth>

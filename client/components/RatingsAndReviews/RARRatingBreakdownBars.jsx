@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import ProgressBar from './RARProgressBar.jsx';
 import PropTypes from 'prop-types';
+import { ProductsContext } from "../ProductsContext.jsx";
 
 export default function RatingBreakdownBars(props) {
   // TODO: cleanup this mess. This can probably be done with like 3 functions and some 6th-grade math.
@@ -29,6 +30,9 @@ export default function RatingBreakdownBars(props) {
 
   var newAverageStarRating = 0;
 
+  const { clickTracker } = useContext(ProductsContext);
+  const [clickTrackerFunc] = clickTracker;
+
   for (var key in starBreakdown) {
     newAverageStarRating += key * starBreakdown[key];
   }
@@ -54,7 +58,9 @@ export default function RatingBreakdownBars(props) {
   });
 
   return (
-    <div>
+    <div onClick={() =>
+      clickTrackerFunc.clickTrackerFunc("Ratings Breakdown", event.target)
+    }>
       <ProgressBar starRating={5} ratePercent={percentBreakdown[5]}/>
       <ProgressBar starRating={4} ratePercent={percentBreakdown[4]}/>
       <ProgressBar starRating={3} ratePercent={percentBreakdown[3]}/>

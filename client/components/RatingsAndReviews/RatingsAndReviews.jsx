@@ -24,6 +24,8 @@ export default function RatingsAndReviews() {
   const [isLoading, setLoading] = useState(true);
   // const [recommendRatio, setRecommendRatio] = useState(0);
   // const isMounted = useRef(false);
+  const { clickTracker } = useContext(ProductsContext);
+  const [clickTrackerFunc] = clickTracker;
 
   useEffect(() => {
     axios
@@ -52,7 +54,9 @@ export default function RatingsAndReviews() {
         <Grid container spacing={6}>
           <Grid item xs={5} s={5} m={5} lg={5} xl={5} className="RARLeftColumn">
             <Typography display="inline" fontSize="50px">{starRatingState.toFixed(1)}{" "}</Typography>
-            <div style={{position:"relative", left: "80px", top:"-65px", marginBottom:"-50px"}}>
+            <div style={{position:"relative", left: "80px", top:"-65px", marginBottom:"-50px"}} onClick={() =>
+      clickTrackerFunc.clickTrackerFunc("Average Star Rating", event.target)
+    }>
               <StarRatings
                 rating={starRatingState}
                 starDimension={"50px"}

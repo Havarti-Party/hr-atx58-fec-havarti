@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import StarRatings from 'react-star-ratings';
 import Button from '@material-ui/core/Button';
 import ThumbUpOffAlt from '@mui/icons-material/ThumbUpOffAlt';
@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 const axios = require('axios');
 import Typography from "@mui/material/Typography";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import { ProductsContext } from "../ProductsContext.jsx";
 
 export default function ReviewTile(props) {
 
@@ -24,6 +25,9 @@ export default function ReviewTile(props) {
     reviewer_name: props.reviewer_name,
     summary: props.summary
   });
+
+  const { clickTracker } = useContext(ProductsContext);
+  const [clickTrackerFunc] = clickTracker;
 
  useEffect(()=>{
    setReview({
@@ -69,10 +73,12 @@ export default function ReviewTile(props) {
   }
 
   return (
-    <div style={{marginTop: "8px", clear:"both"}}>
+    <div style={{marginTop: "8px", clear:"both"}} onClick={() =>
+      clickTrackerFunc.clickTrackerFunc("Review Tile", event.target)
+    }>
       <StarRatings rating={props.rating} starDimension={'20px'} starSpacing={'1px'} starRatedColor={'gold'} />
       <RecommendCheckmark recommend={props.recommend} />
-      <Typography fontSize="16px">By <Typography fontSize="16px" fontStyle="italic" display="inline">{props.reviewer_name}</Typography></Typography>
+      <Typography fontSize="16px">By {props.reviewer_name}</Typography>
       <Typography variant="caption">{dateString()}</Typography>
       <Typography>{props.title}</Typography>
       <Typography style={{marginTop: "15px", marginBottom: "15px"}}>{props.body}</Typography>

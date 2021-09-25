@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReviewTile from './RARReviewTile.jsx';
 import Divider from '@material-ui/core/Divider';
 import MoreReviewsButton from './RARMoreReviewsButton.jsx';
 import WriteNewReviewButton from './RARWriteNewReviewButton.jsx'
 import PropTypes from 'prop-types';
+import { ProductsContext } from "../ProductsContext.jsx";
 
 export default function ReviewDisplay(props) {
   const [reviewDisplayCount, updateDisplayCount] = useState(2);
@@ -15,6 +16,9 @@ export default function ReviewDisplay(props) {
   var displayReviews = props.currentReviews.results.slice(0, reviewDisplayCount);
   var displayArray = [];
 
+  const { clickTracker } = useContext(ProductsContext);
+  const [clickTrackerFunc] = clickTracker;
+
   displayReviews.map((review, index) => {
     displayArray.push(
       <div key={index}>
@@ -25,7 +29,9 @@ export default function ReviewDisplay(props) {
   })
 
   return (
-    <div>
+    <div onClick={() =>
+      clickTrackerFunc.clickTrackerFunc("Review Display", event.target)
+    }>
       {displayArray}
       <div style={{marginBottom:10}}>
         <MoreReviewsButton reviewDisplayCount = {reviewDisplayCount} updateDisplayCount={updateDisplayCount} count={props.currentReviews.results.length}/>
