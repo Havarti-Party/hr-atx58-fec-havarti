@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 // eslint-disable-next-line no-undef
 const axios = require('axios');
 import Typography from "@mui/material/Typography";
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
 export default function ReviewTile(props) {
 
@@ -68,8 +69,9 @@ export default function ReviewTile(props) {
   }
 
   return (
-    <div>
-      <StarRatings rating={props.rating} starDimension={'15px'} starSpacing={'1px'} starRatedColor={'gold'} />
+    <div style={{marginTop: "8px"}}>
+      <StarRatings rating={props.rating} starDimension={'20px'} starSpacing={'1px'} starRatedColor={'gold'} />
+      <RecommendCheckmark recommend={props.recommend} />
       <Typography>User: {props.reviewer_name}</Typography>
       <Typography variant="caption">{dateString()}</Typography>
       <Typography>{props.title}</Typography>
@@ -88,6 +90,19 @@ export default function ReviewTile(props) {
   )
 }
 
+var RecommendCheckmark = (props) => {
+  if (props.recommend) {
+    return (
+      <span>
+        <Typography style={{float:"right"}}>&nbsp;I recommend this product!</Typography>
+        <CheckCircleOutlineIcon color="primary" style={{float:"right"}}/>
+      </span>
+    )
+  } else {
+    return null;
+  }
+}
+
 ReviewTile.propTypes = {
   currentReviews: PropTypes.object,
   body: PropTypes.string,
@@ -101,4 +116,8 @@ ReviewTile.propTypes = {
   reviewer_name: PropTypes.string,
   summary: PropTypes.string,
   title: PropTypes.string
+}
+
+RecommendCheckmark.propTypes = {
+  recommend: PropTypes.bool,
 }
