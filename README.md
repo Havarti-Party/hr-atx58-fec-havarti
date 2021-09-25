@@ -269,7 +269,7 @@ Related Products displays a responsive list of related items based on the curren
 
 - Arrows to glide through your list render only when the item list surpasses a length of 4
 - Clicking the item's content area places that item as the current overview product
-- A comparison modal will appear when the star icon is clicked, comparing the selected item with the overview Product
+- A comparison modal will appear when the star icon is clicked, comparing the selected item's features with the overview product's features. This list does not allow for duplicate features and only displays a value if a value is present for that feature.
 
 <br>
 
