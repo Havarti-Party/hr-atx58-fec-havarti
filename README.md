@@ -130,13 +130,13 @@ Project Repo: [https://github.com/your_username/repo_name](https://github.com/yo
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Project Catwalk was a collaborative Front-End capstone between members of Team Havarti. This project simulated the real-world development of a product page to the demands listed in their customers Buisness Documentation Requirements:
+Project Catwalk was a collaborative Front-End capstone between members of Team Havarti. This project simulated the real-world development of a product page to the demands listed in their customers Business Documentation Requirements:
 
 <br>
 
 > ## Overview
 >
-> "Our outdated client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers. Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site. This document outlines the features to be implemented as part of Project Catwalk in its initial release. The following requirements define the new user interface required for customers to browse items in our retail catalog."
+> "Our client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers. Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site. This document outlines the features to be implemented as part of Project Catwalk in its initial release. The following requirements define the new user interface required for customers to browse items in our retail catalog."
 
 <br>
 
