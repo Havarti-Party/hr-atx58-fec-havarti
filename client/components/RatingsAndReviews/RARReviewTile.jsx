@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { ProductsContext } from "../ProductsContext.jsx";
 
+
 export default function ReviewTile(props) {
 
   const [clicked, setClicked] = useState(false);
@@ -73,6 +74,7 @@ export default function ReviewTile(props) {
   }
 
   return (
+
     <div style={{marginTop: "8px", clear:"both"}} onClick={() =>
       clickTrackerFunc.clickTrackerFunc("Review Tile", event.target)
     }>
