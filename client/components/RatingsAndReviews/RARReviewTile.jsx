@@ -76,7 +76,7 @@ export default function ReviewTile(props) {
       <Typography>{props.body}</Typography>
       {props.photos.map((photo, index) => {
         return(
-          <img key={index} src={photo}></img>
+          <img key={index} src={photo.url} style={{maxWidth:"400px"}}></img>
         )
       })}
       {props.response !== null && props.response.length > 0 &&
