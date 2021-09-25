@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FactorBar from './RARFactorBar.jsx';
 import PropTypes from 'prop-types';
+import { ProductsContext } from "../ProductsContext.jsx";
 
 
 var sizeFactors = ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'];
@@ -13,6 +14,10 @@ var fitFactors = ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly
 export default function FactorBars(props) {
 
   var characteristicsToRender = [];
+
+  const { clickTracker } = useContext(ProductsContext);
+  const [clickTrackerFunc] = clickTracker;
+
   if (Object.keys(props.currentReviews.characteristics).length > 0) {
     Object.keys(props.currentReviews.characteristics).map((characteristic, index) => {
       var value = props.currentReviews.characteristics[characteristic].value;
@@ -43,9 +48,11 @@ export default function FactorBars(props) {
     characteristicsToRender.push(null);
   }
   return (
-    <>
+    <div onClick={() =>
+      clickTrackerFunc.clickTrackerFunc("Characteristics Breakdown", event.target)
+    }>
       {characteristicsToRender}
-    </>
+    </div>
   )
 }
 
