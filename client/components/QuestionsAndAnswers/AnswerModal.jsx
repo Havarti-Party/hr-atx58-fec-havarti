@@ -36,7 +36,7 @@ const modalStyles = makeStyles({
 });
 
 
-export default function AnswerModal({questionId, product_id}) {
+export default function AnswerModal({questionId, product_id, setAnswers}) {
   const classes = modalStyles()
   const [open, setOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -48,6 +48,7 @@ export default function AnswerModal({questionId, product_id}) {
     email: '',
     images: [],
   });
+  var newQuestions = [];
 
   const handleOpen = () => {
     setOpen(true);
@@ -93,23 +94,35 @@ export default function AnswerModal({questionId, product_id}) {
           params: {
             id: product_id,
           }})
-          .then(response => {
-            var newQuestions = response.data.results
-            setQuestions(newQuestions.sort((a, b) => {
-              a.question_helpfulness - b.question_helpfulness
-            }));
-          })
-          .then(() => {
-            setAllValues({
-              question: '',
-              nickname: '',
-              email: '',
-            });
-            setOpen(false);
-          })
-          .catch(error => {
-            console.log('Error retrieving related questions for this product', error)
-          })
+        .then(response => {
+          newQuestions = response.data.results
+          console.log('response from get', response.data.results);
+          setQuestions(newQuestions.sort((a, b) => {
+            a.question_helpfulness - b.question_helpfulness
+          }));
+        })
+        .then(() => {
+          for (var i = 0; i < newQuestions.length; i++) {
+            var currentQuestion = newQuestions[i];
+            console.log('currentQuestion', currentQuestion)
+            if (currentQuestion.question_id === questionId) {
+              console.log('id match')
+              console.log('relative answers', currentQuestion.answers)
+              setAnswers(Object.values(currentQuestion.answers).sort((a, b) => b.helpfulness - a.helpfulness))
+            }
+          }
+          // setAnswers(Object.values(questions.answers).sort((a, b) => {return b.helpfulness - a.helpfulness}))
+          setAllValues({
+            answer: '',
+            nickname: '',
+            email: '',
+            images: [],
+          });
+          setOpen(false);
+        })
+        .catch(error => {
+          console.log('Error retrieving related questions for this product', error)
+        })
       })
       .catch(error => {
         console.log('error creating a new Answer', error)
@@ -119,11 +132,12 @@ export default function AnswerModal({questionId, product_id}) {
     }
   }
 
+
   return (
     <div id='answerModal'>
       <Button
         id='addAnswer'
-        variant='contained'
+        variant='text'
         color='primary'
         onClick={handleOpen}
         className={classes.button}>Add an Answer</Button>
@@ -134,8 +148,8 @@ export default function AnswerModal({questionId, product_id}) {
         aria-describedby='a modal to post a new answer'
       >
         <div className={classes.modal}>
-          <Typography variant='h4'>Submit your Answer</Typography>
-          <Typography variant='body1'>About the [product name here]</Typography>
+          <Typography component='div' variant='h4'>Submit your Answer</Typography>
+          <Typography component='div' variant='body1'>About the [product name here]</Typography>
           <form className='addAnswerForm'>
             <TextField
               id='answerField'
@@ -185,4 +199,5 @@ export default function AnswerModal({questionId, product_id}) {
 AnswerModal.propTypes = {
   questionId: PropTypes.number,
   product_id: PropTypes.number,
+  setAnswers: PropTypes.func,
 }

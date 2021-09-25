@@ -4,6 +4,11 @@ import ShareOnSocial from './ShareOnSocial';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 
+// const theme = redTextTypography({
+//   typography: {
+//     color: 'red'
+//   }
+// })
 const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
 
   return (
@@ -18,7 +23,11 @@ const ProductDetails = ({ category, name, originalPrice, salePrice }) => {
         {salePrice === null ?
           <Typography variant='body1'>${originalPrice}</Typography>
           :
-          <Typography variant='body1'>${salePrice} <strike>${originalPrice}</strike></Typography>
+          <>
+          <Typography variant='body1' display='inline'><strike>${originalPrice}</strike></Typography>
+          &nbsp;
+          <Typography variant='body1' style={{color: 'red'}} display='inline'>${salePrice}</Typography>
+          </>
         }
       </Grid>
       <ShareOnSocial name={name} />

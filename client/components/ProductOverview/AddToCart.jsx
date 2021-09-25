@@ -32,7 +32,7 @@ const AddToCart = () => {
   const [quantities, setQuantities] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
   const [selectQuantityOpen, setSelectQuantityOpen] = useState(false);
-  const [setCart] = useState({
+  const [cart, setCart] = useState({
     product: '',
     style: '',
     size: '',

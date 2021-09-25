@@ -8,6 +8,7 @@ import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Grid from "@mui/material/Grid";
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -45,11 +46,14 @@ export default function QuestionModal({styles, product_id}) {
     question: '',
     nickname: '',
     email: '',
+    image: [],
   });
 
 
   const validateForm = (questionBody, nickname, email) => {
     var formValid = true;
+
+
     if (email.indexOf('@') === -1 || email.indexOf('.com') === -1) {
       setAllValues({...allValues, [email]: ''})
       setEmailInvalid(true);
@@ -71,6 +75,11 @@ export default function QuestionModal({styles, product_id}) {
   const changeHandler = (e) => {
     setAllValues({...allValues, [e.target.name]: e.target.value})
   }
+
+  // const imageHandler = (e) => {
+  //   console.log()
+  //   setAllValues({...allValues, image: e.target.value})
+  // }
 
   const handleSubmit = (e) => {
     var questionBody = allValues.question
@@ -105,6 +114,7 @@ export default function QuestionModal({styles, product_id}) {
               question: '',
               nickname: '',
               email: '',
+              image: [],
             });
             setOpen(false);
           })
@@ -123,8 +133,10 @@ export default function QuestionModal({styles, product_id}) {
 
 
   return (
-    <div id='questionModal' className={styles.modal}>
-      <Button id='addQuestion' variant='contained' color='primary' onClick={handleOpen} className={styles.button}>add a question</Button>
+    <div id='questionModal' >
+    <Grid item>
+      <Button id='addQuestion' variant='contained' color='primary' onClick={handleOpen} className={styles.addQuestion}>add a question</Button>
+    </Grid>
       <Modal
         open={open}
         onClose={handleClose}
@@ -167,8 +179,16 @@ export default function QuestionModal({styles, product_id}) {
               helperText={emailInvalid ? 'Please provide a valid email' : ''}
             /><br/>
             <label htmlFor="addYourPictures">
-              <input accept="image/*" id="addYourPictures" type="file" />
-              <IconButton color="primary" aria-label="upload picture" component="span">
+              <input
+                accept="image/*"
+                id="addYourPictures"
+                type="file"
+                hidden={true}
+                 />
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span">
                 <PhotoCamera />
               </IconButton>
             </label>

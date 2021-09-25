@@ -2,24 +2,22 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useContext } from "react";
 import { ProductsContext } from "../ProductsContext.jsx";
-import PropTypes from "prop-types";
-
-import Typography from "@material-ui/core/Typography";
-
-const axios = require("axios");
-
 import Carousel from "react-elastic-carousel";
 import "react-multi-carousel/lib/styles.css";
-
+import PropTypes from "prop-types";
+//Files
 import RelatedProductCard from "./RelatedProductCard.jsx";
+//Material-UI
+import { Typography } from "@mui/material";
+//Axios
+const axios = require("axios");
 
-export default function RelatedProducts({ clickTracker }) {
+export default function RelatedProducts() {
   //useContext
   const { overviewProduct } = useContext(ProductsContext);
   const [overviewProductState, setOverviewProductState] = overviewProduct;
 
   //RelatedProductsState
-
   const [relatedProductsIDs, setRelatedProductsIDs] = React.useState();
   const [relatedProductsArr, setRelatedProductsArr] = React.useState([]);
 
@@ -76,19 +74,9 @@ export default function RelatedProducts({ clickTracker }) {
         </Typography>
         <Carousel itemsToShow={4}>
           {relatedProductsArr.map((obj, index) => {
-            return (
-              <RelatedProductCard
-                clickTracker={clickTracker}
-                RelatedObj={obj}
-                key={index}
-              />
-            );
+            return <RelatedProductCard RelatedObj={obj} key={index} />;
           })}
         </Carousel>
       </>
     );
 }
-
-RelatedProducts.propTypes = {
-  clickTracker: PropTypes.func,
-};
