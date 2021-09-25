@@ -25,7 +25,6 @@ export default function ReviewTile(props) {
   });
 
  useEffect(()=>{
-   console.log(new Date(props.date).toDateString());
    setReview({
     body: props.body,
     date: props.date,
