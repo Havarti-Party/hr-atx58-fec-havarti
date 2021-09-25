@@ -73,6 +73,7 @@ export default function ReviewSorter(props) {
   })
 
   return (
+    
     <div onClick={() =>
       clickTrackerFunc.clickTrackerFunc("Review Sorter", event.target)
     }>
