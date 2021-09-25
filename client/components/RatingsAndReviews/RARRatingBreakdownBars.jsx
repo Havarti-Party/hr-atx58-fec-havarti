@@ -54,17 +54,12 @@ export default function RatingBreakdownBars(props) {
   });
 
   return (
-    <div style={{marginBottom: '40px'}}>
-      <ProgressBar starRating={1} ratePercent={percentBreakdown[1]}/>
-      <ProgressBar starRating={2} ratePercent={percentBreakdown[2]}/>
-      <ProgressBar starRating={3} ratePercent={percentBreakdown[3]}/>
-      <ProgressBar starRating={4} ratePercent={percentBreakdown[4]}/>
+    <div>
       <ProgressBar starRating={5} ratePercent={percentBreakdown[5]}/>
-      {/* {starArray.map(starRating => {
-        return (
-          <ProgressBar key={starRating} starRating={starRating} ratePercent={ratePercent}/>
-        )
-      })} */}
+      <ProgressBar starRating={4} ratePercent={percentBreakdown[4]}/>
+      <ProgressBar starRating={3} ratePercent={percentBreakdown[3]}/>
+      <ProgressBar starRating={2} ratePercent={percentBreakdown[2]}/>
+      <ProgressBar starRating={1} ratePercent={percentBreakdown[1]}/>
     </div>
   )
 }

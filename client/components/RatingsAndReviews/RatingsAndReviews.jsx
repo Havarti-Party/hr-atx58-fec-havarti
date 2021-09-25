@@ -46,18 +46,21 @@ export default function RatingsAndReviews() {
     return <div>Loading reviews...</div>;
   } else {
     return (
-      //
+      //style={{transform: "translate(80px, -65px)"}}
       <>
         <Typography variant="h3" id="ratings-and-reviews">Ratings And Reviews</Typography>
         <Grid container spacing={6}>
           <Grid item xs={5} s={5} m={5} lg={5} xl={5} className="RARLeftColumn">
-            <RecommendRatio currentReviews={currentReviews} />
-            <Typography display="inline">{starRatingState.toFixed(1)}{" "}</Typography>
-            <StarRatings
-              rating={starRatingState}
-              starDimension={"15px"}
-              starSpacing={"1px"}
-            />
+            <Typography display="inline" fontSize="50px">{starRatingState.toFixed(1)}{" "}</Typography>
+            <div style={{position:"relative", left: "80px", top:"-65px", marginBottom:"-50px"}}>
+              <StarRatings
+                rating={starRatingState}
+                starDimension={"50px"}
+                starSpacing={"1px"}
+                starRatedColor={'gold'}
+                />
+              </div>
+            <RecommendRatio currentReviews={currentReviews} style={{buffer: '10px'}}/>
             <RatingBreakdownBars
               setStarRating={setStarRating}
               currentReviews={currentReviews}

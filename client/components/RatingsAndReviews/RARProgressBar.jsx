@@ -13,7 +13,7 @@ export default function ProgressBar(props) {
 
   const ProgressSlider = withStyles({
     root: {
-      width: '400px',
+      width: '333px',
       color: '#52af77',
       height: 8,
     },
@@ -35,13 +35,14 @@ export default function ProgressBar(props) {
 
   return (
     <div>
-      <Typography onClick={() => {starSort()}}>{props.starRating} stars: </Typography>
-      <ProgressSlider
-      disabled
-      defaultValue={props.ratePercent}
-      valueLabelDisplay="off"
-      aria-labelledby="breakdownSlider" />
-      <br />
+      <Typography display="inline" onClick={() => {starSort()}}>{props.starRating} stars: </Typography>
+      <div style={{transform: 'translate(65px, -28px)'}}>
+        <ProgressSlider
+        disabled
+        defaultValue={props.ratePercent}
+        valueLabelDisplay="off"
+        aria-labelledby="breakdownSlider" />
+      </div>
     </div>
   )
 }

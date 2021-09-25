@@ -18,9 +18,12 @@ export default function RecommendRatio(props) {
     recommendRatio = 0;
   }
   return (
-    <Typography>
-      {recommendRatio.toFixed(0)}% of reviews recommend this product
-    </Typography>
+    <div style={{marginBottom: "15px"}}>
+
+      <Typography>
+        {recommendRatio.toFixed(0)}% of reviews recommend this product
+      </Typography>
+    </div>
   );
 }
 

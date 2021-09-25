@@ -55,11 +55,24 @@ export default function ReviewTile(props) {
     }
   }
 
+  var dateString = () => {
+    var day = new Date(props.date).toDateString();
+    var hour = new Date(props.date).getHours().toString();
+    var minute = new Date(props.date).getMinutes().toString();
+    // var second = new Date(props.date).getSeconds().toString();
+    var ampm = hour > 12 ? 'pm' : 'am';
+    hour = hour % 12;
+    hour = hour ? hour : 12;
+    minute = minute < 10 ? '0' + minute : minute;
+    // second = second < 10 ? '0' + second : second;
+    return day + ' ' + hour + ':' + minute + ' ' + ampm;
+  }
+
   return (
     <div>
-      <StarRatings rating={props.rating} starDimension={'15px'} starSpacing={'1px'}/>
+      <StarRatings rating={props.rating} starDimension={'15px'} starSpacing={'1px'} starRatedColor={'gold'} />
       <Typography>User: {props.reviewer_name}</Typography>
-      <Typography variant="caption">{new Date(props.date).toDateString()}</Typography>
+      <Typography variant="caption">{dateString()}</Typography>
       <Typography>{props.title}</Typography>
       <Typography>{props.body}</Typography>
       {props.photos.map((photo, index) => {
