@@ -14,14 +14,17 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-[![Contributors][contributors-shield]][contributors-url][![LinkedIn][linkedin-shield]][linkedin-url]
-
 <!-- PROJECT LOGO -->
 
 # Galvanize Hack Reactor Front End Capstone
 
 <br />
-<p align="center">
+
+## Project Catwalk
+
+<br>
+
+<!-- <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
@@ -34,23 +37,23 @@
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the Github Repo »</strong></a>
     <br />
     <br />
-    <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a> -->
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
-</p>
+</p> -->
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#contact">Contributors</a></li>
+    <li><a href="#contributors">Contributors</a></li>
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#tech-stack">Built With</a></li>
       </ul>
     </li>
     <li>
@@ -60,58 +63,101 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#component-break-down">Component Break Down</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
+<br>
 
 <!-- CONTACT -->
 
 ## Contributors
 
-Alicia Villanueva -<br>
-[![linkedin-shield]][alicialinkedin]
-<br>[linkedin](https://www.linkedin.com/in/alicia-villanueva-atx/)
-[Github](https://github.com/aliciav-texas)
+### Alicia Villanueva
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+ <img src="READMEimages/Alicia-Headshot.jpeg" alt="Logo" width="80" height="80">
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+[![linkedin-shield]][alicia-linkedin]
+[![github-shield]][alicia-github]
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+<br>
+
+<a href="#related-products-and-your-wardrobe">Jump to My Module</a>
+<br><br>
+
+### Cory Ellerbroek - cory.ellerbroek@gmail.com
+
+ <img src="READMEimages/Cory-Headshot.jpeg" alt="Logo" width="80" height="80">
+
+[![linkedin-shield]][cory-linkedin]
+[![github-shield]][cory-github]
+
+Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+<br>
+
+<a href="#product-overview">Jump to My Module</a>
+<br><br>
+
+### Travis Morse - @gmail.com
+
+ <img src="READMEimages/Travis-Headshot.jpeg" alt="Logo" width="80" height="80">
+
+[![linkedin-shield]][travis-linkedin]
+[![github-shield]][travis-github]
+
+Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+<br>
+<a href="#ratings-and-reviews">Jump to My Module</a>
+<br><br>
+
+### Johnathan Brennan - @gmail.com
+
+ <img src="READMEimages/John-Headshot.png" alt="Logo" width="80" height="80">
+
+[![linkedin-shield]][johnathan-linkedin]
+[![github-shield]][johnathan-github]
+
+Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+<br>
+
+<a href="#questions-and-answers">Jump to My Module</a>
+<br><br>
 
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-This project was a capstone for Front-End development from Week 6 to Week 7 of the Hack Reactor Full Stack Software Engineer Immersive. Project Catwalk was a collaborative project to build a product page with dynamic functionality and interaction with the Altier API beginning with an empty repo page. Team Havarti built the entire repo from a blank file to the Havarti Pary product page presented to you. Project Catwalk simulated a 2 week sprint and a true work and git flow enviornment.
+Project Catwalk was a collaborative Front-End capstone between members of Team Havarti. This project simulated the real-world development of a product page to the demands listed in their customers Buisness Documentation Requirements:
 
-Here's why:
+<br>
 
-- Your time should be focused on creating something amazing. A project that solves a problem and helps others
-- You shouldn't be doing the same tasks over and over like creating a README from scratch
-- You should implement DRY principles to the rest of your life :smile:
+> ## Overview
+>
+> "Our outdated client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers. Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site. This document outlines the features to be implemented as part of Project Catwalk in its initial release. The following requirements define the new user interface required for customers to browse items in our retail catalog."
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+<br>
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+Team Havarti built this project from an empty directory to the Havarti Party product page presented to you. The project was completed and deployed within a 2 week time period.
 
-### Built With
+Team Member Expectations and Workflow:
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+- Oversaw their own module while working in collaboration with teammates to ensure interactive functionality
+- Communicated their progress in daily standups
+- Created and completed their task tickets using Trello
+- Brainstormed and reflected the teams work in 2 day mini-sprints
 
-- [React](https://reactjs.org/docs/getting-started.html)
-- [Node](https://nodejs.org/en/docs/)
-- [Express](https://expressjs.com/)
+### Tech Stack
+
+- [React](https://reactjs.org/)
 - [MaterialUI](https://mui.com/)
+- [Axios](https://axios-http.com/)
+- [Express](https://expressjs.com/)
 - [Webpack](https://webpack.js.org/)
-- [Babel](https://babeljs.io/)
-- [Underscore](https://underscorejs.org/)
+
+<br>
 
 <!-- GETTING STARTED -->
 
@@ -157,25 +203,51 @@ This is an example of how to list things you need to use the software and how to
    ```
 8. Navigate to localhost:3030 in your browser
 
+<br><br>
+
 <!-- USAGE EXAMPLES -->
 
-## Component Break Down
+> ## Component Break Down
 
 Each member of Team Havarti was resposible for functionality within their own module as well as the overall presentation and functionality of the entire product page.
 
+<br>
 <!-- ROADMAP -->
 
-## Product Overviwew (Cory. E)
+> ## Product Overview
+>
+> Developed by Cory E.
 
-Test text
+<br>
 
-## Related Products and Your Outfit List (Alicia V.)
+<img src="http://g.recordit.co/pBWpS1im0D.gif" width="400" />
 
-![Related Products Gif](http://g.recordit.co/KPQWTja6zN.gif)
+<br><br>
 
-## Related Products
+The Product Overview module is the main visual content that is above the fold on page load. It contains the image carousel, product details, product styles, and the various components involved with adding a product to the cart. The biggest challenge when creating the Product Overview module was storing and passing state so that the sub-components would render and re-render approriately. It also had to communicate with the other modules. The solution we developed was a combination of storing state that needed to be shared in a context file (accessed using the useContext hook) while other state was stored locally.<br><br>
+Notable features of this module include:
 
-Related Products displays a responsive list of related items based on the current overview product.
+- When a style is clicked, the image carousel will present that style's images and will display at the same image index
+
+- The Select Size drop down will display OUT OF STOCK when appropriate
+
+- If size has not been selected, the Quantity drop down is disabled
+- If Add To Cart is clicked before a size is selected, the Select Size drop down will open
+- When a Related Product card or Your Wardrobe card is clicked, the module will re-render to provide the images and information for that product
+
+<br>
+
+> ## Related Products and Your Wardrobe
+>
+> Developed by Alicia V.
+
+<img src="http://g.recordit.co/KPQWTja6zN.gif" width="400" height="auto"/>
+
+<br><br>
+
+> ## Related Products
+
+Related Products displays a responsive list of related items based on the current overview product. When a new overview item is selected, the component must make a request to the Altier API for related item IDs, then based on those IDs make requests for their product's information as well as their styles. Control of asynchronous requests and handling of state as to not disrupt the functionality of other's components mmatewas an important aspect of this module.
 
 - The related product cards are disaplayed with [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
 
@@ -183,56 +255,64 @@ Related Products displays a responsive list of related items based on the curren
 - Clicking the item's content area places that item as the current overview product
 - A comparison modal will appear when the star icon is clicked, comparing the selected item with the overview Product
 
-## Outfit List
+<br>
 
-![Your Outfit List Gif](http://g.recordit.co/xFfjjNi5dm.gif)
+<br>
 
-Outfit list dynamically adds the current overview product style to a growing list of products of the users choosing.
+<img src="http://g.recordit.co/xFfjjNi5dm.gif" width="400" height="auto"/>
+
+<br><br>
+
+> ## Your Wardrobe
+
+Outfit list dynamically adds the current overview product style to a growing list of products of the users choosing. Outfit list must grow without duplication and without disrupting the layout of the screen when items are being added and removed. Handling of object information was a large task for this component as much of the displayed information was shared between two different objects from two different API requests. Setting the overview product back to the selected style on click had to be done in strategy with OverviewProduct so that all lower components still had acccess to the associated overview product for their own API requests.
 
 - Outfit list utilizes the [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
+
 - When empty, the Add To Outfit list is the only card appearing in the list
 - Items may only appear once within your wardrobe.
 - Arrows to glide through your list render only when the item list surpasses a length of 4
 - Clicking the item's content area places that style as the current overview product
+  <br><br>
 
-<!-- CONTRIBUTING -->
+> ## Ratings and Reviews
+>
+> Developed by Travis M.)
 
-## Contributing
+<br><br>
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+> ## Questions and Answers
+>
+> Developed by Johnathan B.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<!-- LICENSE -->
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-<!-- ACKNOWLEDGEMENTS -->
+<br><br>
 
 ## Acknowledgements
 
-- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+- [Node](https://nodejs.org/)
 - [Img Shields](https://shields.io)
-- [Choose an Open Source License](https://choosealicense.com)
-- [GitHub Pages](https://pages.github.com)
-- [Animate.css](https://daneden.github.io/animate.css)
-- [Loaders.css](https://connoratherton.com/loaders)
-- [Slick Carousel](https://kenwheeler.github.io/slick)
-- [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-- [Sticky Kit](http://leafo.net/sticky-kit)
-- [JVectorMap](http://jvectormap.com)
-- [Font Awesome](https://fontawesome.com)
+- [react-image-gallery](https://npm.io/package/react-image-gallery)
+- [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
+- [react-star-ratings](https://www.npmjs.com/package/react-star-ratings)
+- [Underscore](https://underscorejs.org/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[alicialinkedin]: https://www.linkedin.com/in/alicia-villanueva-atx/
+[cory-linkedin]: https://www.linkedin.com/in/coryellerbroek/
+[cory-github]: https://github.com/LrBrK33
+[alicia-linkedin]: https://www.linkedin.com/in/alicia-villanueva-atx/
+[alicia-github]: https://github.com/aliciav-texas
+[travis-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
+[travis-github]: https://github.com/travis503
+
+<!-- [johnathan-linkedin] -->
+
+[johnathan-github]: https://github.com/JohnathanBrennan
+
+<!-- [travis-linkedin]:
+[jonathan-linkedin]: -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-grey?style=for-the-badge&logo=linkedin
