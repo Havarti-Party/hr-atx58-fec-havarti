@@ -41,7 +41,7 @@
 [![linkedin-shield]][alicia-linkedin]
 [![github-shield]][alicia-github]
 
-Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Repo: [https://github.com/aliciav-texas/hr-atx58-fec-havarti](https://github.com/your_username/repo_name)
 <br>
 
 <a href="#related-products-and-your-wardrobe">Jump to My Module</a>
