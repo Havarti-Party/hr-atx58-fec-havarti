@@ -92,9 +92,7 @@
 
 <br>
 
-<img src="READMEimages/ProjectCatwalk.gif" width="400" height="auto" alt="Shows Product Overview features"/>
-
-<br><br>
+<img src="READMEimages/ProjectCatwalk.gif" width="400" height="auto" alt="Shows Product Overview features"/><br><br>
 
 Project Catwalk was a collaborative Front-End capstone between members of Team Havarti. This project simulated the real-world development of a product page to the demands listed in their customers Business Documentation Requirements:
 
@@ -176,7 +174,7 @@ This is an example of how to list things you need to use the software and how to
 ## Requested Change!
 
 <br>
-As it happens in the development world, Team Havarti was handed a Requirements Update at the start of Week 1 for this project:
+As it happens in the development world, Team Havarti was handed a Requirements Update at the start of Week 1 for this project:<br>
 
 <br>
 
@@ -213,8 +211,7 @@ Each member of Team Havarti was resposible for functionality within their own mo
 <br>
 <div align="center">
 <img src="READMEimages/ProductOverview.gif" width="400" height="auto" alt="Shows Product Overview features"/>
-</div>
-<br><br>
+</div><br><br>
 
 The Product Overview module is the main visual content that is above the fold on page load. It contains the image carousel, product details, product styles, and the various components involved with adding a product to the cart. The biggest challenge when creating the Product Overview module was storing and passing state so that the sub-components would render and re-render appropriately. It also had to communicate with the other modules. The solution we developed was a combination of storing state that needed to be shared in a context file (accessed using the useContext hook) while other state was stored locally.<br><br>
 Notable features of this module include:
@@ -239,8 +236,7 @@ Notable features of this module include:
 
 <div align="center">
 <img src="READMEimages/RPgif.gif" width="400" height="auto" alt="Shows Related Product features"/>
-</div>
-<br><br>
+</div><br><br>
 
 > ## Related Products
 
@@ -260,8 +256,7 @@ Related Products displays a responsive list of related items based on the curren
 
 <div align="center">
 <img src="READMEimages/WDgif.gif" width="400" height="auto" alt="Shows Your Wardrobe features"/>
-</div>
-<br><br>
+</div><br><br>
 
 > ## Your Wardrobe
 
@@ -288,8 +283,7 @@ Outfit list dynamically adds the current overview product style to a growing lis
 <br>
 <div align="center">
 <img src="READMEimages/reviewdisplay.gif" width="400" height="auto" alt="Shows Ratings and Reviews features"/>
-</div>
-<br><br>
+</div><br><br>
 
 The Ratings and Reviews module displays a dynamically rendered set of user-provided information regarding the currently selected product. As overview items are selected, this component makes a pair of requests to the Altier API to retrieve review data and metadata, then populates the display with visually expressive ratings, characteristics, and comments, and only loads displays for data that is actually present. The user can also submit new data with the "Write New Review" form, which formats and delivers new data to the API.
 
