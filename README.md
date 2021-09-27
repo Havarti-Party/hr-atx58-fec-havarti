@@ -300,6 +300,11 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 >
 > Developed by Johnathan B.
 
+<br>
+<div align="center">
+<img src="READMEimages/QuestionsAndAnswers.gif" width="400" height="auto" alt="Shows Question and Answers features"/>
+</div><br><br>
+
 <br><br>
 
 ## Acknowledgements
