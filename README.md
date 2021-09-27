@@ -129,7 +129,7 @@ Team Member Expectations and Workflow:
 
 # Getting Started
 
-To explore the Havarti Party, follow the instructions below
+To explore the project, follow the instructions below.
 
 ### Prerequisites
 
