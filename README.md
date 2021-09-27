@@ -1,21 +1,3 @@
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-
-<!-- PROJECT LOGO -->
-
 # Galvanize Hack Reactor Front End Capstone
 
 <br />
@@ -23,27 +5,6 @@
 ## Project Catwalk
 
 <br>
-
-<!-- <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Project Catwalk</h3>
-
-  <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the Github Repo »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p>
-</p> -->
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -71,9 +32,9 @@
 
 <!-- CONTACT -->
 
-## Contributors
+# Contributors
 
-### Alicia Villanueva
+### Alicia Villanueva - aliciav.texas@gmail.com
 
  <img src="READMEimages/Alicia-Headshot.jpeg" alt="Logo" width="80" height="80">
 
@@ -126,21 +87,27 @@ Project Repo: [https://github.com/your_username/repo_name](https://github.com/yo
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+# About The Project
 
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+<br>
+
+<img src="READMEimages/ProjectCatwalk.gif" width="400" height="auto" alt="Shows Product Overview features"/>
+
+<br><br>
 
 Project Catwalk was a collaborative Front-End capstone between members of Team Havarti. This project simulated the real-world development of a product page to the demands listed in their customers Business Documentation Requirements:
 
 <br>
 
-> ## Overview
->
+# Overview
+
+<br>
+
 > "Our client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers. Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site. This document outlines the features to be implemented as part of Project Catwalk in its initial release. The following requirements define the new user interface required for customers to browse items in our retail catalog."
 
 <br>
 
-Team Havarti built this project from an empty directory to the Havarti Party product page presented to you. The project was completed and deployed within a 2 week time period.
+Team Havarti built this project from an empty directory to the Havarti Party product page presented to you. The project was completed and deployed on [AWS EC2](https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc) within a 2 week time period.
 
 Team Member Expectations and Workflow:
 
@@ -161,7 +128,7 @@ Team Member Expectations and Workflow:
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+# Getting Started
 
 To explore the Havarti Party, follow the instructions below
 
@@ -205,9 +172,12 @@ This is an example of how to list things you need to use the software and how to
 
 <br><br>
 
-> ## Request Change!
+## Requested Change!
 
-As it happens in the development world, Team Havarti was handed a Requirements Update at the start of Week 1 for this project.
+<br>
+As it happens in the development world, Team Havarti was handed a Requirements Update at the start of Week 1 for this project:
+
+<br>
 
 > "There is an immediate need for visibility into customer interactions on our online retail portal. Specifically interactions with the Product Detail page should be collected for further analysis and interpretation by our Data Science team. Project Catwalk should incorporate click tracking on the Product Detail page within the scope of the initial release."
 > The click tracking will not be through any 3rd party analytics platform. All will be done in-house. To track interactions, each click on the web page should be recorded, as well as metadata associated with that click.
@@ -219,15 +189,21 @@ As it happens in the development world, Team Havarti was handed a Requirements U
 > <li>Module clicked
 > </div>
 
+<br>
+
 To complete this requirement, a helper function was created in the ProductContext file to be handed down to all child components. In each module's highest level componenent, an onClick property was invoked with that given module title and the target value of the users click. User click information was set to state, time-stamped, and was then sent to the Altier database for storage. All user clicks log a message to the console, confirming which module was clicked by the user.
 
 <br><br>
 
 <!-- USAGE EXAMPLES -->
 
-> ## Component Break Down
+# Component Break Down
+
+<br>
 
 Each member of Team Havarti was resposible for functionality within their own module as well as the overall presentation and functionality of the entire product page.
+
+<br>
 
 > ## Product Overview
 >
@@ -256,12 +232,16 @@ Notable features of this module include:
 >
 > Developed by Alicia V.
 
+<br>
+
 <div align="center">
 <img src="READMEimages/RPgif.gif" width="400" height="auto" alt="Shows Related Product features"/>
 </div>
 <br><br>
 
 > ## Related Products
+
+<br>
 
 Related Products displays a responsive list of related items based on the current overview product. When a new overview item is selected, the component must make a request to the Altier API for related item IDs, then based on those IDs make requests for their product's information as well as their styles. Control of asynchronous requests and handling of state as to not disrupt the functionality of other's components mmatewas an important aspect of this module.
 
@@ -281,6 +261,8 @@ Related Products displays a responsive list of related items based on the curren
 
 > ## Your Wardrobe
 
+<br>
+
 Outfit list dynamically adds the current overview product style to a growing list of products of the users choosing. Outfit list must grow without duplication and without disrupting the layout of the screen when items are being added and removed. Handling of object information was a large task for this component as much of the displayed information was shared between two different objects from two different API requests. Setting the overview product back to the selected style on click had to be done in strategy with OverviewProduct so that all lower components still had acccess to the associated overview product for their own API requests.
 
 - Outfit list utilizes the [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
@@ -294,7 +276,9 @@ Outfit list dynamically adds the current overview product style to a growing lis
 > ## Ratings and Reviews
 >
 > Developed by Travis M.
+
 <br>
+
 <div align="center">
 <img src="READMEimages/reviewdisplay.gif" width="400" height="auto" alt="Shows Ratings and Reviews features"/>
 </div>
@@ -307,6 +291,8 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 - To keep the page compact, only two reviews are initially loaded; more can be loaded using the "More Reviews" button
 
 - The "Write New Review" button will bring up a modal form that allows the user to share information and upload images to the server
+
+<br>
 
 > ## Questions and Answers
 >
@@ -322,6 +308,7 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 - [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
 - [react-star-ratings](https://www.npmjs.com/package/react-star-ratings)
 - [Underscore](https://underscorejs.org/)
+- [AWS EC2](https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -332,11 +319,10 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 [alicia-github]: https://github.com/aliciav-texas
 [travis-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
 [travis-github]: https://github.com/travis503
+
 <!-- [johnathan-linkedin] -->
+
 [johnathan-github]: https://github.com/JohnathanBrennan
-
-
-
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-grey?style=for-the-badge&logo=linkedin
 [github-shield]: https://img.shields.io/badge/-GitHub-grey?style=for-the-badge&logo=github
 [product-screenshot]: images/screenshot.png
