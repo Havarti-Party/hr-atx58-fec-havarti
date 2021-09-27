@@ -294,9 +294,10 @@ Outfit list dynamically adds the current overview product style to a growing lis
 > ## Ratings and Reviews
 >
 > Developed by Travis M.
-
+<br>
+<div align="center">
 <img src="READMEimages/reviewdisplay.gif" width="400" height="auto" alt="Shows Ratings and Reviews features"/>
-
+</div>
 <br><br>
 
 The Ratings and Reviews module displays a dynamically rendered set of user-provided information regarding the currently selected product. As overview items are selected, this component makes a pair of requests to the Altier API to retrieve review data and metadata, then populates the display with visually expressive ratings, characteristics, and comments, and only loads displays for data that is actually present. The user can also submit new data with the "Write New Review" form, which formats and delivers new data to the API.
