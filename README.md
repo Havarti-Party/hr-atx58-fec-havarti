@@ -295,7 +295,7 @@ Outfit list dynamically adds the current overview product style to a growing lis
 >
 > Developed by Travis M.
 
-<img src="READMEimages/RPgif.gif" width="400" height="auto" alt="Shows Ratings and Reviews features"/>
+<img src="READMEimages/reviewdisplay.gif" width="400" height="auto" alt="Shows Ratings and Reviews features"/>
 
 <br><br>
 
