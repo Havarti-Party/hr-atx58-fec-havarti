@@ -213,15 +213,15 @@ As it happens in the development world, Team Havarti was handed a Requirements U
 > The click tracking will not be through any 3rd party analytics platform. All will be done in-house. To track interactions, each click on the web page should be recorded, as well as metadata associated with that click.
 > For each click on the page, we need to capture the following:
 >
-> <div align="center">
-> <li >Element of the page which was clicked
+> <div>
+> <li>Element of the page which was clicked
 > <li>Time of click
 > <li>Module clicked
 > </div>
 
-To complete this requirement, a helper function was created in the ProductContext file to be handed down to all child components. In each module's outer most wrappers, an onClick property was invoked with that given module title and the target value of the users click. User click information traveled back up to state, time-stamped and was then sent to the Altier DB for storage. All user click interation logs a message to the console, confirming which module was selected by the user.
+To complete this requirement, a helper function was created in the ProductContext file to be handed down to all child components. In each module's highest level componenent, an onClick property was invoked with that given module title and the target value of the users click. User click information was set to state, time-stamped, and was then sent to the Altier database for storage. All user clicks log a message to the console, confirming which module was clicked by the user.
 
-<br>
+<br><br>
 
 <!-- USAGE EXAMPLES -->
 
@@ -235,7 +235,7 @@ Each member of Team Havarti was resposible for functionality within their own mo
 
 <br>
 <div align="center">
-<img src="http://g.recordit.co/pBWpS1im0D.gif" width="400" />
+<img src="READMEimages/ProductOverview.gif" width="400" height="auto" alt="Shows Product Overview features"/>
 </div>
 <br><br>
 
@@ -257,7 +257,7 @@ Notable features of this module include:
 > Developed by Alicia V.
 
 <div align="center">
-<img src="READMEimages/RPgif.gif" width="400" height="auto"/>
+<img src="READMEimages/RPgif.gif" width="400" height="auto" alt="Shows Related Product features"/>
 </div>
 <br><br>
 
@@ -275,7 +275,7 @@ Related Products displays a responsive list of related items based on the curren
 
 <br>
 <div align="center">
-<img src="READMEimages/WDgif.gif" width="400" height="auto" />
+<img src="READMEimages/WDgif.gif" width="400" height="auto" alt="Shows Your Wardrobe features"/>
 </div>
 <br><br>
 
@@ -295,11 +295,11 @@ Outfit list dynamically adds the current overview product style to a growing lis
 >
 > Developed by Travis M.
 
-<img src="READMEimages/RPgif.gif" width="400" height="auto"/>
+<img src="READMEimages/RPgif.gif" width="400" height="auto" alt="Shows Ratings and Reviews features"/>
 
 <br><br>
 
-The Reviews and Ratings section displays a dynamically rendered set of user-provided information regarding the currently selected product. As overview items are selected, this component makes a pair of requests to the Altier API to retrieve review data and metadata, then populates the display with visually expressive ratings, characteristics, and comments, and only loads displays for data that is actually present. The user can also submit new data with the "Write New Review" form, which formats and delivers new data to the API.
+The Ratings and Reviews module displays a dynamically rendered set of user-provided information regarding the currently selected product. As overview items are selected, this component makes a pair of requests to the Altier API to retrieve review data and metadata, then populates the display with visually expressive ratings, characteristics, and comments, and only loads displays for data that is actually present. The user can also submit new data with the "Write New Review" form, which formats and delivers new data to the API.
 
 - User reviews can be sorted by recency, helpfulness rating, or "relevance", which sorts reviews using an algorithm
 
@@ -331,17 +331,11 @@ The Reviews and Ratings section displays a dynamically rendered set of user-prov
 [alicia-github]: https://github.com/aliciav-texas
 [travis-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
 [travis-github]: https://github.com/travis503
-
 <!-- [johnathan-linkedin] -->
-
 [johnathan-github]: https://github.com/JohnathanBrennan
 
-<!-- [travis-linkedin]:
-[jonathan-linkedin]: -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-grey?style=for-the-badge&logo=linkedin
-[linkedin-url]: https://linkedin.com/in/othneildrew
 [github-shield]: https://img.shields.io/badge/-GitHub-grey?style=for-the-badge&logo=github
 [product-screenshot]: images/screenshot.png
