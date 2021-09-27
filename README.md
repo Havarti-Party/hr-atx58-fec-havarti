@@ -91,8 +91,9 @@
 # About The Project
 
 <br>
-
-<img src="READMEimages/ProjectCatwalk.gif" width="400" height="auto" alt="Shows Product Overview features"/><br><br>
+<div align="center">
+<img src="READMEimages/ProjectCatwalk.gif" width="400" height="auto" alt="Shows Product Overview features"/>
+</div><br><br>
 
 Project Catwalk was a collaborative Front-End capstone between members of Team Havarti. This project simulated the real-world development of a product page to the demands listed in their customers Business Documentation Requirements:
 
