@@ -43,7 +43,7 @@
 
 [Project Repo](https://github.com/your_username/repo_name)
 
-<a href="#related-products-and-your-wardrobe">My Module Documentation</a>
+<a href="#related-products-and-your-wardrobe">My Module: Related Products and Your Wardrobe Documentation</a>
 
 <br>
 
@@ -56,7 +56,7 @@
 
 [Project Repo](https://github.com/LrBrK33/hr-atx58-fec-havarti)
 
-<a href="#product-overview">My Module Documentation</a>
+<a href="#product-overview">My Module: Product Overview Documentation</a>
 
 <br>
 
@@ -69,7 +69,7 @@
 
 [Project Repo](https://github.com/your_username/repo_name)
 
-<a href="#ratings-and-reviews">My Module Documentation</a>
+<a href="#ratings-and-reviews">My Module: Ratings and Reviews Documentation</a>
 
 <br>
 
@@ -82,7 +82,7 @@
 
 [Project Repo](https://github.com/your_username/repo_name)
 
-<a href="#questions-and-answers">My Module Documentation</a>
+<a href="#questions-and-answers">My Module: Questions and Answers Documentation</a>
 
 <br>
 
