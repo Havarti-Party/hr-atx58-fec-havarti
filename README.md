@@ -80,7 +80,7 @@
 [![linkedin-shield]][johnathan-linkedin]
 [![github-shield]][johnathan-github]
 
-[Project Repo](https://github.com/your_username/repo_name)
+[Project Repo](https://github.com/JohnathanBrennan/hr-atx58-fec-havarti)
 
 <a href="#questions-and-answers">My Module: Questions and Answers Documentation</a>
 
