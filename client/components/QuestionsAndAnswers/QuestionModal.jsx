@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Grid from "@mui/material/Grid";
 
+// import emailExistence from 'email-existence';
 
 import { makeStyles } from '@material-ui/core/styles';
 
