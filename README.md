@@ -41,11 +41,11 @@
 [![linkedin-shield]][alicia-linkedin]
 [![github-shield]][alicia-github]
 
-Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-<br>
+[Project Repo](https://github.com/your_username/repo_name)
 
-<a href="#related-products-and-your-wardrobe">Jump to My Module</a>
-<br><br>
+<a href="#related-products-and-your-wardrobe">My Module Documentation</a>
+
+<br>
 
 ### Cory Ellerbroek - cory.ellerbroek@gmail.com
 
@@ -54,11 +54,11 @@ Project Repo: [https://github.com/your_username/repo_name](https://github.com/yo
 [![linkedin-shield]][cory-linkedin]
 [![github-shield]][cory-github]
 
-Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-<br>
+[Project Repo](https://github.com/LrBrK33/hr-atx58-fec-havarti)
 
-<a href="#product-overview">Jump to My Module</a>
-<br><br>
+<a href="#product-overview">My Module Documentation</a>
+
+<br>
 
 ### Travis Morse - travis503@gmail.com
 
@@ -67,10 +67,11 @@ Project Repo: [https://github.com/your_username/repo_name](https://github.com/yo
 [![linkedin-shield]][travis-linkedin]
 [![github-shield]][travis-github]
 
-Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+[Project Repo](https://github.com/your_username/repo_name)
+
+<a href="#ratings-and-reviews">My Module Documentation</a>
+
 <br>
-<a href="#ratings-and-reviews">Jump to My Module</a>
-<br><br>
 
 ### Johnathan Brennan - @gmail.com
 
@@ -79,11 +80,11 @@ Project Repo: [https://github.com/your_username/repo_name](https://github.com/yo
 [![linkedin-shield]][johnathan-linkedin]
 [![github-shield]][johnathan-github]
 
-Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-<br>
+[Project Repo](https://github.com/your_username/repo_name)
 
-<a href="#questions-and-answers">Jump to My Module</a>
-<br><br>
+<a href="#questions-and-answers">My Module Documentation</a>
+
+<br>
 
 <!-- ABOUT THE PROJECT -->
 
