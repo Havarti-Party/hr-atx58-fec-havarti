@@ -41,11 +41,16 @@
 [![linkedin-shield]][alicia-linkedin]
 [![github-shield]][alicia-github]
 
+<<<<<<< HEAD
 Project Repo: [https://github.com/aliciav-texas/hr-atx58-fec-havarti](https://github.com/your_username/repo_name)
 <br>
+=======
+[Project Repo](https://github.com/your_username/repo_name)
+>>>>>>> 33b035c40186cf62258ad6650c7e028696081d81
 
-<a href="#related-products-and-your-wardrobe">Jump to My Module</a>
-<br><br>
+<a href="#related-products-and-your-wardrobe">My Module: Related Products and Your Wardrobe Documentation</a>
+
+<br>
 
 ### Cory Ellerbroek - cory.ellerbroek@gmail.com
 
@@ -54,11 +59,11 @@ Project Repo: [https://github.com/aliciav-texas/hr-atx58-fec-havarti](https://gi
 [![linkedin-shield]][cory-linkedin]
 [![github-shield]][cory-github]
 
-Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-<br>
+[Project Repo](https://github.com/LrBrK33/hr-atx58-fec-havarti)
 
-<a href="#product-overview">Jump to My Module</a>
-<br><br>
+<a href="#product-overview">My Module: Product Overview Documentation</a>
+
+<br>
 
 ### Travis Morse - travis503@gmail.com
 
@@ -67,10 +72,11 @@ Project Repo: [https://github.com/your_username/repo_name](https://github.com/yo
 [![linkedin-shield]][travis-linkedin]
 [![github-shield]][travis-github]
 
-Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+[Project Repo](https://github.com/your_username/repo_name)
+
+<a href="#ratings-and-reviews">My Module: Ratings and Reviews Documentation</a>
+
 <br>
-<a href="#ratings-and-reviews">Jump to My Module</a>
-<br><br>
 
 ### Johnathan Brennan - @gmail.com
 
@@ -79,21 +85,20 @@ Project Repo: [https://github.com/your_username/repo_name](https://github.com/yo
 [![linkedin-shield]][johnathan-linkedin]
 [![github-shield]][johnathan-github]
 
-Project Repo: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-<br>
+[Project Repo](https://github.com/your_username/repo_name)
 
-<a href="#questions-and-answers">Jump to My Module</a>
-<br><br>
+<a href="#questions-and-answers">My Module: Questions and Answers Documentation</a>
+
+<br>
 
 <!-- ABOUT THE PROJECT -->
 
 # About The Project
 
 <br>
-
+<div align="center">
 <img src="READMEimages/ProjectCatwalk.gif" width="400" height="auto" alt="Shows Product Overview features"/>
-
-<br><br>
+</div><br><br>
 
 Project Catwalk was a collaborative Front-End capstone between members of Team Havarti. This project simulated the real-world development of a product page to the demands listed in their customers Business Documentation Requirements:
 
@@ -130,7 +135,7 @@ Team Member Expectations and Workflow:
 
 # Getting Started
 
-To explore the Havarti Party, follow the instructions below
+To explore the project, follow the instructions below.
 
 ### Prerequisites
 
@@ -175,7 +180,7 @@ This is an example of how to list things you need to use the software and how to
 ## Requested Change!
 
 <br>
-As it happens in the development world, Team Havarti was handed a Requirements Update at the start of Week 1 for this project:
+As it happens in the development world, Team Havarti was handed a Requirements Update at the start of Week 1 for this project:<br>
 
 <br>
 
@@ -212,8 +217,7 @@ Each member of Team Havarti was resposible for functionality within their own mo
 <br>
 <div align="center">
 <img src="READMEimages/ProductOverview.gif" width="400" height="auto" alt="Shows Product Overview features"/>
-</div>
-<br><br>
+</div><br><br>
 
 The Product Overview module is the main visual content that is above the fold on page load. It contains the image carousel, product details, product styles, and the various components involved with adding a product to the cart. The biggest challenge when creating the Product Overview module was storing and passing state so that the sub-components would render and re-render appropriately. It also had to communicate with the other modules. The solution we developed was a combination of storing state that needed to be shared in a context file (accessed using the useContext hook) while other state was stored locally.<br><br>
 Notable features of this module include:
@@ -238,8 +242,7 @@ Notable features of this module include:
 
 <div align="center">
 <img src="READMEimages/RPgif.gif" width="400" height="auto" alt="Shows Related Product features"/>
-</div>
-<br><br>
+</div><br><br>
 
 > ## Related Products
 
@@ -259,8 +262,7 @@ Related Products displays a responsive list of related items based on the curren
 
 <div align="center">
 <img src="READMEimages/WDgif.gif" width="400" height="auto" alt="Shows Your Wardrobe features"/>
-</div>
-<br><br>
+</div><br><br>
 
 > ## Your Wardrobe
 
@@ -287,8 +289,7 @@ Outfit list dynamically adds the current overview product style to a growing lis
 <br>
 <div align="center">
 <img src="READMEimages/reviewdisplay.gif" width="400" height="auto" alt="Shows Ratings and Reviews features"/>
-</div>
-<br><br>
+</div><br><br>
 
 The Ratings and Reviews module displays a dynamically rendered set of user-provided information regarding the currently selected product. As overview items are selected, this component makes a pair of requests to the Altier API to retrieve review data and metadata, then populates the display with visually expressive ratings, characteristics, and comments, and only loads displays for data that is actually present. The user can also submit new data with the "Write New Review" form, which formats and delivers new data to the API.
 
