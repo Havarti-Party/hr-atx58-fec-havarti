@@ -320,7 +320,7 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 [alicia-github]: https://github.com/aliciav-texas
 [travis-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
 [travis-github]: https://github.com/travis503
-[johnathan-linkedin]: https://www.linkedin.com/
+[johnathan-linkedin]: https://www.linkedin.com/johnathan-brennan-804b93215/
 [johnathan-github]: https://github.com/JohnathanBrennan
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-grey?style=for-the-badge&logo=linkedin
 [github-shield]: https://img.shields.io/badge/-GitHub-grey?style=for-the-badge&logo=github
