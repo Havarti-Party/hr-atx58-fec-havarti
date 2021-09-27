@@ -150,7 +150,7 @@ export default function FormDialog(props) {
             inputProps={{ min: 50, max: 1000}}
             placeholder="Why did you like this product or not?"
           />
-          <label htmlFor="photos">
+          <label htmlFor="uploadReviewImage">
             <Typography>Upload up to 5 relevant images:</Typography>
           <input name="reviewPics" onChange={handleChange} accept="image/*" id="uploadReviewImage" multiple max='5' type="file" style={{display: 'none'}}/>
             <Button variant="contained" component="span">
@@ -188,7 +188,7 @@ export default function FormDialog(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button onClick={handleSubmit, handleClose}>Submit</Button>
         </DialogActions>
       </Dialog>
     </div>
