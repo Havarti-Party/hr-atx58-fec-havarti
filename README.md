@@ -24,7 +24,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#component-break-down">Component Break Down</a></li>
+    <li><a href="#module-break-down">Module Break Down</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
@@ -197,7 +197,7 @@ To complete this requirement, a helper function was created in the ProductContex
 
 <!-- USAGE EXAMPLES -->
 
-# Component Break Down
+# Module Break Down
 
 <br>
 
@@ -215,7 +215,7 @@ Each member of Team Havarti was resposible for functionality within their own mo
 </div>
 <br><br>
 
-The Product Overview module is the main visual content that is above the fold on page load. It contains the image carousel, product details, product styles, and the various components involved with adding a product to the cart. The biggest challenge when creating the Product Overview module was storing and passing state so that the sub-components would render and re-render approriately. It also had to communicate with the other modules. The solution we developed was a combination of storing state that needed to be shared in a context file (accessed using the useContext hook) while other state was stored locally.<br><br>
+The Product Overview module is the main visual content that is above the fold on page load. It contains the image carousel, product details, product styles, and the various components involved with adding a product to the cart. The biggest challenge when creating the Product Overview module was storing and passing state so that the sub-components would render and re-render appropriately. It also had to communicate with the other modules. The solution we developed was a combination of storing state that needed to be shared in a context file (accessed using the useContext hook) while other state was stored locally.<br><br>
 Notable features of this module include:
 
 - When a style is clicked, the image carousel will present that style's images and will display at the same image index
@@ -223,7 +223,9 @@ Notable features of this module include:
 - The Select Size drop down will display OUT OF STOCK when appropriate
 
 - If size has not been selected, the Quantity drop down is disabled
+
 - If Add To Cart is clicked before a size is selected, the Select Size drop down will open
+
 - When a Related Product card or Your Wardrobe card is clicked, the module will re-render to provide the images and information for that product
 
 <br>
@@ -248,12 +250,13 @@ Related Products displays a responsive list of related items based on the curren
 - The related product cards are disaplayed with [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
 
 - Arrows to glide through your list render only when the item list surpasses a length of 4
+
 - Clicking the item's content area places that item as the current overview product
+
 - A comparison modal will appear when the star icon is clicked, comparing the selected item's features with the overview product's features. This list does not allow for duplicate features and only displays a value if a value is present for that feature.
 
-<br>
+<br><br>
 
-<br>
 <div align="center">
 <img src="READMEimages/WDgif.gif" width="400" height="auto" alt="Shows Your Wardrobe features"/>
 </div>
@@ -268,17 +271,20 @@ Outfit list dynamically adds the current overview product style to a growing lis
 - Outfit list utilizes the [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
 
 - When empty, the Add To Outfit list is the only card appearing in the list
+
 - Items may only appear once within your wardrobe.
+
 - Arrows to glide through your list render only when the item list surpasses a length of 4
+
 - Clicking the item's content area places that style as the current overview product
-  <br><br>
+
+<br><br>
 
 > ## Ratings and Reviews
 >
 > Developed by Travis M.
 
 <br>
-
 <div align="center">
 <img src="READMEimages/reviewdisplay.gif" width="400" height="auto" alt="Shows Ratings and Reviews features"/>
 </div>
@@ -310,8 +316,7 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 - [Underscore](https://underscorejs.org/)
 - [AWS EC2](https://aws.amazon.com/ec2/?ec2-whats-new.sort-by=item.additionalFields.postDateTime&ec2-whats-new.sort-order=desc)
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!-- Contributor Links -->
 
 [cory-linkedin]: https://www.linkedin.com/in/coryellerbroek/
 [cory-github]: https://github.com/LrBrK33
@@ -319,9 +324,7 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 [alicia-github]: https://github.com/aliciav-texas
 [travis-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
 [travis-github]: https://github.com/travis503
-
-<!-- [johnathan-linkedin] -->
-
+[johnathan-linkedin]: https://www.linkedin.com/
 [johnathan-github]: https://github.com/JohnathanBrennan
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-grey?style=for-the-badge&logo=linkedin
 [github-shield]: https://img.shields.io/badge/-GitHub-grey?style=for-the-badge&logo=github
