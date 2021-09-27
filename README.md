@@ -185,9 +185,9 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
-4. Enter your API in `config.example.js`
+4. Enter your API key in `config.example.js`
    ```JS
-   token: 'ENTER YOUR API';
+   token: 'API KEY';
    ```
 5. Remove the .example. from config.example.js to create config.js
    ```sh
@@ -195,19 +195,19 @@ This is an example of how to list things you need to use the software and how to
    ```
 6. Compile Webpack
    ```sh
-    npm run watch
+    npm run build
    ```
 7. Run express server on port: 3030
    ```sh
     npm start
    ```
-8. Navigate to localhost:3030 in your browser
+8. Navigate to `localhost:3030` in your browser
 
 <br><br>
 
 > ## Request Change!
 
-As it happens in the development world, Team Havarti was handed a Requirements update at the start of Week 1 for this project.
+As it happens in the development world, Team Havarti was handed a Requirements Update at the start of Week 1 for this project.
 
 > "There is an immediate need for visibility into customer interactions on our online retail portal. Specifically interactions with the Product Detail page should be collected for further analysis and interpretation by our Data Science team. Project Catwalk should incorporate click tracking on the Product Detail page within the scope of the initial release."
 > The click tracking will not be through any 3rd party analytics platform. All will be done in-house. To track interactions, each click on the web page should be recorded, as well as metadata associated with that click.
