@@ -41,12 +41,7 @@
 [![linkedin-shield]][alicia-linkedin]
 [![github-shield]][alicia-github]
 
-<<<<<<< HEAD
-Project Repo: [https://github.com/aliciav-texas/hr-atx58-fec-havarti](https://github.com/your_username/repo_name)
-<br>
-=======
-[Project Repo](https://github.com/your_username/repo_name)
->>>>>>> 33b035c40186cf62258ad6650c7e028696081d81
+[Project Repo](https://github.com/aliciav-texas/hr-atx58-fec-havarti)
 
 <a href="#related-products-and-your-wardrobe">My Module: Related Products and Your Wardrobe Documentation</a>
 
