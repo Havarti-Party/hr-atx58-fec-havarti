@@ -243,7 +243,7 @@ Notable features of this module include:
 
 <br>
 
-Related Products displays a responsive list of related items based on the current overview product. When a new overview item is selected, the component must make a request to the Altier API for related item IDs, then based on those IDs make requests for their product's information as well as their styles. Control of asynchronous requests and handling of state as to not disrupt the functionality of other's components mmatewas an important aspect of this module.
+Related Products displays a responsive list of related items based on the current overview product. When a new product is selected, the component must make a request to the Altier API for related item IDs, then based on those IDs make requests for their product's information as well as their styles. Control of asynchronous requests and handling of state as to not disrupt the functionality of other's components mmatewas an important aspect of this module.
 
 - The related product cards are disaplayed with [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
 
@@ -263,7 +263,7 @@ Related Products displays a responsive list of related items based on the curren
 
 <br>
 
-Outfit list dynamically adds the current overview product style to a growing list of products of the users choosing. Outfit list must grow without duplication and without disrupting the layout of the screen when items are being added and removed. Handling of object information was a large task for this component as much of the displayed information was shared between two different objects from two different API requests. Setting the overview product back to the selected style on click had to be done in strategy with OverviewProduct so that all lower components still had acccess to the associated overview product for their own API requests.
+Your Wardrobe list dynamically adds the current overview product style to a growing list of products of the users choosing. Your Wardrobe list must grow without duplication and without disrupting the layout of the screen when items are being added and removed. Handling of object information was a large task for this component as much of the displayed information was shared between two different objects from two different API requests. Setting the overview product back to the selected style on click had to be done in strategy with the Overview Product module so that all lower components still had acccess to the associated overview product for their own API requests.
 
 - Outfit list utilizes the [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
 
