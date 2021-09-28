@@ -41,7 +41,10 @@
 [![linkedin-shield]][alicia-linkedin]
 [![github-shield]][alicia-github]
 
-[Project Repo](https://github.com/aliciav-texas/hr-atx58-fec-havarti)
+
+[Project Repo](https://github.com/your_username/repo_name)
+[Engineering Journal](https://docs.google.com/document/d/15hqhUTSIOHM4RN9QpUl5ie-qWWh5F-vOs2xbf5U8x3E/edit?usp=sharing)
+
 
 <a href="#related-products-and-your-wardrobe">My Module: Related Products and Your Wardrobe Documentation</a>
 
