@@ -41,8 +41,10 @@
 [![linkedin-shield]][alicia-linkedin]
 [![github-shield]][alicia-github]
 
+
 [Project Repo](https://github.com/your_username/repo_name)
 [Engineering Journal](https://docs.google.com/document/d/15hqhUTSIOHM4RN9QpUl5ie-qWWh5F-vOs2xbf5U8x3E/edit?usp=sharing)
+
 
 <a href="#related-products-and-your-wardrobe">My Module: Related Products and Your Wardrobe Documentation</a>
 
@@ -81,7 +83,7 @@
 [![linkedin-shield]][johnathan-linkedin]
 [![github-shield]][johnathan-github]
 
-[Project Repo](https://github.com/your_username/repo_name)
+[Project Repo](https://github.com/JohnathanBrennan/hr-atx58-fec-havarti)
 
 <a href="#questions-and-answers">My Module: Questions and Answers Documentation</a>
 
@@ -244,7 +246,7 @@ Notable features of this module include:
 
 <br>
 
-Related Products displays a responsive list of related items based on the current overview product. When a new overview item is selected, the component must make a request to the Altier API for related item IDs, then based on those IDs make requests for their product's information as well as their styles. Control of asynchronous requests and handling of state as to not disrupt the functionality of other's components mmatewas an important aspect of this module.
+Related Products displays a responsive list of related items based on the current overview product. When a new product is selected, the component must make a request to the Altier API for related item IDs, then based on those IDs make requests for their product's information as well as their styles. Control of asynchronous requests and handling of state as to not disrupt the functionality of other's components mmatewas an important aspect of this module.
 
 - The related product cards are disaplayed with [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
 
@@ -264,7 +266,7 @@ Related Products displays a responsive list of related items based on the curren
 
 <br>
 
-Outfit list dynamically adds the current overview product style to a growing list of products of the users choosing. Outfit list must grow without duplication and without disrupting the layout of the screen when items are being added and removed. Handling of object information was a large task for this component as much of the displayed information was shared between two different objects from two different API requests. Setting the overview product back to the selected style on click had to be done in strategy with OverviewProduct so that all lower components still had acccess to the associated overview product for their own API requests.
+Your Wardrobe list dynamically adds the current overview product style to a growing list of products of the users choosing. Your Wardrobe list must grow without duplication and without disrupting the layout of the screen when items are being added and removed. Handling of object information was a large task for this component as much of the displayed information was shared between two different objects from two different API requests. Setting the overview product back to the selected style on click had to be done in strategy with the Overview Product module so that all lower components still had acccess to the associated overview product for their own API requests.
 
 - Outfit list utilizes the [react-elastic-carousel](https://www.npmjs.com/package/react-elastic-carousel)
 
@@ -301,6 +303,11 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 >
 > Developed by Johnathan B.
 
+<br>
+<div align="center">
+<img src="READMEimages/QuestionsAndAnswers.gif" width="400" height="auto" alt="Shows Question and Answers features"/>
+</div><br><br>
+
 <br><br>
 
 ## Acknowledgements
@@ -321,7 +328,7 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 [alicia-github]: https://github.com/aliciav-texas
 [travis-linkedin]: https://www.linkedin.com/in/travis-morse-7574107a/
 [travis-github]: https://github.com/travis503
-[johnathan-linkedin]: https://www.linkedin.com/
+[johnathan-linkedin]: https://www.linkedin.com/johnathan-brennan-804b93215/
 [johnathan-github]: https://github.com/JohnathanBrennan
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-grey?style=for-the-badge&logo=linkedin
 [github-shield]: https://img.shields.io/badge/-GitHub-grey?style=for-the-badge&logo=github
