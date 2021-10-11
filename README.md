@@ -310,6 +310,16 @@ The Ratings and Reviews module displays a dynamically rendered set of user-provi
 
 <br><br>
 
+The Question and Answers Module renders any questions, and their given answers, related to a currently selected product. It allows full functionality to interact with a given question or answer. This set of functionality does manipulate the database in our Atlier API and persists across loads. The functionality of this module can be found below:
+
+- User's questions and answers will be sorted by helpfulness
+
+- User's can mark questions and answers as being helpful, or if there was something inappropriate, report the selected question or answer
+
+- Reported questions and answers will be removed from the rendered module to be reviewed by a separate team
+
+- Adding of questions or answers can be done through the client via a modal popup that verify user's input, and immediately render them to the module and persists to the database
+
 ## Acknowledgements
 
 - [Node](https://nodejs.org/)
